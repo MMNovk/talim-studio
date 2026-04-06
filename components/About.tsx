@@ -36,7 +36,7 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <p className="text-base font-light text-ink-2 leading-[1.7] mb-5">
+            <p className="font-mono text-[11px] text-ink-2 uppercase tracking-[0.1em] leading-relaxed mb-5">
               Talim Studio is a one-person web design studio based in New York City. I work directly
               with small business owners and creatives — no layers of account managers, no bloated
               agency fees.
@@ -44,7 +44,7 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
-            <p className="text-base font-light text-ink-2 leading-[1.7] mb-5">
+            <p className="font-mono text-[11px] text-ink-2 uppercase tracking-[0.1em] leading-relaxed mb-5">
               Every site I build is fast, accessible, and made to convert. I use the latest tools to
               ship in days, not weeks, so you can focus on what you actually do.
             </p>

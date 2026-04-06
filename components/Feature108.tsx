@@ -9,11 +9,12 @@ const tabs = [
     label: 'Starter',
     content: {
       price: '$299',
-      title: 'A clean, fast website that works.',
+      title: '4–5 pages. Deployed in days.',
       description:
-        '4–5 pages, built for small businesses and freelancers who need a professional online presence without the agency price tag or the wait.',
+        'A clean, fast site for small businesses and freelancers. Professional presence online — without the agency price tag or the wait.',
+      buttonText: 'Start with Starter',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-      imageAlt: 'Starter site preview',
+      imageAlt: 'Starter site',
     },
   },
   {
@@ -21,11 +22,12 @@ const tabs = [
     label: 'Portfolio',
     content: {
       price: '$449',
-      title: 'Your work, presented with intent.',
+      title: 'Bold layouts. Your work, elevated.',
       description:
-        'Built for artists, photographers, designers, and makers. Bold layouts, smooth interactions, and a site that actually matches the quality of what you do.',
+        'Built for artists, photographers, designers, and makers. A site that matches the quality of what you do — bold, smooth, intentional.',
+      buttonText: 'Build a Portfolio',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-2.svg',
-      imageAlt: 'Portfolio site preview',
+      imageAlt: 'Portfolio preview',
     },
   },
   {
@@ -33,9 +35,10 @@ const tabs = [
     label: 'Business + Booking',
     content: {
       price: '$649',
-      title: 'Everything your business needs online.',
+      title: 'Booking, maps, SEO. All in.',
       description:
-        "E-commerce, booking systems, multi-page experiences. If you have a specific vision, we'll build it — from concept to launch, on your timeline.",
+        "E-commerce, booking flows, multi-page builds. If you have a vision, we'll make it happen — from concept to launch, on your timeline.",
+      buttonText: 'Book a Build',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
       imageAlt: 'Business site preview',
     },
@@ -45,14 +48,41 @@ const tabs = [
     label: 'Retainer',
     content: {
       price: '$79/mo',
-      title: 'Ongoing support, no surprises.',
+      title: 'Always updated. Always live.',
       description:
-        'Monthly updates, edits, and technical support for your existing site. Stay sharp without hiring a full-time developer.',
+        'Monthly updates, edits, and technical support. Stay sharp and current without hiring a full-time developer.',
+      buttonText: 'Keep It Running',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-      imageAlt: 'Monthly retainer support',
+      imageAlt: 'Retainer support',
     },
   },
 ]
+
+function ArrowCTA({ text, href = '#contact' }: { text: string; href?: string }) {
+  return (
+    <a href={href} className="mt-6 w-fit flex items-center gap-5 group no-underline">
+      <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white transition-all duration-500 flex-shrink-0">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="stroke-white group-hover:stroke-zinc-900 transition-colors duration-500"
+        >
+          <path
+            d="M7 17L17 7M17 7H8M17 7V16"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <span className="font-mono text-[11px] font-bold text-white uppercase tracking-[0.2em]">
+        {text}
+      </span>
+    </a>
+  )
+}
 
 export function Feature108() {
   return (
@@ -64,14 +94,14 @@ export function Feature108() {
       </ScrollReveal>
 
       <Tabs defaultValue="tab-1">
-        {/* Tab triggers — no icons, underline active state */}
+        {/* Tab triggers — minimal, no icons, active = dark pill */}
         <ScrollReveal delay={50}>
-          <TabsList className="flex overflow-x-auto border-b border-ink/10 gap-0 mb-0 outline-none">
+          <TabsList className="flex overflow-x-auto gap-1.5 mb-3 outline-none pb-0">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="font-syne font-bold text-sm tracking-tight text-ink-3 pb-4 px-6 border-b-2 border-transparent data-[state=active]:border-ink data-[state=active]:text-ink transition-colors whitespace-nowrap outline-none cursor-pointer"
+                className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-ink-3 px-5 py-2.5 rounded-lg data-[state=active]:bg-zinc-900 data-[state=active]:text-white transition-all whitespace-nowrap outline-none cursor-pointer"
               >
                 {tab.label}
               </TabsTrigger>
@@ -79,40 +109,34 @@ export function Feature108() {
           </TabsList>
         </ScrollReveal>
 
-        {/* Tab content panels */}
-        <div className="border border-t-0 border-ink/10 rounded-b-lg overflow-hidden">
+        {/* Dark rounded container — matches Feature108 screenshot */}
+        <div className="bg-zinc-900 rounded-2xl overflow-hidden">
           {tabs.map((tab) => (
             <TabsContent
               key={tab.value}
               value={tab.value}
-              className="outline-none grid lg:grid-cols-2"
+              className="outline-none grid lg:grid-cols-2 min-h-[440px]"
             >
               {/* Left: text */}
-              <div className="flex flex-col gap-5 p-8 lg:p-14">
-                {/* Price tag — plain, no bg */}
-                <span className="font-mono text-base text-ink-3 tracking-wide">
+              <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
+                <span className="font-mono text-lg text-white/35 tracking-wide">
                   {tab.content.price}
                 </span>
-                <h3 className="font-syne font-bold text-[clamp(22px,2.5vw,36px)] tracking-tight text-ink leading-tight">
+                <h3 className="font-syne font-black text-[clamp(24px,3vw,44px)] tracking-tighter text-white leading-[1.0]">
                   {tab.content.title}
                 </h3>
-                <p className="text-base font-light text-ink-2 leading-relaxed">
+                <p className="font-mono text-[11px] text-white/50 uppercase tracking-[0.1em] leading-relaxed max-w-xs">
                   {tab.content.description}
                 </p>
-                <a
-                  href="#contact"
-                  className="mt-2.5 w-fit inline-flex items-center gap-2 font-syne font-bold text-sm tracking-wide bg-ink text-white px-6 py-3 rounded-sm no-underline hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(14,14,14,0.15)] transition-all duration-200"
-                >
-                  Start a project →
-                </a>
+                <ArrowCTA text={tab.content.buttonText} />
               </div>
 
-              {/* Right: image */}
-              <div className="flex items-center justify-center p-8 lg:p-14 border-t lg:border-t-0 lg:border-l border-ink/10">
+              {/* Right: image — slightly lighter panel */}
+              <div className="flex items-center justify-center p-8 lg:p-12 bg-zinc-800/60 border-t lg:border-t-0 lg:border-l border-white/5">
                 <img
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
-                  className="rounded-lg w-full max-w-sm"
+                  className="rounded-xl w-full max-w-xs"
                 />
               </div>
             </TabsContent>

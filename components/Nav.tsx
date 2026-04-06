@@ -40,11 +40,10 @@ export default function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
         <Link
           href="#"
-          className="font-syne font-black text-2xl tracking-tighter uppercase no-underline leading-none"
+          className="font-syne font-black text-xl tracking-tight text-ink no-underline"
           onClick={() => setOpen(false)}
         >
-          <span className="text-ink">T</span>
-          <span className="text-outline">S</span>
+          TS
         </Link>
 
         <button

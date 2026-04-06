@@ -28,7 +28,7 @@ export default function Hero() {
       {/* Left side — title vertically centered, CTA directly below subtext */}
       <div
         ref={revealRef}
-        className="flex-1 min-w-0 flex flex-col justify-center p-8 md:p-14 lg:p-20"
+        className="flex-1 min-w-0 flex flex-col justify-center p-8 md:p-14 lg:p-20 border-r border-ink/15"
       >
         <div className="max-w-4xl pr-12">
           <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-ink uppercase">

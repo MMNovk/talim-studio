@@ -42,13 +42,13 @@ export default function Process() {
             <div
               className={`p-10 relative h-full ${i < steps.length - 1 ? 'border-r border-ink/10 max-md:border-b' : ''} max-md:border-r-0`}
             >
-              <div className="font-syne font-extrabold text-5xl tracking-[-0.04em] text-paper-2 leading-none mb-5">
+              <div className="font-syne font-extrabold text-5xl tracking-[-0.04em] text-ink/10 leading-none mb-5">
                 {step.num}
               </div>
               <h3 className="font-syne font-bold text-base tracking-tight text-ink mb-2.5">
                 {step.title}
               </h3>
-              <p className="text-[13px] font-light text-ink-2 leading-[1.65]">{step.desc}</p>
+              <p className="font-mono text-[11px] text-ink-2 uppercase tracking-[0.1em] leading-relaxed">{step.desc}</p>
             </div>
           </ScrollReveal>
         ))}
