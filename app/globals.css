@@ -32,6 +32,12 @@ body {
   opacity: 0.4;
 }
 
+/* Outline text (used in hero title) */
+.text-outline {
+  -webkit-text-stroke: 3px #0e0e0e;
+  color: transparent;
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;
