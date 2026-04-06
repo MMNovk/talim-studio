@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useGSAP } from '@gsap/react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, {
   forwardRef,
   HTMLAttributes,
@@ -12,65 +12,72 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
+} from 'react';
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 function useMergeRefs<T>(...refs: (Ref<T> | undefined)[]) {
   return useMemo(() => {
-    if (refs.every((ref) => ref == null)) return null
+    if (refs.every((ref) => ref == null)) return null;
     return (node: T) => {
       refs.forEach((ref) => {
         if (typeof ref === 'function') {
-          ref(node)
+          ref(node);
         } else if (ref != null) {
-          ;(ref as React.MutableRefObject<T | null>).current = node
+          (ref as React.MutableRefObject<T | null>).current = node;
         }
-      })
-    }
-  }, [refs])
+      });
+    };
+  }, [refs]);
 }
 
 function useResponsiveValue(baseValue: number, mobileValue: number) {
-  const [value, setValue] = useState(baseValue)
+  const [value, setValue] = useState(baseValue);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    const handleResize = () => {
-      setValue(window.innerWidth < 768 ? mobileValue : baseValue)
-    }
-    handleResize()
-    let timeoutId: NodeJS.Timeout
-    const debouncedResize = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(handleResize, 100)
-    }
-    window.addEventListener('resize', debouncedResize)
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-      clearTimeout(timeoutId)
-    }
-  }, [baseValue, mobileValue])
+    if (typeof window === 'undefined') return;
 
-  return value
+    const handleResize = () => {
+      setValue(window.innerWidth < 768 ? mobileValue : baseValue);
+    };
+
+    handleResize();
+
+    let timeoutId: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleResize, 100);
+    };
+
+    window.addEventListener('resize', debouncedResize);
+    return () => {
+      window.removeEventListener('resize', debouncedResize);
+      clearTimeout(timeoutId);
+    };
+  }, [baseValue, mobileValue]);
+
+  return value;
 }
 
 export interface RadialScrollGalleryProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-  children: (hoveredIndex: number | null) => ReactNode[]
-  scrollDuration?: number
-  visiblePercentage?: number
-  baseRadius?: number
-  mobileRadius?: number
-  startTrigger?: string
-  onItemSelect?: (index: number) => void
-  direction?: 'ltr' | 'rtl'
-  disabled?: boolean
+  children: (hoveredIndex: number | null) => ReactNode[];
+  scrollDuration?: number;
+  visiblePercentage?: number;
+  baseRadius?: number;
+  mobileRadius?: number;
+  startTrigger?: string;
+  onItemSelect?: (index: number) => void;
+  direction?: 'ltr' | 'rtl';
+  disabled?: boolean;
 }
 
-export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGalleryProps>(
+export const RadialScrollGallery = forwardRef<
+  HTMLDivElement,
+  RadialScrollGalleryProps
+>(
   (
     {
       children,
@@ -87,48 +94,65 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
     },
     ref
   ) => {
-    const pinRef = useRef<HTMLDivElement>(null)
-    const containerRef = useRef<HTMLUListElement>(null)
-    const childRef = useRef<HTMLLIElement>(null)
+    const pinRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLUListElement>(null);
+    const childRef = useRef<HTMLLIElement>(null);
 
-    const mergedRef = useMergeRefs(ref, pinRef)
+    const mergedRef = useMergeRefs(ref, pinRef);
 
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-    const [childSize, setChildSize] = useState<{ w: number; h: number } | null>(null)
-    const [isMounted, setIsMounted] = useState(false)
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [childSize, setChildSize] = useState<{ w: number; h: number } | null>(
+      null
+    );
+    const [isMounted, setIsMounted] = useState(false);
 
-    const currentRadius = useResponsiveValue(baseRadius, mobileRadius)
-    const circleDiameter = currentRadius * 2
+    const currentRadius = useResponsiveValue(baseRadius, mobileRadius);
+    const circleDiameter = currentRadius * 2;
 
     const { visibleDecimal, hiddenDecimal } = useMemo(() => {
-      const clamped = Math.max(10, Math.min(100, visiblePercentage))
-      const v = clamped / 100
-      return { visibleDecimal: v, hiddenDecimal: 1 - v }
-    }, [visiblePercentage])
+      const clamped = Math.max(10, Math.min(100, visiblePercentage));
+      const v = clamped / 100;
+      return { visibleDecimal: v, hiddenDecimal: 1 - v };
+    }, [visiblePercentage]);
 
     const childrenNodes = useMemo(
       () => React.Children.toArray(children(hoveredIndex)),
       [children, hoveredIndex]
-    )
-    const childrenCount = childrenNodes.length
+    );
+    const childrenCount = childrenNodes.length;
 
     useEffect(() => {
-      setIsMounted(true)
-      if (!childRef.current) return
+      setIsMounted(true);
+
+      if (!childRef.current) return;
+
       const observer = new ResizeObserver((entries) => {
+        let hasChanged = false;
         for (const entry of entries) {
-          setChildSize({ w: entry.contentRect.width, h: entry.contentRect.height })
+          setChildSize({
+            w: entry.contentRect.width,
+            h: entry.contentRect.height,
+          });
+          hasChanged = true;
         }
-        ScrollTrigger.refresh()
-      })
-      observer.observe(childRef.current)
-      return () => observer.disconnect()
-    }, [childrenCount])
+        if (hasChanged) {
+          ScrollTrigger.refresh();
+        }
+      });
+
+      observer.observe(childRef.current);
+      return () => observer.disconnect();
+    }, [childrenCount]);
 
     useGSAP(
       () => {
-        if (!pinRef.current || !containerRef.current || childrenCount === 0) return
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (!pinRef.current || !containerRef.current || childrenCount === 0)
+          return;
+
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
         if (!prefersReducedMotion) {
           gsap.fromTo(
             containerRef.current.children,
@@ -145,7 +169,8 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
                 toggleActions: 'play none none reverse',
               },
             }
-          )
+          );
+
           gsap.to(containerRef.current, {
             rotation: 360,
             ease: 'none',
@@ -157,19 +182,30 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
               scrub: 1,
               invalidateOnRefresh: true,
             },
-          })
+          });
         }
       },
-      { scope: pinRef, dependencies: [scrollDuration, currentRadius, startTrigger, childrenCount] }
-    )
+      {
+        scope: pinRef,
+        dependencies: [
+          scrollDuration,
+          currentRadius,
+          startTrigger,
+          childrenCount,
+        ],
+      }
+    );
 
-    if (childrenCount === 0) return null
+    if (childrenCount === 0) return null;
 
-    const scaleFactor = 1.25
-    const calculatedBuffer = childSize ? childSize.h * scaleFactor - childSize.h + 60 : 150
+    const scaleFactor = 1.25;
+    const calculatedBuffer = childSize
+      ? childSize.h * scaleFactor - childSize.h + 60
+      : 150;
+
     const visibleAreaHeight = childSize
       ? circleDiameter * visibleDecimal + childSize.h / 2 + calculatedBuffer
-      : circleDiameter * visibleDecimal + 200
+      : circleDiameter * visibleDecimal + 200;
 
     return (
       <div
@@ -178,11 +214,13 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
         {...rest}
       >
         <div
-          className="relative w-full overflow-hidden"
+          className='relative w-full overflow-hidden'
           style={{
             height: `${visibleAreaHeight}px`,
-            maskImage: 'linear-gradient(to top, transparent 0%, black 40%, black 100%)',
-            WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 40%, black 100%)',
+            maskImage:
+              'linear-gradient(to top, transparent 0%, black 40%, black 100%)',
+            WebkitMaskImage:
+              'linear-gradient(to top, transparent 0%, black 40%, black 100%)',
           }}
         >
           <ul
@@ -201,31 +239,40 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
             }}
           >
             {childrenNodes.map((child, index) => {
-              const angle = (index / childrenCount) * 2 * Math.PI
-              let x = currentRadius * Math.cos(angle)
-              const y = currentRadius * Math.sin(angle)
-              if (direction === 'rtl') x = -x
-              const rotationAngle = (angle * 180) / Math.PI
-              const isHovered = hoveredIndex === index
-              const isAnyHovered = hoveredIndex !== null
+              const angle = (index / childrenCount) * 2 * Math.PI;
+              let x = currentRadius * Math.cos(angle);
+              const y = currentRadius * Math.sin(angle);
+
+              if (direction === 'rtl') {
+                x = -x;
+              }
+
+              const rotationAngle = (angle * 180) / Math.PI;
+              const isHovered = hoveredIndex === index;
+              const isAnyHovered = hoveredIndex !== null;
 
               return (
                 <li
                   key={index}
                   ref={index === 0 ? childRef : null}
-                  className="absolute top-1/2 left-1/2"
+                  className='absolute top-1/2 left-1/2'
                   style={{
                     zIndex: isHovered ? 100 : 10,
-                    transform: `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) rotate(${rotationAngle + 90}deg)`,
+                    transform: `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) rotate(${
+                      rotationAngle + 90
+                    }deg)`,
                   }}
                 >
                   <div
-                    role="button"
+                    role='button'
                     tabIndex={disabled ? -1 : 0}
                     onClick={() => !disabled && onItemSelect?.(index)}
                     onKeyDown={(e) => {
-                      if (disabled) return
-                      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onItemSelect?.(index) }
+                      if (disabled) return;
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onItemSelect?.(index);
+                      }
                     }}
                     onMouseEnter={() => !disabled && setHoveredIndex(index)}
                     onMouseLeave={() => !disabled && setHoveredIndex(null)}
@@ -236,19 +283,23 @@ export const RadialScrollGallery = forwardRef<HTMLDivElement, RadialScrollGaller
                       focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
                       rounded-xl transition-all duration-500 ease-out will-change-transform
                       ${isHovered ? 'scale-125 -translate-y-8' : 'scale-100'}
-                      ${isAnyHovered && !isHovered ? 'blur-[2px] opacity-40 grayscale' : 'blur-0 opacity-100'}
+                      ${
+                        isAnyHovered && !isHovered
+                          ? 'blur-[2px] opacity-40 grayscale'
+                          : 'blur-0 opacity-100'
+                      }
                     `}
                   >
                     {child}
                   </div>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
       </div>
-    )
+    );
   }
-)
+);
 
-RadialScrollGallery.displayName = 'RadialScrollGallery'
+RadialScrollGallery.displayName = 'RadialScrollGallery';
