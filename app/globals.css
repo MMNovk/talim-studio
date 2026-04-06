@@ -38,6 +38,12 @@ body {
   color: transparent;
 }
 
+/* Blur main content when nav overlay is open */
+body.menu-open main {
+  filter: blur(6px);
+  transition: filter 0.35s ease;
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;
