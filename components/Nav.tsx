@@ -40,10 +40,11 @@ export default function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
         <Link
           href="#"
-          className="font-syne font-black text-xl tracking-tight text-ink no-underline"
+          className="font-syne font-black text-2xl tracking-tighter uppercase no-underline leading-none"
           onClick={() => setOpen(false)}
         >
-          TS
+          <span className="text-ink">T</span>
+          <span className="text-outline">S</span>
         </Link>
 
         <button
@@ -63,7 +64,7 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="fixed inset-0 z-[99] bg-white/95 backdrop-blur-md flex items-center"
+            className="fixed inset-0 z-[99] bg-white/95 backdrop-blur-md flex items-center justify-center"
             onClick={(e) => { if (e.target === e.currentTarget) setOpen(false) }}
           >
             {/* Close menu when a link is clicked */}

@@ -18,7 +18,7 @@ const skills = [
 
 export default function About() {
   return (
-    <section className="px-12 py-[120px] bg-paper-2 max-md:px-6 max-md:py-20" id="about">
+    <section className="px-12 py-[120px] bg-white max-md:px-6 max-md:py-20" id="about">
       <div className="grid grid-cols-2 gap-20 items-center max-md:grid-cols-1 max-md:gap-12">
         {/* Left column */}
         <div>
@@ -55,7 +55,7 @@ export default function About() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="text-xs font-medium text-ink-2 px-3.5 py-1.5 border border-ink/15 rounded-full tracking-wide bg-paper"
+                  className="text-xs font-medium text-ink-2 px-3.5 py-1.5 border border-ink/15 rounded-full tracking-wide bg-white"
                 >
                   {skill}
                 </span>
@@ -68,7 +68,7 @@ export default function About() {
         <ScrollReveal>
           <div className="grid grid-cols-3 gap-0.5 bg-ink/10 rounded-sm overflow-hidden">
             {stats.map((stat) => (
-              <div key={stat.label} className="bg-paper p-6 text-center">
+              <div key={stat.label} className="bg-white p-6 text-center">
                 <div className="font-syne font-extrabold text-[32px] tracking-tight text-ink leading-none mb-1">
                   {stat.num}
                 </div>
@@ -79,7 +79,7 @@ export default function About() {
             ))}
           </div>
 
-          <div className="mt-6 p-8 bg-paper rounded-lg border border-ink/[0.08]">
+          <div className="mt-6 p-8 bg-white rounded-lg border border-ink/[0.08]">
             <p className="text-lg font-light text-ink-2 leading-[1.65] italic">
               &ldquo;Most small businesses don&rsquo;t need a $10,000 website. They need something
               that looks great, loads fast, and actually brings in customers.&rdquo;

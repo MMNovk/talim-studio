@@ -1,7 +1,6 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import Ticker from '@/components/Ticker'
-import Services from '@/components/Services'
+import { Feature108 } from '@/components/Feature108'
 import Work from '@/components/Work'
 import Process from '@/components/Process'
 import About from '@/components/About'
@@ -14,8 +13,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Ticker />
-        <Services />
+        <Feature108 />
         <Work />
         <Process />
         <About />
