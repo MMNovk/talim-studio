@@ -15,6 +15,11 @@ const config: Config = {
         'paper-2': '#eceae5',
         accent: '#c8ff00',
         'accent-dark': '#9ec800',
+        // shadcn-compatible tokens used by Feature108
+        muted: '#f4f4f5',
+        'muted-foreground': '#71717a',
+        primary: '#18181b',
+        background: '#ffffff',
       },
       fontFamily: {
         syne: ['Syne', 'sans-serif'],
