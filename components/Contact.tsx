@@ -32,7 +32,7 @@ export default function Contact() {
             <p className="text-muted-foreground mt-2">I'll be in touch shortly.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} action="https://formspree.io/f/mkopybrk" method="POST" className="flex flex-col gap-10">
+          <form onSubmit={handleSubmit} action="https://formspree.io/f/mkopybrk" method="POST" className="flex flex-col gap-10 max-md:gap-7">
             <div className="flex flex-col gap-1">
               <input
                 type="text"

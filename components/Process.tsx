@@ -54,7 +54,7 @@ export default function Process() {
                 </>
               ) : (
                 <>
-                  <div>
+                  <div className="max-md:order-last">
                     <h3 className="font-black text-[clamp(2rem,3.5vw,3rem)] leading-tight text-ink mb-6">
                       {step.title}
                     </h3>
@@ -63,7 +63,7 @@ export default function Process() {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-56 object-cover rounded-2xl"
+                    className="w-full h-56 object-cover rounded-2xl max-md:order-first"
                   />
                 </>
               )}

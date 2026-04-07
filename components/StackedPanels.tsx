@@ -183,6 +183,37 @@ export default function StackedPanels() {
     [rotY, rotX, waveYSprings, scaleYSprings]
   );
 
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const touch = e.touches[0];
+      if (!touch) return;
+      isHovering.current = true;
+
+      const cx = (touch.clientX - rect.left) / rect.width;
+      const cy = (touch.clientY - rect.top) / rect.height;
+
+      rotY.set(-42 + (cx - 0.5) * 14);
+      rotX.set(18 + (cy - 0.5) * -10);
+
+      const cursorCardPos = cx * (PANEL_COUNT - 1);
+
+      waveYSprings.forEach((spring, i) => {
+        const dist = Math.abs(i - cursorCardPos);
+        const influence = Math.exp(-(dist * dist) / (2 * SIGMA * SIGMA));
+        spring.set(-influence * 70);
+      });
+
+      scaleYSprings.forEach((spring, i) => {
+        const dist = Math.abs(i - cursorCardPos);
+        const influence = Math.exp(-(dist * dist) / (2 * SIGMA * SIGMA));
+        spring.set(0.35 + influence * 0.65);
+      });
+    },
+    [rotY, rotX, waveYSprings, scaleYSprings]
+  );
+
   const handleMouseLeave = useCallback(() => {
     isHovering.current = false;
     rotY.set(-42);
@@ -196,6 +227,8 @@ export default function StackedPanels() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleMouseLeave}
       className="relative w-full h-full flex items-center justify-center select-none"
       style={{ perspective: "900px" }}
     >
