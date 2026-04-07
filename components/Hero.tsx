@@ -38,7 +38,7 @@ export default function Hero() {
           </h1>
 
           {/* Subtext — same mt-8 spacing as original */}
-          <p className="mt-8 text-[11px] text-ink/40 max-w-sm leading-relaxed">
+          <p className="mt-8 text-base text-ink/40 max-w-sm leading-relaxed">
             Fast, beautiful websites for small businesses and creatives. Built in NYC.
           </p>
 

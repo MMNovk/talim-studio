@@ -68,7 +68,7 @@ export default function Nav() {
           >
             {/* Close menu when a link is clicked */}
             <div onClick={() => setOpen(false)}>
-              <MenuVertical menuItems={menuItems} color="#e9e9e8" />
+              <MenuVertical menuItems={menuItems} color="#6B6B6B" />
             </div>
           </motion.div>
         )}

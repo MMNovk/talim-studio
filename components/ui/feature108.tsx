@@ -109,7 +109,7 @@ const Feature108 = ({
                 value={tab.value}
                 className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
               >
-                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col gap-5">
+                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col gap-5 h-full">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
                     {tab.content.badge}
                   </Badge>

@@ -16,7 +16,7 @@ export default function Home() {
         <Feature108
           badge=""
           heading="What We Build"
-          description="Fast turnaround. Fixed prices. No agency fluff."
+          description="Fast turnaround. Fixed prices."
           tabs={[
             {
               value: "tab-1",
