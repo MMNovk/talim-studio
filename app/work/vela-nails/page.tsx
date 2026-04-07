@@ -1,133 +1,106 @@
-import Image from 'next/image'
+import { HeroSection } from '@/components/ui/hero-section'
+import VelaCarousel from '@/components/ui/elegant-carousel'
+import { VelaBookingForm } from '@/components/ui/vela-booking-form'
 
 export const metadata = {
-  title: 'Vela Nails — Brooklyn Nail Salon',
-  description: 'Minimalist nail salon in Brooklyn. Gel manicures, acrylics, nail art, and classic services — every detail considered.',
+  title: 'Vela Nails — Brooklyn Nail Studio',
+  description: 'A quiet, unhurried nail studio in Williamsburg. Manicures, gel extensions, nail art, and pedicures.',
 }
 
 export default function VelaNailsPage() {
   return (
-    <div className="bg-white min-h-screen font-[family-name:var(--font-dm-sans)]">
+    <div className="bg-white min-h-screen">
 
-      {/* Top bar */}
-      <header className="px-8 py-6 border-b border-ink/10">
-        <span className="font-black text-ink text-lg tracking-wide" style={{ fontFamily: 'Syne, sans-serif' }}>
-          VELA NAILS
-        </span>
-      </header>
+      {/* SECTION 1 — Hero */}
+      <HeroSection
+        slogan="Brooklyn's nail studio"
+        title={<>Nails,<br />refined.</>}
+        subtitle="A quiet, unhurried nail studio in Williamsburg. We do one thing and we do it well."
+        callToAction={{ text: 'OUR SERVICES', href: '#services' }}
+        backgroundImage="https://images.unsplash.com/photo-1604902396830-aca55e603416?w=1600&q=85"
+        contactInfo={{
+          website: 'velanails.com',
+          phone: '(718) 555-0192',
+          address: '284 Bedford Ave, Brooklyn NY',
+        }}
+      />
 
-      {/* Hero */}
-      <section className="relative h-[60vh] w-full overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=80"
-          alt="Vela Nails hero"
-          fill
-          className="object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-ink/20" />
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
-          <h1
-            className="text-white font-black text-[clamp(2.5rem,7vw,6rem)] leading-none"
-            style={{ fontFamily: 'Syne, sans-serif' }}
-          >
-            Nails, refined.
-          </h1>
-          <a href="#contact" className="mt-8 w-fit flex items-center gap-3 group no-underline">
-            <div className="w-14 h-14 rounded-full border border-white/50 flex items-center justify-center group-hover:bg-white transition-all duration-500">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-white group-hover:stroke-ink transition-colors duration-500">
-                <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+      {/* SECTION 2 — Services */}
+      <div id="services">
+        <VelaCarousel />
+      </div>
+
+      {/* SECTION 3 — Booking */}
+      <section id="book" className="bg-white py-24">
+        <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 mb-14">
+          <h2 className="font-black text-ink mb-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+            Book a Visit
+          </h2>
+          <p className="text-ink/40 text-sm font-mono">We will confirm within 24 hours.</p>
+        </div>
+        <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20">
+          <VelaBookingForm />
+        </div>
+      </section>
+
+      {/* SECTION 4 — Location */}
+      <section className="py-24" style={{ backgroundColor: '#FAF8F5' }}>
+        <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left: info */}
+          <div>
+            <h2 className="font-black text-ink mb-8" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+              Find Us
+            </h2>
+            <div className="flex flex-col gap-6 text-sm text-ink/70 leading-relaxed">
+              <div>
+                <p className="font-bold text-ink">Address</p>
+                <p>284 Bedford Ave</p>
+                <p>Brooklyn, NY 11249</p>
+              </div>
+              <div>
+                <p className="font-bold text-ink">Hours</p>
+                <p>Tue – Fri &nbsp;&nbsp; 11am – 7pm</p>
+                <p>Sat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10am – 6pm</p>
+                <p>Sun &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12pm – 5pm</p>
+                <p>Mon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Closed</p>
+              </div>
+              <div>
+                <p className="font-bold text-ink">Contact</p>
+                <p>(718) 555-0192</p>
+                <p>hello@velanails.com</p>
+              </div>
             </div>
-            <span className="text-sm font-bold text-white">Book an appointment</span>
+          </div>
+
+          {/* Right: map */}
+          <div className="rounded-2xl overflow-hidden h-[400px] bg-stone-200">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-73.95824492346843!3d40.71840537139461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25948ecf3cb7b%3A0x7eb694bec1b43ded!2s284%20Bedford%20Ave%2C%20Brooklyn%2C%20NY%2011249!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Vela Nails location"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 — Footer */}
+      <footer className="bg-white border-t border-stone-200 py-6 px-8 md:px-14 lg:px-20">
+        <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <span className="font-bold text-sm text-ink">Vela Nails</span>
+          <span className="text-xs text-ink/40">284 Bedford Ave, Brooklyn · hello@velanails.com</span>
+          <a
+            href="https://talimstudio.com"
+            className="text-xs text-ink/30 no-underline hover:text-ink/50 transition-colors"
+          >
+            Built by Talim Studio →
           </a>
         </div>
-      </section>
-
-      {/* Services */}
-      <section className="px-8 md:px-16 py-20">
-        <h2
-          className="text-xs font-bold text-ink/40 mb-10 tracking-widest"
-          style={{ fontFamily: 'Syne, sans-serif' }}
-        >
-          SERVICES
-        </h2>
-        <div className="grid grid-cols-2 max-md:grid-cols-1 gap-6">
-          {[
-            { name: 'Gel Manicure', desc: 'Long-lasting color with a flawless finish, starting at $45.' },
-            { name: 'Acrylics', desc: 'Durable extensions shaped and finished to your preference.' },
-            { name: 'Nail Art', desc: 'Custom designs from minimalist linework to detailed illustration.' },
-            { name: 'Classic Mani/Pedi', desc: 'The essentials, done with care and the right products.' },
-          ].map((svc) => (
-            <div key={svc.name} className="border border-ink/10 rounded-xl p-6">
-              <h3
-                className="font-black text-ink text-lg mb-2"
-                style={{ fontFamily: 'Syne, sans-serif' }}
-              >
-                {svc.name}
-              </h3>
-              <p className="text-sm text-ink/60 leading-relaxed">{svc.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="px-8 md:px-16 py-20 bg-paper flex flex-col md:flex-row gap-12 items-center">
-        <div className="flex-1">
-          <h2
-            className="font-black text-ink text-2xl md:text-3xl mb-6"
-            style={{ fontFamily: 'Syne, sans-serif' }}
-          >
-            A quiet corner of Brooklyn.
-          </h2>
-          <p className="text-ink/70 leading-relaxed max-w-lg">
-            Vela Nails is a quiet corner of Brooklyn built for people who appreciate craft. Every service is intentional, every detail considered. We believe a great manicure is about more than color — it is about the time, the calm, and the result that lasts.
-          </p>
-        </div>
-        <div className="relative w-full md:w-64 h-72 rounded-2xl overflow-hidden flex-shrink-0">
-          <Image
-            src="https://images.unsplash.com/photo-1604902396830-aca55e603416?w=800&q=80"
-            alt="Nail detail"
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="px-8 md:px-16 py-20">
-        <h2
-          className="font-black text-ink text-2xl md:text-3xl mb-10"
-          style={{ fontFamily: 'Syne, sans-serif' }}
-        >
-          Find us.
-        </h2>
-        <div className="flex flex-col gap-4 text-sm text-ink/70">
-          <p>
-            <span className="font-bold text-ink">Address</span><br />
-            218 Bedford Ave, Brooklyn NY 11211
-          </p>
-          <p>
-            <span className="font-bold text-ink">Hours</span><br />
-            Tue–Sat 10am–7pm · Sun 11am–5pm
-          </p>
-          <p>
-            <span className="font-bold text-ink">Email</span><br />
-            <a href="mailto:hello@velanails.com" className="underline underline-offset-2 hover:text-ink transition-colors">hello@velanails.com</a>
-          </p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="px-8 md:px-16 py-8 border-t border-ink/10">
-        <a
-          href="https://talimstudio.com"
-          className="text-xs text-ink/40 no-underline hover:text-ink/60 transition-colors"
-        >
-          Built by Talim Studio →
-        </a>
       </footer>
 
     </div>
