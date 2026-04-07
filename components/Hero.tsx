@@ -74,8 +74,8 @@ export default function Hero() {
       {/* Right side — flex so StackedPanels h-full resolves; no overflow-hidden on
           section so the 3D panels are not cropped */}
       <div
-        className="hidden md:flex w-1/2 flex-shrink-0 items-center justify-center"
-        style={{ minHeight: '100svh' }}
+        className="hidden md:flex flex-shrink-0 items-center justify-center"
+        style={{ position: 'absolute', left: '50%', minHeight: '100svh' }}
       >
         <StackedPanels />
       </div>
