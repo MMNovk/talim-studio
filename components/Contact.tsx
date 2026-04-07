@@ -5,8 +5,14 @@ import { useState } from 'react'
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    const form = e.currentTarget
+    await fetch('https://formspree.io/f/mkopybrk', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    })
     setSubmitted(true)
   }
 
@@ -21,9 +27,12 @@ export default function Contact() {
         </p>
 
         {submitted ? (
-          <p className="text-base text-ink/40">Got it — I'll be in touch soon.</p>
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <p className="text-2xl font-black uppercase tracking-tight">Got it.</p>
+            <p className="text-muted-foreground mt-2" style={{fontFamily: 'inherit'}}>I'll be in touch within 24 hours.</p>
+          </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+          <form onSubmit={handleSubmit} action="https://formspree.io/f/mkopybrk" method="POST" className="flex flex-col gap-10">
             <div className="flex flex-col gap-1">
               <input
                 type="text"
