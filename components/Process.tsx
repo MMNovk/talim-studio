@@ -31,7 +31,7 @@ export default function Process() {
   return (
     <section className="bg-white px-12 py-[120px] max-md:px-6 max-md:py-20" id="process">
       <ScrollReveal>
-        <p className="text-base text-ink/40 mb-20">— How it works</p>
+        <h2 className="text-3xl font-black md:text-4xl text-center mb-20">The Process</h2>
       </ScrollReveal>
 
       <div className="flex flex-col gap-28">

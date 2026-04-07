@@ -1,29 +1,21 @@
 export default function Footer() {
   return (
-    <footer className="bg-ink border-t border-white/[0.06] px-12 py-8 flex items-center justify-between max-md:flex-col max-md:gap-5 max-md:text-center max-md:px-6 max-md:py-7">
-      <a href="#" className="font-syne font-extrabold text-sm tracking-tight text-white no-underline">
-        Talim<span className="text-accent">Studio</span>
-      </a>
-
-      <ul className="flex gap-7 list-none max-md:justify-center">
-        {[
-          { href: '#services', label: 'Services' },
-          { href: '#work', label: 'Work' },
-          { href: '#about', label: 'About' },
-          { href: '#contact', label: 'Contact' },
-        ].map(({ href, label }) => (
-          <li key={label}>
+    <footer className="bg-white border-t border-gray-200">
+      <div className="max-w-screen-xl mx-auto px-8 py-8 flex items-center justify-between max-md:flex-col max-md:gap-5 max-md:text-center">
+        <span className="font-black text-ink">TS</span>
+        <nav className="flex items-center gap-8">
+          {['Services', 'Work', 'Process', 'About', 'Contact'].map(item => (
             <a
-              href={href}
-              className="text-xs text-white/40 no-underline tracking-[0.04em] hover:text-accent transition-colors"
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-base text-ink/40 no-underline hover:text-ink transition-colors"
             >
-              {label}
+              {item}
             </a>
-          </li>
-        ))}
-      </ul>
-
-      <p className="text-xs text-white/25 tracking-wide">© 2026 Talim Studio · NYC</p>
+          ))}
+        </nav>
+        <span className="text-base text-ink/40">© 2026 Talim Studio · NYC</span>
+      </div>
     </footer>
   )
 }

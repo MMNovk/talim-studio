@@ -16,7 +16,7 @@ export default function Contact() {
         <h2 className="font-black text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-ink mb-4">
           Start a project
         </h2>
-        <p className="text-base text-ink/40 leading-relaxed mb-12">
+        <p className="text-base text-ink leading-relaxed mb-12">
           Tell me about what you're building. I'll get back to you within 24 hours.
         </p>
 

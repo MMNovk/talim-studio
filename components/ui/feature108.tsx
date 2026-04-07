@@ -116,7 +116,7 @@ const Feature108 = ({
                   <h3 className="text-3xl font-semibold lg:text-5xl">
                     {tab.content.title}
                   </h3>
-                  <p className="text-muted-foreground lg:text-lg">
+                  <p className="text-muted-foreground lg:text-lg text-center">
                     {tab.content.description}
                   </p>
                   <Button className="mt-2.5 w-fit gap-2" size="lg">
