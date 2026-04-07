@@ -4,15 +4,9 @@ import ScrollReveal from './ScrollReveal'
 const steps = [
   {
     title: 'Discovery call',
-    body: 'I\'ll learn about your business, your goals, and what you need. Free, no pressure, 30 minutes.',
+    body: "I'll learn about your business, your goals, and what you need. You'll get a clear scope, timeline, and fixed price. Free, no pressure, 30 minutes.",
     image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80',
     imageLeft: false,
-  },
-  {
-    title: 'Proposal',
-    body: 'You get a clear scope, timeline, and fixed price. No surprise invoices.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
-    imageLeft: true,
   },
   {
     title: 'Build',
@@ -23,7 +17,7 @@ const steps = [
   {
     title: 'Launch',
     body: 'Your site goes live. You own the code, the domain, everything.',
-    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80',
     imageLeft: true,
   },
 ]

@@ -215,7 +215,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       onMouseMove={isMobile ? undefined : handleMouseMove}
       onMouseLeave={isMobile ? undefined : handleMouseLeave}
       onClick={isMobile ? handleTap : undefined}
-      className="relative w-full h-full flex items-center justify-center select-none"
+      className={`relative w-full h-full flex items-center select-none ${isMobile ? 'justify-start' : 'justify-center'}`}
       style={{ perspective: "900px", cursor: isMobile ? "pointer" : "default" }}
     >
       <motion.div
