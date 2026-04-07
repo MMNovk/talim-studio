@@ -71,7 +71,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div style={{ width: '50%', height: '100vh', position: 'absolute', left: '50%', top: 0 }}>
+      <div style={{ width: '50%', height: '100vh' }}>
         <StackedPanels />
       </div>
     </section>
