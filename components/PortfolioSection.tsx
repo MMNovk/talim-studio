@@ -1,15 +1,52 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { RadialScrollGallery } from './RadialScrollGallery'
 
 const portfolioItems = [
-  { key: '1', src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80', label: 'Nature' },
-  { key: '2', src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', label: 'Mountains' },
-  { key: '3', src: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&q=80', label: 'Wildlife' },
-  { key: '4', src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80', label: 'Landscape' },
-  { key: '5', src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80', label: 'Aerial' },
-  { key: '6', src: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=600&q=80', label: 'Forest' },
+  {
+    key: '1',
+    src: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80',
+    label: 'Vela Nails',
+    tier: 'Starter · $499',
+    slug: '/work/vela-nails',
+  },
+  {
+    key: '2',
+    src: 'https://images.unsplash.com/photo-1598354047697-a12e78d92b8f?w=600&q=80',
+    label: 'Marco Ink',
+    tier: 'Portfolio · $799',
+    slug: '/work/marco-ink',
+  },
+  {
+    key: '3',
+    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    label: 'Form Pilates',
+    tier: 'Business + Booking · $1,099',
+    slug: '/work/form-pilates',
+  },
+  {
+    key: '4',
+    src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80',
+    label: 'Sol Photography',
+    tier: 'Portfolio · $799',
+    slug: '/work/sol-photography',
+  },
+  {
+    key: '5',
+    src: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80',
+    label: 'Mesa Kitchen',
+    tier: 'Starter · $499',
+    slug: '/work/mesa-kitchen',
+  },
+  {
+    key: '6',
+    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    label: 'Drift Creative',
+    tier: 'Portfolio · $799',
+    slug: '/work/drift-creative',
+  },
 ]
 
 export default function PortfolioSection() {
@@ -31,22 +68,30 @@ export default function PortfolioSection() {
       </div>
 
       {isMobile ? (
+        /* Mobile: 2-column photo grid */
         <div className="px-4 pb-16 mt-6 grid grid-cols-2 gap-3">
-          {portfolioItems.map(({ key, src, label }) => (
-            <div key={key} className="relative aspect-square rounded-2xl overflow-hidden">
-              <img
-                src={src}
-                alt={label}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <span className="absolute bottom-2 left-2 bg-black/50 text-white font-bold text-xs px-2.5 py-1 rounded-full">
-                {label}
-              </span>
-            </div>
+          {portfolioItems.map(({ key, src, label, tier, slug }) => (
+            <Link key={key} href={slug} className="block no-underline group">
+              <div className="relative aspect-square rounded-2xl overflow-hidden">
+                <img
+                  src={src}
+                  alt={label}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
+                <div className="absolute bottom-2 left-2 right-2">
+                  <span className="inline-block bg-black/60 text-white font-bold text-xs px-2.5 py-1 rounded-full">
+                    {label}
+                  </span>
+                  <p className="mt-0.5 text-white/70 text-[10px] px-1">{tier}</p>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       ) : (
+        /* Desktop: RadialScrollGallery */
         <>
           <RadialScrollGallery
             scrollDuration={2500}
@@ -55,12 +100,19 @@ export default function PortfolioSection() {
             baseRadius={550}
             mobileRadius={120}
           >
-            {() => portfolioItems.map(({ key, src, label }) => (
-              <div key={key} className="group relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
-                <img src={src} className="w-full h-full object-cover" alt={label} loading="lazy" />
-                <span className="absolute bottom-3 left-3 bg-white text-black font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">{label}</span>
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </div>
+            {() => portfolioItems.map(({ key, src, label, tier, slug }) => (
+              <Link key={key} href={slug} className="no-underline group block relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
+                <img src={src} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt={label} loading="lazy" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 rounded-2xl" />
+                <div className="absolute bottom-3 left-3 right-3">
+                  <span className="block bg-white text-black font-bold px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {label}
+                  </span>
+                  <span className="block text-white/80 text-xs mt-1 px-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {tier}
+                  </span>
+                </div>
+              </Link>
             ))}
           </RadialScrollGallery>
 

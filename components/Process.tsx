@@ -6,19 +6,19 @@ const steps = [
     title: 'Discovery call',
     body: "I'll learn about your business, your goals, and what you need. You'll get a clear scope, timeline, and fixed price. Free, no pressure, 30 minutes.",
     image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80',
-    imageLeft: false,
+    imageLeft: false, // text LEFT, image RIGHT
   },
   {
     title: 'Build',
     body: 'I design and develop your site, sharing previews as I go. Most sites ship in 5–7 days.',
-    image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80',
-    imageLeft: false,
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
+    imageLeft: true,  // text RIGHT, image LEFT
   },
   {
     title: 'Launch',
     body: 'Your site goes live. You own the code, the domain, everything.',
     image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80',
-    imageLeft: true,
+    imageLeft: false, // text LEFT, image RIGHT
   },
 ]
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import { Layout, Pointer, Zap } from "lucide-react";
+import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -29,56 +29,10 @@ interface Feature108Props {
 }
 
 const Feature108 = ({
-  badge = "shadcnblocks.com",
-  heading = "A Collection of Components Built With Shadcn & Tailwind",
-  description = "Join us to build flawless web solutions.",
-  tabs = [
-    {
-      value: "tab-1",
-      icon: <Zap className="h-auto w-4 shrink-0" />,
-      label: "Boost Revenue",
-      content: {
-        badge: "Modern Tactics",
-        title: "Make your site a true standout.",
-        description:
-          "Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.",
-        buttonText: "See Plans",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-        imageAlt: "placeholder",
-      },
-    },
-    {
-      value: "tab-2",
-      icon: <Pointer className="h-auto w-4 shrink-0" />,
-      label: "Higher Engagement",
-      content: {
-        badge: "Expert Features",
-        title: "Boost your site with top-tier design.",
-        description:
-          "Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.",
-        buttonText: "See Tools",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-2.svg",
-        imageAlt: "placeholder",
-      },
-    },
-    {
-      value: "tab-3",
-      icon: <Layout className="h-auto w-4 shrink-0" />,
-      label: "Stunning Layouts",
-      content: {
-        badge: "Elite Solutions",
-        title: "Build an advanced web experience.",
-        description:
-          "Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.",
-        buttonText: "See Options",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-3.svg",
-        imageAlt: "placeholder",
-      },
-    },
-  ],
+  badge = "",
+  heading = "What I Build",
+  description = "Fast turnaround. Fixed prices.",
+  tabs = [],
 }: Feature108Props) => {
   return (
     <section className="py-32" id="what-we-build">
@@ -89,7 +43,7 @@ const Feature108 = ({
           </h1>
           <p className="text-ink/40">{description}</p>
         </div>
-        <Tabs defaultValue={tabs[0].value} className="mt-8">
+        <Tabs defaultValue={tabs[0]?.value} className="mt-8">
           <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10">
             {tabs.map((tab) => (
               <TabsTrigger
@@ -106,15 +60,19 @@ const Feature108 = ({
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="flex flex-col gap-5 lg:grid lg:place-items-center lg:grid-cols-2 lg:gap-10"
+                forceMount
+                className="flex flex-col gap-5 lg:grid lg:place-items-center lg:grid-cols-2 lg:gap-10 data-[state=inactive]:hidden"
               >
                 {/* Mobile-only banner image */}
-                <img
-                  src={tab.content.imageSrc}
-                  alt={tab.content.imageAlt}
-                  className="w-full h-32 object-cover rounded-xl lg:hidden"
-                  loading="lazy"
-                />
+                <div className="relative w-full h-32 rounded-xl overflow-hidden lg:hidden">
+                  <Image
+                    src={tab.content.imageSrc}
+                    alt={tab.content.imageAlt}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
+                </div>
                 <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full max-lg:bg-transparent max-lg:p-0 max-lg:rounded-none max-lg:gap-4">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
                     {tab.content.badge}
@@ -132,13 +90,16 @@ const Feature108 = ({
                     {tab.content.buttonText}
                   </a>
                 </div>
-                {/* Desktop-only image in second column */}
-                <img
-                  src={tab.content.imageSrc}
-                  alt={tab.content.imageAlt}
-                  className="rounded-xl hidden lg:block"
-                  loading="lazy"
-                />
+                {/* Desktop-only image */}
+                <div className="relative w-full h-80 rounded-xl overflow-hidden hidden lg:block">
+                  <Image
+                    src={tab.content.imageSrc}
+                    alt={tab.content.imageAlt}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
+                </div>
               </TabsContent>
             ))}
           </div>

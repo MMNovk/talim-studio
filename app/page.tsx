@@ -27,8 +27,8 @@ export default function Home() {
                 title: "Deployed in days.",
                 description: "4-5 pages, mobile responsive, contact form, deployed to Vercel, 1 round of revisions, 5-7 day delivery.",
                 buttonText: "Start Here",
-                imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-                imageAlt: "Starter",
+                imageSrc: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80",
+                imageAlt: "Small business interior — warm, minimal",
               },
             },
             {
@@ -40,8 +40,8 @@ export default function Home() {
                 title: "Your work, elevated.",
                 description: "6-8 pages, bold layouts, gallery/project grid, animations & transitions, custom typography, 2 rounds of revisions, 5-7 day delivery.",
                 buttonText: "Create a Portfolio",
-                imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-2.svg",
-                imageAlt: "Portfolio",
+                imageSrc: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80",
+                imageAlt: "Creative at work — photographer desk",
               },
             },
             {
@@ -53,8 +53,8 @@ export default function Home() {
                 title: "All in.",
                 description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup, 2 rounds of revisions, 7-10 day delivery.",
                 buttonText: "Book a Build",
-                imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-3.svg",
-                imageAlt: "Business",
+                imageSrc: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80",
+                imageAlt: "Pilates studio — light airy interior",
               },
             },
             {
@@ -66,8 +66,8 @@ export default function Home() {
                 title: "Always live.",
                 description: "Monthly content updates, hosting management, small design changes, priority response.",
                 buttonText: "Keep It Running",
-                imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-                imageAlt: "Retainer",
+                imageSrc: "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=800&q=80",
+                imageAlt: "Laptop in calm coworking setting",
               },
             },
           ]}
