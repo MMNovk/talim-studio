@@ -14,8 +14,8 @@ export default function NameBanner() {
       viewport={{ once: true, margin: '-100px' }}
     >
       <h2
-        className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap px-8"
-        style={{ fontSize: 'clamp(3rem, 18vw, 18rem)', letterSpacing: '-0.02em' }}
+        className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block px-8"
+        style={{ fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.02em' }}
       >
         STEPHEN YANG
       </h2>
