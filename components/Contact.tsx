@@ -1,72 +1,93 @@
-import ScrollReveal from './ScrollReveal'
+'use client'
+
+import { useState } from 'react'
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
   return (
-    <section
-      className="relative px-12 py-[140px] bg-ink text-center overflow-hidden max-md:px-6 max-md:py-[100px]"
-      id="contact"
-    >
-      {/* Background watermark */}
-      <span
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-syne font-extrabold text-[clamp(80px,18vw,260px)] tracking-[-0.05em] text-white/[0.03] whitespace-nowrap pointer-events-none select-none"
-        aria-hidden="true"
-      >
-        TALIM
-      </span>
-
-      <ScrollReveal>
-        <p className="font-mono text-[11px] font-medium tracking-[0.12em] uppercase text-accent mb-6">
-          Ready to start?
-        </p>
-      </ScrollReveal>
-
-      <ScrollReveal delay={50}>
-        <h2 className="font-syne font-black text-[clamp(36px,5vw,72px)] tracking-tighter leading-[1.0] text-white max-w-[720px] mx-auto mb-4">
-          Let&rsquo;s build something sharp.
+    <section className="bg-white px-12 py-[120px] max-md:px-6 max-md:py-20" id="contact">
+      <div className="max-w-xl mx-auto">
+        <h2 className="font-black text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-ink mb-4">
+          Start a project
         </h2>
-      </ScrollReveal>
-
-      <ScrollReveal delay={100}>
-        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/40 max-w-[420px] mx-auto mb-12">
-          Tell me about your project. I&rsquo;ll get back to you within 24 hours.
+        <p className="text-base text-ink/40 leading-relaxed mb-12">
+          Tell me about what you're building. I'll get back to you within 24 hours.
         </p>
-      </ScrollReveal>
 
-      {/* Circular arrow CTA */}
-      <ScrollReveal delay={150}>
-        <div className="flex items-center justify-center">
-          <a
-            href="mailto:hello@talimstudio.com"
-            className="w-fit flex items-center gap-6 group no-underline"
-          >
-            <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white transition-all duration-500">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="stroke-white group-hover:stroke-ink transition-colors duration-500"
-              >
-                <path
-                  d="M7 17L17 7M17 7H8M17 7V16"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+        {submitted ? (
+          <p className="text-base text-ink/40">Got it — I'll be in touch soon.</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+            <div className="flex flex-col gap-1">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+                className="w-full bg-transparent border-b border-ink/20 pb-3 text-ink text-base placeholder:text-ink/30 outline-none focus:border-ink/50 transition-colors"
+              />
             </div>
-            <span className="font-mono text-[11px] font-bold text-white uppercase tracking-[0.2em]">
-              hello@talimstudio.com
-            </span>
-          </a>
-        </div>
-      </ScrollReveal>
 
-      <ScrollReveal delay={200}>
-        <p className="mt-6 font-mono text-[11px] text-white/25 uppercase tracking-[0.1em]">
-          Free 30-min discovery call · No commitment
+            <div className="flex flex-col gap-1">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                className="w-full bg-transparent border-b border-ink/20 pb-3 text-ink text-base placeholder:text-ink/30 outline-none focus:border-ink/50 transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <textarea
+                name="message"
+                placeholder="Tell me about your project"
+                required
+                rows={5}
+                className="w-full bg-transparent border-b border-ink/20 pb-3 text-ink text-base placeholder:text-ink/30 outline-none focus:border-ink/50 transition-colors resize-none"
+              />
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-fit flex items-center gap-3 group"
+              >
+                <div className="w-14 h-14 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="stroke-ink group-hover:stroke-white transition-colors duration-500"
+                  >
+                    <path
+                      d="M7 17L17 7M17 7H8M17 7V16"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <span className="text-sm font-bold text-ink">Send it</span>
+              </button>
+            </div>
+          </form>
+        )}
+
+        <p className="mt-16 text-base text-ink/40">
+          Or reach me directly —{' '}
+          <a href="mailto:hello@talimstudio.com" className="text-ink underline-offset-4 hover:underline">
+            hello@talimstudio.com
+          </a>
         </p>
-      </ScrollReveal>
+      </div>
     </section>
   )
 }

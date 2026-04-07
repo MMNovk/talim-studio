@@ -39,7 +39,7 @@ export default function Hero() {
 
           {/* Subtext — same mt-8 spacing as original */}
           <p className="mt-8 text-base text-ink/40 max-w-sm leading-relaxed">
-            Fast, beautiful websites for small businesses and creatives. Built in NYC.
+            Fast, beautiful websites for small businesses and creatives.
           </p>
 
           {/* CTA — directly below subtext, same mt-8 spacing */}

@@ -88,7 +88,7 @@ const Feature108 = ({
           <h1 className="max-w-2xl text-3xl font-black md:text-4xl">
             {heading}
           </h1>
-          <p className="text-muted-foreground">{description}</p>
+          <p className="text-ink/40">{description}</p>
         </div>
         <Tabs defaultValue={tabs[0].value} className="mt-8">
           <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10">
@@ -109,7 +109,7 @@ const Feature108 = ({
                 value={tab.value}
                 className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
               >
-                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col gap-5 h-full">
+                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
                     {tab.content.badge}
                   </Badge>

@@ -50,7 +50,7 @@ export const MenuVertical = ({
               hover: { x: 0, color, skewX: skew },
             }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="font-semibold text-4xl no-underline"
+            className="text-4xl no-underline"
           >
             {item.label}
           </MotionLink>

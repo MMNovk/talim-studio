@@ -6,9 +6,9 @@ export default function PortfolioSection() {
   return (
     <section className="bg-white relative">
       <div className="flex flex-col items-center justify-center pt-24 pb-4 text-center">
-        <p className="font-mono text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">PORTFOLIO</p>
+        <p className="text-base text-ink/40 mb-3">Portfolio</p>
         <h2 className="text-6xl font-black">Work</h2>
-        <p className="font-mono text-xs tracking-widest uppercase text-muted-foreground mt-3">↓ Scroll</p>
+        <p className="text-base text-ink/40 mt-3">↓ Scroll</p>
       </div>
       <RadialScrollGallery
         scrollDuration={2500}
