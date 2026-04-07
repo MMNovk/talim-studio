@@ -197,7 +197,7 @@ export default function StackedPanels() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full h-full flex items-center justify-center select-none"
-      style={{ perspective: "900px" }}
+      style={{ perspective: "900px", width: '100%', height: '100%', minHeight: '500px' }}
     >
       <motion.div
         style={{
