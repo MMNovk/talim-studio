@@ -45,7 +45,7 @@ export default function Hero() {
           {/* CTA — directly below subtext, same mt-8 spacing */}
           <a
             href="#contact"
-            className="mt-8 w-fit flex items-center gap-6 group no-underline"
+            className="mt-8 w-fit flex items-center gap-3 group no-underline"
           >
             <div className="w-14 h-14 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg

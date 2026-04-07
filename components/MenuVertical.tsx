@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
 
 import Link from 'next/link'
 
@@ -39,9 +40,7 @@ export const MenuVertical = ({
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="z-0"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-              <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <ArrowRight strokeWidth={3} className="size-10" />
           </motion.div>
 
           <MotionLink
