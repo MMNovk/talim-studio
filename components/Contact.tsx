@@ -29,7 +29,7 @@ export default function Contact() {
         {submitted ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <p className="text-2xl font-semibold">Got it.</p>
-            <p className="text-muted-foreground mt-2">We'll be in touch shortly.</p>
+            <p className="text-muted-foreground mt-2">I'll be in touch shortly.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} action="https://formspree.io/f/mkopybrk" method="POST" className="flex flex-col gap-10">

@@ -30,7 +30,7 @@ export default function Work() {
       <div className="px-12 pt-[120px] pb-4 max-md:px-6">
         <ScrollReveal>
           <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-ink-3 flex items-center gap-2.5 before:content-[''] before:inline-block before:w-7 before:h-px before:bg-ink-3">
-            Check out our work
+            Check out my work
           </p>
         </ScrollReveal>
         <ScrollReveal delay={60}>

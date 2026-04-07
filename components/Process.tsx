@@ -3,7 +3,7 @@ import ScrollReveal from './ScrollReveal'
 const steps = [
   {
     title: 'Discovery call',
-    body: 'We talk about your business, your goals, and what you need. Free, no pressure, 30 minutes.',
+    body: 'I\'ll learn about your business, your goals, and what you need. Free, no pressure, 30 minutes.',
     image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80',
     imageLeft: false,
   },
@@ -15,7 +15,7 @@ const steps = [
   },
   {
     title: 'Build',
-    body: 'We design and develop your site, sharing previews as we go. Most sites ship in 5–7 days.',
+    body: 'I design and develop your site, sharing previews as I go. Most sites ship in 5–7 days.',
     image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80',
     imageLeft: false,
   },

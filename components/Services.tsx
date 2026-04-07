@@ -24,7 +24,7 @@ const services = [
     icon: '◉',
     title: 'Custom Build',
     description:
-      'E-commerce, booking systems, multi-page experiences. If you have a specific vision, we\'ll make it happen — from concept to launch, on your timeline.',
+      'E-commerce, booking systems, multi-page experiences. If you have a specific vision, I\'ll make it happen — from concept to launch, on your timeline.',
     price: 'From $799',
     delay: 200,
   },
@@ -35,7 +35,7 @@ export default function Services() {
     <section className="px-12 py-[120px] max-md:px-6 max-md:py-20" id="services">
       <ScrollReveal>
         <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-ink-3 mb-14 flex items-center gap-2.5 before:content-[''] before:inline-block before:w-7 before:h-px before:bg-ink-3">
-          What we build
+          What I build
         </p>
       </ScrollReveal>
 

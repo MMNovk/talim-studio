@@ -15,7 +15,7 @@ export default function Home() {
         <Hero />
         <Feature108
           badge=""
-          heading="What We Build"
+          heading="What I Build"
           description="Fast turnaround. Fixed prices."
           tabs={[
             {

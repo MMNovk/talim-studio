@@ -38,7 +38,7 @@ const tabs = [
       badge: '$649',
       title: 'Booking, maps, SEO. All in.',
       description:
-        "E-commerce, booking flows, multi-page builds. If you have a vision, we'll make it happen — from concept to launch, on your timeline.",
+        "E-commerce, booking flows, multi-page builds. If you have a vision, I'll make it happen — from concept to launch, on your timeline.",
       buttonText: 'Book a Build',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
       imageAlt: 'Business site preview',
@@ -97,7 +97,7 @@ export function Feature108() {
         {/* Section label in site style — replaces removed badge + heading + description */}
         <ScrollReveal>
           <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-ink-3 mb-8 flex items-center gap-2.5 before:content-[''] before:inline-block before:w-7 before:h-px before:bg-ink-3">
-            What we build
+            What I build
           </p>
         </ScrollReveal>
 
