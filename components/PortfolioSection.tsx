@@ -25,7 +25,7 @@ export default function PortfolioSection() {
         visiblePercentage={45}
         mobileVisiblePercentage={35}
         baseRadius={550}
-        mobileRadius={150}
+        mobileRadius={120}
       >
         {() => portfolioItems.map(({ key, src, label }) => (
           <div key={key} className="group relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">

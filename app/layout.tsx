@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Talim Studio — Web Design for Small Businesses & Creatives',
-  description: 'Fast, beautiful websites for small businesses and creatives. Built in NYC. Starting at $299, delivered in days.',
+  title: 'Talim Studio',
+  description: 'Fast, beautiful websites for small businesses and creatives. Built in NYC. Starting at $499, delivered in days.',
   openGraph: {
     title: 'Talim Studio',
     description: 'Fast, beautiful websites for small businesses and creatives.',

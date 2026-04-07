@@ -23,7 +23,7 @@ export default function Home() {
               icon: null,
               label: "Starter",
               content: {
-                badge: "$299",
+                badge: "$499",
                 title: "Deployed in days.",
                 description: "4-5 pages, mobile responsive, contact form, deployed to Vercel, 1 round of revisions, 5-7 day delivery.",
                 buttonText: "Start Here",
@@ -36,7 +36,7 @@ export default function Home() {
               icon: null,
               label: "Portfolio",
               content: {
-                badge: "$449",
+                badge: "$799",
                 title: "Your work, elevated.",
                 description: "6-8 pages, bold layouts, gallery/project grid, animations & transitions, custom typography, 2 rounds of revisions, 5-7 day delivery.",
                 buttonText: "Create a Portfolio",
@@ -49,7 +49,7 @@ export default function Home() {
               icon: null,
               label: "Business + Booking",
               content: {
-                badge: "$649",
+                badge: "$1,099",
                 title: "All in.",
                 description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup, 2 rounds of revisions, 7-10 day delivery.",
                 buttonText: "Book a Build",
@@ -62,7 +62,7 @@ export default function Home() {
               icon: null,
               label: "Retainer",
               content: {
-                badge: "$79/mo",
+                badge: "$149/mo",
                 title: "Always live.",
                 description: "Monthly content updates, hosting management, small design changes, priority response.",
                 buttonText: "Keep It Running",
