@@ -57,7 +57,7 @@ export function VelaBookingForm() {
     >
       {/* Service */}
       <motion.div variants={itemVariants} className="mb-6">
-        <label className="text-xs font-bold text-ink tracking-widest uppercase mb-3 block">Service</label>
+        <label className="font-mono text-xs text-ink/50 tracking-widest uppercase mb-3 block">Service</label>
         <div className="relative">
           <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30 pointer-events-none" />
           <select value={service} onChange={e => setService(e.target.value)} required className={selectClass}>
@@ -69,7 +69,7 @@ export function VelaBookingForm() {
 
       {/* Date + time + technician */}
       <motion.div variants={itemVariants} className="mb-8">
-        <label className="text-xs font-bold text-ink tracking-widest uppercase mb-3 block">Details</label>
+        <label className="font-mono text-xs text-ink/50 tracking-widest uppercase mb-3 block">Details</label>
         <div className="flex flex-col gap-3">
           <div className="relative">
             <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30 pointer-events-none" />

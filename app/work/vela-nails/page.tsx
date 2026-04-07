@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/ui/hero-section'
 import VelaCarousel from '@/components/ui/elegant-carousel'
 import { VelaBookingForm } from '@/components/ui/vela-booking-form'
+import OwnerSection from './OwnerSection'
 
 export const metadata = {
   title: 'Vela Nails — Brooklyn Nail Studio',
@@ -17,7 +18,7 @@ export default function VelaNailsPage() {
         title={<>Nails,<br />refined.</>}
         subtitle="A quiet, unhurried nail studio in Williamsburg. We do one thing and we do it well."
         callToAction={{ text: 'OUR SERVICES', href: '#services' }}
-        backgroundImage="https://images.unsplash.com/photo-1604902396830-aca55e603416?w=1600&q=85"
+        backgroundImage="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&h=1600&fit=crop&q=80"
         contactInfo={{
           website: 'velanails.com',
           phone: '(718) 555-0192',
@@ -30,29 +31,32 @@ export default function VelaNailsPage() {
         <VelaCarousel />
       </div>
 
-      {/* SECTION 3 — Booking */}
+      {/* SECTION 3 — Owner */}
+      <OwnerSection />
+
+      {/* SECTION 4 — Booking */}
       <section id="book" className="bg-white py-24">
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 mb-14">
-          <h2 className="font-black text-ink mb-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <h2 className="font-dm-sans font-black text-ink mb-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
             Book a Visit
           </h2>
-          <p className="text-ink/40 text-sm font-mono">We will confirm within 24 hours.</p>
+          <p className="font-mono text-ink/40 text-xs tracking-widest uppercase">We will confirm within 24 hours.</p>
         </div>
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20">
           <VelaBookingForm />
         </div>
       </section>
 
-      {/* SECTION 4 — Location */}
+      {/* SECTION 5 — Location */}
       <section className="py-24" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left: info */}
           <div>
-            <h2 className="font-black text-ink mb-8" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+            <h2 className="font-dm-sans font-black text-ink mb-8" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Find Us
             </h2>
-            <div className="flex flex-col gap-6 text-sm text-ink/70 leading-relaxed">
+            <div className="flex flex-col gap-6 text-sm text-ink/70 leading-relaxed font-dm-sans">
               <div>
                 <p className="font-bold text-ink">Address</p>
                 <p>284 Bedford Ave</p>
@@ -89,14 +93,14 @@ export default function VelaNailsPage() {
         </div>
       </section>
 
-      {/* SECTION 5 — Footer */}
+      {/* SECTION 6 — Footer */}
       <footer className="bg-white border-t border-stone-200 py-6 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="font-bold text-sm text-ink">Vela Nails</span>
-          <span className="text-xs text-ink/40">284 Bedford Ave, Brooklyn · hello@velanails.com</span>
+          <span className="font-dm-sans font-bold text-sm text-ink">Vela Nails</span>
+          <span className="font-mono text-xs text-ink/40">284 Bedford Ave, Brooklyn · hello@velanails.com</span>
           <a
             href="https://talimstudio.com"
-            className="text-xs text-ink/30 no-underline hover:text-ink/50 transition-colors"
+            className="font-mono text-xs text-ink/30 no-underline hover:text-ink/50 transition-colors"
           >
             Built by Talim Studio →
           </a>

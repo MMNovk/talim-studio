@@ -24,14 +24,14 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $75',
     description: 'Length and structure built to last. Soft gel or hard gel, shaped to your preference. Includes full set and polish.',
     accent: '#A89B8C',
-    imageUrl: 'https://images.unsplash.com/photo-1604902396830-aca55e603416?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604655788043-1c7fe315ed5a?w=900&h=1200&fit=crop&q=80',
   },
   {
     title: 'Nail Art',
     subtitle: 'From $20 add-on',
     description: 'Minimalist line work, abstract color blocking, negative space. Bring a reference or let us freestyle. Quoted at booking.',
     accent: '#B5A69A',
-    imageUrl: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604907790077-c2ae3d3d5f32?w=900&h=1200&fit=crop&q=80',
   },
   {
     title: 'Pedicure',
@@ -97,7 +97,8 @@ export default function VelaCarousel() {
 
   return (
     <section
-      className="bg-white overflow-hidden"
+      className="overflow-hidden"
+      style={{ backgroundColor: '#FAF8F5' }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -106,8 +107,8 @@ export default function VelaCarousel() {
     >
       {/* Section header */}
       <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 pt-16 pb-8">
-        <p className="text-xs tracking-[0.2em] text-ink/40 uppercase">What We Offer</p>
-        <p className="text-ink/30 text-sm mt-1">Starting prices. No surprises.</p>
+        <p className="font-mono text-xs tracking-[0.2em] text-ink/40 uppercase">What We Offer</p>
+        <p className="font-dm-sans text-ink/30 text-sm mt-1">Starting prices. No surprises.</p>
       </div>
 
       {/* Main layout */}
@@ -120,7 +121,7 @@ export default function VelaCarousel() {
           </span>
 
           <h2
-            className="font-black leading-tight transition-opacity duration-300"
+            className="font-dm-sans font-black leading-tight transition-opacity duration-300"
             style={{
               fontSize: 'clamp(2.5rem, 6vw, 5rem)',
               opacity: isTransitioning ? 0 : 1,

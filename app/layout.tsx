@@ -39,7 +39,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white text-ink text-base leading-relaxed">
+      <body className="bg-white text-ink text-base leading-relaxed font-dm-sans">
         <div className="noise-overlay" aria-hidden="true" />
         {children}
       </body>

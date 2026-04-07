@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
 
@@ -39,110 +38,104 @@ interface HeroSectionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
 }
 
 const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
-  ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props }, ref) => {
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
-    }
-    const itemVariants = {
-      hidden: { y: 20, opacity: 0 },
-      visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-    }
-
+  (
+    { className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props },
+    ref,
+  ) => {
     return (
       <div
         ref={ref}
-        className={cn('relative min-h-screen flex flex-col overflow-hidden', className)}
+        className={cn('flex flex-col md:flex-row min-h-screen', className)}
         {...props}
       >
-        {/* Background image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={backgroundImage}
-            alt="Vela Nails"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
+        {/* LEFT — white content panel */}
+        <div className="flex flex-col bg-white w-full md:w-1/2 lg:w-3/5 px-8 md:px-14 lg:px-20">
 
-        {/* Main content */}
-        <motion.div
-          className="relative z-10 flex flex-col flex-1 px-8 md:px-14 lg:px-20 pt-20 pb-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Slogan / logo */}
-          <div className="mb-auto">
+          {/* Slogan / logo at top */}
+          <div className="pt-10 md:pt-14 shrink-0">
             {logo ? (
-              <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
-                <Image src={logo.url} alt={logo.alt} width={36} height={36} className="object-contain" />
+              <div className="flex items-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logo.url} alt={logo.alt} className="w-9 h-9 object-contain" />
                 <div>
-                  {logo.text && <span className="font-bold text-white text-sm tracking-wide">{logo.text}</span>}
-                  {slogan && <p className="text-white/50 text-xs tracking-widest uppercase">{slogan}</p>}
+                  {logo.text && (
+                    <span className="font-dm-sans font-bold text-ink text-sm tracking-wide">
+                      {logo.text}
+                    </span>
+                  )}
+                  {slogan && (
+                    <p className="font-mono text-ink/40 text-xs tracking-[0.25em] uppercase">
+                      {slogan}
+                    </p>
+                  )}
                 </div>
-              </motion.div>
-            ) : slogan && (
-              <motion.p
-                variants={itemVariants}
-                className="text-white/50 text-xs tracking-[0.25em] uppercase mb-10"
-              >
-                {slogan}
-              </motion.p>
+              </div>
+            ) : (
+              slogan && (
+                <p className="font-mono text-ink/40 text-xs tracking-[0.25em] uppercase">
+                  {slogan}
+                </p>
+              )
             )}
           </div>
 
-          {/* Title + subtitle + CTA */}
-          <div className="flex flex-col gap-7 max-w-4xl">
-            <motion.h1
-              variants={itemVariants}
-              className="text-white font-black leading-[0.88] tracking-tight"
-              style={{ fontSize: 'clamp(4rem, 10vw, 11rem)' }}
+          {/* Title + divider + subtitle + CTAs — vertically centred */}
+          <div className="flex flex-col gap-6 flex-1 justify-center py-12">
+            <h1
+              className="font-dm-sans font-black leading-[0.88] tracking-tight text-ink"
+              style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)' }}
             >
               {title}
-            </motion.h1>
-
-            <motion.p variants={itemVariants} className="text-white/65 text-lg max-w-md leading-relaxed">
+            </h1>
+            <hr className="border-ink/10" />
+            <p className="font-dm-sans text-ink/55 text-lg leading-relaxed max-w-sm">
               {subtitle}
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+            </p>
+            <div className="flex flex-wrap gap-4">
               <a
                 href={callToAction.href}
-                className="px-8 py-3 bg-white text-black font-bold text-xs tracking-widest no-underline hover:bg-white/90 transition-colors"
+                className="px-8 py-3 bg-black text-white font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/80 transition-colors"
               >
                 {callToAction.text}
               </a>
               <a
                 href="#book"
-                className="px-8 py-3 border border-white/60 text-white font-bold text-xs tracking-widest no-underline hover:bg-white/10 transition-colors"
+                className="px-8 py-3 border border-ink/25 text-ink font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/5 transition-colors"
               >
                 BOOK NOW
               </a>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
 
-        {/* Contact bar */}
-        <div className="relative z-10 border-t border-white/15 px-8 md:px-14 lg:px-20 py-4 flex flex-wrap gap-6">
-          <div className="flex items-center gap-2 text-white/55 text-xs">
-            <InfoIcon type="website" />
-            {contactInfo.website}
-          </div>
-          <div className="flex items-center gap-2 text-white/55 text-xs">
-            <InfoIcon type="phone" />
-            {contactInfo.phone}
-          </div>
-          <div className="flex items-center gap-2 text-white/55 text-xs">
-            <InfoIcon type="address" />
-            {contactInfo.address}
+          {/* Contact info at bottom */}
+          <div className="flex flex-wrap gap-6 py-6 md:pb-10 border-t border-ink/10 shrink-0">
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+              <InfoIcon type="website" />
+              {contactInfo.website}
+            </div>
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+              <InfoIcon type="phone" />
+              {contactInfo.phone}
+            </div>
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+              <InfoIcon type="address" />
+              {contactInfo.address}
+            </div>
           </div>
         </div>
+
+        {/* RIGHT — CSS background image with diagonal clip-path reveal */}
+        <motion.div
+          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
+          animate={{ clipPath: 'polygon(25% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          transition={{ duration: 1.2, ease: 'circOut' }}
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+          className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
+        />
       </div>
     )
-  }
+  },
 )
+
 HeroSection.displayName = 'HeroSection'
 export { HeroSection }
