@@ -28,10 +28,10 @@ const portfolioItems = [
   },
   {
     key: '4',
-    src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80',
-    label: 'Sol Photography',
-    tier: 'Portfolio · $799',
-    slug: '/work/sol-photography',
+    src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80',
+    label: 'SOL New York',
+    tier: 'Starter · $499',
+    slug: '/work/sol-store',
   },
   {
     key: '5',
