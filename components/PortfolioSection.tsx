@@ -42,10 +42,10 @@ const portfolioItems = [
   },
   {
     key: '6',
-    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    label: 'Drift Creative',
+    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80',
+    label: 'Stephen Yang',
     tier: 'Portfolio · $799',
-    slug: '/work/drift-creative',
+    slug: '/work/stephen-yang',
   },
 ]
 

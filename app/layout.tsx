@@ -28,10 +28,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Preload all Feature108 tab images so first-click is instant */}
-        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" />
-        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80" />
-        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80" />
-        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=800&q=80" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=800&q=80" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800&q=80" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1491016253668-b48ef9f4e746?w=800&q=80" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

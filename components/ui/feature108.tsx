@@ -91,7 +91,7 @@ const Feature108 = ({
                   </a>
                 </div>
                 {/* Desktop-only image */}
-                <div className="relative w-full h-80 rounded-xl overflow-hidden hidden lg:block">
+                <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden hidden lg:block">
                   <Image
                     src={tab.content.imageSrc}
                     alt={tab.content.imageAlt}
