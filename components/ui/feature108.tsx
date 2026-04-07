@@ -1,7 +1,6 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -60,19 +59,8 @@ const Feature108 = ({
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                forceMount
-                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10 data-[state=inactive]:hidden"
+                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
               >
-                {/* Mobile-only banner image */}
-                <div className="relative w-full h-40 rounded-xl overflow-hidden lg:hidden">
-                  <Image
-                    src={tab.content.imageSrc}
-                    alt={tab.content.imageAlt}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </div>
                 <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full max-lg:bg-transparent max-lg:p-0 max-lg:rounded-none max-lg:gap-4">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
                     {tab.content.badge}
@@ -90,16 +78,12 @@ const Feature108 = ({
                     {tab.content.buttonText}
                   </a>
                 </div>
-                {/* Desktop-only image */}
-                <div className="relative w-full self-stretch rounded-xl overflow-hidden hidden lg:block">
-                  <Image
-                    src={tab.content.imageSrc}
-                    alt={tab.content.imageAlt}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={tab.content.imageSrc}
+                  alt={tab.content.imageAlt}
+                  className="rounded-xl w-full h-full object-cover"
+                />
               </TabsContent>
             ))}
           </div>
