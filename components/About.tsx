@@ -12,7 +12,7 @@ export default function About() {
         <TimelineContent delay={0}>
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
+              src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=80"
               alt="Behind the work"
               className="w-full h-full object-cover"
             />
