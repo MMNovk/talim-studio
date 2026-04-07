@@ -1,4 +1,5 @@
 import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
+import NameBanner from './NameBanner'
 
 export const metadata = {
   title: 'Stephen Yang — Fine Art Photography',
@@ -41,6 +42,9 @@ export default function StephenYangPage() {
       <div className="bg-[#0a0a0a]">
         <ImmersiveScrollGallery images={galleryImages} />
       </div>
+
+      {/* Full-bleed typographic name banner */}
+      <NameBanner />
 
       {/* Selected works */}
       <section className="bg-[#0a0a0a] px-8 md:px-16 py-32">

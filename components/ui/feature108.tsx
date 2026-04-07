@@ -61,10 +61,10 @@ const Feature108 = ({
                 key={tab.value}
                 value={tab.value}
                 forceMount
-                className="flex flex-col gap-5 lg:grid lg:place-items-center lg:grid-cols-2 lg:gap-10 data-[state=inactive]:hidden"
+                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10 data-[state=inactive]:hidden"
               >
                 {/* Mobile-only banner image */}
-                <div className="relative w-full h-32 rounded-xl overflow-hidden lg:hidden">
+                <div className="relative w-full h-40 rounded-xl overflow-hidden lg:hidden">
                   <Image
                     src={tab.content.imageSrc}
                     alt={tab.content.imageAlt}
@@ -91,7 +91,7 @@ const Feature108 = ({
                   </a>
                 </div>
                 {/* Desktop-only image */}
-                <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden hidden lg:block">
+                <div className="relative w-full min-h-[400px] rounded-xl overflow-hidden hidden lg:block">
                   <Image
                     src={tab.content.imageSrc}
                     alt={tab.content.imageAlt}
