@@ -33,7 +33,7 @@ export default function Hero() {
       className="relative w-full bg-white flex max-md:flex-col overflow-hidden"
       style={{ minHeight: '100svh' }}
     >
-      {/* Left side — title vertically centered, CTA directly below subtext */}
+      {/* Text + CTA */}
       <div
         ref={revealRef}
         className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center p-8 md:p-14 lg:p-20"
@@ -45,12 +45,10 @@ export default function Hero() {
             <span className="text-outline">STUDIO</span>
           </h1>
 
-          {/* Subtext — same mt-8 spacing as original */}
           <p className="mt-8 text-base text-ink/40 max-w-sm leading-relaxed">
             Fast, beautiful websites for small businesses and creatives.
           </p>
 
-          {/* CTA — directly below subtext, same mt-8 spacing */}
           <a
             href="#contact"
             className="mt-8 w-fit flex items-center gap-3 group no-underline"
@@ -79,11 +77,12 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* StackedPanels — desktop: overlapping right column; mobile: full-width 45vh below text */}
       <div style={isMobile
-        ? { width: '100%', height: '50vh', flexShrink: 0 }
+        ? { width: '100%', height: '45vh', flexShrink: 0 }
         : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
       }>
-        <StackedPanels />
+        <StackedPanels isMobile={isMobile} />
       </div>
     </section>
   )

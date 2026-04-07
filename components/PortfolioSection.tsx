@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { RadialScrollGallery } from './RadialScrollGallery'
 
 const portfolioItems = [
@@ -13,53 +13,60 @@ const portfolioItems = [
 ]
 
 export default function PortfolioSection() {
-  const [isMobile, setIsMobile] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
 
+  // On mobile: intercept touch drag and translate vertical delta into window scroll,
+  // which drives the GSAP ScrollTrigger wheel rotation.
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
+    const el = sectionRef.current
+    if (!el) return
+
+    let startY = 0
+
+    const onStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY
+    }
+
+    const onMove = (e: TouchEvent) => {
+      e.preventDefault()
+      const dy = startY - e.touches[0].clientY
+      startY = e.touches[0].clientY
+      window.scrollBy(0, dy * 2)
+    }
+
+    el.addEventListener('touchstart', onStart, { passive: true })
+    el.addEventListener('touchmove', onMove, { passive: false })
+
+    return () => {
+      el.removeEventListener('touchstart', onStart)
+      el.removeEventListener('touchmove', onMove)
+    }
   }, [])
 
   return (
-    <section className="bg-white relative" id="portfolio">
+    <section ref={sectionRef} className="bg-white relative" id="portfolio">
       <div className="flex flex-col items-center justify-center pt-24 pb-4 text-center">
         <p className="text-base text-ink/40 mb-3">Check out my work</p>
         <h2 className="text-6xl font-black">Portfolio</h2>
-        {!isMobile && <p className="text-base text-ink/40 mt-3">↓ Scroll</p>}
+        <p className="text-base text-ink/40 mt-3">↓ Scroll</p>
       </div>
 
-      {isMobile ? (
-        <div className="grid grid-cols-2 gap-4 px-6 pb-16">
-          {portfolioItems.map(({ key, src, label }) => (
-            <div key={key} className="relative rounded-2xl overflow-hidden shadow-lg aspect-[2/3]">
-              <img src={src} alt={label} className="w-full h-full object-cover" />
-              <span className="absolute bottom-3 left-3 bg-white text-black font-bold px-3 py-1 rounded-full text-sm">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <>
-          <RadialScrollGallery
-            scrollDuration={2500}
-            visiblePercentage={45}
-            baseRadius={550}
-            mobileRadius={220}
-          >
-            {() => portfolioItems.map(({ key, src, label }) => (
-              <div key={key} className="group relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
-                <img src={src} className="w-full h-full object-cover" />
-                <span className="absolute bottom-3 left-3 bg-white text-black font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">{label}</span>
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </div>
-            ))}
-          </RadialScrollGallery>
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-        </>
-      )}
+      <RadialScrollGallery
+        scrollDuration={2500}
+        visiblePercentage={45}
+        baseRadius={550}
+        mobileRadius={220}
+      >
+        {() => portfolioItems.map(({ key, src, label }) => (
+          <div key={key} className="group relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
+            <img src={src} className="w-full h-full object-cover" alt={label} />
+            <span className="absolute bottom-3 left-3 bg-white text-black font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">{label}</span>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          </div>
+        ))}
+      </RadialScrollGallery>
+
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none" />
     </section>
   )
 }

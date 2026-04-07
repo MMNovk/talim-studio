@@ -106,9 +106,15 @@ const Feature108 = ({
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
+                className="flex flex-col gap-5 lg:grid lg:place-items-center lg:grid-cols-2 lg:gap-10"
               >
-                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full">
+                {/* Mobile-only banner image */}
+                <img
+                  src={tab.content.imageSrc}
+                  alt={tab.content.imageAlt}
+                  className="w-full h-32 object-cover rounded-xl lg:hidden"
+                />
+                <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full max-lg:bg-transparent max-lg:p-0 max-lg:rounded-none max-lg:gap-4">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
                     {tab.content.badge}
                   </Badge>
@@ -120,15 +126,16 @@ const Feature108 = ({
                   </p>
                   <a
                     href="#contact"
-                    className="mt-2.5 inline-flex items-center justify-center rounded-md font-semibold transition-colors bg-zinc-900 text-white hover:bg-zinc-700 h-11 px-8 text-base no-underline"
+                    className="mt-2.5 inline-flex items-center justify-center rounded-md font-semibold transition-colors bg-zinc-900 text-white hover:bg-zinc-700 h-11 px-8 text-base no-underline max-md:w-full"
                   >
                     {tab.content.buttonText}
                   </a>
                 </div>
+                {/* Desktop-only image in second column */}
                 <img
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
-                  className="rounded-xl"
+                  className="rounded-xl hidden lg:block"
                 />
               </TabsContent>
             ))}

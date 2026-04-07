@@ -66,7 +66,7 @@ export default function Contact() {
             <div>
               <button
                 type="submit"
-                className="w-fit flex items-center gap-3 group"
+                className="w-fit max-md:w-full max-md:justify-center flex items-center gap-3 group"
               >
                 <div className="w-14 h-14 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500">
                   <svg

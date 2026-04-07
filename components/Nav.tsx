@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
 import { MenuToggleIcon } from './MenuToggleIcon'
@@ -16,9 +16,8 @@ const menuItems = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const touchStartX = useRef(0)
 
-  // Blur main content + prevent scroll when overlay is open
+  // Prevent scroll when overlay is open
   useEffect(() => {
     document.body.classList.toggle('menu-open', open)
     document.body.style.overflow = open ? 'hidden' : ''
@@ -37,7 +36,7 @@ export default function Nav() {
 
   return (
     <>
-      {/* Nav bar — transparent, always on top */}
+      {/* Nav bar */}
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
         <Link
           href="#"
@@ -66,10 +65,7 @@ export default function Nav() {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="fixed inset-0 z-[99] bg-white/95 backdrop-blur-md flex items-center justify-center"
             onClick={(e) => { if (e.target === e.currentTarget) setOpen(false) }}
-            onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
-            onTouchEnd={(e) => { if (e.changedTouches[0].clientX - touchStartX.current > 80) setOpen(false) }}
           >
-            {/* Close menu when a link is clicked */}
             <div onClick={() => setOpen(false)}>
               <MenuVertical menuItems={menuItems} color="#6B6B6B" />
             </div>

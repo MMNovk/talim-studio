@@ -95,7 +95,6 @@ function Panel({
         opacity,
       }}
     >
-      {/* Background image */}
       <div
         style={{
           position: "absolute",
@@ -105,7 +104,6 @@ function Panel({
           backgroundPosition: "center",
         }}
       />
-      {/* Aesthetic gradient overlay */}
       <div
         style={{
           position: "absolute",
@@ -114,7 +112,6 @@ function Panel({
           mixBlendMode: "multiply",
         }}
       />
-      {/* Subtle dark vignette for depth */}
       <div
         style={{
           position: "absolute",
@@ -123,7 +120,6 @@ function Panel({
             "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.32) 100%)",
         }}
       />
-      {/* Border glow */}
       <div
         style={{
           position: "absolute",
@@ -137,9 +133,15 @@ function Panel({
   );
 }
 
-export default function StackedPanels() {
+interface StackedPanelsProps {
+  isMobile?: boolean;
+}
+
+export default function StackedPanels({ isMobile = false }: StackedPanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
+  const tapRotation = useRef(-42);
+  const tapDirection = useRef(1);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -183,37 +185,6 @@ export default function StackedPanels() {
     [rotY, rotX, waveYSprings, scaleYSprings]
   );
 
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const touch = e.touches[0];
-      if (!touch) return;
-      isHovering.current = true;
-
-      const cx = (touch.clientX - rect.left) / rect.width;
-      const cy = (touch.clientY - rect.top) / rect.height;
-
-      rotY.set(-42 + (cx - 0.5) * 14);
-      rotX.set(18 + (cy - 0.5) * -10);
-
-      const cursorCardPos = cx * (PANEL_COUNT - 1);
-
-      waveYSprings.forEach((spring, i) => {
-        const dist = Math.abs(i - cursorCardPos);
-        const influence = Math.exp(-(dist * dist) / (2 * SIGMA * SIGMA));
-        spring.set(-influence * 70);
-      });
-
-      scaleYSprings.forEach((spring, i) => {
-        const dist = Math.abs(i - cursorCardPos);
-        const influence = Math.exp(-(dist * dist) / (2 * SIGMA * SIGMA));
-        spring.set(0.35 + influence * 0.65);
-      });
-    },
-    [rotY, rotX, waveYSprings, scaleYSprings]
-  );
-
   const handleMouseLeave = useCallback(() => {
     isHovering.current = false;
     rotY.set(-42);
@@ -222,15 +193,20 @@ export default function StackedPanels() {
     scaleYSprings.forEach((s) => s.set(1));
   }, [rotY, rotX, waveYSprings, scaleYSprings]);
 
+  const handleTap = useCallback(() => {
+    tapRotation.current += tapDirection.current * 45;
+    tapDirection.current *= -1;
+    rotY.set(tapRotation.current);
+  }, [rotY]);
+
   return (
     <div
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleMouseLeave}
+      onMouseMove={isMobile ? undefined : handleMouseMove}
+      onMouseLeave={isMobile ? undefined : handleMouseLeave}
+      onClick={isMobile ? handleTap : undefined}
       className="relative w-full h-full flex items-center justify-center select-none"
-      style={{ perspective: "900px" }}
+      style={{ perspective: "900px", cursor: isMobile ? "pointer" : "default" }}
     >
       <motion.div
         style={{
@@ -252,6 +228,11 @@ export default function StackedPanels() {
           />
         ))}
       </motion.div>
+      {isMobile && (
+        <p className="absolute bottom-4 left-0 right-0 text-center text-white/50 text-xs tracking-wide pointer-events-none">
+          Tap to cycle
+        </p>
+      )}
     </div>
   );
 }

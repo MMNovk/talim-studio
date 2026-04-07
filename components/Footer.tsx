@@ -16,7 +16,7 @@ export default function Footer() {
             </svg>
           </a>
         </div>
-        <nav className="flex items-center gap-8">
+        <nav className="flex items-center gap-8 max-md:flex-wrap max-md:justify-center max-md:gap-4">
           {[
             { label: 'Services', href: '#what-we-build' },
             { label: 'Portfolio', href: '#portfolio' },
