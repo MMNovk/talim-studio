@@ -4,7 +4,7 @@ const steps = [
   {
     title: 'Discovery call',
     body: 'We talk about your business, your goals, and what you need. Free, no pressure, 30 minutes.',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80',
     imageLeft: false,
   },
   {
@@ -16,13 +16,13 @@ const steps = [
   {
     title: 'Build',
     body: 'We design and develop your site, sharing previews as we go. Most sites ship in 5–7 days.',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80',
     imageLeft: false,
   },
   {
     title: 'Launch',
     body: 'Your site goes live. You own the code, the domain, everything.',
-    image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
     imageLeft: true,
   },
 ]
