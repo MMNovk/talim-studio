@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { TimelineContent } from '@/components/ui/timeline-animation'
 import { VerticalCutReveal } from '@/components/ui/vertical-cut-reveal'
 
@@ -11,10 +12,12 @@ export default function About() {
         {/* Left column — image */}
         <TimelineContent delay={0}>
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&q=80"
               alt="Behind the work"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              loading="lazy"
             />
           </div>
         </TimelineContent>

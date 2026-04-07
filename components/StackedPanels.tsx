@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useCallback, useEffect, useState, useMemo } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { motion, useSpring } from "motion/react";
 
 const PANEL_COUNT = 22;
@@ -65,14 +65,12 @@ function Panel({
   waveY,
   scaleY,
   isMobile,
-  mobileX,
 }: {
   index: number;
   total: number;
   waveY: ReturnType<typeof useSpring>;
   scaleY: ReturnType<typeof useSpring>;
   isMobile: boolean;
-  mobileX: number;
 }) {
   const t = index / (total - 1);
   const baseZ = (index - (total - 1)) * Z_SPREAD;
@@ -93,8 +91,7 @@ function Panel({
         height: h,
         marginLeft: -w / 2,
         marginTop: -h / 2,
-        translateX: isMobile ? mobileX : 0,
-        translateZ: isMobile ? 0 : baseZ,
+        translateZ: baseZ,
         y: waveY,
         scaleY,
         transformOrigin: "bottom center",
@@ -146,33 +143,6 @@ interface StackedPanelsProps {
 export default function StackedPanels({ isMobile = false }: StackedPanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const obs = new ResizeObserver(entries => {
-      setContainerWidth(entries[0].contentRect.width);
-    });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const mobileXPositions = useMemo(() => {
-    if (!isMobile || containerWidth === 0) return Array(PANEL_COUNT).fill(0);
-    const scale = 0.6;
-    const panelWidths = Array.from({ length: PANEL_COUNT }, (_, i) => {
-      const t = i / (PANEL_COUNT - 1);
-      return (200 + t * 80) * scale;
-    });
-    const firstCenter = panelWidths[0] / 2;
-    const lastCenter = containerWidth - panelWidths[PANEL_COUNT - 1] / 2;
-    return Array.from({ length: PANEL_COUNT }, (_, i) => {
-      const frac = i / (PANEL_COUNT - 1);
-      const center = firstCenter + frac * (lastCenter - firstCenter);
-      return center - containerWidth / 2;
-    });
-  }, [isMobile, containerWidth]);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -184,18 +154,8 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
     useSpring(1, WAVE_SPRING)
   );
 
-  const rotY = useSpring(isMobile ? 0 : -42, SCENE_SPRING);
-  const rotX = useSpring(isMobile ? 0 : 18, SCENE_SPRING);
-
-  useEffect(() => {
-    if (isMobile) {
-      rotY.set(0);
-      rotX.set(0);
-    } else {
-      rotY.set(-42);
-      rotX.set(18);
-    }
-  }, [isMobile, rotY, rotX]);
+  const rotY = useSpring(-42, SCENE_SPRING);
+  const rotX = useSpring(18, SCENE_SPRING);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -234,9 +194,9 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
     scaleYSprings.forEach((s) => s.set(1));
   }, [rotY, rotX, waveYSprings, scaleYSprings]);
 
-  // Tap: sweep wave left to right across all panels, complete in 1.5s then reset
+  // Tap: sweep wave left to right across all panels, completing in ~1.5s then resetting
   const handleTap = useCallback(() => {
-    const totalSweep = 1000; // ms for wave to travel across all panels
+    const totalSweep = 1000;
     const staggerPerPanel = totalSweep / PANEL_COUNT;
 
     waveYSprings.forEach((s, i) => {
@@ -276,15 +236,9 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
             waveY={waveYSprings[i]}
             scaleY={scaleYSprings[i]}
             isMobile={isMobile}
-            mobileX={mobileXPositions[i]}
           />
         ))}
       </motion.div>
-      {isMobile && (
-        <p className="absolute bottom-4 left-0 right-0 text-center text-white/50 text-xs tracking-wide pointer-events-none">
-          Tap to animate
-        </p>
-      )}
     </div>
   );
 }

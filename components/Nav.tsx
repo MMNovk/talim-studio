@@ -16,6 +16,14 @@ const menuItems = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [heroVisible, setHeroVisible] = useState(true)
+
+  // Fade nav items in on mobile once user scrolls past hero
+  useEffect(() => {
+    const onScroll = () => setHeroVisible(window.scrollY < window.innerHeight)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Prevent scroll when overlay is open
   useEffect(() => {
@@ -40,7 +48,7 @@ export default function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
         <Link
           href="#"
-          className="font-black text-xl tracking-tight text-ink no-underline"
+          className={`font-black text-xl tracking-tight text-ink no-underline transition-opacity duration-300 ${heroVisible ? 'max-md:opacity-0' : ''}`}
           onClick={() => setOpen(false)}
         >
           TS
@@ -48,7 +56,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="w-10 h-10 flex items-center justify-center text-ink cursor-pointer"
+          className={`w-10 h-10 flex items-center justify-center text-ink cursor-pointer transition-opacity duration-300 ${heroVisible ? 'max-md:opacity-0' : ''}`}
           aria-label={open ? 'Close menu' : 'Open menu'}
         >
           <MenuToggleIcon open={open} className="w-7 h-7" />

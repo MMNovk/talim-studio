@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import ScrollReveal from './ScrollReveal'
 
 const steps = [
@@ -40,11 +41,15 @@ export default function Process() {
             <div className={`grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-10`}>
               {step.imageLeft ? (
                 <>
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-56 object-cover rounded-2xl"
-                  />
+                  <div className="relative w-full h-56 rounded-2xl overflow-hidden">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                   <div>
                     <h3 className="font-black text-[clamp(2rem,3.5vw,3rem)] leading-tight text-ink mb-6">
                       {step.title}
@@ -60,11 +65,15 @@ export default function Process() {
                     </h3>
                     <p className="text-base text-ink/40 leading-relaxed">{step.body}</p>
                   </div>
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-56 object-cover rounded-2xl max-md:order-first"
-                  />
+                  <div className="relative w-full h-56 rounded-2xl overflow-hidden max-md:order-first">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                 </>
               )}
             </div>

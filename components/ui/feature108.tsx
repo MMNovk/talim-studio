@@ -113,6 +113,7 @@ const Feature108 = ({
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
                   className="w-full h-32 object-cover rounded-xl lg:hidden"
+                  loading="lazy"
                 />
                 <div className="bg-gray-100 rounded-2xl p-8 flex flex-col items-start justify-center gap-5 h-full max-lg:bg-transparent max-lg:p-0 max-lg:rounded-none max-lg:gap-4">
                   <Badge variant="outline" className="w-fit bg-background text-base px-3 py-1">
@@ -136,6 +137,7 @@ const Feature108 = ({
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
                   className="rounded-xl hidden lg:block"
+                  loading="lazy"
                 />
               </TabsContent>
             ))}
