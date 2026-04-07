@@ -38,7 +38,7 @@ export default function Hero() {
           </h1>
 
           {/* Subtext — same mt-8 spacing as original */}
-          <p className="mt-8 font-mono text-[11px] text-ink/40 uppercase tracking-[0.1em] max-w-sm leading-relaxed">
+          <p className="mt-8 text-[11px] text-ink/40 max-w-sm leading-relaxed">
             Fast, beautiful websites for small businesses and creatives. Built in NYC.
           </p>
 
@@ -64,7 +64,7 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <span className="font-mono text-[11px] font-bold text-ink uppercase tracking-[0.1em]">
+            <span className="text-[11px] font-bold text-ink">
               Start a Project
             </span>
           </a>
@@ -75,7 +75,7 @@ export default function Hero() {
           section so the 3D panels are not cropped */}
       <div
         className="hidden md:flex flex-shrink-0 items-center justify-center"
-        style={{ position: 'absolute', left: '50%', minHeight: '100svh' }}
+        style={{ position: 'absolute', left: '65%', minHeight: '100svh' }}
       >
         <StackedPanels />
       </div>
