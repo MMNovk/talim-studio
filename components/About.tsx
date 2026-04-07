@@ -12,7 +12,7 @@ export default function About() {
         <TimelineContent delay={0}>
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=80"
+              src="https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&q=80"
               alt="Behind the work"
               className="w-full h-full object-cover"
             />
@@ -30,16 +30,16 @@ export default function About() {
           <TimelineContent delay={160}>
             <p className="text-base text-ink/40 leading-relaxed">
               Talim Studio is a one-person web design company based in New York City. I work directly
-              with small business owners and creatives. No account managers, no bloated fees, no
-              waiting in line. Just sharp, focused work from someone who actually cares about your
-              business.
+              with small business owners and creatives to turn their ideas into real, live websites.
+              You get my full attention from the first conversation to launch day, and a site that
+              actually reflects what you do.
             </p>
           </TimelineContent>
 
           <TimelineContent delay={220}>
             <p className="text-base text-ink/40 leading-relaxed">
               Every site I build is fast, accessible, and made to convert. I use the latest tools to
-              ship in days, not weeks, so you can stay focused on what you do best. A great website
+              build, design, and ship so you can stay focused on what you do best. A great website
               should feel effortless, not like another thing on your plate.
             </p>
           </TimelineContent>

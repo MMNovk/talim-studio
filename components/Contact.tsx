@@ -20,7 +20,7 @@ export default function Contact() {
     <section className="bg-white px-12 py-[120px] max-md:px-6 max-md:py-20" id="contact">
       <div className="max-w-xl mx-auto">
         <h2 className="font-black text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-ink mb-4">
-          Start a project
+          Let's get started
         </h2>
         <p className="text-base text-ink/40 leading-relaxed mb-12">
           Share what you're building. I'll get back to you within 24 hours.

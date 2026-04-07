@@ -25,7 +25,7 @@ export default function Home() {
               content: {
                 badge: "$299",
                 title: "Deployed in days.",
-                description: "4–5 pages, mobile responsive, contact form, deployed to Vercel, 1 round of revisions, 5–7 day delivery",
+                description: "4-5 pages, mobile responsive, contact form, deployed to Vercel, 1 round of revisions, 5-7 day delivery.",
                 buttonText: "Start Here",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
                 imageAlt: "Starter",
@@ -38,7 +38,7 @@ export default function Home() {
               content: {
                 badge: "$449",
                 title: "Your work, elevated.",
-                description: "6–8 pages, bold layouts, gallery/project grid, animations & transitions, custom typography, 2 rounds of revisions, 5–7 day delivery",
+                description: "6-8 pages, bold layouts, gallery/project grid, animations & transitions, custom typography, 2 rounds of revisions, 5-7 day delivery.",
                 buttonText: "Create a Portfolio",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-2.svg",
                 imageAlt: "Portfolio",
@@ -51,7 +51,7 @@ export default function Home() {
               content: {
                 badge: "$649",
                 title: "All in.",
-                description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup, 2 rounds of revisions, 7–10 day delivery",
+                description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup, 2 rounds of revisions, 7-10 day delivery.",
                 buttonText: "Book a Build",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-3.svg",
                 imageAlt: "Business",
