@@ -40,7 +40,7 @@ export default function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
         <Link
           href="#"
-          className="font-syne font-black text-xl tracking-tight text-ink no-underline"
+          className="font-black text-xl tracking-tight text-ink no-underline"
           onClick={() => setOpen(false)}
         >
           TS
@@ -68,7 +68,7 @@ export default function Nav() {
           >
             {/* Close menu when a link is clicked */}
             <div onClick={() => setOpen(false)}>
-              <MenuVertical menuItems={menuItems} color="#C97B63" />
+              <MenuVertical menuItems={menuItems} color="#4B4B4B" />
             </div>
           </motion.div>
         )}

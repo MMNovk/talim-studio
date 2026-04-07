@@ -16,7 +16,7 @@ export default function Home() {
         <Feature108
           badge=""
           heading="What We Build"
-          description=""
+          description="Fast turnaround. Fixed prices. No agency fluff."
           tabs={[
             {
               value: "tab-1",
@@ -24,9 +24,9 @@ export default function Home() {
               label: "Starter",
               content: {
                 badge: "$299",
-                title: "4–5 pages. Deployed in days.",
-                description: "Mobile responsive, contact form, deployed to Vercel. 1 round of revisions. 5–7 day delivery.",
-                buttonText: "Start with Starter",
+                title: "Deployed in days.",
+                description: "4–5 pages, mobile responsive, contact form, deployed to Vercel, 1 round of revisions, 5–7 day delivery",
+                buttonText: "Start Here",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
                 imageAlt: "Starter",
               },
@@ -37,9 +37,9 @@ export default function Home() {
               label: "Portfolio",
               content: {
                 badge: "$449",
-                title: "Bold layouts. Your work, elevated.",
-                description: "6–8 pages, gallery/project grid, animations & transitions, custom typography. 2 rounds of revisions. 5–7 day delivery.",
-                buttonText: "Build a Portfolio",
+                title: "Your work, elevated.",
+                description: "6–8 pages, bold layouts, gallery/project grid, animations & transitions, custom typography, 2 rounds of revisions, 5–7 day delivery",
+                buttonText: "Create a Portfolio",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-2.svg",
                 imageAlt: "Portfolio",
               },
@@ -50,8 +50,8 @@ export default function Home() {
               label: "Business + Booking",
               content: {
                 badge: "$649",
-                title: "Booking, maps, SEO. All in.",
-                description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup. 2 rounds of revisions. 7–10 day delivery.",
+                title: "All in.",
+                description: "Everything in Starter plus Calendly/Acuity booking integration, Google Maps embed, SEO setup, 2 rounds of revisions, 7–10 day delivery",
                 buttonText: "Book a Build",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-3.svg",
                 imageAlt: "Business",
@@ -63,7 +63,7 @@ export default function Home() {
               label: "Retainer",
               content: {
                 badge: "$79/mo",
-                title: "Always updated. Always live.",
+                title: "Always live.",
                 description: "Monthly content updates, hosting management, small design changes, priority response.",
                 buttonText: "Keep It Running",
                 imageSrc: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",

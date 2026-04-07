@@ -64,7 +64,7 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <span className="text-[11px] font-bold text-ink">
+            <span className="text-sm font-bold text-ink">
               Start a Project
             </span>
           </a>
