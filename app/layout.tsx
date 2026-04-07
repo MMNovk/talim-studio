@@ -3,8 +3,13 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Talim Studio — Web Design for Small Businesses & Creatives',
-  description:
-    'Talim Studio builds fast, beautiful websites for small businesses and creatives. Based in New York City. Starting at $500.',
+  description: 'Fast, beautiful websites for small businesses and creatives. Built in NYC. Starting at $299, delivered in days.',
+  openGraph: {
+    title: 'Talim Studio',
+    description: 'Fast, beautiful websites for small businesses and creatives.',
+    url: 'https://talimstudio.com',
+    siteName: 'Talim Studio',
+  },
 }
 
 export default function RootLayout({
