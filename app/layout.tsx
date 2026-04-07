@@ -23,7 +23,7 @@ export default function RootLayout({
         />
         <link
           rel="icon"
-          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><text x='50' y='73' font-family='sans-serif' font-weight='900' font-size='50' fill='%230e0e0e' text-anchor='middle'>TS</text></svg>"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><text x='50' y='50' font-family='sans-serif' font-weight='900' font-size='48' fill='%230e0e0e' text-anchor='middle' dominant-baseline='central'>TS</text></svg>"
         />
       </head>
       <body className="bg-white text-ink text-base leading-relaxed">

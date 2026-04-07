@@ -13,7 +13,7 @@ export default function About() {
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&auto=format&fit=crop"
-              alt="Behind the studio"
+              alt="Behind the work"
               className="w-full h-full object-cover"
             />
           </div>
@@ -21,52 +21,36 @@ export default function About() {
 
         {/* Right column — content */}
         <div className="flex flex-col gap-8">
-          <TimelineContent delay={80}>
-            <p className="text-base text-ink/40">Behind The Studio.</p>
-          </TimelineContent>
-
-          <VerticalCutReveal delay={160}>
+          <VerticalCutReveal delay={80}>
             <h2 className="font-black text-[clamp(2.5rem,4vw,3.5rem)] leading-tight tracking-tighter text-ink">
-              Built for the ones doing it themselves.
+              Behind the Work.
             </h2>
           </VerticalCutReveal>
 
-          <TimelineContent delay={240}>
+          <TimelineContent delay={160}>
             <p className="text-base text-ink/40 leading-relaxed">
-              Talim Studio is a one-person web design studio based in New York City. I work directly
-              with small business owners and creatives — no layers of account managers, no bloated
-              agency fees.
+              Talim Studio is a one-person web design company based in New York City. I work directly
+              with small business owners and creatives. No account managers, no bloated fees, no
+              waiting in line. Just sharp, focused work from someone who actually cares about your
+              business.
             </p>
           </TimelineContent>
 
-          <TimelineContent delay={300}>
+          <TimelineContent delay={220}>
             <p className="text-base text-ink/40 leading-relaxed">
               Every site I build is fast, accessible, and made to convert. I use the latest tools to
-              ship in days, not weeks, so you can focus on what you actually do.
+              ship in days, not weeks, so you can stay focused on what you do best. A great website
+              should feel effortless, not like another thing on your plate.
             </p>
-          </TimelineContent>
-
-          {/* Stats */}
-          <TimelineContent delay={360}>
-            <div className="flex gap-10 pt-4 border-t border-ink/10">
-              <div>
-                <div className="font-black text-3xl text-ink tracking-tighter">5–7</div>
-                <div className="text-base text-ink/40 mt-1">day delivery</div>
-              </div>
-              <div>
-                <div className="font-black text-3xl text-ink tracking-tighter">$299</div>
-                <div className="text-base text-ink/40 mt-1">starting price</div>
-              </div>
-            </div>
           </TimelineContent>
 
           {/* CTA */}
-          <TimelineContent delay={420}>
+          <TimelineContent delay={300}>
             <a
               href="#contact"
               className="inline-flex items-center gap-2 text-sm font-bold text-ink border border-ink/20 rounded-full px-5 py-2.5 w-fit hover:bg-ink hover:text-white transition-all duration-300 no-underline"
             >
-              Want to hear the story?
+              Ready to get started?
             </a>
           </TimelineContent>
         </div>

@@ -31,7 +31,7 @@ export default function Hero() {
         className="w-[55%] flex-shrink-0 flex flex-col justify-center p-8 md:p-14 lg:p-20"
       >
         <div className="max-w-4xl pr-12">
-          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-ink uppercase">
+          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
             <span className="text-outline">STUDIO</span>

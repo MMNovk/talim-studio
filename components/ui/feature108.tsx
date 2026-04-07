@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Layout, Pointer, Zap } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 interface TabContent {
   badge: string;
@@ -82,7 +81,7 @@ const Feature108 = ({
   ],
 }: Feature108Props) => {
   return (
-    <section className="py-32">
+    <section className="py-32" id="what-we-build">
       <div className="container mx-auto">
         <div className="flex flex-col items-center gap-4 text-center">
           <h1 className="max-w-2xl text-3xl font-black md:text-4xl">
@@ -116,12 +115,15 @@ const Feature108 = ({
                   <h3 className="text-3xl font-semibold lg:text-5xl">
                     {tab.content.title}
                   </h3>
-                  <p className="text-muted-foreground lg:text-lg text-center">
+                  <p className="text-muted-foreground lg:text-lg text-left">
                     {tab.content.description}
                   </p>
-                  <Button className="mt-2.5 w-fit gap-2" size="lg">
+                  <a
+                    href="#contact"
+                    className="mt-2.5 inline-flex items-center justify-center rounded-md font-semibold transition-colors bg-zinc-900 text-white hover:bg-zinc-700 h-11 px-8 text-base no-underline"
+                  >
                     {tab.content.buttonText}
-                  </Button>
+                  </a>
                 </div>
                 <img
                   src={tab.content.imageSrc}

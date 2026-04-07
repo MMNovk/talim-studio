@@ -16,8 +16,8 @@ export default function Contact() {
         <h2 className="font-black text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-ink mb-4">
           Start a project
         </h2>
-        <p className="text-base text-ink leading-relaxed mb-12">
-          Tell me about what you're building. I'll get back to you within 24 hours.
+        <p className="text-base text-ink/40 leading-relaxed mb-12">
+          Share what you're building. I'll get back to you within 24 hours.
         </p>
 
         {submitted ? (
@@ -82,7 +82,7 @@ export default function Contact() {
         )}
 
         <p className="mt-16 text-base text-ink/40">
-          Or reach me directly —{' '}
+          Or reach out to me directly —{' '}
           <a href="mailto:hello@talimstudio.com" className="text-ink underline-offset-4 hover:underline">
             hello@talimstudio.com
           </a>

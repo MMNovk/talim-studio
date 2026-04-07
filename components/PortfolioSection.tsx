@@ -4,7 +4,7 @@ import { RadialScrollGallery } from './RadialScrollGallery'
 
 export default function PortfolioSection() {
   return (
-    <section className="bg-white relative">
+    <section className="bg-white relative" id="portfolio">
       <div className="flex flex-col items-center justify-center pt-24 pb-4 text-center">
         <p className="text-base text-ink/40 mb-3">Check out our work</p>
         <h2 className="text-6xl font-black">Portfolio</h2>

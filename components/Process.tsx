@@ -43,7 +43,7 @@ export default function Process() {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full aspect-[4/3] object-cover rounded-2xl"
+                    className="w-full h-56 object-cover rounded-2xl"
                   />
                   <div>
                     <h3 className="font-black text-[clamp(2rem,3.5vw,3rem)] leading-tight text-ink mb-6">
@@ -63,7 +63,7 @@ export default function Process() {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full aspect-[4/3] object-cover rounded-2xl"
+                    className="w-full h-56 object-cover rounded-2xl"
                   />
                 </>
               )}

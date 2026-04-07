@@ -7,8 +7,8 @@ import { MenuToggleIcon } from './MenuToggleIcon'
 import { MenuVertical } from './MenuVertical'
 
 const menuItems = [
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
+  { label: 'Services', href: '#what-we-build' },
+  { label: 'Portfolio', href: '#portfolio' },
   { label: 'Process', href: '#process' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
