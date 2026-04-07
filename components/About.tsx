@@ -31,14 +31,14 @@ export default function About() {
             <p className="text-base text-ink/40 leading-relaxed">
               Talim Studio is a one-person web design company based in New York City. I work directly
               with small business owners and creatives to turn their ideas into real, live websites.
-              You get my full attention from the first conversation to launch day, and a site that
-              actually reflects what you do.
+              You get my full attention from the first conversation to launch day, and something that
+              reflects what you do.
             </p>
           </TimelineContent>
 
           <TimelineContent delay={220}>
             <p className="text-base text-ink/40 leading-relaxed">
-              Every site I build is fast, accessible, and made to convert. I use the latest tools to
+              Every page I build is fast, accessible, and made to convert. I use the latest tools to
               build, design, and ship so you can stay focused on what you do best. A great website
               should feel effortless, not like another thing on your plate.
             </p>
