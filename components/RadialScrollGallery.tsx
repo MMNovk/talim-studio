@@ -66,6 +66,7 @@ export interface RadialScrollGalleryProps
   children: (hoveredIndex: number | null) => ReactNode[];
   scrollDuration?: number;
   visiblePercentage?: number;
+  mobileVisiblePercentage?: number;
   baseRadius?: number;
   mobileRadius?: number;
   startTrigger?: string;
@@ -83,6 +84,7 @@ export const RadialScrollGallery = forwardRef<
       children,
       scrollDuration = 2500,
       visiblePercentage = 45,
+      mobileVisiblePercentage,
       baseRadius = 550,
       mobileRadius = 220,
       className = '',
@@ -105,15 +107,28 @@ export const RadialScrollGallery = forwardRef<
       null
     );
     const [isMounted, setIsMounted] = useState(false);
+    const [isMobileLayout, setIsMobileLayout] = useState(false);
+
+    useEffect(() => {
+      const check = () => setIsMobileLayout(window.innerWidth < 768);
+      check();
+      window.addEventListener('resize', check);
+      return () => window.removeEventListener('resize', check);
+    }, []);
 
     const currentRadius = useResponsiveValue(baseRadius, mobileRadius);
     const circleDiameter = currentRadius * 2;
 
+    const currentVisiblePercentage = useResponsiveValue(
+      visiblePercentage,
+      mobileVisiblePercentage ?? visiblePercentage
+    );
+
     const { visibleDecimal, hiddenDecimal } = useMemo(() => {
-      const clamped = Math.max(10, Math.min(100, visiblePercentage));
+      const clamped = Math.max(10, Math.min(100, currentVisiblePercentage));
       const v = clamped / 100;
       return { visibleDecimal: v, hiddenDecimal: 1 - v };
-    }, [visiblePercentage]);
+    }, [currentVisiblePercentage]);
 
     const childrenNodes = useMemo(
       () => React.Children.toArray(children(hoveredIndex)),
@@ -171,18 +186,21 @@ export const RadialScrollGallery = forwardRef<
             }
           );
 
-          gsap.to(containerRef.current, {
-            rotation: 360,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: pinRef.current,
-              pin: true,
-              start: startTrigger,
-              end: `+=${scrollDuration}`,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
+          // Desktop only: scroll-driven rotation with pin
+          if (!isMobileLayout) {
+            gsap.to(containerRef.current, {
+              rotation: 360,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: pinRef.current,
+                pin: true,
+                start: startTrigger,
+                end: `+=${scrollDuration}`,
+                scrub: 1,
+                invalidateOnRefresh: true,
+              },
+            });
+          }
         }
       },
       {
@@ -192,9 +210,44 @@ export const RadialScrollGallery = forwardRef<
           currentRadius,
           startTrigger,
           childrenCount,
+          isMobileLayout,
         ],
       }
     );
+
+    // Mobile: direct touch drag → wheel rotation (deltaY * 0.3 deg)
+    useEffect(() => {
+      if (!isMobileLayout) return;
+      const el = pinRef.current;
+      if (!el || !containerRef.current) return;
+
+      let prevY = 0;
+      let accumulated = 0;
+
+      const onStart = (e: TouchEvent) => {
+        prevY = e.touches[0].clientY;
+      };
+      const onMove = (e: TouchEvent) => {
+        e.preventDefault();
+        const dy = prevY - e.touches[0].clientY;
+        prevY = e.touches[0].clientY;
+        accumulated += dy * 0.3;
+        gsap.set(containerRef.current, { rotation: accumulated });
+      };
+      const onEnd = () => {
+        prevY = 0;
+      };
+
+      el.addEventListener('touchstart', onStart, { passive: true });
+      el.addEventListener('touchmove', onMove, { passive: false });
+      el.addEventListener('touchend', onEnd);
+
+      return () => {
+        el.removeEventListener('touchstart', onStart);
+        el.removeEventListener('touchmove', onMove);
+        el.removeEventListener('touchend', onEnd);
+      };
+    }, [isMobileLayout]);
 
     if (childrenCount === 0) return null;
 
@@ -210,7 +263,7 @@ export const RadialScrollGallery = forwardRef<
     return (
       <div
         ref={mergedRef}
-        className={`min-h-screen w-full relative flex items-center justify-center overflow-hidden ${className}`}
+        className={`min-h-screen max-md:min-h-0 max-md:max-h-[500px] w-full relative flex items-center justify-center overflow-hidden ${className}`}
         {...rest}
       >
         <div

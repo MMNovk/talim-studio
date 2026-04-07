@@ -36,7 +36,7 @@ export default function Hero() {
       {/* Text + CTA */}
       <div
         ref={revealRef}
-        className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center p-8 md:p-14 lg:p-20"
+        className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center p-8 md:p-14 lg:p-20 max-md:pt-24"
       >
         <div className="max-w-4xl pr-12 max-md:pr-0">
           <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
@@ -79,7 +79,7 @@ export default function Hero() {
 
       {/* StackedPanels — desktop: overlapping right column; mobile: full-width 45vh below text */}
       <div style={isMobile
-        ? { width: '100%', height: '45vh', flexShrink: 0 }
+        ? { width: '100%', height: '300px', flexShrink: 0 }
         : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
       }>
         <StackedPanels isMobile={isMobile} />

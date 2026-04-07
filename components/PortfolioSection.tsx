@@ -1,6 +1,5 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
 import { RadialScrollGallery } from './RadialScrollGallery'
 
 const portfolioItems = [
@@ -13,38 +12,8 @@ const portfolioItems = [
 ]
 
 export default function PortfolioSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  // On mobile: intercept touch drag and translate vertical delta into window scroll,
-  // which drives the GSAP ScrollTrigger wheel rotation.
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-
-    let startY = 0
-
-    const onStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY
-    }
-
-    const onMove = (e: TouchEvent) => {
-      e.preventDefault()
-      const dy = startY - e.touches[0].clientY
-      startY = e.touches[0].clientY
-      window.scrollBy(0, dy * 2)
-    }
-
-    el.addEventListener('touchstart', onStart, { passive: true })
-    el.addEventListener('touchmove', onMove, { passive: false })
-
-    return () => {
-      el.removeEventListener('touchstart', onStart)
-      el.removeEventListener('touchmove', onMove)
-    }
-  }, [])
-
   return (
-    <section ref={sectionRef} className="bg-white relative" id="portfolio">
+    <section className="bg-white relative overflow-hidden" id="portfolio">
       <div className="flex flex-col items-center justify-center pt-24 pb-4 text-center">
         <p className="text-base text-ink/40 mb-3">Check out my work</p>
         <h2 className="text-6xl font-black">Portfolio</h2>
@@ -54,8 +23,9 @@ export default function PortfolioSection() {
       <RadialScrollGallery
         scrollDuration={2500}
         visiblePercentage={45}
+        mobileVisiblePercentage={35}
         baseRadius={550}
-        mobileRadius={220}
+        mobileRadius={150}
       >
         {() => portfolioItems.map(({ key, src, label }) => (
           <div key={key} className="group relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">

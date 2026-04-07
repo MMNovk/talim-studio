@@ -64,17 +64,20 @@ function Panel({
   total,
   waveY,
   scaleY,
+  isMobile,
 }: {
   index: number;
   total: number;
   waveY: ReturnType<typeof useSpring>;
   scaleY: ReturnType<typeof useSpring>;
+  isMobile: boolean;
 }) {
   const t = index / (total - 1);
   const baseZ = (index - (total - 1)) * Z_SPREAD;
 
-  const w = 200 + t * 80;
-  const h = 280 + t * 120;
+  const scale = isMobile ? 0.5 : 1;
+  const w = (200 + t * 80) * scale;
+  const h = (280 + t * 120) * scale;
 
   const opacity = 0.25 + t * 0.75;
   const imageUrl = PANEL_IMAGES[index % PANEL_IMAGES.length];
@@ -140,8 +143,6 @@ interface StackedPanelsProps {
 export default function StackedPanels({ isMobile = false }: StackedPanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
-  const tapRotation = useRef(-42);
-  const tapDirection = useRef(1);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -193,11 +194,21 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
     scaleYSprings.forEach((s) => s.set(1));
   }, [rotY, rotX, waveYSprings, scaleYSprings]);
 
+  // Tap: sweep a wave across all panels then return to rest (~1.5s total)
   const handleTap = useCallback(() => {
-    tapRotation.current += tapDirection.current * 45;
-    tapDirection.current *= -1;
-    rotY.set(tapRotation.current);
-  }, [rotY]);
+    const staggerPerPanel = 250 / PANEL_COUNT; // sweep over 250ms
+
+    waveYSprings.forEach((s, i) => {
+      setTimeout(() => s.set(-55), i * staggerPerPanel);
+      setTimeout(() => s.set(0), i * staggerPerPanel + 800);
+    });
+    scaleYSprings.forEach((s, i) => {
+      setTimeout(() => s.set(0.35), i * staggerPerPanel);
+      setTimeout(() => s.set(1), i * staggerPerPanel + 800);
+    });
+    rotY.set(-42 + 22);
+    setTimeout(() => rotY.set(-42), 900);
+  }, [rotY, waveYSprings, scaleYSprings]);
 
   return (
     <div
@@ -225,12 +236,13 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
             total={PANEL_COUNT}
             waveY={waveYSprings[i]}
             scaleY={scaleYSprings[i]}
+            isMobile={isMobile}
           />
         ))}
       </motion.div>
       {isMobile && (
         <p className="absolute bottom-4 left-0 right-0 text-center text-white/50 text-xs tracking-wide pointer-events-none">
-          Tap to cycle
+          Tap to animate
         </p>
       )}
     </div>

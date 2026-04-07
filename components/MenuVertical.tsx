@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -23,26 +22,14 @@ export const MenuVertical = ({
   color = '#C97B63',
   skew = 0,
 }: MenuVerticalProps) => {
-  const [tappedIndex, setTappedIndex] = useState<number | null>(null)
-
-  useEffect(() => {
-    if (tappedIndex === null) return
-    const t = setTimeout(() => setTappedIndex(null), 200)
-    return () => clearTimeout(t)
-  }, [tappedIndex])
-
   return (
     <div className="flex w-fit flex-col gap-4 px-10">
       {menuItems.map((item, index) => (
         <motion.div
           key={`${item.href}-${index}`}
-          className="group/nav flex items-center gap-2 cursor-pointer text-zinc-900 rounded-lg transition-colors duration-100"
-          style={{
-            backgroundColor: tappedIndex === index ? '#e9e9e8' : 'transparent',
-          }}
+          className="group/nav flex items-center gap-2 cursor-pointer text-zinc-900"
           initial="initial"
           whileHover="hover"
-          onTouchStart={() => setTappedIndex(index)}
         >
           <motion.div
             variants={{
