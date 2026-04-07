@@ -54,7 +54,7 @@ export default function Nav() {
           aria-label="Talim Studio"
         >
           <Image
-            src="/images/ts-logo.png"
+            src="/images/ts-logo-transparent.png"
             alt="Talim Studio"
             width={36}
             height={36}
