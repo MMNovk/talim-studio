@@ -2,6 +2,7 @@ import ConnoisseurStack from '@/components/ui/connoisseur-stack'
 import About3 from '@/components/ui/about3'
 import Image from 'next/image'
 import MenuTabs from './MenuTabs'
+import { Utensils, Heart, Clock } from 'lucide-react'
 
 export const metadata = {
   title: 'Cinder & Co. — Ridgewood Queens',
@@ -59,14 +60,17 @@ const reviews = [
   {
     quote: 'The smash burger here is the reason I started telling people to stop going to Manhattan for food.',
     source: 'Eater NY',
+    Icon: Utensils,
   },
   {
     quote: 'Exactly what a neighborhood burger spot should be. Nothing extra, nothing missing.',
     source: 'The Infatuation',
+    Icon: Heart,
   },
   {
-    quote: 'Order the double. You\'ll thank yourself.',
+    quote: "Order the double. You'll thank yourself.",
     source: 'Time Out New York',
+    Icon: Clock,
   },
 ]
 
@@ -101,7 +105,7 @@ export default function CinderCoPage() {
         />
       </div>
 
-      {/* Info strip */}
+      {/* Ticker strip */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-6 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
           7812 Myrtle Ave, Ridgewood Queens
@@ -110,6 +114,31 @@ export default function CinderCoPage() {
         <span className="text-black text-xs font-bold tracking-widest uppercase">
           Tue – Sun · 11am – 11pm
         </span>
+      </div>
+
+      {/* Info details strip */}
+      <div className="bg-[#0a0a0a] border-t border-b border-white/10 py-5 px-8">
+        <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0 font-sans text-sm text-zinc-400">
+          <span>7812 Myrtle Ave, Ridgewood NY 11385</span>
+          <span className="hidden sm:block text-zinc-700 mx-6">|</span>
+          <span>Tue – Sun &nbsp;·&nbsp; 11am – 11pm &nbsp;·&nbsp; Mon Closed</span>
+          <span className="hidden sm:block text-zinc-700 mx-6">|</span>
+          <a href="tel:+17185550147" className="no-underline text-zinc-400 hover:text-white transition-colors">
+            (718) 555-0147
+          </a>
+        </div>
+      </div>
+
+      {/* Full-bleed photo divider */}
+      <div className="w-full h-[70vh] relative overflow-hidden">
+        <Image
+          src="/images/head-photo.jpg"
+          alt=""
+          fill
+          quality={100}
+          className="object-cover"
+          priority={false}
+        />
       </div>
 
       {/* SECTION 2 — Menu */}
@@ -141,31 +170,21 @@ export default function CinderCoPage() {
         }}
       />
 
-      {/* SECTION 4 — Full-bleed image break */}
-      <div className="w-full h-[60vh] relative overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&h=900&fit=crop&q=80"
-          alt=""
-          fill
-          className="object-cover"
-          priority={false}
-        />
-      </div>
-
-      {/* SECTION 5 — Review quotes */}
+      {/* SECTION 4 — Review quotes */}
       <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {reviews.map(({ quote, source }) => (
+          {reviews.map(({ quote, source, Icon }) => (
             <div key={source}>
               <span className="block text-orange-500 text-4xl font-light leading-none mb-4">"</span>
               <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
-              <p className="font-mono text-xs tracking-widest uppercase text-zinc-500 mt-4">— {source}</p>
+              <Icon className="w-4 h-4 text-zinc-600 mt-6 mb-2" />
+              <p className="font-sans text-xs tracking-widest uppercase text-zinc-500">— {source}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 6 — Contact */}
+      {/* SECTION 5 — Contact */}
       <section id="contact" className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
 
@@ -238,7 +257,7 @@ export default function CinderCoPage() {
         </div>
       </section>
 
-      {/* SECTION 7 — Footer */}
+      {/* SECTION 6 — Footer */}
       <footer className="border-t border-white/10 py-6 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="font-bold text-sm text-white">Cinder & Co.</span>
