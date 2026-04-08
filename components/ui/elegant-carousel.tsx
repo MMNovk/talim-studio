@@ -17,28 +17,28 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $35',
     description: 'A timeless treatment. Shaping, cuticle care, and your choice of polish. Done with care, not in a hurry.',
     accent: '#C4A882',
-    imageUrl: 'https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=900&h=600&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1457530378978-8bac673b8062?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Gel Extensions',
     subtitle: 'From $75',
     description: 'Length and structure built to last. Soft gel or hard gel, shaped to your preference. Includes full set and polish.',
     accent: '#A89B8C',
-    imageUrl: 'https://images.unsplash.com/photo-1604655788043-1c7fe315ed5a?w=900&h=600&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Nail Art',
     subtitle: 'From $20 add-on',
     description: 'Minimalist line work, abstract color blocking, negative space. Bring a reference or let us freestyle. Quoted at booking.',
     accent: '#B5A69A',
-    imageUrl: 'https://images.unsplash.com/photo-1604907790077-c2ae3d3d5f32?w=900&h=600&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1609167830220-7164aa360951?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Pedicure',
     subtitle: 'From $55',
     description: 'Full foot soak, exfoliation, shaping, and polish. A full reset. Add a paraffin treatment for $15.',
     accent: '#9E8E7E',
-    imageUrl: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&h=600&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1632345031435-8727f592d8d?w=900&h=600&fit=crop&q=80',
   },
 ]
 
