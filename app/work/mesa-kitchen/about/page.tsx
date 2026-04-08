@@ -42,7 +42,7 @@ export default function CinderCoAboutPage() {
             fill
             priority
             quality={100}
-            className="object-cover"
+            className="object-contain"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
         </div>
@@ -53,6 +53,7 @@ export default function CinderCoAboutPage() {
           >
             Four years<br />in Ridgewood.
           </h1>
+          <p className="font-sans text-sm font-light text-white/50 tracking-wide mt-3">Our story</p>
         </div>
       </section>
 

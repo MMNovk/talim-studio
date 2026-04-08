@@ -2,7 +2,6 @@ import ConnoisseurStack from '@/components/ui/connoisseur-stack'
 import About3 from '@/components/ui/about3'
 import Image from 'next/image'
 import MenuTabs from './MenuTabs'
-import { Utensils, Heart, Clock } from 'lucide-react'
 
 export const metadata = {
   title: 'Cinder & Co. — Ridgewood Queens',
@@ -59,18 +58,18 @@ const menuTabs = [
 const reviews = [
   {
     quote: 'The smash burger here is the reason I started telling people to stop going to Manhattan for food.',
-    source: 'Eater NY',
-    Icon: Utensils,
+    initials: 'EN',
+    publication: 'Eater NY',
   },
   {
     quote: 'Exactly what a neighborhood burger spot should be. Nothing extra, nothing missing.',
-    source: 'The Infatuation',
-    Icon: Heart,
+    initials: 'TI',
+    publication: 'The Infatuation',
   },
   {
     quote: "Order the double. You'll thank yourself.",
-    source: 'Time Out New York',
-    Icon: Clock,
+    initials: 'TO',
+    publication: 'Time Out New York',
   },
 ]
 
@@ -105,28 +104,11 @@ export default function CinderCoPage() {
         />
       </div>
 
-      {/* Ticker strip */}
-      <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-6 items-center justify-center">
+      {/* Orange marquee */}
+      <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-2 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
-          7812 Myrtle Ave, Ridgewood Queens
+          7812 Myrtle Ave, Ridgewood NY 11385 &nbsp;·&nbsp; Tue – Sun &nbsp;·&nbsp; 11am – 11pm &nbsp;·&nbsp; Mon Closed &nbsp;·&nbsp; (718) 555-0147
         </span>
-        <span className="text-black/40 hidden sm:block">·</span>
-        <span className="text-black text-xs font-bold tracking-widest uppercase">
-          Tue – Sun · 11am – 11pm
-        </span>
-      </div>
-
-      {/* Info details strip */}
-      <div className="bg-[#0a0a0a] border-t border-b border-white/10 py-5 px-8">
-        <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0 font-sans text-sm text-zinc-400">
-          <span>7812 Myrtle Ave, Ridgewood NY 11385</span>
-          <span className="hidden sm:block text-zinc-700 mx-6">|</span>
-          <span>Tue – Sun &nbsp;·&nbsp; 11am – 11pm &nbsp;·&nbsp; Mon Closed</span>
-          <span className="hidden sm:block text-zinc-700 mx-6">|</span>
-          <a href="tel:+17185550147" className="no-underline text-zinc-400 hover:text-white transition-colors">
-            (718) 555-0147
-          </a>
-        </div>
       </div>
 
       {/* Full-bleed photo divider */}
@@ -154,7 +136,24 @@ export default function CinderCoPage() {
         </div>
       </section>
 
-      {/* SECTION 3 — About */}
+      {/* SECTION 3 — Review quotes */}
+      <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20 border-t border-white/5">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          {reviews.map(({ quote, initials, publication }) => (
+            <div key={publication}>
+              <p className="text-white text-lg font-light leading-relaxed mb-8">{quote}</p>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-zinc-700 flex items-center justify-center shrink-0">
+                  <span className="text-zinc-400 text-xs font-bold">{initials}</span>
+                </div>
+                <span className="font-sans text-sm font-medium text-zinc-300 tracking-wide">{publication}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 4 — About */}
       <About3
         title="Born in Ridgewood."
         description="We opened Cinder & Co. in 2021 with a simple idea: make the burger you'd actually drive across the borough for. No gimmicks. Just quality ingredients, a flat-top that never cools down, and a dessert menu that earns its place."
@@ -169,20 +168,6 @@ export default function CinderCoPage() {
           buttonUrl: '/work/mesa-kitchen/about',
         }}
       />
-
-      {/* SECTION 4 — Review quotes */}
-      <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
-        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {reviews.map(({ quote, source, Icon }) => (
-            <div key={source}>
-              <span className="block text-orange-500 text-4xl font-light leading-none mb-4">"</span>
-              <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
-              <Icon className="w-4 h-4 text-zinc-600 mt-6 mb-2" />
-              <p className="font-sans text-xs tracking-widest uppercase text-zinc-500">— {source}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* SECTION 5 — Contact */}
       <section id="contact" className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
