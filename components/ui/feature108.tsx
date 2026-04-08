@@ -78,7 +78,8 @@ const Feature108 = ({
                 <img
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
-                  className="rounded-xl w-full h-full object-cover"
+                  className="rounded-xl object-cover w-full"
+                  style={{ height: '400px' }}
                 />
               </TabsContent>
             ))}
