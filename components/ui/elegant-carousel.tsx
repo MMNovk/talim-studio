@@ -174,6 +174,7 @@ export default function VelaCarousel() {
             src={slide.imageUrl}
             alt={slide.title}
             fill
+            sizes="(max-width: 1024px) 100vw, 55vw"
             className="object-cover transition-opacity duration-300"
             style={{ opacity: isTransitioning ? 0 : 1 }}
           />
