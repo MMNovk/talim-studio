@@ -13,11 +13,6 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <div className="flex justify-center py-5 bg-white">
-          <a href="#portfolio" className="font-mono text-sm text-neutral-400 hover:text-black transition-colors no-underline">
-            Check out my work ↗
-          </a>
-        </div>
         <Feature108
           heading="What I Build"
           description="Fast turnaround. Fixed prices."

@@ -17,7 +17,7 @@ const steps = [
   {
     title: 'Launch',
     body: 'Your site goes live. You own the code, the domain, everything.',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070',
     imageLeft: false, // text LEFT, image RIGHT
   },
 ]
