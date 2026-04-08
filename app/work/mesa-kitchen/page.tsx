@@ -1,5 +1,6 @@
 import ConnoisseurStack from '@/components/ui/connoisseur-stack'
 import About3 from '@/components/ui/about3'
+import Image from 'next/image'
 import MenuTabs from './MenuTabs'
 
 export const metadata = {
@@ -54,6 +55,21 @@ const menuTabs = [
   },
 ]
 
+const reviews = [
+  {
+    quote: 'The smash burger here is the reason I started telling people to stop going to Manhattan for food.',
+    source: 'Eater NY',
+  },
+  {
+    quote: 'Exactly what a neighborhood burger spot should be. Nothing extra, nothing missing.',
+    source: 'The Infatuation',
+  },
+  {
+    quote: 'Order the double. You\'ll thank yourself.',
+    source: 'Time Out New York',
+  },
+]
+
 export default function CinderCoPage() {
   return (
     <div className="bg-[#0a0a0a] min-h-screen">
@@ -88,22 +104,28 @@ export default function CinderCoPage() {
       {/* Info strip */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-6 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
-          Myrtle Ave, Ridgewood Queens
+          7812 Myrtle Ave, Ridgewood Queens
         </span>
         <span className="text-black/40 hidden sm:block">·</span>
         <span className="text-black text-xs font-bold tracking-widest uppercase">
           Tue – Sun · 11am – 11pm
         </span>
-        <span className="text-black/40 hidden sm:block">·</span>
-        <a
-          href="#menu"
-          className="text-black text-xs font-bold tracking-widest uppercase no-underline hover:underline"
-        >
-          See the Menu →
-        </a>
       </div>
 
-      {/* SECTION 2 — About */}
+      {/* SECTION 2 — Menu */}
+      <section id="menu" className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
+        <div className="max-w-screen-xl mx-auto">
+          <h2
+            className="text-white font-black mb-12"
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
+          >
+            The Menu
+          </h2>
+          <MenuTabs tabs={menuTabs} />
+        </div>
+      </section>
+
+      {/* SECTION 3 — About */}
       <About3
         title="Born in Ridgewood."
         description="We opened Cinder & Co. in 2021 with a simple idea: make the burger you'd actually drive across the borough for. No gimmicks. Just quality ingredients, a flat-top that never cools down, and a dessert menu that earns its place."
@@ -117,32 +139,33 @@ export default function CinderCoPage() {
           buttonText: 'Our Story',
           buttonUrl: '/work/mesa-kitchen/about',
         }}
-        companiesTitle="As seen in"
-        companies={['Eater NY', 'Time Out New York', 'The Infatuation', 'Gothamist']}
-        achievementsTitle="By the numbers."
-        achievementsDescription="Since opening in 2021, we have served a lot of burgers, flipped a lot of patties, and tried to get better every single week."
-        achievements={[
-          { label: 'Burgers Served', value: '180K+' },
-          { label: 'Years Open', value: '3' },
-          { label: 'Menu Items', value: '24' },
-          { label: 'Seats', value: '40' },
-        ]}
       />
 
-      {/* SECTION 3 — Menu */}
-      <section id="menu" className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
-        <div className="max-w-screen-xl mx-auto">
-          <h2
-            className="text-white font-black mb-12"
-            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
-          >
-            The Menu
-          </h2>
-          <MenuTabs tabs={menuTabs} />
+      {/* SECTION 4 — Full-bleed image break */}
+      <div className="w-full h-[60vh] relative overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&h=900&fit=crop&q=80"
+          alt=""
+          fill
+          className="object-cover"
+          priority={false}
+        />
+      </div>
+
+      {/* SECTION 5 — Review quotes */}
+      <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          {reviews.map(({ quote, source }) => (
+            <div key={source}>
+              <span className="block text-orange-500 text-4xl font-light leading-none mb-4">"</span>
+              <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
+              <p className="font-mono text-xs tracking-widest uppercase text-zinc-500 mt-4">— {source}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* SECTION 4 — Contact */}
+      {/* SECTION 6 — Contact */}
       <section id="contact" className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
 
@@ -157,7 +180,7 @@ export default function CinderCoPage() {
             <div className="flex flex-col gap-5 text-sm text-white/50 mb-8">
               <div>
                 <p className="text-white font-bold mb-1">Address</p>
-                <p>Myrtle Ave, Ridgewood, NY 11385</p>
+                <p>7812 Myrtle Ave, Ridgewood, NY 11385</p>
               </div>
               <div>
                 <p className="text-white font-bold mb-1">Hours</p>
@@ -171,9 +194,9 @@ export default function CinderCoPage() {
                 <p>hello@cinderandco.com</p>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden h-56 bg-stone-800">
+            <div className="overflow-hidden h-56 bg-stone-800">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6043.8763940774375!2d-73.91256!3d40.70158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25e0e9f81a691%3A0x39e3d84d4b2d1bcb!2sRidgewood%2C%20Queens%2C%20NY!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.8!2d-73.9012!3d40.7001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s7812+Myrtle+Ave%2C+Ridgewood%2C+NY+11385!5e0!3m2!1sen!2sus!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -215,11 +238,11 @@ export default function CinderCoPage() {
         </div>
       </section>
 
-      {/* SECTION 5 — Footer */}
+      {/* SECTION 7 — Footer */}
       <footer className="border-t border-white/10 py-6 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="font-bold text-sm text-white">Cinder & Co.</span>
-          <span className="text-xs text-white/25">Myrtle Ave, Ridgewood, Queens</span>
+          <span className="text-xs text-white/25">7812 Myrtle Ave, Ridgewood, Queens</span>
           <a
             href="https://talimstudio.com"
             className="text-xs text-white/20 no-underline hover:text-white/40 transition-colors"

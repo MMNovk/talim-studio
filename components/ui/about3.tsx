@@ -1,10 +1,5 @@
 import Image from 'next/image'
 
-interface Achievement {
-  label: string
-  value: string
-}
-
 interface About3Props {
   title: string
   description: string
@@ -17,11 +12,6 @@ interface About3Props {
     buttonText: string
     buttonUrl: string
   }
-  companiesTitle: string
-  companies: string[]
-  achievementsTitle: string
-  achievementsDescription: string
-  achievements: Achievement[]
 }
 
 export default function About3({
@@ -30,11 +20,6 @@ export default function About3({
   mainImage,
   secondaryImage,
   breakout,
-  companiesTitle,
-  companies,
-  achievementsTitle,
-  achievementsDescription,
-  achievements,
 }: About3Props) {
   return (
     <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
@@ -57,7 +42,7 @@ export default function About3({
         </div>
 
         {/* Middle: secondary image left, breakout card right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="relative lg:col-span-7 aspect-[4/3] overflow-hidden">
             <Image src={secondaryImage} alt="" fill className="object-cover" />
           </div>
@@ -75,37 +60,6 @@ export default function About3({
                 {breakout.buttonText} →
               </a>
             </div>
-          </div>
-        </div>
-
-        {/* Press / companies row */}
-        <div className="border-t border-white/10 pt-12 mb-12">
-          <p className="text-white/30 text-xs tracking-widest uppercase mb-6">{companiesTitle}</p>
-          <div className="flex flex-wrap gap-3">
-            {companies.map((company, i) => (
-              <span
-                key={i}
-                className="text-white/50 text-sm font-semibold px-4 py-2 border border-white/10 rounded-full"
-              >
-                {company}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements */}
-        <div className="border-t border-white/10 pt-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            <h3 className="text-white font-black text-2xl">{achievementsTitle}</h3>
-            <p className="text-white/45 text-sm leading-relaxed">{achievementsDescription}</p>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((a, i) => (
-              <div key={i}>
-                <p className="text-orange-500 font-black text-4xl lg:text-5xl leading-none">{a.value}</p>
-                <p className="text-white/40 text-xs tracking-widest uppercase mt-2">{a.label}</p>
-              </div>
-            ))}
           </div>
         </div>
 
