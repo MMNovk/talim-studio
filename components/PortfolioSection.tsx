@@ -46,9 +46,9 @@ function CtaCardMobile() {
   return (
     <a href="/#contact" className="block no-underline group">
       <div className="relative aspect-square rounded-2xl border-dashed border-2 border-black/20 bg-[#FAFAF9] flex flex-col items-center justify-center gap-0 transition-colors duration-300 group-hover:bg-black/5 px-4 text-center">
-        <p className="font-mono text-xs tracking-widest uppercase text-black/40 mb-3">Next Up</p>
-        <h3 className="font-black text-3xl text-black leading-none">Your site.</h3>
-        <p className="font-mono text-sm text-black/50 mt-2">Let&apos;s build something.</p>
+        <p className="text-base text-ink/40 mb-3">Next Up</p>
+        <h3 className="font-sans font-black text-3xl text-black leading-none">Your site.</h3>
+        <p className="text-base text-ink/40 mt-2">Let&apos;s build something.</p>
         <div className="mt-4 w-10 h-10 rounded-full border border-black/20 flex items-center justify-center group-hover:bg-black transition-all duration-500">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="stroke-black group-hover:stroke-white transition-colors duration-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M7 17L17 7M17 7H8M17 7V16" />
@@ -65,9 +65,9 @@ function CtaCardDesktop() {
       href="/#contact"
       className="no-underline group block relative w-48 h-72 rounded-2xl border-dashed border-2 border-black/20 bg-[#FAFAF9] flex flex-col items-center justify-center transition-colors duration-300 hover:bg-black/5 px-4 text-center shadow-lg"
     >
-      <p className="font-mono text-xs tracking-widest uppercase text-black/40 mb-3">Next Up</p>
-      <h3 className="font-black text-3xl text-black leading-none">Your site.</h3>
-      <p className="font-mono text-sm text-black/50 mt-2">Let&apos;s build something.</p>
+      <p className="text-base text-ink/40 mb-3">Next Up</p>
+      <h3 className="font-sans font-black text-3xl text-black leading-none">Your site.</h3>
+      <p className="text-base text-ink/40 mt-2">Let&apos;s build something.</p>
       <div className="mt-5 w-10 h-10 rounded-full border border-black/20 flex items-center justify-center group-hover:bg-black transition-all duration-500">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="stroke-black group-hover:stroke-white transition-colors duration-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M7 17L17 7M17 7H8M17 7V16" />
