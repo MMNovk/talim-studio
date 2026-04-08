@@ -1,86 +1,64 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
+import { useRef } from 'react'
+import { motion, useScroll, useVelocity, useTransform, useSpring } from 'motion/react'
 
 const images = [
-  "https://images.pexels.com/photos/4123816/pexels-photo-4123816.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4125667/pexels-photo-4125667.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4125624/pexels-photo-4125624.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/4125666/pexels-photo-4125666.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/3997373/pexels-photo-3997373.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/4125672/pexels-photo-4125672.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/7156862/pexels-photo-7156862.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/3082341/pexels-photo-3082341.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/4125671/pexels-photo-4125671.jpeg?auto=compress&cs=tinysrgb&w=800",
   "https://images.pexels.com/photos/4125651/pexels-photo-4125651.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4046316/pexels-photo-4046316.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4125589/pexels-photo-4125589.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/3997980/pexels-photo-3997980.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4046317/pexels-photo-4046317.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4125660/pexels-photo-4125660.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4046321/pexels-photo-4046321.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "https://images.pexels.com/photos/4125648/pexels-photo-4125648.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/5432021/pexels-photo-5432021.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/4125654/pexels-photo-4125654.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&w=800",
 ]
 
-const row1 = images.slice(0, 6)
-const row2 = images.slice(6, 12)
-
 export function MarcoGallery() {
-  const track1 = useRef<HTMLDivElement>(null)
-  const track2 = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll()
+  const scrollVelocity = useVelocity(scrollY)
 
-  useEffect(() => {
-    gsap.set(track2.current, { xPercent: -50 })
-
-    const t1 = gsap.to(track1.current, {
-      xPercent: -50,
-      duration: 28,
-      ease: 'none',
-      repeat: -1,
-    })
-    const t2 = gsap.to(track2.current, {
-      xPercent: 0,
-      duration: 34,
-      ease: 'none',
-      repeat: -1,
-    })
-
-    return () => {
-      t1.kill()
-      t2.kill()
-    }
-  }, [])
-
-  const imgClass = "w-60 h-60 md:w-72 md:h-72 shrink-0 object-cover"
+  // Map scroll velocity to a skewY value — smooth it out with spring
+  const rawSkew = useTransform(scrollVelocity, [-2500, 0, 2500], [-8, 0, 8])
+  const skewY = useSpring(rawSkew, { stiffness: 300, damping: 80 })
 
   return (
-    <section id="work" className="bg-black py-24">
+    <section id="work" className="bg-neutral-900 py-24 px-8 md:px-14">
       {/* Heading */}
-      <div className="text-center mb-16 px-8">
+      <div className="text-center mb-16 max-w-screen-xl mx-auto">
         <h2
-          className="text-white font-bold leading-tight mb-3"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          className="text-white font-bold leading-tight mb-4"
+          style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
         >
           Check out my work.
         </h2>
-        <p className="text-neutral-600 text-xs font-mono tracking-widest uppercase">
+        <p className="text-neutral-400 text-xs tracking-[0.3em] uppercase">
           Black &amp; grey · Blackwork · Fine line
         </p>
       </div>
 
-      {/* Row 1 — moves left */}
-      <div className="overflow-hidden mb-4">
-        <div ref={track1} className="flex gap-4" style={{ width: '200%' }}>
-          {[...row1, ...row1].map((src, i) => (
-            <img key={i} src={src} alt="" className={imgClass} loading="lazy" />
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 — moves right */}
-      <div className="overflow-hidden">
-        <div ref={track2} className="flex gap-4" style={{ width: '200%' }}>
-          {[...row2, ...row2].map((src, i) => (
-            <img key={i} src={src} alt="" className={imgClass} loading="lazy" />
-          ))}
-        </div>
-      </div>
+      {/* Kinetic grid — skews on scroll */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-screen-xl mx-auto"
+        style={{ skewY }}
+      >
+        {images.map((src, i) => (
+          <div key={i} className="overflow-hidden aspect-square">
+            <motion.img
+              src={src}
+              alt={`Tattoo work ${i + 1}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.4 }}
+            />
+          </div>
+        ))}
+      </motion.div>
     </section>
   )
 }
