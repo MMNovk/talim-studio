@@ -60,25 +60,28 @@ export default function CinderCoPage() {
 
       {/* SECTION 1 — ConnoisseurStack hero */}
       <ConnoisseurStack
-        eyebrow="Cinder & Co. — Ridgewood, Queens"
+        eyebrow="CINDER & CO."
         items={[
           {
-            label: 'Smash Burgers',
-            description: 'Single or double. Always fresh. Never frozen.',
-            imageSrc: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
-            clipVariant: 'clip-original',
+            num: "01",
+            name: "Smash Burgers",
+            clipId: "clip-original",
+            description: "Single or double. Always fresh. Never frozen.",
+            image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
           },
           {
-            label: 'Loaded Fries',
-            description: 'Golden, crispy, impossible to share.',
-            imageSrc: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80',
-            clipVariant: 'clip-hexagons',
+            num: "02",
+            name: "Loaded Fries",
+            clipId: "clip-hexagons",
+            description: "Golden, crispy, impossible to share.",
+            image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
           },
           {
-            label: 'Diner Desserts',
-            description: 'Brownies, hand pies, and soft serve done right.',
-            imageSrc: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80',
-            clipVariant: 'clip-pixels',
+            num: "03",
+            name: "Diner Desserts",
+            clipId: "clip-pixels",
+            description: "Brownies, hand pies, and soft serve done right.",
+            image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
           },
         ]}
       />
