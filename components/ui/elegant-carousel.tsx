@@ -38,7 +38,7 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $55',
     description: 'Full foot soak, exfoliation, shaping, and polish. A full reset. Add a paraffin treatment for $15.',
     accent: '#9E8E7E',
-    imageUrl: 'https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=900&h=600&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&h=600&fit=crop&q=80',
   },
 ]
 
@@ -104,16 +104,12 @@ export default function VelaCarousel() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Section header */}
-      <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 pt-16 pb-8">
-        <h2 className="text-3xl font-semibold text-ink">What We Offer</h2>
-      </div>
-
       {/* Main layout */}
-      <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pb-12">
+      <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12">
 
         {/* Left: text */}
         <div className="flex flex-col gap-5 order-2 lg:order-1">
+          <h2 className="text-3xl font-semibold text-ink mb-3">What We Offer</h2>
           <span className="text-ink/30 text-xs font-mono tracking-widest">
             {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
           </span>

@@ -8,7 +8,7 @@ export default function OwnerSection() {
         {/* Portrait */}
         <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&q=80"
+            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=800&fit=crop&q=80"
             alt="Mia Reyes, founder of Vela Nails"
             fill
             className="object-cover"
