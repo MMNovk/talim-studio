@@ -143,6 +143,7 @@ interface StackedPanelsProps {
 export default function StackedPanels({ isMobile = false }: StackedPanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -162,6 +163,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
       isHovering.current = true;
+      setIsHovered(true);
 
       const cx = (e.clientX - rect.left) / rect.width;
       const cy = (e.clientY - rect.top) / rect.height;
@@ -188,6 +190,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
 
   const handleMouseLeave = useCallback(() => {
     isHovering.current = false;
+    setIsHovered(false);
     rotY.set(-42);
     rotX.set(18);
     waveYSprings.forEach((s) => s.set(0));
@@ -228,16 +231,30 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
           height: 0,
         }}
       >
-        {Array.from({ length: PANEL_COUNT }).map((_, i) => (
-          <Panel
-            key={i}
-            index={i}
-            total={PANEL_COUNT}
-            waveY={waveYSprings[i]}
-            scaleY={scaleYSprings[i]}
-            isMobile={isMobile}
-          />
-        ))}
+        {Array.from({ length: PANEL_COUNT }).map((_, i) => {
+          if (i === PANEL_COUNT - 1) {
+            return (
+              <motion.div
+                key={i}
+                animate={isHovered ? { y: 0 } : { y: [0, -6, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                style={{ position: 'absolute', width: 0, height: 0, transformStyle: 'preserve-3d' }}
+              >
+                <Panel index={i} total={PANEL_COUNT} waveY={waveYSprings[i]} scaleY={scaleYSprings[i]} isMobile={isMobile} />
+              </motion.div>
+            );
+          }
+          return (
+            <Panel
+              key={i}
+              index={i}
+              total={PANEL_COUNT}
+              waveY={waveYSprings[i]}
+              scaleY={scaleYSprings[i]}
+              isMobile={isMobile}
+            />
+          );
+        })}
       </motion.div>
     </div>
   );
