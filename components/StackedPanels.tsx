@@ -10,10 +10,10 @@ const Z_SPREAD = 42;
 const SIGMA = 2.8;
 
 const PANEL_IMAGES = [
-  "https://images.unsplash.com/photo-1631885777506-69a414ca3735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1737328519608-ee80fc77f72e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1650735311937-1876825e971b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1772475385509-93fd87a2d4ba?q=80&w=1028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+  "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",
   "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&q=80",
   "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=80",

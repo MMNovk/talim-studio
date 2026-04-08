@@ -11,13 +11,13 @@ const steps = [
   {
     title: 'Build',
     body: 'I design and develop your site, sharing previews as I go. Most sites ship in 5–7 days.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1615525137689-198778541af6?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageLeft: true,  // text RIGHT, image LEFT
   },
   {
     title: 'Launch',
     body: 'Your site goes live. You own the code, the domain, everything.',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070',
+    image: 'https://images.unsplash.com/photo-1537498425277-c283d32ef9db?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageLeft: false, // text LEFT, image RIGHT
   },
 ]
