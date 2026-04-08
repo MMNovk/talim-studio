@@ -51,17 +51,17 @@ export default function About3({
             </h2>
             <p className="text-white/50 text-base leading-relaxed max-w-md">{description}</p>
           </div>
-          <div className="relative h-72 lg:h-96 rounded-2xl overflow-hidden">
+          <div className="relative h-72 lg:h-96 overflow-hidden">
             <Image src={mainImage} alt={title} fill className="object-cover" />
           </div>
         </div>
 
         {/* Middle: secondary image left, breakout card right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <div className="relative h-80 rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+          <div className="relative lg:col-span-7 aspect-[4/3] overflow-hidden">
             <Image src={secondaryImage} alt="" fill className="object-cover" />
           </div>
-          <div className="bg-[#111111] rounded-2xl overflow-hidden flex flex-col">
+          <div className="bg-[#111111] overflow-hidden flex flex-col lg:col-span-5">
             <div className="relative h-48 shrink-0">
               <Image src={breakout.src} alt={breakout.title} fill className="object-cover" />
             </div>
@@ -70,9 +70,9 @@ export default function About3({
               <p className="text-white/45 text-sm leading-relaxed flex-1">{breakout.description}</p>
               <a
                 href={breakout.buttonUrl}
-                className="inline-block bg-orange-500 text-black text-xs font-bold tracking-widest uppercase px-6 py-3 w-fit no-underline hover:bg-orange-400 transition-colors"
+                className="text-orange-500 text-sm font-mono tracking-widest uppercase no-underline hover:opacity-70 transition-opacity w-fit"
               >
-                {breakout.buttonText}
+                {breakout.buttonText} →
               </a>
             </div>
           </div>

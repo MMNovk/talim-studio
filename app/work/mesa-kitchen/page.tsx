@@ -111,9 +111,9 @@ export default function CinderCoPage() {
         secondaryImage="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80"
         breakout={{
           src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
-          title: 'What We Stand For',
+          title: 'The same way, every time.',
           description:
-            "Every ingredient on our menu is sourced within 150 miles. We work with local farms, local bakeries, and a butcher two blocks over who's been doing this for 40 years.",
+            "Everything on the menu is made to order. The smash happens when you order it. The fries go straight from the fryer. We don't hold food under heat lamps and we don't cut corners on the bun.",
           buttonText: 'Our Story',
           buttonUrl: '/work/mesa-kitchen/about',
         }}
