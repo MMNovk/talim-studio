@@ -1,59 +1,13 @@
 import ConnoisseurStack from '@/components/ui/connoisseur-stack'
 import About3 from '@/components/ui/about3'
 import Image from 'next/image'
-import MenuTabs from './MenuTabs'
+import { CinderMenu } from '@/components/ui/cinder-menu'
 
 export const metadata = {
   title: 'Cinder & Co. — Ridgewood Queens',
   description: 'Smash burgers, loaded fries, and desserts worth the drive.',
 }
 
-const menuTabs = [
-  {
-    value: 'burgers',
-    label: 'Burgers',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
-    items: [
-      { name: 'The Classic', price: '$13', desc: 'Smash patty, American cheese, pickles, house sauce' },
-      { name: 'Double Stack', price: '$16', desc: 'Two patties, sharp cheddar, caramelized onion' },
-      { name: 'Mushroom Melt', price: '$15', desc: 'Smash patty, gruyère, roasted mushrooms, truffle aioli' },
-      { name: 'Spicy Bird', price: '$14', desc: 'Crispy chicken, hot honey, slaw, dill pickle' },
-    ],
-  },
-  {
-    value: 'sides',
-    label: 'Sides',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80',
-    items: [
-      { name: 'Loaded Fries', price: '$9', desc: 'Cheese sauce, bacon, scallions' },
-      { name: 'Onion Rings', price: '$7', desc: 'Beer batter, comeback sauce' },
-      { name: 'House Salad', price: '$8', desc: 'Mixed greens, radish, herb vinaigrette' },
-      { name: 'Street Corn', price: '$6', desc: 'Cotija, chili butter, lime' },
-    ],
-  },
-  {
-    value: 'shakes',
-    label: 'Shakes',
-    image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80',
-    items: [
-      { name: 'Vanilla Soft Serve', price: '$6', desc: 'Classic, hand-spun' },
-      { name: 'Chocolate Malt', price: '$7', desc: 'Dark cocoa, malted milk' },
-      { name: 'Strawberry', price: '$6', desc: 'Fresh strawberry, vanilla base' },
-      { name: 'Black & White', price: '$8', desc: 'Chocolate and vanilla, swirled' },
-    ],
-  },
-  {
-    value: 'desserts',
-    label: 'Desserts',
-    image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80',
-    items: [
-      { name: 'Smash Brownie', price: '$5', desc: 'Warm brownie, soft serve, sea salt' },
-      { name: 'Apple Hand Pie', price: '$5', desc: 'Flaky pastry, cinnamon apple' },
-      { name: 'Banana Pudding', price: '$6', desc: 'Vanilla wafer, whipped cream' },
-      { name: 'Soft Serve Cone', price: '$4', desc: 'Plain or dipped in chocolate' },
-    ],
-  },
-]
 
 const reviews = [
   {
@@ -124,17 +78,9 @@ export default function CinderCoPage() {
       </div>
 
       {/* SECTION 2 — Menu */}
-      <section id="menu" className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
-        <div className="max-w-screen-xl mx-auto">
-          <h2
-            className="text-white font-black mb-12"
-            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
-          >
-            The Menu
-          </h2>
-          <MenuTabs tabs={menuTabs} />
-        </div>
-      </section>
+      <div id="menu">
+        <CinderMenu />
+      </div>
 
       {/* SECTION 3 — Review quotes */}
       <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20 border-t border-white/5">
