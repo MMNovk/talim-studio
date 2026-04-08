@@ -8,7 +8,7 @@ export default function OwnerSection() {
         {/* Portrait */}
         <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop&q=80"
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&q=80"
             alt="Mia Reyes, founder of Vela Nails"
             fill
             className="object-cover"
@@ -17,33 +17,34 @@ export default function OwnerSection() {
 
         {/* Bio */}
         <div className="flex flex-col gap-6 md:pl-8 lg:pl-12">
-          <p className="font-mono text-xs tracking-widest uppercase text-ink/40">The Owner</p>
-          <h2 className="font-dm-sans font-bold text-3xl text-ink">Mia Reyes</h2>
-          <div className="flex flex-col gap-4 font-dm-sans text-ink/55 leading-relaxed">
+          <p className="text-xs tracking-widest uppercase text-ink/40">The Owner</p>
+          <h2 className="font-semibold text-3xl text-ink">Mia Reyes</h2>
+          <div className="flex flex-col gap-4 text-ink/60 leading-relaxed">
             <p>
-              I&rsquo;ve been doing nails in Brooklyn for nine years. Vela is the studio I always
-              wanted to work in &mdash; quiet, unhurried, with natural light and no rush to get you
-              in and out.
+              I&rsquo;ve been doing nails in Brooklyn for nine years. Before I opened Vela in 2020,
+              I trained in Seoul and worked across several salons in Manhattan &mdash; learning
+              everything from classic gel work to freehand nail art and everything in between.
             </p>
             <p>
-              I trained in Seoul and worked in three Manhattan salons before opening Vela in 2020.
-              I do all the nail art consultations myself. If you bring a reference, I&rsquo;ll tell
-              you honestly whether I can execute it.
+              Nails are how I got into beauty, and they&rsquo;re still the thing I care most about
+              getting right. I opened Vela because I wanted a space where the work could be slow and
+              intentional &mdash; where clients aren&rsquo;t rushed through and techniques aren&rsquo;t
+              cut short.
             </p>
             <p>
-              We keep the team small on purpose. You&rsquo;ll see the same faces every visit.
-              That&rsquo;s the whole idea.
+              We&rsquo;re a small team on purpose. You&rsquo;ll see the same faces every visit, and
+              the vibe in here is always quiet. That&rsquo;s exactly how we like it.
             </p>
           </div>
           <hr className="border-ink/10" />
           <div className="flex gap-10">
             <div>
-              <p className="font-mono text-xs tracking-widest uppercase text-ink/35">Experience</p>
-              <p className="font-mono text-xs tracking-widest uppercase text-ink/60 mt-1">9 years</p>
+              <p className="text-xs tracking-widest uppercase text-ink/35">Experience</p>
+              <p className="text-xs tracking-widest uppercase text-ink/60 mt-1">9 years</p>
             </div>
             <div>
-              <p className="font-mono text-xs tracking-widest uppercase text-ink/35">Est.</p>
-              <p className="font-mono text-xs tracking-widest uppercase text-ink/60 mt-1">2020</p>
+              <p className="text-xs tracking-widest uppercase text-ink/35">Est.</p>
+              <p className="text-xs tracking-widest uppercase text-ink/60 mt-1">2020</p>
             </div>
           </div>
         </div>

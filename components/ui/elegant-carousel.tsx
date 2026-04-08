@@ -17,28 +17,28 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $35',
     description: 'A timeless treatment. Shaping, cuticle care, and your choice of polish. Done with care, not in a hurry.',
     accent: '#C4A882',
-    imageUrl: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Gel Extensions',
     subtitle: 'From $75',
     description: 'Length and structure built to last. Soft gel or hard gel, shaped to your preference. Includes full set and polish.',
     accent: '#A89B8C',
-    imageUrl: 'https://images.unsplash.com/photo-1604655788043-1c7fe315ed5a?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604655788043-1c7fe315ed5a?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Nail Art',
     subtitle: 'From $20 add-on',
     description: 'Minimalist line work, abstract color blocking, negative space. Bring a reference or let us freestyle. Quoted at booking.',
     accent: '#B5A69A',
-    imageUrl: 'https://images.unsplash.com/photo-1604907790077-c2ae3d3d5f32?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1604907790077-c2ae3d3d5f32?w=900&h=600&fit=crop&q=80',
   },
   {
     title: 'Pedicure',
     subtitle: 'From $55',
     description: 'Full foot soak, exfoliation, shaping, and polish. A full reset. Add a paraffin treatment for $15.',
     accent: '#9E8E7E',
-    imageUrl: 'https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=900&h=1200&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=900&h=600&fit=crop&q=80',
   },
 ]
 
@@ -97,8 +97,7 @@ export default function VelaCarousel() {
 
   return (
     <section
-      className="overflow-hidden"
-      style={{ backgroundColor: '#FAF8F5' }}
+      className="overflow-hidden bg-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -107,8 +106,7 @@ export default function VelaCarousel() {
     >
       {/* Section header */}
       <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 pt-16 pb-8">
-        <p className="font-mono text-xs tracking-[0.2em] text-ink/40 uppercase">What We Offer</p>
-        <p className="font-dm-sans text-ink/30 text-sm mt-1">Starting prices. No surprises.</p>
+        <h2 className="text-3xl font-semibold text-ink">What We Offer</h2>
       </div>
 
       {/* Main layout */}
