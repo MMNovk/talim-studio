@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { MenuToggleIcon } from './MenuToggleIcon'
 import { MenuVertical } from './MenuVertical'
@@ -47,22 +45,6 @@ export default function Nav() {
     <>
       {/* Nav bar */}
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
-        <Link
-          href="#"
-          className={`flex items-center no-underline transition-opacity duration-300 ${heroVisible ? 'max-md:opacity-0' : ''}`}
-          onClick={() => setOpen(false)}
-          aria-label="Talim Studio"
-        >
-          <Image
-            src="/images/ts-logo-transparent.png"
-            alt="Talim Studio"
-            width={36}
-            height={36}
-            priority
-            className="object-contain"
-          />
-        </Link>
-
         <button
           onClick={() => setOpen((v) => !v)}
           className={`w-10 h-10 flex items-center justify-center text-ink cursor-pointer transition-opacity duration-300 ${heroVisible ? 'max-md:opacity-0' : ''}`}

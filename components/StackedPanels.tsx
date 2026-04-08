@@ -10,11 +10,11 @@ const Z_SPREAD = 42;
 const SIGMA = 2.8;
 
 const PANEL_IMAGES = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
-  "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=400&q=80",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80",
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80",
-  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&q=80",
+  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+  "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",
   "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&q=80",
   "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=80",
   "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80",

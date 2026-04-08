@@ -90,7 +90,6 @@ export default function PortfolioSection() {
   return (
     <section className="bg-white relative overflow-hidden" id="portfolio">
       <div className="flex flex-col items-center justify-center pt-24 pb-4 text-center">
-        <p className="text-base text-ink/40 mb-3">Check out my work</p>
         <h2 className="text-6xl font-black">Portfolio</h2>
         {!isMobile && <p className="text-base text-ink/40 mt-3">↓ Scroll</p>}
       </div>
@@ -98,7 +97,7 @@ export default function PortfolioSection() {
       {isMobile ? (
         /* Mobile: 2-column photo grid */
         <div className="px-4 pb-16 mt-6 grid grid-cols-2 gap-3">
-          {portfolioItems.slice(0, 4).map(({ key, src, label, tier, slug }) => (
+          {portfolioItems.map(({ key, src, label, tier, slug }) => (
             <Link key={key} href={slug} className="block no-underline group">
               <div className="relative aspect-square rounded-2xl overflow-hidden">
                 <img
@@ -118,25 +117,6 @@ export default function PortfolioSection() {
             </Link>
           ))}
           <CtaCardMobile />
-          {portfolioItems.slice(4).map(({ key, src, label, tier, slug }) => (
-            <Link key={key} href={slug} className="block no-underline group">
-              <div className="relative aspect-square rounded-2xl overflow-hidden">
-                <img
-                  src={src}
-                  alt={label}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-                <div className="absolute bottom-2 left-2 right-2">
-                  <span className="inline-block bg-black/60 text-white font-bold text-xs px-2.5 py-1 rounded-full">
-                    {label}
-                  </span>
-                  <p className="mt-0.5 text-white/70 text-[10px] px-1">{tier}</p>
-                </div>
-              </div>
-            </Link>
-          ))}
         </div>
       ) : (
         /* Desktop: RadialScrollGallery */
@@ -149,7 +129,7 @@ export default function PortfolioSection() {
             mobileRadius={120}
           >
             {() => [
-              ...portfolioItems.slice(0, 4).map(({ key, src, label, tier, slug }) => (
+              ...portfolioItems.map(({ key, src, label, tier, slug }) => (
                 <Link key={key} href={slug} className="no-underline group block relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
                   <img src={src} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt={label} loading="lazy" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 rounded-2xl" />
@@ -164,20 +144,6 @@ export default function PortfolioSection() {
                 </Link>
               )),
               <CtaCardDesktop key="cta" />,
-              ...portfolioItems.slice(4).map(({ key, src, label, tier, slug }) => (
-                <Link key={key} href={slug} className="no-underline group block relative w-48 h-72 rounded-2xl overflow-hidden shadow-lg">
-                  <img src={src} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt={label} loading="lazy" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 rounded-2xl" />
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <span className="block bg-white text-black font-bold px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {label}
-                    </span>
-                    <span className="block text-white/80 text-xs mt-1 px-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {tier}
-                    </span>
-                  </div>
-                </Link>
-              )),
             ]}
           </RadialScrollGallery>
 
