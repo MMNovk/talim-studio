@@ -1,171 +1,144 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-const NAV_LINKS = [
-  { label: 'HOME', href: '#' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'WORK', href: '#work' },
-  { label: 'BOOK', href: '#book' },
-]
+interface BlurTextProps {
+  text: string
+  delay?: number
+  animateBy?: 'words' | 'letters'
+  direction?: 'top' | 'bottom'
+  className?: string
+  style?: React.CSSProperties
+}
 
-function BlurIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
+function BlurText({
+  text,
+  delay = 50,
+  animateBy = 'words',
+  direction = 'top',
+  className = '',
+  style,
+}: BlurTextProps) {
+  const [inView, setInView] = useState(false)
+  const ref = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true) },
+      { threshold: 0.1 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => { if (ref.current) observer.unobserve(ref.current) }
+  }, [])
+
+  const segments = useMemo(
+    () => (animateBy === 'words' ? text.split(' ') : text.split('')),
+    [text, animateBy]
+  )
+
   return (
-    <motion.div
-      initial={{ opacity: 0, filter: 'blur(24px)' }}
-      animate={{ opacity: 1, filter: 'blur(0px)' }}
-      transition={{ delay, duration: 1.3, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+      {segments.map((segment, i) => (
+        <span
+          key={i}
+          style={{
+            display: 'inline-block',
+            filter: inView ? 'blur(0px)' : 'blur(10px)',
+            opacity: inView ? 1 : 0,
+            transform: inView ? 'translateY(0)' : `translateY(${direction === 'top' ? '-20px' : '20px'})`,
+            transition: `all 0.5s ease-out ${i * delay}ms`,
+          }}
+        >
+          {segment}
+          {animateBy === 'words' && i < segments.length - 1 ? '\u00A0' : ''}
+        </span>
+      ))}
+    </p>
   )
 }
 
 export function MarcoHero() {
-  const [menuOpen, setMenuOpen] = useState(false)
-
   useEffect(() => {
     document.documentElement.classList.add('dark')
-    return () => {
-      document.documentElement.classList.remove('dark')
-    }
+    return () => { document.documentElement.classList.remove('dark') }
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-black flex flex-col overflow-hidden">
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-8 md:px-14 py-7 z-20 relative">
-        {/* MM cursive signature */}
-        <span
-          className="text-white text-2xl select-none"
-          style={{ fontFamily: '"Dancing Script", cursive, Georgia, serif', fontStyle: 'italic' }}
-        >
-          MM
-        </span>
+    <div style={{ backgroundColor: 'hsl(0 0% 0%)', color: 'hsl(0 0% 100%)', minHeight: '100vh' }}>
+      {/* Header — MM initials centered, no nav, no toggle */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6">
+        <div className="flex items-center justify-center">
+          <span
+            className="text-4xl select-none"
+            style={{
+              color: 'hsl(0 0% 100%)',
+              fontFamily: '"Dancing Script", "Brush Script MT", cursive',
+            }}
+          >
+            MM
+          </span>
+        </div>
+      </header>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-10">
-          {NAV_LINKS.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-neutral-500 text-xs tracking-[0.22em] uppercase no-underline hover:text-[#C3E41D] transition-colors duration-200"
-            >
-              {label}
-            </a>
-          ))}
+      {/* Hero */}
+      <main className="relative min-h-screen flex flex-col">
+        {/* MARCO / MILLER centered */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
+          <div className="relative text-center">
+            <BlurText
+              text="MARCO"
+              delay={100}
+              animateBy="letters"
+              direction="top"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+              style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
+            />
+            <BlurText
+              text="MILLER"
+              delay={100}
+              animateBy="letters"
+              direction="top"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+              style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
+            />
+
+            {/* Portrait overlaid between the two name lines */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
+                <img
+                  src="https://images.unsplash.com/photo-1686577677352-c9249ed5972a?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Marco Miller"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="flex flex-col gap-[5px] p-1 z-30"
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-5 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-          <span className={`block w-5 h-px bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-          <span className={`block w-5 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
-        </button>
-      </nav>
-
-      {/* Mobile dropdown */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[72px] left-0 right-0 bg-black border-b border-neutral-900 px-8 py-8 z-10 flex flex-col gap-6"
-          >
-            {NAV_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="text-neutral-400 text-sm tracking-[0.2em] uppercase no-underline hover:text-[#C3E41D] transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Hero content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20 pt-4 relative">
-        {/* MARCO */}
-        <BlurIn
-          delay={0}
-          className="self-start md:self-auto md:mr-auto"
-        >
-          <span
-            className="block font-bold leading-[0.85] tracking-tighter text-[#C3E41D]"
-            style={{
-              fontFamily: '"Fira Code", "Fira Mono", monospace',
-              fontSize: 'clamp(4.5rem, 15vw, 13rem)',
-            }}
-          >
-            MARCO
-          </span>
-        </BlurIn>
-
-        {/* Circular portrait — sits between the two name lines */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.9, ease: 'easeOut' }}
-          className="relative z-10 my-2 md:my-3"
-        >
-          <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border border-[#C3E41D]/40 ring-1 ring-[#C3E41D]/10">
-            <img
-              src="https://i.pravatar.cc/300?img=11"
-              alt="Marco Miller"
-              className="w-full h-full object-cover grayscale"
+        {/* Tagline */}
+        <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
+          <div className="flex justify-center">
+            <BlurText
+              text="Tattooing out of Astoria, Queens"
+              delay={150}
+              animateBy="words"
+              direction="top"
+              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center text-neutral-500"
+              style={{ fontFamily: "'Antic', sans-serif" }}
             />
           </div>
-        </motion.div>
+        </div>
 
-        {/* MILLER */}
-        <BlurIn
-          delay={0.2}
-          className="self-end md:self-auto md:ml-auto"
+        {/* Scroll indicator */}
+        <button
+          type="button"
+          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2"
+          aria-label="Scroll down"
         >
-          <span
-            className="block font-bold leading-[0.85] tracking-tighter text-[#C3E41D]"
-            style={{
-              fontFamily: '"Fira Code", "Fira Mono", monospace',
-              fontSize: 'clamp(4.5rem, 15vw, 13rem)',
-            }}
-          >
-            MILLER
-          </span>
-        </BlurIn>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="text-neutral-400 text-base md:text-lg mt-10 text-center max-w-sm leading-relaxed"
-          style={{ fontFamily: '"Antic", sans-serif' }}
-        >
-          Tattooing out of Astoria, Queens. Walk-ins welcome.
-        </motion.p>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <ChevronDown className="w-5 h-5 text-neutral-700 animate-bounce" />
-      </motion.div>
-    </section>
+          <ChevronDown className="w-5 h-5 md:w-8 md:h-8 text-neutral-500" />
+        </button>
+      </main>
+    </div>
   )
 }
