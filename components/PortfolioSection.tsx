@@ -29,7 +29,7 @@ const portfolioItems = [
   {
     key: '4',
     src: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80',
-    label: 'Marco Ink',
+    label: 'Marco Miller',
     tier: 'Portfolio · $799',
     slug: '/work/marco-ink',
   },
