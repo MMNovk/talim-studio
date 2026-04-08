@@ -11,18 +11,18 @@ export const metadata = {
 
 const reviews = [
   {
-    quote: 'The smash burger here is the reason I started telling people to stop going to Manhattan for food.',
-    initials: 'EN',
+    quote: '\u201CThe smash burger here is the reason I started telling people to stop going to Manhattan for food.\u201D',
+    logo: '/images/logo-eater.png',
     publication: 'Eater NY',
   },
   {
-    quote: 'Exactly what a neighborhood burger spot should be. Nothing extra, nothing missing.',
-    initials: 'TI',
+    quote: '\u201CExactly what a neighborhood burger spot should be. Nothing extra, nothing missing.\u201D',
+    logo: '/images/logo-infatuation.png',
     publication: 'The Infatuation',
   },
   {
-    quote: "Order the double. You'll thank yourself.",
-    initials: 'TO',
+    quote: '\u201COrder the double. You\u2019ll thank yourself.\u201D',
+    logo: '/images/logo-timeout.png',
     publication: 'Time Out New York',
   },
 ]
@@ -73,8 +73,24 @@ export default function CinderCoPage() {
           fill
           quality={100}
           className="object-cover"
+          style={{ objectPosition: "center 30%" }}
           priority={false}
         />
+      </div>
+
+      {/* Second orange marquee */}
+      <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-2 items-center justify-center">
+        <span className="text-black text-xs font-bold tracking-widest uppercase">
+          (718) 555-0147 &nbsp;·&nbsp;{' '}
+          <a
+            href="#contact"
+            className="text-black font-bold underline tracking-widest uppercase no-underline hover:opacity-70 transition-opacity"
+            style={{ textDecoration: 'underline' }}
+          >
+            Come Through →
+          </a>
+          &nbsp;·
+        </span>
       </div>
 
       {/* SECTION 2 — Menu */}
@@ -84,15 +100,17 @@ export default function CinderCoPage() {
 
       {/* SECTION 3 — Review quotes */}
       <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20 border-t border-white/5">
-        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {reviews.map(({ quote, initials, publication }) => (
-            <div key={publication}>
-              <p className="text-white text-lg font-light leading-relaxed mb-8">{quote}</p>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-zinc-700 flex items-center justify-center shrink-0">
-                  <span className="text-zinc-400 text-xs font-bold">{initials}</span>
-                </div>
-                <span className="font-sans text-sm font-medium text-zinc-300 tracking-wide">{publication}</span>
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
+          {reviews.map(({ quote, logo, publication }) => (
+            <div key={publication} className="flex flex-col justify-between min-h-[220px]">
+              <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
+              <div className="flex items-center gap-3 mt-8">
+                <img
+                  src={logo}
+                  alt={publication}
+                  className="h-5 w-auto grayscale opacity-50"
+                />
+                <span className="font-sans text-sm text-zinc-400 font-medium">{publication}</span>
               </div>
             </div>
           ))}
@@ -103,8 +121,8 @@ export default function CinderCoPage() {
       <About3
         title="Born in Ridgewood."
         description="We opened Cinder & Co. in 2021 with a simple idea: make the burger you'd actually drive across the borough for. No gimmicks. Just quality ingredients, a flat-top that never cools down, and a dessert menu that earns its place."
-        mainImage="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
-        secondaryImage="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80"
+        mainImage="/images/about-main.jpg"
+        secondaryImage="/images/about-fries.jpg"
         breakout={{
           src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
           title: 'The same way, every time.',

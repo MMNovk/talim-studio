@@ -37,14 +37,14 @@ export default function About3({
             <p className="text-white/50 text-base leading-relaxed max-w-md">{description}</p>
           </div>
           <div className="relative h-72 lg:h-96 overflow-hidden">
-            <Image src={mainImage} alt={title} fill className="object-cover" />
+            <Image src={mainImage} alt={title} fill quality={100} className="object-cover" />
           </div>
         </div>
 
         {/* Middle: secondary image left, breakout card right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="relative lg:col-span-7 aspect-[4/3] overflow-hidden">
-            <Image src={secondaryImage} alt="" fill className="object-cover" />
+            <Image src={secondaryImage} alt="" fill quality={100} className="object-cover" />
           </div>
           <div className="bg-[#111111] overflow-hidden flex flex-col lg:col-span-5">
             <div className="relative h-48 shrink-0">

@@ -36,10 +36,10 @@ const menuData: MenuCategory[] = [
   {
     label: "Shakes",
     items: [
-      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&h=800&fit=crop&q=100" },
-      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1541658016709-82835106602c?w=800&h=800&fit=crop&q=100" },
+      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1542127923-4c3c55a362d7?w=800&h=800&fit=crop&q=100" },
+      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1521390188984-565f498fa264?w=800&h=800&fit=crop&q=100" },
       { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&h=800&fit=crop&q=100" },
-      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1619158401201-8fa744b4d245?w=800&h=800&fit=crop&q=100" },
+      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=800&fit=crop&q=100" },
     ],
   },
   {
@@ -47,7 +47,7 @@ const menuData: MenuCategory[] = [
     items: [
       { name: "Rotating Special", description: "One dessert, changes weekly. Ask your server.", price: "Market", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&h=800&fit=crop&q=100" },
       { name: "Brownie Sundae", description: "Warm brownie, vanilla soft serve, salted caramel.", price: "$10", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&h=800&fit=crop&q=100" },
-      { name: "Soft Serve Cone", description: "Vanilla or chocolate. Cup or cone.", price: "$5", image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&h=800&fit=crop&q=100" },
+      { name: "Soft Serve Cone", description: "Vanilla or chocolate. Cup or cone.", price: "$5", image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&h=800&fit=crop&q=100" },
     ],
   },
 ]
@@ -57,9 +57,6 @@ export function CinderMenu() {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
 
   const currentCategory = menuData[activeCategory]
-  const displayImage = hoveredItem !== null
-    ? currentCategory.items[hoveredItem].image
-    : currentCategory.items[0].image
 
   return (
     <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
@@ -94,6 +91,9 @@ export function CinderMenu() {
 
           {/* Left: menu list */}
           <div>
+            <p className="text-zinc-600 text-xs font-sans tracking-widest uppercase mb-6">
+              Hover to take a look →
+            </p>
             {currentCategory.items.map((item, i) => (
               <div
                 key={item.name}
@@ -116,19 +116,23 @@ export function CinderMenu() {
             ))}
           </div>
 
-          {/* Right: image panel */}
+          {/* Right: image panel — centered, never cropped */}
           <div className="relative aspect-square lg:sticky lg:top-8 bg-[#0a0a0a]">
             {currentCategory.items.map((item, i) => (
-              <img
+              <div
                 key={`${activeCategory}-${item.name}`}
-                src={item.image}
-                alt={item.name}
-                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
                   (hoveredItem === null && i === 0) || hoveredItem === i
                     ? "opacity-100"
                     : "opacity-0"
                 }`}
-              />
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
+                />
+              </div>
             ))}
           </div>
 
