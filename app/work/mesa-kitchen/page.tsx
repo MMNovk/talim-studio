@@ -59,32 +59,31 @@ export default function CinderCoPage() {
     <div className="bg-[#0a0a0a] min-h-screen">
 
       {/* SECTION 1 — ConnoisseurStack hero */}
-      <ConnoisseurStack
-        eyebrow="CINDER & CO."
-        items={[
-          {
-            num: "01",
-            name: "Smash Burgers",
-            clipId: "clip-original",
-            description: "Single or double. Always fresh. Never frozen.",
-            image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          },
-          {
-            num: "02",
-            name: "Loaded Fries",
-            clipId: "clip-hexagons",
-            description: "Golden, crispy, impossible to share.",
-            image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          },
-          {
-            num: "03",
-            name: "Diner Desserts",
-            clipId: "clip-pixels",
-            description: "Brownies, hand pies, and soft serve done right.",
-            image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          },
-        ]}
-      />
+      <div className="dark">
+        <ConnoisseurStack
+          eyebrow="CINDER & CO."
+          items={[
+            {
+              num: "01",
+              name: "Smash Burgers",
+              clipId: "clip-original",
+              image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            },
+            {
+              num: "02",
+              name: "Loaded Fries",
+              clipId: "clip-hexagons",
+              image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            },
+            {
+              num: "03",
+              name: "Diner Desserts",
+              clipId: "clip-pixels",
+              image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            },
+          ]}
+        />
+      </div>
 
       {/* Info strip */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-6 items-center justify-center">
