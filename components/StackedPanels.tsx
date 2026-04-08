@@ -10,11 +10,11 @@ const Z_SPREAD = 42;
 const SIGMA = 2.8;
 
 const PANEL_IMAGES = [
-  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
-  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
-  "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",
+  "https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=400&q=80",
+  "https://images.unsplash.com/photo-1501696461415-6bd6660c6742?w=400&q=80",
+  "https://images.unsplash.com/photo-1445962125599-30f582ac21f4?w=400&q=80",
+  "https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=400&q=80",
+  "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&q=80",
   "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&q=80",
   "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=80",
   "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80",
@@ -27,11 +27,11 @@ const PANEL_IMAGES = [
   "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80",
   "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&q=80",
   "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&q=80",
-  "https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=400&q=80",
-  "https://images.unsplash.com/photo-1501696461415-6bd6660c6742?w=400&q=80",
-  "https://images.unsplash.com/photo-1445962125599-30f582ac21f4?w=400&q=80",
-  "https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=400&q=80",
-  "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&q=80",
+  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+  "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",
 ];
 
 const GRADIENT_OVERLAYS = [

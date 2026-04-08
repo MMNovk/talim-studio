@@ -85,19 +85,16 @@ export default function Hero() {
       )}
 
       {/* StackedPanels — desktop: overlapping right column; mobile: full-width below text */}
-      <div
-        style={isMobile
-          ? { width: '100%', height: '260px', flexShrink: 0 }
-          : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%', display: 'flex', flexDirection: 'column' }
-        }
-      >
-        <div style={!isMobile ? { flex: 1 } : { width: '100%', height: '260px' }}>
-          <StackedPanels isMobile={isMobile} />
-        </div>
+      <div style={isMobile
+        ? { width: '100%', height: '260px', flexShrink: 0 }
+        : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%', position: 'relative' }
+      }>
+        <StackedPanels isMobile={isMobile} />
         {!isMobile && (
           <a
             href="#portfolio"
-            className="flex justify-center py-8 text-base text-ink/40 hover:text-ink transition-colors no-underline"
+            className="absolute left-1/2 -translate-x-1/2 text-base text-ink/40 hover:text-ink transition-colors no-underline whitespace-nowrap"
+            style={{ top: 'calc(50% + 220px)' }}
           >
             Check out my work
           </a>
