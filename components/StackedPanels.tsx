@@ -158,6 +158,27 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const rotY = useSpring(-42, SCENE_SPRING);
   const rotX = useSpring(18, SCENE_SPRING);
 
+  // Intro wave: front card (21) → back card (0), fires once on mount
+  useEffect(() => {
+    const STAGGER = 60;   // ms between each card
+    const HOLD   = 420;   // ms the card stays up before dropping back
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    const start = setTimeout(() => {
+      for (let i = PANEL_COUNT - 1; i >= 0; i--) {
+        const offset = (PANEL_COUNT - 1 - i) * STAGGER;
+        timers.push(setTimeout(() => waveYSprings[i].set(-50), offset));
+        timers.push(setTimeout(() => waveYSprings[i].set(0),   offset + HOLD));
+      }
+    }, 400);
+
+    return () => {
+      clearTimeout(start);
+      timers.forEach(clearTimeout);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const rect = containerRef.current?.getBoundingClientRect();
