@@ -36,17 +36,17 @@ const menuData: MenuCategory[] = [
   {
     label: "Shakes",
     items: [
-      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800&h=800&fit=crop&q=100" },
-      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&h=800&fit=crop&q=100" },
-      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1568901839119-631418a3910d?w=800&h=800&fit=crop&q=100" },
-      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&h=800&fit=crop&q=100" },
+      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=800&q=80" },
+      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80" },
+      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1568901839119-631418a3910d?w=800&q=80" },
+      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80" },
     ],
   },
   {
     label: "Desserts",
     items: [
       { name: "Rotating Special", description: "One dessert, changes weekly. Ask your server.", price: "Market", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=800&fit=crop&q=100" },
-      { name: "Brownie Sundae", description: "Warm brownie, vanilla soft serve, salted caramel.", price: "$10", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&h=800&fit=crop&q=100" },
+      { name: "Brownie Sundae", description: "Warm brownie, vanilla soft serve, salted caramel.", price: "$10", image: "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=800&q=80" },
       { name: "Soft Serve Cone", description: "Vanilla or chocolate. Cup or cone.", price: "$5", image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&h=800&fit=crop&q=100" },
     ],
   },
@@ -130,7 +130,7 @@ export function CinderMenu() {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain"
                 />
               </div>
             ))}

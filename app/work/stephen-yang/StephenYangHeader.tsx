@@ -12,7 +12,7 @@ export default function StephenYangHeader() {
     if (!gallery) return
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+      ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0 }
     )
     observer.observe(gallery)
