@@ -38,8 +38,8 @@ const menuData: MenuCategory[] = [
     items: [
       { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800&h=800&fit=crop&q=100" },
       { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1471753588079-b8a62aae77d6?w=800&h=800&fit=crop&q=100" },
-      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=800&h=800&fit=crop&q=100" },
-      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&h=800&fit=crop&q=100" },
+      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1568901839119-631418a3910d?w=800&h=800&fit=crop&q=100" },
+      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&h=800&fit=crop&q=100" },
     ],
   },
   {
@@ -121,7 +121,7 @@ export function CinderMenu() {
             {currentCategory.items.map((item, i) => (
               <div
                 key={`${activeCategory}-${item.name}`}
-                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
+                className={`absolute inset-0 transition-opacity duration-300 ${
                   (hoveredItem === null && i === 0) || hoveredItem === i
                     ? "opacity-100"
                     : "opacity-0"
@@ -130,7 +130,7 @@ export function CinderMenu() {
                 <img
                   src={item.image}
                   alt={item.name}
-                  style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             ))}

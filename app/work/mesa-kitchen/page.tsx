@@ -58,10 +58,10 @@ export default function CinderCoPage() {
         />
       </div>
 
-      {/* Orange marquee */}
+      {/* Orange marquee — hours */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-2 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
-          7812 Myrtle Ave, Ridgewood NY 11385 &nbsp;·&nbsp; Tue – Sun &nbsp;·&nbsp; 11am – 11pm &nbsp;·&nbsp; Mon Closed &nbsp;·&nbsp; (718) 555-0147
+          Tue – Thu &nbsp;·&nbsp; 11am – 10pm &nbsp;·&nbsp; Fri – Sat &nbsp;·&nbsp; 11am – midnight &nbsp;·&nbsp; Sun &nbsp;·&nbsp; noon – 9pm &nbsp;·&nbsp; Mon &nbsp;·&nbsp; Closed
         </span>
       </div>
 
@@ -73,23 +73,15 @@ export default function CinderCoPage() {
           fill
           quality={100}
           className="object-cover"
-          style={{ objectPosition: "center" }}
+          style={{ objectPosition: "center 35%" }}
           priority={false}
         />
       </div>
 
-      {/* Second orange marquee */}
+      {/* Second orange marquee — address + phone */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-2 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
-          (718) 555-0147 &nbsp;·&nbsp;{' '}
-          <a
-            href="#contact"
-            className="text-black font-bold underline tracking-widest uppercase no-underline hover:opacity-70 transition-opacity"
-            style={{ textDecoration: 'underline' }}
-          >
-            Come Through →
-          </a>
-          &nbsp;·
+          7812 Myrtle Ave, Ridgewood, NY 11385 &nbsp;·&nbsp; (718) 555-0147
         </span>
       </div>
 
@@ -134,10 +126,10 @@ export default function CinderCoPage() {
       />
 
       {/* SECTION 5 — Contact */}
-      <section id="contact" className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
-        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <section id="contact" className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20 flex justify-center">
+        <div className="w-full max-w-2xl flex flex-col gap-16">
 
-          {/* Left: address + map */}
+          {/* Come Through info */}
           <div>
             <h2
               className="text-white font-black mb-8"
@@ -176,33 +168,30 @@ export default function CinderCoPage() {
             </div>
           </div>
 
-          {/* Right: contact form */}
-          <div>
-            <h3 className="text-white font-bold text-xl mb-6">Get in Touch</h3>
-            <form className="flex flex-col gap-4">
-              <input
-                type="text"
-                placeholder="Name"
-                className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
-              />
-              <textarea
-                placeholder="Message"
-                rows={5}
-                className="bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 py-3 text-sm focus:outline-none focus:border-orange-500 transition-colors resize-none"
-              />
-              <button
-                type="submit"
-                className="h-12 bg-orange-500 text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-400 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          {/* Contact form */}
+          <form className="flex flex-col gap-4">
+            <input
+              type="text"
+              placeholder="Name"
+              className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
+            />
+            <textarea
+              placeholder="Message"
+              rows={5}
+              className="bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 py-3 text-sm focus:outline-none focus:border-orange-500 transition-colors resize-none"
+            />
+            <button
+              type="submit"
+              className="h-12 bg-orange-500 text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-400 transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </section>
 

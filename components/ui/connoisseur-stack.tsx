@@ -48,12 +48,16 @@ export const Component = ({
     const item = items[index];
     const selector = `#${item.clipId} .path`;
 
-    if (masterTl.current) masterTl.current.kill();
+    if (masterTl.current) {
+      masterTl.current.kill();
+      masterTl.current = null;
+    }
+    gsap.killTweensOf(selector);
 
     if (imageRef.current) imageRef.current.setAttribute("href", item.image);
     if (mainGroupRef.current) mainGroupRef.current.setAttribute("clip-path", `url(#${item.clipId})`);
 
-    gsap.set(selector, { scale: 0, transformOrigin: "50% 50%" });
+    gsap.set(selector, { scale: 0, transformOrigin: "50% 50%", force3D: true });
 
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
@@ -63,6 +67,7 @@ export const Component = ({
       duration: 0.8,
       stagger: { amount: 0.4, from: "random" },
       ease: "expo.out",
+      force3D: true,
     })
     // 2. IDLE (Sine Breath)
     .to(selector, {
@@ -71,7 +76,8 @@ export const Component = ({
       yoyo: true,
       repeat: 1,
       ease: "sine.inOut",
-      stagger: { amount: 0.2, from: "center" }
+      stagger: { amount: 0.2, from: "center" },
+      force3D: true,
     })
     // 3. OUT (Expo In)
     .to(selector, {
@@ -79,6 +85,7 @@ export const Component = ({
       duration: 0.6,
       stagger: { amount: 0.3, from: "edges" },
       ease: "expo.in",
+      force3D: true,
     });
 
     masterTl.current = tl;
@@ -137,9 +144,7 @@ export const Component = ({
                     "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
                     activeIndex === index
                       ? "text-zinc-950 dark:text-white opacity-100 translate-x-4"
-                      : "opacity-40 translate-x-0 " +
-                        "text-zinc-500 dark:text-transparent " +
-                        "dark:[text-stroke:1.5px_#52525b] dark:[-webkit-text-stroke:1.5px_#52525b]"
+                      : "translate-x-0 [color:transparent] [-webkit-text-stroke:1.5px_#52525b]"
                   )}>
                     {item.name.split(' ')[0]}<br />
                     {item.name.split(' ')[1]}
