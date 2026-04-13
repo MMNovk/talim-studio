@@ -23,7 +23,7 @@ export default function OwnerSection() {
             <p>
               I&rsquo;ve been doing nails in Brooklyn for nine years. Before I opened Vela in 2020,
               I trained in Seoul and worked across several salons in Manhattan. Through my training
-              years, I learned everything from classic gel work to freehand nail art and everything
+              days, I learned everything from classic gel work to freehand nail art and everything
               in between.
             </p>
             <p>
