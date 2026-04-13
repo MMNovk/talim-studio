@@ -5,15 +5,15 @@ import { useEffect, useState } from 'react'
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
 export default function StephenYangHeader() {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const gallery = document.getElementById('gallery-section')
     if (!gallery) return
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.1 }
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
     )
     observer.observe(gallery)
     return () => observer.disconnect()

@@ -61,7 +61,7 @@ export default function CinderCoPage() {
       {/* Orange marquee — hours */}
       <div className="bg-orange-500 py-3 px-8 flex flex-wrap gap-2 items-center justify-center">
         <span className="text-black text-xs font-bold tracking-widest uppercase">
-          Tue – Thu &nbsp;·&nbsp; 11am – 10pm &nbsp;·&nbsp; Fri – Sat &nbsp;·&nbsp; 11am – midnight &nbsp;·&nbsp; Sun &nbsp;·&nbsp; noon – 9pm &nbsp;·&nbsp; Mon &nbsp;·&nbsp; Closed
+          Tue – Sun &nbsp;·&nbsp; 11am – midnight &nbsp;·&nbsp; Mon &nbsp;·&nbsp; Closed
         </span>
       </div>
 
@@ -73,7 +73,7 @@ export default function CinderCoPage() {
           fill
           quality={100}
           className="object-cover"
-          style={{ objectPosition: "center 35%" }}
+          style={{ objectPosition: "center 60%" }}
           priority={false}
         />
       </div>
@@ -168,30 +168,6 @@ export default function CinderCoPage() {
             </div>
           </div>
 
-          {/* Contact form */}
-          <form className="flex flex-col gap-4">
-            <input
-              type="text"
-              placeholder="Name"
-              className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="h-12 bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 text-sm focus:outline-none focus:border-orange-500 transition-colors"
-            />
-            <textarea
-              placeholder="Message"
-              rows={5}
-              className="bg-white/5 border border-white/10 text-white placeholder:text-white/25 px-4 py-3 text-sm focus:outline-none focus:border-orange-500 transition-colors resize-none"
-            />
-            <button
-              type="submit"
-              className="h-12 bg-orange-500 text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-400 transition-colors"
-            >
-              Send Message
-            </button>
-          </form>
         </div>
       </section>
 
