@@ -12,17 +12,17 @@ export const metadata = {
 const reviews = [
   {
     quote: '\u201CThe smash burger here is the reason I started telling people to stop going to Manhattan for food.\u201D',
-    logo: '/images/logo-eater.png',
+    logo: '/images/eatny.jpg.webp',
     publication: 'Eater NY',
   },
   {
     quote: '\u201CExactly what a neighborhood burger spot should be. Nothing extra, nothing missing.\u201D',
-    logo: '/images/logo-infatuation.png',
+    logo: '/images/infatuation.jpeg',
     publication: 'The Infatuation',
   },
   {
     quote: '\u201COrder the double. You\u2019ll thank yourself.\u201D',
-    logo: '/images/logo-timeout.png',
+    logo: '/images/timeoutny.jpg',
     publication: 'Time Out New York',
   },
 ]
@@ -73,7 +73,7 @@ export default function CinderCoPage() {
           fill
           quality={100}
           className="object-cover"
-          style={{ objectPosition: "center 30%" }}
+          style={{ objectPosition: "center" }}
           priority={false}
         />
       </div>
@@ -121,8 +121,8 @@ export default function CinderCoPage() {
       <About3
         title="Born in Ridgewood."
         description="We opened Cinder & Co. in 2021 with a simple idea: make the burger you'd actually drive across the borough for. No gimmicks. Just quality ingredients, a flat-top that never cools down, and a dessert menu that earns its place."
-        mainImage="/images/about-main.jpg"
-        secondaryImage="/images/about-fries.jpg"
+        mainImage="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80"
+        secondaryImage="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80"
         breakout={{
           src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
           title: 'The same way, every time.',

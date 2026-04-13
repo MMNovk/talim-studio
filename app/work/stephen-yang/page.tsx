@@ -1,5 +1,6 @@
 import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
 import NameBanner from './NameBanner'
+import StephenYangHeader from './StephenYangHeader'
 
 export const metadata = {
   title: 'Stephen Yang — Fine Art Photography',
@@ -31,15 +32,11 @@ export default function StephenYangPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen" style={serif}>
 
-      {/* Minimal navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex items-center justify-between mix-blend-difference">
-        <span className="text-white font-thin text-base tracking-widest" style={serif}>
-          Stephen Yang
-        </span>
-      </header>
+      {/* Minimal navbar — hides while gallery is in view */}
+      <StephenYangHeader />
 
       {/* Immersive scroll gallery */}
-      <div className="bg-[#0a0a0a]">
+      <div id="gallery-section" className="bg-[#0a0a0a]">
         <ImmersiveScrollGallery images={galleryImages} />
       </div>
 
