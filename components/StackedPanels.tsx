@@ -158,22 +158,37 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const rotY = useSpring(-42, SCENE_SPRING);
   const rotX = useSpring(18, SCENE_SPRING);
 
-  // Intro wave: front card (21) → back card (0), fires once on mount
+  // Wave plays every time the carousel enters the viewport (initial load + scroll-back)
   useEffect(() => {
-    const STAGGER = 60;   // ms between each card
-    const HOLD   = 420;   // ms the card stays up before dropping back
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    const STAGGER = 60;
+    const HOLD = 420;
+    let startTimer: ReturnType<typeof setTimeout> | null = null;
+    let timers: ReturnType<typeof setTimeout>[] = [];
 
-    const start = setTimeout(() => {
-      for (let i = PANEL_COUNT - 1; i >= 0; i--) {
-        const offset = (PANEL_COUNT - 1 - i) * STAGGER;
-        timers.push(setTimeout(() => waveYSprings[i].set(-50), offset));
-        timers.push(setTimeout(() => waveYSprings[i].set(0),   offset + HOLD));
-      }
-    }, 400);
+    const playWave = () => {
+      if (startTimer) clearTimeout(startTimer);
+      timers.forEach(clearTimeout);
+      timers = [];
+
+      startTimer = setTimeout(() => {
+        for (let i = PANEL_COUNT - 1; i >= 0; i--) {
+          const offset = (PANEL_COUNT - 1 - i) * STAGGER;
+          timers.push(setTimeout(() => waveYSprings[i].set(-50), offset));
+          timers.push(setTimeout(() => waveYSprings[i].set(0),   offset + HOLD));
+        }
+      }, 300);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) playWave(); },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
 
     return () => {
-      clearTimeout(start);
+      observer.disconnect();
+      if (startTimer) clearTimeout(startTimer);
       timers.forEach(clearTimeout);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
