@@ -41,7 +41,9 @@ export default function StephenYangPage() {
       </div>
 
       {/* Full-bleed typographic name banner */}
-      <NameBanner />
+      <div id="name-banner">
+        <NameBanner />
+      </div>
 
       {/* Selected works */}
       <section className="bg-[#0a0a0a] px-8 md:px-16 py-32">

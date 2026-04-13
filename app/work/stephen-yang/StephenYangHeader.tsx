@@ -5,19 +5,34 @@ import { useEffect, useState } from 'react'
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
 export default function StephenYangHeader() {
-  const [visible, setVisible] = useState(false)
+  const [galleryVisible, setGalleryVisible] = useState(false)
+  const [nameBannerVisible, setNameBannerVisible] = useState(false)
 
   useEffect(() => {
     const gallery = document.getElementById('gallery-section')
-    if (!gallery) return
+    const nameBanner = document.getElementById('name-banner')
+    if (!gallery || !nameBanner) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+    const galleryObserver = new IntersectionObserver(
+      ([entry]) => setGalleryVisible(entry.isIntersecting),
       { threshold: 0 }
     )
-    observer.observe(gallery)
-    return () => observer.disconnect()
+    const nameBannerObserver = new IntersectionObserver(
+      ([entry]) => setNameBannerVisible(entry.isIntersecting),
+      { threshold: 0 }
+    )
+
+    galleryObserver.observe(gallery)
+    nameBannerObserver.observe(nameBanner)
+
+    return () => {
+      galleryObserver.disconnect()
+      nameBannerObserver.disconnect()
+    }
   }, [])
+
+  // Show only during gallery scroll, never at the same time as the large NameBanner
+  const visible = galleryVisible && !nameBannerVisible
 
   return (
     <header

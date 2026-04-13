@@ -22,13 +22,14 @@ export default function OwnerSection() {
           <div className="flex flex-col gap-4 text-ink/60 leading-relaxed">
             <p>
               I&rsquo;ve been doing nails in Brooklyn for nine years. Before I opened Vela in 2020,
-              I trained in Seoul and worked across several salons in Manhattan &mdash; learning
-              everything from classic gel work to freehand nail art and everything in between.
+              I trained in Seoul and worked across several salons in Manhattan. Through my training
+              years, I learned everything from classic gel work to freehand nail art and everything
+              in between.
             </p>
             <p>
               Nails are how I got into beauty, and they&rsquo;re still the thing I care most about
               getting right. I opened Vela because I wanted a space where the work could be slow and
-              intentional &mdash; where clients aren&rsquo;t rushed through and techniques aren&rsquo;t
+              intentional. Where clients aren&rsquo;t rushed through and techniques aren&rsquo;t
               cut short.
             </p>
             <p>

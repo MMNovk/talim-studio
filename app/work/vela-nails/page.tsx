@@ -42,7 +42,6 @@ export default function VelaNailsPage() {
           <h2 className="font-black text-ink mb-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
             Book a Visit
           </h2>
-          <p className="text-ink/40 text-sm">We will confirm within 24 hours.</p>
         </div>
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20">
           <VelaBookingForm />
