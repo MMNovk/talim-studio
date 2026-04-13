@@ -91,7 +91,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-wide uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
             <BlurText
@@ -99,7 +99,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-wide uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
 

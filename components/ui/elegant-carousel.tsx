@@ -17,7 +17,7 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $35',
     description: 'A timeless treatment. Shaping, cuticle care, and your choice of polish. Done with care, not in a hurry.',
     accent: '#C4A882',
-    imageUrl: 'https://images.unsplash.com/photo-1604671801405-db372b3bed6f?w=1200&q=90',
+    imageUrl: 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=1200&q=90',
   },
   {
     title: 'Gel Extensions',
