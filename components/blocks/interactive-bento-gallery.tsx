@@ -147,7 +147,7 @@ const GalleryModal = ({
         exit={{ scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg
-                   rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[60]"
+                   rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[300]"
       >
         {/* Main Content */}
         <div className="h-full flex flex-col">
@@ -209,7 +209,7 @@ const GalleryModal = ({
             y: prev.y + info.offset.y,
           }))
         }}
-        className="fixed z-[70] left-1/2 bottom-4 -translate-x-1/2 touch-none"
+        className="fixed z-[310] left-1/2 bottom-4 -translate-x-1/2 touch-none"
       >
         <motion.div
           className="relative rounded-xl bg-sky-400/20 backdrop-blur-xl

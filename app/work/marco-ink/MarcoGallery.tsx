@@ -8,7 +8,7 @@ const mediaItems = [
     type: 'image',
     title: 'Black & Grey',
     desc: 'Portrait realism, Astoria 2024',
-    url: 'https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1562962230-16ae0034af9a?auto=format&fit=crop&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -16,7 +16,7 @@ const mediaItems = [
     type: 'image',
     title: 'Fine Line',
     desc: 'Botanical study, inner arm',
-    url: 'https://images.pexels.com/photos/3997373/pexels-photo-3997373.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=800',
     span: 'md:col-span-2 md:row-span-2 col-span-1 sm:col-span-2 sm:row-span-2',
   },
   {
@@ -24,7 +24,7 @@ const mediaItems = [
     type: 'image',
     title: 'Blackwork',
     desc: 'Geometric sleeve detail',
-    url: 'https://images.pexels.com/photos/4125672/pexels-photo-4125672.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-2 sm:row-span-2',
   },
   {
@@ -32,7 +32,7 @@ const mediaItems = [
     type: 'image',
     title: 'Realism',
     desc: 'Black & grey, upper arm',
-    url: 'https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800',
     span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -40,7 +40,7 @@ const mediaItems = [
     type: 'image',
     title: 'Fine Line Portrait',
     desc: 'Delicate line work, forearm',
-    url: 'https://images.pexels.com/photos/3997385/pexels-photo-3997385.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1547619292-240d702bef6a?auto=format&fit=crop&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -48,7 +48,7 @@ const mediaItems = [
     type: 'image',
     title: 'Dotwork',
     desc: 'Mandala back piece, 3 sessions',
-    url: 'https://images.pexels.com/photos/4125671/pexels-photo-4125671.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?auto=format&fit=crop&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -56,7 +56,7 @@ const mediaItems = [
     type: 'image',
     title: 'Custom Flash',
     desc: 'One-of-one, never repeated',
-    url: 'https://images.pexels.com/photos/3997380/pexels-photo-3997380.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800',
     span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
 ]

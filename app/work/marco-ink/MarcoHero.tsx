@@ -94,7 +94,7 @@ export function MarcoHero() {
       <main className="relative min-h-screen flex flex-col">
         {/* MARCO / MILLER centered */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
-          <div className="relative flex flex-col items-center w-full gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+          <div className="relative flex flex-col items-center w-full gap-10 sm:gap-14 md:gap-20 lg:gap-28">
             <BlurText
               text="MARCO"
               delay={100}

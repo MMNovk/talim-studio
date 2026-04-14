@@ -79,7 +79,7 @@ export function Component({ items }: ComponentProps) {
     }
   }, [])
 
-  // Open/close animation
+  // Open/close animation — button text/icon driven by CSS via data-open attr
   useEffect(() => {
     if (!containerRef.current) return
 
@@ -90,17 +90,12 @@ export function Component({ items }: ComponentProps) {
       const bgPanels = containerRef.current!.querySelectorAll(".backdrop-layer")
       const menuLinks = containerRef.current!.querySelectorAll(".nav-link")
       const fadeTargets = containerRef.current!.querySelectorAll("[data-menu-fade]")
-      const menuButton = containerRef.current!.querySelector(".nav-close-btn")
-      const menuButtonTexts = menuButton?.querySelectorAll("p")
-      const menuButtonIcon = menuButton?.querySelector(".menu-button-icon")
 
       const tl = gsap.timeline()
 
       if (isMenuOpen) {
         navWrap?.setAttribute("data-nav", "open")
         tl.set(navWrap, { display: "block" }).set(menu, { xPercent: 0 }, "<")
-        if (menuButtonTexts?.length) tl.fromTo(menuButtonTexts, { yPercent: 0 }, { yPercent: -100, stagger: 0.2 })
-        if (menuButtonIcon) tl.fromTo(menuButtonIcon, { rotate: 0 }, { rotate: 315 }, "<")
         tl.fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1 }, "<")
           .fromTo(bgPanels, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: 0.575 }, "<")
           .fromTo(menuLinks, { yPercent: 140, rotate: 10 }, { yPercent: 0, rotate: 0, stagger: 0.05 }, "<+=0.35")
@@ -110,8 +105,6 @@ export function Component({ items }: ComponentProps) {
       } else {
         navWrap?.setAttribute("data-nav", "closed")
         tl.to(overlay, { autoAlpha: 0 }).to(menu, { xPercent: 120 }, "<")
-        if (menuButtonTexts?.length) tl.to(menuButtonTexts, { yPercent: 0 }, "<")
-        if (menuButtonIcon) tl.to(menuButtonIcon, { rotate: 0 }, "<")
         tl.set(navWrap, { display: "none" })
       }
     }, containerRef)
@@ -133,8 +126,8 @@ export function Component({ items }: ComponentProps) {
 
   return (
     <div ref={containerRef}>
-      {/* Trigger button */}
-      <button role="button" className="nav-close-btn" onClick={toggleMenu} style={{ pointerEvents: "auto" }}>
+      {/* Trigger button — text/icon animation driven by CSS via data-open */}
+      <button role="button" className="nav-close-btn" data-open={isMenuOpen} onClick={toggleMenu} style={{ pointerEvents: "auto" }}>
         <div className="menu-button-text">
           <p>Menu</p>
           <p>Close</p>
