@@ -50,12 +50,12 @@ export default function MarcoMillerPage() {
             <p className="text-neutral-500 text-xs text-center">
               &copy; 2025 Marco Miller. All rights reserved.
             </p>
-            <Link
-              href="/work"
+            <a
+              href="https://www.talimstudio.com"
               className="text-neutral-500 text-sm no-underline hover:text-white transition-colors text-center sm:text-right"
             >
               ← Back to Talim Studio
-            </Link>
+            </a>
           </div>
         </footer>
 

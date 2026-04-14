@@ -185,6 +185,12 @@ export function Component({ items }: ComponentProps) {
               </div>
             </div>
 
+            {/* Close button inside the panel */}
+            <button className="menu-inner-close-btn" onClick={closeMenu} aria-label="Close menu">
+              <span>Close</span>
+              <span className="menu-inner-close-icon">&#x2715;</span>
+            </button>
+
             <div className="menu-content-wrapper">
               <ul className="menu-list">
                 {items.map((item, i) => (

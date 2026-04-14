@@ -276,7 +276,7 @@ const GalleryModal = ({
 interface InteractiveBentoGalleryProps {
   mediaItems: MediaItemType[]
   title: string
-  description: string
+  description?: string
 }
 
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({

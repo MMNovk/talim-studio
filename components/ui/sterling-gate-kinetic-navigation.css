@@ -154,3 +154,32 @@
   height: 100%;
   color: white;
 }
+
+/* Close button inside the sliding panel */
+.menu-inner-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  z-index: 20;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.menu-inner-close-btn:hover {
+  color: white;
+}
+
+.menu-inner-close-icon {
+  font-size: 1rem;
+  line-height: 1;
+}

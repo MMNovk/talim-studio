@@ -14,23 +14,23 @@ interface SectionData {
 const sections: SectionData[] = [
   {
     id: 1,
-    title: "10 years. One needle at a time.",
-    description: "I've been tattooing out of Astoria, Queens for over a decade. Started in a back-room shop on Steinway, now running my own private studio. Every piece I do is custom — no flash, no copy-paste.",
-    imageUrl: 'https://images.pexels.com/photos/3082341/pexels-photo-3082341.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: "Realism. Blackwork. Fine line.",
+    description: "I specialize in black and grey realism, bold blackwork, and delicate fine line work. Portraits, botanicals, geometric pieces, you name it.",
+    imageUrl: 'https://images.pexels.com/photos/4125672/pexels-photo-4125672.jpeg?auto=compress&cs=tinysrgb&w=800',
     reverse: false,
   },
   {
     id: 2,
-    title: "Realism. Blackwork. Fine line.",
-    description: "I specialize in black and grey realism, bold blackwork, and delicate fine line work. Portraits, botanicals, geometric pieces — if it lives in the dark end of the spectrum, I'm your guy.",
-    imageUrl: 'https://images.pexels.com/photos/4125672/pexels-photo-4125672.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: "The process is part of it.",
+    description: "Every piece starts with a conversation. I draw custom pieces for every client and tailor each design to fit the person — your body, your story, your aesthetic. Bring a reference, a feeling, or nothing at all. We'll figure it out together.",
+    imageUrl: 'https://images.pexels.com/photos/3997383/pexels-photo-3997383.jpeg?auto=compress&cs=tinysrgb&w=800',
     reverse: true,
   },
   {
     id: 3,
-    title: "The process is part of it.",
-    description: "Every piece starts with a conversation. I don't do flash off the wall — I draw custom for every client. Bring a reference, a feeling, or nothing at all. We'll figure it out together.",
-    imageUrl: 'https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: "10 years in Queens.",
+    description: "I've been tattooing out of Astoria, Queens for over a decade. Started in a back-room shop on Steinway, now running my own private studio. Every client who walks through that door is part of what keeps me here.",
+    imageUrl: 'https://images.pexels.com/photos/2224861/pexels-photo-2224861.jpeg?auto=compress&cs=tinysrgb&w=800',
     reverse: false,
   },
 ]

@@ -8,7 +8,7 @@ const mediaItems = [
     type: 'image',
     title: 'Black & Grey',
     desc: 'Portrait realism, Astoria 2024',
-    url: 'https://images.pexels.com/photos/4125666/pexels-photo-4125666.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -30,17 +30,17 @@ const mediaItems = [
   {
     id: 4,
     type: 'image',
-    title: 'The Process',
-    desc: 'Mid-session, ribcage piece',
-    url: 'https://images.pexels.com/photos/5432021/pexels-photo-5432021.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: 'Realism',
+    desc: 'Black & grey, upper arm',
+    url: 'https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
   {
     id: 5,
     type: 'image',
-    title: 'Portrait',
-    desc: 'Black & grey realism, forearm',
-    url: 'https://images.pexels.com/photos/3082341/pexels-photo-3082341.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: 'Fine Line Portrait',
+    desc: 'Delicate line work, forearm',
+    url: 'https://images.pexels.com/photos/3997385/pexels-photo-3997385.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -56,7 +56,7 @@ const mediaItems = [
     type: 'image',
     title: 'Custom Flash',
     desc: 'One-of-one, never repeated',
-    url: 'https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.pexels.com/photos/3997380/pexels-photo-3997380.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
 ]
@@ -67,7 +67,6 @@ export function MarcoGallery() {
       <InteractiveBentoGallery
         mediaItems={mediaItems}
         title="Check out my work."
-        description="Black & grey · Blackwork · Fine line — click to explore"
       />
     </section>
   )
