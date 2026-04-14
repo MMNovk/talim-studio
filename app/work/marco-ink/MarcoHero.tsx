@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { ChevronDown } from 'lucide-react'
+import { Component as KineticNav } from '@/components/ui/sterling-gate-kinetic-navigation'
 
 interface BlurTextProps {
   text: string
@@ -58,6 +59,13 @@ function BlurText({
   )
 }
 
+const NAV_ITEMS = [
+  { label: 'Home',    href: '#hero' },
+  { label: 'About',   href: '#about' },
+  { label: 'Gallery', href: '#work' },
+  { label: 'Contact', href: '#book' },
+]
+
 export function MarcoHero() {
   useEffect(() => {
     document.documentElement.classList.add('dark')
@@ -65,10 +73,10 @@ export function MarcoHero() {
   }, [])
 
   return (
-    <div style={{ backgroundColor: 'hsl(0 0% 0%)', color: 'hsl(0 0% 100%)', minHeight: '100vh' }}>
-      {/* Header — MM initials centered, no nav, no toggle */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6">
-        <div className="flex items-center justify-center">
+    <div id="hero" style={{ backgroundColor: 'hsl(0 0% 0%)', color: 'hsl(0 0% 100%)', minHeight: '100vh' }}>
+      {/* Header — MM left, kinetic nav right */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-5">
+        <div className="flex items-center justify-between">
           <span
             className="text-4xl select-none"
             style={{
@@ -78,6 +86,7 @@ export function MarcoHero() {
           >
             MM
           </span>
+          <KineticNav items={NAV_ITEMS} />
         </div>
       </header>
 
@@ -91,7 +100,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-wide uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.12em] uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
             <BlurText
@@ -99,7 +108,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-wide uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.12em] uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
 

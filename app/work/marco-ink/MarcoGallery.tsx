@@ -32,7 +32,7 @@ const mediaItems = [
     type: 'image',
     title: 'The Process',
     desc: 'Mid-session, ribcage piece',
-    url: 'https://images.pexels.com/photos/7156862/pexels-photo-7156862.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: 'https://images.pexels.com/photos/5432021/pexels-photo-5432021.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
   {
@@ -67,7 +67,7 @@ export function MarcoGallery() {
       <InteractiveBentoGallery
         mediaItems={mediaItems}
         title="Check out my work."
-        description="Black & grey · Blackwork · Fine line — drag to explore"
+        description="Black & grey · Blackwork · Fine line — click to explore"
       />
     </section>
   )
