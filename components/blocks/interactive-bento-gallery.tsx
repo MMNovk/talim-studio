@@ -147,7 +147,7 @@ const GalleryModal = ({
         exit={{ scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg
-                   rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-10"
+                   rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[60]"
       >
         {/* Main Content */}
         <div className="h-full flex flex-col">
@@ -209,7 +209,7 @@ const GalleryModal = ({
             y: prev.y + info.offset.y,
           }))
         }}
-        className="fixed z-50 left-1/2 bottom-4 -translate-x-1/2 touch-none"
+        className="fixed z-[70] left-1/2 bottom-4 -translate-x-1/2 touch-none"
       >
         <motion.div
           className="relative rounded-xl bg-sky-400/20 backdrop-blur-xl
@@ -285,8 +285,6 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
   description,
 }) => {
   const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null)
-  const [items, setItems] = useState(mediaItems)
-  const [isDragging, setIsDragging] = useState(false)
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -317,7 +315,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
             isOpen={true}
             onClose={() => setSelectedItem(null)}
             setSelectedItem={setSelectedItem}
-            mediaItems={items}
+            mediaItems={mediaItems}
           />
         ) : (
           <motion.div
@@ -330,12 +328,12 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
               visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
             }}
           >
-            {items.map((item, index) => (
+            {mediaItems.map((item, index) => (
               <motion.div
                 key={item.id}
                 layoutId={`media-${item.id}`}
-                className={`relative overflow-hidden rounded-xl cursor-move ${item.span}`}
-                onClick={() => !isDragging && setSelectedItem(item)}
+                className={`relative overflow-hidden rounded-xl cursor-pointer ${item.span}`}
+                onClick={() => setSelectedItem(item)}
                 variants={{
                   hidden: { y: 50, scale: 0.9, opacity: 0 },
                   visible: {
@@ -351,30 +349,11 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
                   },
                 }}
                 whileHover={{ scale: 1.02 }}
-                drag
-                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                dragElastic={1}
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={(e, info) => {
-                  setIsDragging(false)
-                  const moveDistance = info.offset.x + info.offset.y
-                  if (Math.abs(moveDistance) > 50) {
-                    const newItems = [...items]
-                    const draggedItem = newItems[index]
-                    const targetIndex =
-                      moveDistance > 0
-                        ? Math.min(index + 1, items.length - 1)
-                        : Math.max(index - 1, 0)
-                    newItems.splice(index, 1)
-                    newItems.splice(targetIndex, 0, draggedItem)
-                    setItems(newItems)
-                  }
-                }}
               >
                 <MediaItem
                   item={item}
                   className="absolute inset-0 w-full h-full"
-                  onClick={() => !isDragging && setSelectedItem(item)}
+                  onClick={() => setSelectedItem(item)}
                 />
                 <motion.div
                   className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4"

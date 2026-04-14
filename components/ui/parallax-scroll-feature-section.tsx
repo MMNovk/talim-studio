@@ -30,7 +30,7 @@ const sections: SectionData[] = [
     id: 3,
     title: "The process is part of it.",
     description: "Every piece starts with a conversation. I don't do flash off the wall — I draw custom for every client. Bring a reference, a feeling, or nothing at all. We'll figure it out together.",
-    imageUrl: 'https://images.pexels.com/photos/7156862/pexels-photo-7156862.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageUrl: 'https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800',
     reverse: false,
   },
 ]

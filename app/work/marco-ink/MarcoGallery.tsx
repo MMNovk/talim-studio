@@ -46,18 +46,18 @@ const mediaItems = [
   {
     id: 6,
     type: 'image',
-    title: 'Custom Flash',
-    desc: 'One-of-one, never repeated',
-    url: 'https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
-  },
-  {
-    id: 7,
-    type: 'image',
     title: 'Dotwork',
     desc: 'Mandala back piece, 3 sessions',
     url: 'https://images.pexels.com/photos/4125671/pexels-photo-4125671.jpeg?auto=compress&cs=tinysrgb&w=800',
     span: 'md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2',
+  },
+  {
+    id: 7,
+    type: 'image',
+    title: 'Custom Flash',
+    desc: 'One-of-one, never repeated',
+    url: 'https://images.pexels.com/photos/3997392/pexels-photo-3997392.jpeg?auto=compress&cs=tinysrgb&w=800',
+    span: 'md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2',
   },
 ]
 
