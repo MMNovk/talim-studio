@@ -35,7 +35,6 @@ export default function MarcoMillerPage() {
             description="Fill out the form and I'll get back to you within 48 hours."
             phone="(718) 555-0147"
             email="marco@marcoink.com"
-            web={{ label: 'marcoink.com', url: '#' }}
           />
         </section>
 

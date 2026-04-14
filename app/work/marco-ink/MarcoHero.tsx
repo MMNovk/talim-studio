@@ -75,7 +75,7 @@ export function MarcoHero() {
   return (
     <div id="hero" style={{ backgroundColor: 'hsl(0 0% 0%)', color: 'hsl(0 0% 100%)', minHeight: '100vh' }}>
       {/* Header — MM left, kinetic nav right */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-5">
+      <header className="fixed top-0 left-0 right-0 z-[250] px-6 py-5">
         <div className="flex items-center justify-between">
           <span
             className="text-4xl select-none"
@@ -100,7 +100,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.12em] uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.22em] uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
             <BlurText
@@ -108,7 +108,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.12em] uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.22em] uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
 

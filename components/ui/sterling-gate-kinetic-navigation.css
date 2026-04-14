@@ -8,7 +8,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 0;
 }
 
@@ -17,9 +17,9 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 55vw;
-  max-width: 620px;
-  min-width: 300px;
+  width: 65vw;
+  max-width: 900px;
+  min-width: 320px;
   z-index: 1;
   overflow: hidden;
 }
@@ -60,7 +60,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 2rem 3rem;
+  padding: 2rem 3.5rem;
 }
 
 .menu-list {
@@ -70,29 +70,26 @@
   width: 100%;
 }
 
+/* No dividers */
 .menu-list-item {
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.menu-list-item:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 1.1rem 0;
+  padding: 0.75rem 0;
   text-decoration: none;
   position: relative;
   overflow: hidden;
 }
 
 .nav-link-text {
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
   color: white;
   line-height: 1;
+  text-transform: uppercase;
   letter-spacing: -0.01em;
   position: relative;
   z-index: 1;
@@ -100,7 +97,7 @@
 }
 
 .nav-link:hover .nav-link-text {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .nav-link-hover-bg {
@@ -125,12 +122,12 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.4rem 0.5rem;
+  padding: 0.4rem 0;
   font-family: inherit;
 }
 
 .menu-button-text {
-  height: 1.2em;
+  height: 0.84rem;   /* exactly one line: font-size × line-height = 0.7rem × 1.2 */
   overflow: hidden;
   display: flex;
   flex-direction: column;

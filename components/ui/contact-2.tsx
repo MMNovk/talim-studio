@@ -1,84 +1,83 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 
 interface Contact2Props {
   title?: string
   description?: string
   phone?: string
   email?: string
-  web?: { label: string; url: string }
 }
+
+const fieldCls =
+  "w-full rounded-md border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/40 transition-colors"
 
 export const Contact2 = ({
   title = "Contact Us",
-  description = "We are available for questions, feedback, or collaboration opportunities. Let us know how we can help!",
+  description = "We are available for questions, feedback, or collaboration opportunities.",
   phone = "(123) 34567890",
   email = "email@example.com",
-  web = { label: "shadcnblocks.com", url: "https://shadcnblocks.com" },
 }: Contact2Props) => {
   return (
-    <section className="py-32">
-      <div className="container">
-        <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
-          <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
-            <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
-                {title}
-              </h1>
-              <p className="text-muted-foreground">{description}</p>
-            </div>
-            <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                Contact Details
-              </h3>
-              <ul className="ml-4 list-disc">
-                <li>
-                  <span className="font-bold">Phone: </span>
-                  {phone}
-                </li>
-                <li>
-                  <span className="font-bold">Email: </span>
-                  <a href={`mailto:${email}`} className="underline">
-                    {email}
-                  </a>
-                </li>
-                <li>
-                  <span className="font-bold">Web: </span>
-                  <a href={web.url} target="_blank" className="underline">
-                    {web.label}
-                  </a>
-                </li>
-              </ul>
-            </div>
+    <section className="py-24 px-8 md:px-14 lg:px-20">
+      <div className="mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-16">
+
+        {/* Left: text + contact details */}
+        <div className="flex flex-col justify-between gap-12 max-w-sm">
+          <div>
+            <h1 className="text-5xl lg:text-6xl font-semibold mb-3 text-white leading-tight">
+              {title}
+            </h1>
+            <p className="text-neutral-400 leading-relaxed">{description}</p>
           </div>
-          <div className="mx-auto flex max-w-screen-md flex-col gap-6 rounded-lg border p-10">
-            <div className="flex gap-4">
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="firstname">First Name</Label>
-                <Input type="text" id="firstname" placeholder="First Name" />
-              </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="lastname">Last Name</Label>
-                <Input type="text" id="lastname" placeholder="Last Name" />
-              </div>
-            </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="email">Email</Label>
-              <Input type="email" id="email" placeholder="Email" />
-            </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="subject">Subject</Label>
-              <Input type="text" id="subject" placeholder="Subject" />
+          <div>
+            <h3 className="text-xl font-semibold text-white mb-5">Contact Details</h3>
+            <ul className="flex flex-col gap-2 text-sm text-neutral-400">
+              <li>
+                <span className="font-semibold text-white">Phone: </span>
+                {phone}
+              </li>
+              <li>
+                <span className="font-semibold text-white">Email: </span>
+                <a href={`mailto:${email}`} className="underline hover:text-white transition-colors">
+                  {email}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Right: form */}
+        <div className="flex-1 max-w-2xl flex flex-col gap-5 rounded-xl border border-white/10 p-8 md:p-10 bg-white/[0.03]">
+          <div className="flex gap-4">
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="firstname" className="text-white/70 text-xs tracking-wider uppercase">First Name</Label>
+              <input className={fieldCls} type="text" id="firstname" placeholder="First Name" />
             </div>
             <div className="grid w-full gap-1.5">
-              <Label htmlFor="message">Message</Label>
-              <Textarea placeholder="Type your message here." id="message" />
+              <Label htmlFor="lastname" className="text-white/70 text-xs tracking-wider uppercase">Last Name</Label>
+              <input className={fieldCls} type="text" id="lastname" placeholder="Last Name" />
             </div>
-            <Button className="w-full">Send Message</Button>
           </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="email" className="text-white/70 text-xs tracking-wider uppercase">Email</Label>
+            <input className={fieldCls} type="email" id="email" placeholder="your@email.com" />
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="subject" className="text-white/70 text-xs tracking-wider uppercase">Subject</Label>
+            <input className={fieldCls} type="text" id="subject" placeholder="Subject" />
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="message" className="text-white/70 text-xs tracking-wider uppercase">Message</Label>
+            <textarea
+              className={`${fieldCls} min-h-[120px] resize-none`}
+              id="message"
+              placeholder="Describe what you're thinking — style, size, placement, references"
+            />
+          </div>
+          <Button className="w-full bg-white text-black hover:bg-neutral-200 font-semibold tracking-widest uppercase text-xs py-5">
+            Send Message
+          </Button>
         </div>
       </div>
     </section>
