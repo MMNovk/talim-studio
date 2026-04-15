@@ -125,21 +125,25 @@ export function MarcoHero() {
   // MM visible only while the hero section is in view
   useEffect(() => {
     let aboutVisible = false
-    let workVisible = false
-    const update = () => setMmVisible(!aboutVisible && !workVisible)
+    let workVisible  = false
+    let bookVisible  = false
+    const update = () => setMmVisible(!aboutVisible && !workVisible && !bookVisible)
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.target.id === 'about') aboutVisible = entry.isIntersecting
         if (entry.target.id === 'work')  workVisible  = entry.isIntersecting
+        if (entry.target.id === 'book')  bookVisible  = entry.isIntersecting
       })
       update()
     }, { threshold: 0.05 })
 
     const about = document.querySelector('#about')
     const work  = document.querySelector('#work')
+    const book  = document.querySelector('#book')
     if (about) observer.observe(about)
     if (work)  observer.observe(work)
+    if (book)  observer.observe(book)
     return () => observer.disconnect()
   }, [])
 

@@ -138,13 +138,6 @@ export default function VelaCarousel() {
             {slide.description}
           </p>
 
-          <a
-            href="#book"
-            className="w-fit bg-black text-white px-8 py-3 text-xs font-bold tracking-widest no-underline hover:bg-ink/80 transition-colors"
-          >
-            BOOK NOW
-          </a>
-
           {/* Prev / Next */}
           <div className="flex gap-3 mt-2">
             <button

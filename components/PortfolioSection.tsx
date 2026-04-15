@@ -20,11 +20,11 @@ const portfolioItems = [
     slug: '/work/mesa-kitchen',
   },
   {
-    key: '3',
-    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
-    label: 'Form Pilates',
-    tier: 'Business + Booking · $1,099',
-    slug: '/work/form-pilates',
+    key: '6',
+    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80',
+    label: 'Stephen Yang',
+    tier: 'Portfolio · $799',
+    slug: '/work/stephen-yang',
   },
   {
     key: '4',
@@ -34,11 +34,11 @@ const portfolioItems = [
     slug: '/work/marco-ink',
   },
   {
-    key: '6',
-    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80',
-    label: 'Stephen Yang',
-    tier: 'Portfolio · $799',
-    slug: '/work/stephen-yang',
+    key: '3',
+    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    label: 'Form Pilates',
+    tier: 'Storefront · $1,099',
+    slug: '/work/form-pilates',
   },
 ]
 

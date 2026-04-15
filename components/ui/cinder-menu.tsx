@@ -20,7 +20,7 @@ const menuData: MenuCategory[] = [
     items: [
       { name: "The Cinder", description: "Double smash, american cheese, house sauce, shredded lettuce, pickles on a toasted brioche.", price: "$14", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=800&fit=crop&q=100" },
       { name: "The Cowboy", description: "Double smash, bacon jam, crispy onions, pepper jack, pickles.", price: "$16", image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&h=800&fit=crop&q=100" },
-      { name: "Mushroom Swiss", description: "Double smash, roasted mushrooms, gruyere, garlic aioli.", price: "$15", image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800&h=800&fit=crop&q=100" },
+      { name: "Mushroom Swiss", description: "Double smash, roasted mushrooms, gruyere, garlic aioli.", price: "$15", image: "https://images.unsplash.com/photo-1551987840-f62d9c74ae78?q=80&w=1581&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
       { name: "The Plain", description: "Single smash, american cheese, mustard, pickles. No frills.", price: "$12", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&h=800&fit=crop&q=100" },
     ],
   },
@@ -36,18 +36,18 @@ const menuData: MenuCategory[] = [
   {
     label: "Shakes",
     items: [
-      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800&h=800&fit=crop&q=100" },
-      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&h=800&fit=crop&q=100" },
-      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1568901839119-631418a3910d?w=800&h=800&fit=crop&q=100" },
-      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=800&h=800&fit=crop&q=100" },
+      { name: "Vanilla", description: "Madagascar vanilla, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1648580967100-436583074ea0?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+      { name: "Chocolate", description: "Dutch cocoa, dark chocolate, whole milk, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1648775948447-78c34dd56090?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+      { name: "Strawberry", description: "Real strawberries, no syrup, hand-spun.", price: "$8", image: "https://images.unsplash.com/photo-1648580967255-d4beb1feed82?q=80&w=1481&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+      { name: "Black & White", description: "Half chocolate, half vanilla, oreo crumble top.", price: "$9", image: "https://images.unsplash.com/photo-1565899947426-b2424039f921?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     ],
   },
   {
     label: "Desserts",
     items: [
       { name: "Rotating Special", description: "One dessert, changes weekly. Ask your server.", price: "Market", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=800&fit=crop&q=100" },
-      { name: "Brownie Sundae", description: "Warm brownie, vanilla soft serve, salted caramel.", price: "$10", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=800&fit=crop&q=100" },
-      { name: "Soft Serve Cone", description: "Vanilla or chocolate. Cup or cone.", price: "$5", image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&h=800&fit=crop&q=100" },
+      { name: "Brownie Sundae", description: "Warm brownie, vanilla soft serve, salted caramel.", price: "$10", image: "https://images.unsplash.com/photo-1639744093238-d12f04cf5950?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+      { name: "Soft Serve Cone", description: "Vanilla or chocolate. Cup or cone.", price: "$5", image: "https://images.unsplash.com/photo-1768249731626-962d1a16f811?q=80&w=1050&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     ],
   },
 ]

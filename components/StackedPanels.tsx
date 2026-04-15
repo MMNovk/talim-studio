@@ -143,6 +143,7 @@ interface StackedPanelsProps {
 export default function StackedPanels({ isMobile = false }: StackedPanelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
+  const mouseEnabled = useRef(false);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -168,6 +169,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       if (startTimer) clearTimeout(startTimer);
       timers.forEach(clearTimeout);
       timers = [];
+      mouseEnabled.current = false;
 
       startTimer = setTimeout(() => {
         for (let i = PANEL_COUNT - 1; i >= 0; i--) {
@@ -175,6 +177,9 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
           timers.push(setTimeout(() => waveYSprings[i].set(-50), offset));
           timers.push(setTimeout(() => waveYSprings[i].set(0),   offset + HOLD));
         }
+        // Enable mouse after the last panel's wave finishes + small buffer
+        const waveDuration = (PANEL_COUNT - 1) * STAGGER + HOLD + 200;
+        timers.push(setTimeout(() => { mouseEnabled.current = true; }, waveDuration));
       }, 300);
     };
 
@@ -196,7 +201,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const rect = containerRef.current?.getBoundingClientRect();
-      if (!rect) return;
+      if (!rect || !mouseEnabled.current) return;
       isHovering.current = true;
 
       const cx = (e.clientX - rect.left) / rect.width;
