@@ -127,7 +127,7 @@
 }
 
 .menu-button-text {
-  height: 0.84rem;   /* one line: 0.7rem × 1.2 line-height */
+  height: 1.125rem;  /* one line: 0.9375rem (15px) × 1.2 line-height */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -137,8 +137,8 @@
   line-height: 1.2;
   margin: 0;
   color: white;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-size: 0.9375rem;  /* 15px — matches 21st.dev reference size */
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   flex-shrink: 0;
   /* CSS-driven slide animation */
@@ -155,8 +155,8 @@
 }
 
 .icon-wrap {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
@@ -173,31 +173,3 @@
   transform: rotate(315deg);
 }
 
-/* Close button inside the sliding panel */
-.menu-inner-close-btn {
-  position: absolute;
-  top: 1.5rem;
-  right: 2.5rem;
-  z-index: 20;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.6);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-family: inherit;
-  transition: color 0.2s ease;
-}
-
-.menu-inner-close-btn:hover {
-  color: white;
-}
-
-.menu-inner-close-icon {
-  font-size: 1rem;
-  line-height: 1;
-}

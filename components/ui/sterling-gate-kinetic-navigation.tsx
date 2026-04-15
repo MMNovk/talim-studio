@@ -127,7 +127,7 @@ export function Component({ items }: ComponentProps) {
   return (
     <div ref={containerRef}>
       {/* Trigger button — text/icon animation driven by CSS via data-open */}
-      <button role="button" className="nav-close-btn" data-open={isMenuOpen} onClick={toggleMenu} style={{ pointerEvents: "auto" }}>
+      <button role="button" className="nav-close-btn" data-open={String(isMenuOpen)} onClick={toggleMenu} style={{ pointerEvents: "auto" }}>
         <div className="menu-button-text">
           <p>Menu</p>
           <p>Close</p>
@@ -177,12 +177,6 @@ export function Component({ items }: ComponentProps) {
                 </svg>
               </div>
             </div>
-
-            {/* Close button inside the panel */}
-            <button className="menu-inner-close-btn" onClick={closeMenu} aria-label="Close menu">
-              <span>Close</span>
-              <span className="menu-inner-close-icon">&#x2715;</span>
-            </button>
 
             <div className="menu-content-wrapper">
               <ul className="menu-list">
