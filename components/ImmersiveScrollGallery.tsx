@@ -17,7 +17,7 @@ interface iImmersiveScrollGalleryProps {
 }
 
 // Constants
-const DEFAULT_IMAGES = [
+const DEFAULT_IMAGES: Omit<iIPicture, 'scale'>[] = [
   { src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&q=80' },
   { src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80' },
   { src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80' },
