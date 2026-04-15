@@ -144,7 +144,7 @@ export const Component = ({
                     "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
                     activeIndex === index
                       ? "text-zinc-950 dark:text-white opacity-100 translate-x-4"
-                      : "translate-x-0 [color:transparent] [-webkit-text-stroke:1.5px_#52525b]"
+                      : "translate-x-0 [color:#0a0a0a] [-webkit-text-stroke:1.5px_#52525b]"
                   )}>
                     {item.name.split(' ')[0]}<br />
                     {item.name.split(' ')[1]}
