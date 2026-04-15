@@ -5,6 +5,13 @@ interface About3Props {
   description: string
   mainImage: string
   secondaryImage: string
+  breakout: {
+    src: string
+    title: string
+    description: string
+    buttonText: string
+    buttonUrl: string
+  }
 }
 
 export default function About3({
@@ -12,6 +19,7 @@ export default function About3({
   description,
   mainImage,
   secondaryImage,
+  breakout,
 }: About3Props) {
   return (
     <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
@@ -33,9 +41,26 @@ export default function About3({
           </div>
         </div>
 
-        {/* Secondary image — full width */}
-        <div className="relative w-full aspect-[16/7] overflow-hidden">
-          <Image src={secondaryImage} alt="" fill quality={100} className="object-cover" />
+        {/* Middle: secondary image left, breakout card right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="relative lg:col-span-7 aspect-[4/3] overflow-hidden">
+            <Image src={secondaryImage} alt="" fill quality={100} className="object-cover" />
+          </div>
+          <div className="bg-[#111111] overflow-hidden flex flex-col lg:col-span-5">
+            <div className="relative h-48 shrink-0">
+              <Image src={breakout.src} alt={breakout.title} fill className="object-cover" />
+            </div>
+            <div className="p-8 flex flex-col gap-4 flex-1">
+              <h3 className="text-white font-black text-xl">{breakout.title}</h3>
+              <p className="text-white/45 text-sm leading-relaxed flex-1">{breakout.description}</p>
+              <a
+                href={breakout.buttonUrl}
+                className="text-orange-500 text-sm font-mono tracking-widest uppercase no-underline hover:opacity-70 transition-opacity w-fit"
+              >
+                {breakout.buttonText} →
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>

@@ -115,6 +115,14 @@ export default function CinderCoPage() {
         description="We make the burger you'd travel across the borough for. No gimmicks. Just a flat-top that never cools down."
         mainImage="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80"
         secondaryImage="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80"
+        breakout={{
+          src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+          title: 'The same way, every time.',
+          description:
+            "Everything on the menu is made to order. The smash happens when you order it. The fries go straight from the fryer. We don't hold food under heat lamps and we don't cut corners on the bun.",
+          buttonText: 'Our Story',
+          buttonUrl: '/work/mesa-kitchen/about',
+        }}
       />
 
       {/* SECTION 5 — Contact */}
