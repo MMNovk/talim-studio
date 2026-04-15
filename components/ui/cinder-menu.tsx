@@ -92,7 +92,7 @@ export function CinderMenu() {
           {/* Left: menu list */}
           <div>
             <p className="text-zinc-600 text-xs font-sans tracking-widest uppercase mb-6">
-              Hover to take a look →
+              Take a quick peek
             </p>
             {currentCategory.items.map((item, i) => (
               <div

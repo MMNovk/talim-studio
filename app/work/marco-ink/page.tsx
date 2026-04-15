@@ -54,7 +54,7 @@ export default function MarcoMillerPage() {
               href="https://www.talimstudio.com"
               className="text-neutral-500 text-sm no-underline hover:text-white transition-colors text-center sm:text-right"
             >
-              ← Back to Talim Studio
+              Built by Talim Studio
             </a>
           </div>
         </footer>

@@ -91,12 +91,12 @@ export default function CinderCoPage() {
       </div>
 
       {/* SECTION 3 — Review quotes */}
-      <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20 border-t border-white/5">
+      <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20 border-t border-white/5">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
           {reviews.map(({ quote, logo, publication }) => (
-            <div key={publication} className="flex flex-col justify-between min-h-[220px]">
+            <div key={publication} className="flex flex-col gap-4">
               <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
-              <div className="flex items-center gap-3 mt-8">
+              <div className="flex items-center gap-3">
                 <img
                   src={logo}
                   alt={publication}

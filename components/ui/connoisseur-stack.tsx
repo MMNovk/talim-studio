@@ -110,7 +110,7 @@ export const Component = ({
       ref={containerRef}
       className={cn(
         "flex flex-col md:flex-row items-center justify-between min-h-screen w-full p-8 md:p-24 overflow-hidden transition-colors duration-500",
-        "bg-white dark:bg-[#050505]",
+        "bg-[#0a0a0a]",
         className
       )}
     >

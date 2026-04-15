@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform, MotionValue } from 'motion/react'
 interface iIPicture {
   src: string
   scale: MotionValue<number>
+  imgClass?: string
 }
 
 interface iImmersiveScrollGalleryProps {
@@ -66,7 +67,7 @@ const ImmersiveScrollGallery: React.FC<iImmersiveScrollGalleryProps> = ({
   return (
     <div ref={container} className={`relative h-[200vh] ${className}`}>
       <div className="sticky top-0 h-[100vh] overflow-hidden">
-        {pictures.map(({ src, scale }, index) => (
+        {pictures.map(({ src, scale, imgClass }, index) => (
           <motion.div
             key={index}
             style={{ scale, opacity: opacityImage }}
@@ -76,7 +77,7 @@ const ImmersiveScrollGallery: React.FC<iImmersiveScrollGalleryProps> = ({
               <img
                 src={src}
                 alt={`Gallery image ${index + 1}`}
-                className="object-cover w-full h-full"
+                className={`object-cover w-full h-full ${imgClass ?? ''}`}
               />
             </div>
           </motion.div>

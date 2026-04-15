@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { Component as KineticNav } from '@/components/ui/sterling-gate-kinetic-navigation'
 
 interface BlurTextProps {
   text: string
@@ -59,69 +58,115 @@ function BlurText({
   )
 }
 
-const NAV_ITEMS = [
-  { label: 'Home',    href: '#hero' },
-  { label: 'About',   href: '#about' },
-  { label: 'Gallery', href: '#work' },
-  { label: 'Contact', href: '#book' },
-]
+// MARC + portrait-as-O in a single inline row
+function MarcoLine() {
+  const [inView, setInView] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true) },
+      { threshold: 0.1 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => { if (ref.current) observer.unobserve(ref.current) }
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className="inline-flex items-center justify-center font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase whitespace-nowrap"
+      style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
+    >
+      {['M', 'A', 'R', 'C'].map((letter, i) => (
+        <span
+          key={i}
+          style={{
+            display: 'inline-block',
+            filter: inView ? 'blur(0px)' : 'blur(10px)',
+            opacity: inView ? 1 : 0,
+            transform: inView ? 'translateY(0)' : 'translateY(-20px)',
+            transition: `all 0.5s ease-out ${i * 100}ms`,
+          }}
+        >
+          {letter}
+        </span>
+      ))}
+      {/* Portrait replaces the "O" — sized to match the letter */}
+      <span
+        className="group inline-block overflow-hidden rounded-full cursor-pointer"
+        style={{
+          width: '1ch',
+          height: '0.82em',
+          flexShrink: 0,
+          filter: inView ? 'blur(0px)' : 'blur(10px)',
+          opacity: inView ? 1 : 0,
+          transition: 'all 0.5s ease-out 400ms',
+        }}
+      >
+        <img
+          src="https://images.unsplash.com/photo-1686577677352-c9249ed5972a?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Marco Miller"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+      </span>
+    </div>
+  )
+}
 
 export function MarcoHero() {
+  const [mmVisible, setMmVisible] = useState(true)
+
   useEffect(() => {
     document.documentElement.classList.add('dark')
     return () => { document.documentElement.classList.remove('dark') }
   }, [])
 
+  // Fade MM out when the about section scrolls into view
+  useEffect(() => {
+    const about = document.querySelector('#about')
+    if (!about) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setMmVisible(!entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    observer.observe(about)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div id="hero" style={{ backgroundColor: 'hsl(0 0% 0%)', color: 'hsl(0 0% 100%)', minHeight: '100vh' }}>
-      {/* Header — MM left, kinetic nav right */}
-      <header className="fixed top-0 left-0 right-0 z-[250] px-6 py-5">
-        <div className="flex items-center justify-between">
+      {/* Header — MM centered, fades when about enters view */}
+      <header className="fixed top-0 left-0 right-0 z-[250] px-6 py-5 pointer-events-none">
+        <div className="flex items-center justify-center">
           <span
             className="text-4xl select-none"
             style={{
               color: 'hsl(0 0% 100%)',
               fontFamily: '"Dancing Script", "Brush Script MT", cursive',
+              opacity: mmVisible ? 1 : 0,
+              transition: 'opacity 0.6s ease',
             }}
           >
             MM
           </span>
-          <KineticNav items={NAV_ITEMS} />
         </div>
       </header>
 
       {/* Hero */}
       <main className="relative min-h-screen flex flex-col">
-        {/* MARCO / MILLER centered */}
+        {/* MARCO (portrait as O) / MILLER */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
-          <div className="relative flex flex-col items-center w-full gap-5 sm:gap-7 md:gap-10 lg:gap-14">
-            <BlurText
-              text="MARCO"
-              delay={100}
-              animateBy="letters"
-              direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.22em] uppercase justify-center whitespace-nowrap"
-              style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
-            />
+          <div className="flex flex-col items-center w-full gap-1 sm:gap-2 md:gap-3">
+            <MarcoLine />
             <BlurText
               text="MILLER"
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.22em] uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase justify-center whitespace-nowrap"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
-
-            {/* Portrait overlaid between the two name lines */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
-                <img
-                  src="https://images.unsplash.com/photo-1686577677352-c9249ed5972a?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Marco Miller"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
           </div>
         </div>
 
