@@ -70,7 +70,7 @@ export function CinderMenu() {
         </h2>
 
         {/* Category tabs */}
-        <div className="flex flex-wrap gap-2 mb-12">
+        <div className="flex flex-wrap gap-2 mb-0">
           {menuData.map((cat, i) => (
             <button
               key={cat.label}
@@ -87,13 +87,10 @@ export function CinderMenu() {
         </div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
 
           {/* Left: menu list */}
           <div>
-            <p className="text-zinc-600 text-xs font-sans tracking-widest uppercase mb-6">
-              Take a quick peek
-            </p>
             {currentCategory.items.map((item, i) => (
               <div
                 key={item.name}
@@ -116,8 +113,8 @@ export function CinderMenu() {
             ))}
           </div>
 
-          {/* Right: image panel — centered, never cropped */}
-          <div className="relative aspect-square lg:sticky lg:top-8 bg-[#0a0a0a]">
+          {/* Right: image panel — matches height of the menu list */}
+          <div className="relative bg-[#0a0a0a] min-h-[300px]">
             {currentCategory.items.map((item, i) => (
               <div
                 key={`${activeCategory}-${item.name}`}

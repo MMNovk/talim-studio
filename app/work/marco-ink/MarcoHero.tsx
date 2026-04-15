@@ -122,15 +122,24 @@ export function MarcoHero() {
     return () => { document.documentElement.classList.remove('dark') }
   }, [])
 
-  // Fade MM out when the about section scrolls into view
+  // MM visible only while the hero section is in view
   useEffect(() => {
+    let aboutVisible = false
+    let workVisible = false
+    const update = () => setMmVisible(!aboutVisible && !workVisible)
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target.id === 'about') aboutVisible = entry.isIntersecting
+        if (entry.target.id === 'work')  workVisible  = entry.isIntersecting
+      })
+      update()
+    }, { threshold: 0.05 })
+
     const about = document.querySelector('#about')
-    if (!about) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setMmVisible(!entry.isIntersecting),
-      { threshold: 0.1 }
-    )
-    observer.observe(about)
+    const work  = document.querySelector('#work')
+    if (about) observer.observe(about)
+    if (work)  observer.observe(work)
     return () => observer.disconnect()
   }, [])
 
