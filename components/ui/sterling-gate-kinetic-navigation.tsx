@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { CustomEase } from "gsap/CustomEase"
+import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon"
 import "./sterling-gate-kinetic-navigation.css"
 
 if (typeof window !== "undefined") {
@@ -126,22 +127,13 @@ export function Component({ items }: ComponentProps) {
 
   return (
     <div ref={containerRef}>
-      {/* Trigger button — text/icon animation driven by CSS via data-open */}
-      <button role="button" className="nav-close-btn" onClick={toggleMenu} style={{ pointerEvents: "auto" }}>
-        <div className="menu-button-text">
-          <p style={{ transform: isMenuOpen ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.45s cubic-bezier(0.65, 0.01, 0.05, 0.99)' }}>Menu</p>
-          <p style={{ transform: isMenuOpen ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.45s cubic-bezier(0.65, 0.01, 0.05, 0.99)' }}>Close</p>
-        </div>
-        <div className="icon-wrap">
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" className="menu-button-icon" style={{ transform: isMenuOpen ? 'rotate(315deg)' : 'rotate(0deg)', transition: 'transform 0.45s cubic-bezier(0.65, 0.01, 0.05, 0.99)' }}>
-            <path d="M7.33333 16L7.33333 -3.2055e-07L8.66667 -3.78832e-07L8.66667 16L7.33333 16Z" fill="currentColor" />
-            <path d="M16 8.66667L-2.62269e-07 8.66667L-3.78832e-07 7.33333L16 7.33333L16 8.66667Z" fill="currentColor" />
-            <path d="M6 7.33333L7.33333 7.33333L7.33333 6C7.33333 6.73637 6.73638 7.33333 6 7.33333Z" fill="currentColor" />
-            <path d="M10 7.33333L8.66667 7.33333L8.66667 6C8.66667 6.73638 9.26362 7.33333 10 7.33333Z" fill="currentColor" />
-            <path d="M6 8.66667L7.33333 8.66667L7.33333 10C7.33333 9.26362 6.73638 8.66667 6 8.66667Z" fill="currentColor" />
-            <path d="M10 8.66667L8.66667 8.66667L8.66667 10C8.66667 9.26362 9.26362 8.66667 10 8.66667Z" fill="currentColor" />
-          </svg>
-        </div>
+      {/* Trigger button */}
+      <button
+        onClick={toggleMenu}
+        style={{ pointerEvents: "auto", background: "none", border: "none", cursor: "pointer", color: "white", padding: 0 }}
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+      >
+        <MenuToggleIcon open={isMenuOpen} className="size-7" duration={500} />
       </button>
 
       {/* Fullscreen overlay */}
