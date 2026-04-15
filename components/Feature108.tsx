@@ -9,11 +9,11 @@ const tabs = [
     value: 'tab-1',
     label: 'Starter',
     content: {
-      badge: '$299',
-      title: '4–5 pages. Deployed in days.',
+      badge: '$499',
+      title: 'Your corner of the internet, built clean and fast.',
       description:
-        'A clean, fast site for small businesses and freelancers who need a professional presence online — without the agency price tag or the wait.',
-      buttonText: 'Start with Starter',
+        'Up to 5 sections, mobile-responsive, contact form, and deployed live. Structure tailored to your content — single-page or multi-page, whatever fits. Ready in 5–7 days with one round of revisions.',
+      buttonText: 'Start Here',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
       imageAlt: 'Starter site',
     },
@@ -22,10 +22,10 @@ const tabs = [
     value: 'tab-2',
     label: 'Portfolio',
     content: {
-      badge: '$449',
-      title: 'Bold layouts. Your work, elevated.',
+      badge: '$799',
+      title: 'A site that actually looks like your work.',
       description:
-        'Built for artists, photographers, designers, and makers. A site that actually matches the quality of what you do — bold, smooth, intentional.',
+        'Up to 8 sections with bold layouts, gallery or project grid, animations, and custom typography. Structure tailored to your content. Two rounds of revisions, delivered in 5–7 days.',
       buttonText: 'Build a Portfolio',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-2.svg',
       imageAlt: 'Portfolio preview',
@@ -33,28 +33,28 @@ const tabs = [
   },
   {
     value: 'tab-3',
-    label: 'Business + Booking',
+    label: 'Storefront',
     content: {
-      badge: '$649',
-      title: 'Booking, maps, SEO. All in.',
+      badge: '$1,099',
+      title: 'Built for a business that runs on bookings.',
       description:
-        "E-commerce, booking flows, multi-page builds. If you have a vision, I'll make it happen — from concept to launch, on your timeline.",
+        'Everything in Starter, plus Calendly or Acuity scheduling, Google Business Profile setup and optimization, a verified Maps embed, and on-page SEO. Two rounds of revisions, delivered in 7–10 days.',
       buttonText: 'Book a Build',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
-      imageAlt: 'Business site preview',
+      imageAlt: 'Storefront preview',
     },
   },
   {
     value: 'tab-4',
-    label: 'Retainer',
+    label: 'Site Care',
     content: {
       badge: '$79/mo',
-      title: 'Always updated. Always live.',
+      title: 'Updates handled. No tech headaches.',
       description:
-        'Monthly updates, edits, and technical support. Stay sharp and current without hiring a full-time developer.',
-      buttonText: 'Keep It Running',
+        'Up to 2 content or design updates per month — copy changes, photo swaps, hours updates, whatever comes up. Priority turnaround, no tech headaches on your end.',
+      buttonText: 'Get Site Care',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-      imageAlt: 'Retainer support',
+      imageAlt: 'Site Care support',
     },
   },
 ]
