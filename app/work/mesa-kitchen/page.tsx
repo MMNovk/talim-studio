@@ -112,7 +112,7 @@ export default function CinderCoPage() {
       {/* SECTION 4 — About */}
       <About3
         title="Born in Ridgewood."
-        description="We make the burger you'd travel across the borough for. No gimmicks. Just a flat-top that never cools down."
+        description="We opened Cinder & Co. in 2021 with a simple idea: make the burger you'd actually travel across the borough for. No gimmicks. Just quality ingredients, a flat-top that never cools down, and a dessert menu that earns its place."
         mainImage="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80"
         secondaryImage="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80"
         breakout={{
