@@ -4,29 +4,38 @@ const services = [
   {
     number: '01',
     icon: '◻',
-    title: 'Starter Site',
+    title: 'Starter',
     description:
-      'A clean, fast 4–5 page website. Perfect for small businesses, freelancers, or anyone who needs a professional presence online — without the agency price tag.',
-    price: 'From $399',
+      'Your corner of the internet, built clean and fast. Up to 5 sections, mobile-responsive, contact form, and deployed live. Structure tailored to your content — single-page or multi-page, whatever fits. Ready in 5–7 days with one round of revisions.',
+    price: '$499',
     delay: 0,
   },
   {
     number: '02',
     icon: '◈',
-    title: 'Creative Portfolio',
+    title: 'Portfolio',
     description:
-      'Built for artists, photographers, designers, and makers. Your work deserves a site that matches its quality — bold layouts, smooth animations, and serious presentation.',
-    price: 'From $549',
+      'For creatives who need a site that actually looks like their work. Up to 8 sections with bold layouts, gallery or project grid, animations, and custom typography. Structure tailored to your content. Two rounds of revisions, delivered in 5–7 days.',
+    price: '$799',
     delay: 100,
   },
   {
     number: '03',
     icon: '◉',
-    title: 'Custom Build',
+    title: 'Storefront',
     description:
-      'E-commerce, booking systems, multi-page experiences. If you have a specific vision, I\'ll make it happen — from concept to launch, on your timeline.',
-    price: 'From $799',
+      'Everything in Starter, built for a business that runs on bookings. Includes Calendly or Acuity scheduling, Google Business Profile setup and optimization, a verified Maps embed, and on-page SEO. Two rounds of revisions, delivered in 7–10 days.',
+    price: '$1,099',
     delay: 200,
+  },
+  {
+    number: '04',
+    icon: '◇',
+    title: 'Site Care',
+    description:
+      'Up to 2 content or design updates per month — copy changes, photo swaps, hours updates, whatever comes up. Priority turnaround, no tech headaches on your end.',
+    price: '$79/mo',
+    delay: 300,
   },
 ]
 
@@ -39,7 +48,7 @@ export default function Services() {
         </p>
       </ScrollReveal>
 
-      <div className="grid grid-cols-3 gap-0.5 bg-ink/10 border border-ink/10 rounded-lg overflow-hidden max-md:grid-cols-1">
+      <div className="grid grid-cols-2 gap-0.5 bg-ink/10 border border-ink/10 rounded-lg overflow-hidden max-md:grid-cols-1">
         {services.map((service) => (
           <ScrollReveal key={service.number} delay={service.delay}>
             <div className="bg-paper p-10 hover:bg-white transition-colors cursor-default h-full">
