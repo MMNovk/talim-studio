@@ -88,22 +88,6 @@ export default function CinderCoAboutPage() {
         </div>
       </section>
 
-      {/* SECTION C — Founder quote */}
-      <section className="py-32 px-8 md:px-14 lg:px-20">
-        <div className="max-w-2xl mx-auto text-center">
-          <blockquote
-            className="text-white font-thin leading-tight"
-            style={{ fontSize: 'clamp(1.75rem, 4vw, 3.5rem)' }}
-          >
-            &ldquo;We make the burger you&rsquo;d drive across the borough for. No gimmicks. Just a
-            flat-top that never cools down.&rdquo;
-          </blockquote>
-          <p className="text-white/30 text-sm mt-8 tracking-widest font-sans">
-            — Marcus &amp; Priya, Co-founders
-          </p>
-        </div>
-      </section>
-
       {/* SECTION D — Footer */}
       <footer className="border-t border-white/10 py-6 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
