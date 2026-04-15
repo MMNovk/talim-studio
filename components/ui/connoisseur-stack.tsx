@@ -150,7 +150,7 @@ export const Component = ({
                     style={
                       activeIndex === index
                         ? { color: 'hsl(0 0% 100%)' }
-                        : { color: 'transparent', WebkitTextStroke: '2px #52525b' }
+                        : { color: '#52525b' }
                     }
                   >
                     {item.name.split(' ')[0]}<br />

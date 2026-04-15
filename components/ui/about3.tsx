@@ -46,13 +46,13 @@ export default function About3({
           <div className="relative lg:col-span-7 aspect-[4/3] overflow-hidden">
             <Image src={secondaryImage} alt="" fill quality={100} className="object-cover" />
           </div>
-          <div className="flex flex-col lg:col-span-5">
+          <div className="flex flex-col lg:col-span-5 gap-0">
             <div className="relative h-48 shrink-0 overflow-hidden">
               <Image src={breakout.src} alt={breakout.title} fill className="object-cover" />
             </div>
             <div className="pt-8 flex flex-col gap-4 flex-1">
               <h3 className="text-white font-black text-xl">{breakout.title}</h3>
-              <p className="text-white/45 text-sm leading-relaxed flex-1">{breakout.description}</p>
+              <p className="text-white/45 text-sm leading-relaxed">{breakout.description}</p>
               <a
                 href={breakout.buttonUrl}
                 className="text-orange-500 text-sm font-mono tracking-widest uppercase no-underline hover:opacity-70 transition-opacity w-fit"
