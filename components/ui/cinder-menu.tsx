@@ -59,7 +59,7 @@ export function CinderMenu() {
   const currentCategory = menuData[activeCategory]
 
   return (
-    <section className="bg-[#111111] py-24 px-8 md:px-14 lg:px-20">
+    <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
       <div className="max-w-screen-xl mx-auto">
 
         <h2
@@ -87,7 +87,7 @@ export function CinderMenu() {
         </div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left: menu list */}
           <div>
@@ -113,8 +113,8 @@ export function CinderMenu() {
             ))}
           </div>
 
-          {/* Right: image panel — matches height of the menu list */}
-          <div className="relative bg-[#0a0a0a] min-h-[300px]">
+          {/* Right: image panel — square, top aligns with first menu item */}
+          <div className="relative aspect-square self-start bg-[#0a0a0a]">
             {currentCategory.items.map((item, i) => (
               <div
                 key={`${activeCategory}-${item.name}`}
