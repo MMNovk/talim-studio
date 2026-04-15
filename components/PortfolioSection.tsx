@@ -21,7 +21,7 @@ const portfolioItems = [
   },
   {
     key: '6',
-    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80',
+    src: 'https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     label: 'Stephen Yang',
     tier: 'Portfolio · $799',
     slug: '/work/stephen-yang',
