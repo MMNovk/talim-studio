@@ -140,12 +140,19 @@ export const Component = ({
                   </span>
 
                   {/* Main Text */}
-                  <h2 className={cn(
-                    "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
-                    activeIndex === index
-                      ? "text-zinc-950 dark:text-white opacity-100 translate-x-4"
-                      : "translate-x-0 [color:#0a0a0a] [-webkit-text-stroke:1.5px_#52525b]"
-                  )}>
+                  <h2
+                    className={cn(
+                      "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
+                      activeIndex === index
+                        ? "translate-x-4"
+                        : "translate-x-0"
+                    )}
+                    style={
+                      activeIndex === index
+                        ? { color: 'hsl(0 0% 100%)' }
+                        : { color: 'transparent', WebkitTextStroke: '2px #52525b' }
+                    }
+                  >
                     {item.name.split(' ')[0]}<br />
                     {item.name.split(' ')[1]}
                   </h2>
