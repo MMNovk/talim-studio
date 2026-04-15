@@ -16,8 +16,11 @@ export function MenuToggleIcon({
   strokeLinecap = 'round',
   strokeLinejoin = 'round',
   duration = 500,
+  style: styleProp,
   ...props
 }: MenuToggleProps) {
+  const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
   return (
     <svg
       strokeWidth={strokeWidth}
@@ -26,25 +29,19 @@ export function MenuToggleIcon({
       viewBox="0 0 32 32"
       strokeLinecap={strokeLinecap}
       strokeLinejoin={strokeLinejoin}
-      className={cn(
-        'transition-transform ease-in-out',
-        open && '-rotate-45',
-        className,
-      )}
+      className={cn(className)}
       style={{
-        transitionDuration: `${duration}ms`,
+        ...styleProp,
+        transform: open ? 'rotate(-45deg)' : 'rotate(0deg)',
+        transition: `transform ${duration}ms ${easing}`,
       }}
       {...props}
     >
       <path
-        className={cn(
-          'transition-all ease-in-out',
-          open
-            ? '[stroke-dasharray:20_300] [stroke-dashoffset:-32.42px]'
-            : '[stroke-dasharray:12_63]',
-        )}
         style={{
-          transitionDuration: `${duration}ms`,
+          strokeDasharray: open ? '20 300' : '12 63',
+          strokeDashoffset: open ? '-32.42' : '0',
+          transition: `stroke-dasharray ${duration}ms ${easing}, stroke-dashoffset ${duration}ms ${easing}`,
         }}
         d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
       />
