@@ -141,6 +141,15 @@ export function Component({ items }: ComponentProps) {
         <div data-nav="closed" className="nav-overlay-wrapper fixed inset-0 z-[200] pointer-events-auto">
           <div className="overlay" onClick={closeMenu} />
           <nav className="menu-content">
+            {/* Close button inside the panel — always reachable */}
+            <button
+              onClick={closeMenu}
+              style={{ position: "absolute", top: "1.25rem", right: "1.5rem", zIndex: 20, background: "none", border: "none", cursor: "pointer", color: "white", padding: 0 }}
+              aria-label="Close menu"
+            >
+              <MenuToggleIcon open={true} className="size-7" duration={500} />
+            </button>
+
             <div className="menu-bg">
               <div className="backdrop-layer first" />
               <div className="backdrop-layer second" />
