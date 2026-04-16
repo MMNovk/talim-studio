@@ -5,44 +5,34 @@ import { useInView } from 'motion/react'
 
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
-const photos = [
-  { src: 'https://picsum.photos/seed/10/600/900', title: 'Morning Study', year: '2024' },
-  { src: 'https://picsum.photos/seed/11/600/900', title: 'Portrait, Unnamed', year: '2024' },
-  { src: 'https://picsum.photos/seed/12/600/900', title: 'Coastal Light', year: '2024' },
-  { src: 'https://picsum.photos/seed/13/600/900', title: 'High Pass', year: '2023' },
-  { src: 'https://picsum.photos/seed/14/600/900', title: 'Altitude Study II', year: '2023' },
-  { src: 'https://picsum.photos/seed/15/600/900', title: 'Open Water', year: '2023' },
-  { src: 'https://picsum.photos/seed/16/600/900', title: 'Evening, Exposed', year: '2023' },
-  { src: 'https://picsum.photos/seed/17/600/900', title: 'Still Life No. 4', year: '2023' },
-  { src: 'https://picsum.photos/seed/18/600/900', title: 'Urban Negative', year: '2022' },
-  { src: 'https://picsum.photos/seed/19/600/900', title: 'Long Exposure', year: '2022' },
-  { src: 'https://picsum.photos/seed/20/600/900', title: 'Horizon Study', year: '2022' },
-  { src: 'https://picsum.photos/seed/21/600/900', title: 'Figure in Light', year: '2022' },
-  { src: 'https://picsum.photos/seed/22/600/900', title: 'Aerial Study III', year: '2022' },
-  { src: 'https://picsum.photos/seed/23/600/900', title: 'Forest, Morning', year: '2021' },
-  { src: 'https://picsum.photos/seed/24/600/900', title: 'Salt Flats', year: '2021' },
-  { src: 'https://picsum.photos/seed/25/600/900', title: 'Dusk Study', year: '2021' },
-  { src: 'https://picsum.photos/seed/26/600/900', title: 'Interior No. 2', year: '2021' },
-  { src: 'https://picsum.photos/seed/27/600/900', title: 'Rain Study', year: '2021' },
-  { src: 'https://picsum.photos/seed/28/600/900', title: 'Blue Hour', year: '2020' },
-  { src: 'https://picsum.photos/seed/29/600/900', title: 'Still Life No. 7', year: '2020' },
-  { src: 'https://picsum.photos/seed/30/600/900', title: 'Portrait, Winter', year: '2020' },
-  { src: 'https://picsum.photos/seed/31/600/900', title: 'Mountain Pass', year: '2020' },
-  { src: 'https://picsum.photos/seed/32/600/900', title: 'Negative Space', year: '2020' },
-  { src: 'https://picsum.photos/seed/33/600/900', title: 'Shoreline', year: '2019' },
-  { src: 'https://picsum.photos/seed/34/600/900', title: 'Low Tide', year: '2019' },
-  { src: 'https://picsum.photos/seed/35/600/900', title: 'Aperture Study', year: '2019' },
-  { src: 'https://picsum.photos/seed/36/600/900', title: 'Grain', year: '2019' },
-  { src: 'https://picsum.photos/seed/37/600/900', title: 'Threshold', year: '2019' },
-  { src: 'https://picsum.photos/seed/38/600/900', title: 'Soft Focus', year: '2018' },
-  { src: 'https://picsum.photos/seed/39/600/900', title: 'Late Light', year: '2018' },
+type Size = 'normal' | 'tall' | 'wide'
+
+type Photo = {
+  src: string
+  title: string
+  year: string
+  size?: Size
+}
+
+const photos: Photo[] = [
+  // tall → spans 2 rows; wide → spans 2 cols; normal → 1×1
+  { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', title: 'Alpine Study', year: '2024', size: 'tall' },
+  { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?w=1200&q=80', title: 'Coastal Aerial', year: '2024', size: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1553485580-4ffd03ed5ea1?w=800&q=80', title: 'Shore Study', year: '2024', size: 'normal' },
+  { src: 'https://picsum.photos/seed/20/800/1000', title: 'Altitude Study I', year: '2023', size: 'normal' },
+  { src: 'https://images.unsplash.com/photo-1620760585223-bfe4c8ece4be?w=800&q=80', title: 'Dawn Study', year: '2023', size: 'tall' },
+  { src: 'https://picsum.photos/seed/22/1200/700', title: 'High Pass, 3am', year: '2023', size: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1642383942262-eda4be3f030e?w=800&q=80', title: 'Exposed', year: '2022', size: 'normal' },
+  { src: 'https://images.unsplash.com/photo-1598084331228-71bd91b70e59?w=800&q=80', title: 'Aperture II', year: '2022', size: 'normal' },
+  { src: 'https://picsum.photos/seed/24/800/1000', title: 'Urban Fragment', year: '2022', size: 'normal' },
+  { src: 'https://picsum.photos/seed/25/1200/700', title: 'Horizon Line', year: '2022', size: 'wide' },
+  { src: 'https://picsum.photos/seed/26/800/1000', title: 'Open Country', year: '2021', size: 'tall' },
+  { src: 'https://picsum.photos/seed/27/800/800', title: 'Salt Flats', year: '2021', size: 'normal' },
+  { src: 'https://picsum.photos/seed/28/800/800', title: 'Evening', year: '2020', size: 'normal' },
+  { src: 'https://picsum.photos/seed/29/1200/700', title: 'Blue Hour', year: '2020', size: 'wide' },
 ]
 
-// Distribute across 3 columns
-const columns: (typeof photos[number])[][] = [[], [], []]
-photos.forEach((photo, i) => columns[i % 3].push(photo))
-
-function GalleryItem({ src, title, year }: { src: string; title: string; year: string }) {
+function GalleryItem({ src, title, year, size = 'normal', delay = 0 }: Photo & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px 0px' })
 
@@ -51,20 +41,20 @@ function GalleryItem({ src, title, year }: { src: string; title: string; year: s
       ref={ref}
       className="relative group overflow-hidden"
       style={{
+        gridRow: size === 'tall' ? 'span 2' : 'span 1',
+        gridColumn: size === 'wide' ? 'span 2' : 'span 1',
         opacity: isInView ? 1 : 0,
         transform: isInView ? 'translateY(0)' : 'translateY(24px)',
-        transition: 'opacity 0.8s ease, transform 0.8s ease',
+        transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
       }}
     >
       <img
         src={src}
         alt={title}
-        className="w-full h-auto object-cover"
+        className="w-full h-full object-cover"
         loading="lazy"
       />
-      {/* Dark overlay on hover */}
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-400" />
-      {/* Title + year — bottom left, appears on hover */}
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
       <div className="absolute bottom-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <p className="text-white font-thin text-sm leading-snug" style={serif}>{title}</p>
         <p className="text-white/60 text-xs mt-0.5">{year}</p>
@@ -77,13 +67,12 @@ export default function StephenYangGallery() {
   return (
     <section className="bg-[#0a0a0a] px-8 md:px-16 py-32">
       <p className="text-[#666] text-xs tracking-[0.2em] uppercase mb-16">Selected Works</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {columns.map((col, colIdx) => (
-          <div key={colIdx} className="flex flex-col gap-4">
-            {col.map(({ src, title, year }) => (
-              <GalleryItem key={title} src={src} title={title} year={year} />
-            ))}
-          </div>
+      <div
+        className="grid grid-cols-2 md:grid-cols-3 gap-3"
+        style={{ gridAutoRows: '260px', gridAutoFlow: 'dense' }}
+      >
+        {photos.map((photo, i) => (
+          <GalleryItem key={photo.title} {...photo} delay={i * 60} />
         ))}
       </div>
     </section>
