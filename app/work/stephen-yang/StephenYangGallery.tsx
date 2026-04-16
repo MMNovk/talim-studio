@@ -29,7 +29,7 @@ const photos: Photo[] = [
   { src: 'https://picsum.photos/seed/26/800/1000', title: 'Open Country', year: '2021', size: 'tall' },
   { src: 'https://picsum.photos/seed/27/800/800', title: 'Salt Flats', year: '2021', size: 'normal' },
   { src: 'https://picsum.photos/seed/28/800/800', title: 'Evening', year: '2020', size: 'normal' },
-  { src: 'https://picsum.photos/seed/29/1200/700', title: 'Blue Hour', year: '2020', size: 'wide' },
+  { src: 'https://picsum.photos/seed/42/1200/700', title: 'Blue Hour', year: '2020', size: 'wide' },
 ]
 
 function GalleryItem({ src, title, year, size = 'normal', delay = 0 }: Photo & { delay?: number }) {

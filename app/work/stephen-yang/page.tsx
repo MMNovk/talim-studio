@@ -2,6 +2,7 @@ import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
 import NameBanner from './NameBanner'
 import StephenYangHeader from './StephenYangHeader'
 import StephenYangGallery from './StephenYangGallery'
+import StephenYangContact from './StephenYangContact'
 
 export const metadata = {
   title: 'Stephen Yang — Fine Art Photography',
@@ -9,12 +10,12 @@ export const metadata = {
 }
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { src: 'https://images.unsplash.com/photo-1553485580-4ffd03ed5ea1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { src: 'https://images.unsplash.com/photo-1642383942262-eda4be3f030e?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { src: 'https://images.unsplash.com/photo-1598084331228-71bd91b70e59?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { src: 'https://images.unsplash.com/photo-1620760585223-bfe4c8ece4be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=95&w=5000&auto=format&fit=crop' },
+  { src: 'https://images.unsplash.com/photo-1553485580-4ffd03ed5ea1?q=95&w=5000&auto=format&fit=crop' },
+  { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?q=95&w=5000&auto=format&fit=crop' },
+  { src: 'https://images.unsplash.com/photo-1598084331228-71bd91b70e59?q=95&w=5000&auto=format&fit=crop' },
+  { src: 'https://images.unsplash.com/photo-1642383942262-eda4be3f030e?q=95&w=5000&auto=format&fit=crop' },
+  { src: 'https://images.unsplash.com/photo-1620760585223-bfe4c8ece4be?q=95&w=5000&auto=format&fit=crop' },
 ]
 
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
@@ -40,16 +41,21 @@ export default function StephenYangPage() {
       <StephenYangGallery />
 
       {/* Bio + Portrait */}
-      <section className="bg-[#0a0a0a] px-8 md:px-16 py-24 border-t border-white/10">
+      <section className="bg-[#0a0a0a] px-8 md:px-16 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <p
             className="text-white font-thin text-xl md:text-2xl leading-relaxed"
             style={{ ...serif, lineHeight: 1.7 }}
           >
-            Stephen Yang is a fine art photographer based in New York. His practice spans landscape,
-            portraiture, and architectural work, with a focus on light and duration. He has shown at
-            galleries in New York, Berlin, and Seoul. His first monograph, <em>Aperture</em>, was
-            published in 2022.
+            Stephen Yang is a fine art photographer based in New York. He began shooting
+            professionally in the early 2010s after studying visual arts at Columbia, initially
+            documenting the built environment before the work turned inward — toward light,
+            duration, and the uncanny stillness of inhabited spaces.
+            <br /><br />
+            His practice now spans landscape, portraiture, and architectural work. He has
+            exhibited at galleries in New York, Berlin, and Seoul, and his images have appeared
+            in <em>The New York Times Magazine</em>, <em>Aperture</em>, and <em>Foam</em>.
+            His first monograph, <em>Aperture</em>, was published in 2022 by Steidl.
           </p>
           <div className="relative w-full aspect-[3/4] overflow-hidden">
             <img
@@ -61,6 +67,9 @@ export default function StephenYangPage() {
           </div>
         </div>
       </section>
+
+      {/* Immersive portrait zoom → contact form */}
+      <StephenYangContact />
 
       {/* Footer — email left, credit right */}
       <footer className="bg-[#0a0a0a] px-8 md:px-16 py-8 border-t border-white/10 flex items-center justify-between">
