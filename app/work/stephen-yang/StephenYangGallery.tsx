@@ -15,9 +15,9 @@ type Photo = {
 }
 
 const photos: Photo[] = [
-  // tall → spans 2 rows; wide → spans 2 cols; normal → 1×1
   { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', title: 'Alpine Study', year: '2024', size: 'tall' },
   { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?w=1200&q=80', title: 'Coastal Aerial', year: '2024', size: 'wide' },
+  { src: 'https://images.unsplash.com/photo-1514824068966-23f7d658a8b9?w=800&q=80', title: 'Passage', year: '2024', size: 'tall' },
   { src: 'https://images.unsplash.com/photo-1553485580-4ffd03ed5ea1?w=800&q=80', title: 'Shore Study', year: '2024', size: 'normal' },
   { src: 'https://picsum.photos/seed/20/800/1000', title: 'Altitude Study I', year: '2023', size: 'normal' },
   { src: 'https://images.unsplash.com/photo-1620760585223-bfe4c8ece4be?w=800&q=80', title: 'Dawn Study', year: '2023', size: 'tall' },
@@ -27,6 +27,7 @@ const photos: Photo[] = [
   { src: 'https://picsum.photos/seed/24/800/1000', title: 'Urban Fragment', year: '2022', size: 'normal' },
   { src: 'https://picsum.photos/seed/25/1200/700', title: 'Horizon Line', year: '2022', size: 'wide' },
   { src: 'https://picsum.photos/seed/26/800/1000', title: 'Open Country', year: '2021', size: 'tall' },
+  { src: 'https://images.unsplash.com/photo-1571164890821-dd30a1f9180d?w=800&q=80', title: 'Signal', year: '2021', size: 'tall' },
   { src: 'https://picsum.photos/seed/27/800/800', title: 'Salt Flats', year: '2021', size: 'normal' },
   { src: 'https://picsum.photos/seed/28/800/800', title: 'Evening', year: '2020', size: 'normal' },
   { src: 'https://picsum.photos/seed/42/1200/700', title: 'Blue Hour', year: '2020', size: 'wide' },

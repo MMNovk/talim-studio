@@ -1,6 +1,5 @@
 import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
 import NameBanner from './NameBanner'
-import StephenYangHeader from './StephenYangHeader'
 import StephenYangGallery from './StephenYangGallery'
 import StephenYangContact from './StephenYangContact'
 
@@ -23,9 +22,6 @@ const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 export default function StephenYangPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen" style={serif}>
-
-      {/* Minimal navbar */}
-      <StephenYangHeader />
 
       {/* Immersive scroll gallery */}
       <div id="gallery-section" className="bg-[#0a0a0a]">
@@ -56,6 +52,10 @@ export default function StephenYangPage() {
             exhibited at galleries in New York, Berlin, and Seoul, and his images have appeared
             in <em>The New York Times Magazine</em>, <em>Aperture</em>, and <em>Foam</em>.
             His first monograph, <em>Aperture</em>, was published in 2022 by Steidl.
+            <br /><br />
+            He teaches at ICP New York and leads annual workshops in Iceland and Japan.
+            His archive, dating to 2008, is an ongoing document of cities and people
+            caught at the threshold of motion.
           </p>
           <div className="relative w-full aspect-[3/4] overflow-hidden">
             <img
