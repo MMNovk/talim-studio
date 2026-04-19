@@ -14,6 +14,7 @@ interface iIPicture {
 interface iImmersiveScrollGalleryProps {
   images?: Omit<iIPicture, 'scale'>[]
   className?: string
+  revealContent?: React.ReactNode
 }
 
 // Constants
@@ -40,6 +41,7 @@ const IMAGE_STYLES = [
 const ImmersiveScrollGallery: React.FC<iImmersiveScrollGalleryProps> = ({
   images = DEFAULT_IMAGES,
   className = '',
+  revealContent,
 }) => {
   const container = useRef<HTMLDivElement | null>(null)
 
@@ -85,14 +87,16 @@ const ImmersiveScrollGallery: React.FC<iImmersiveScrollGalleryProps> = ({
 
         <motion.div
           style={{ opacity: opacitySection2, scale: scaleSection2 }}
-          className="w-full h-full flex items-center justify-center max-w-3xl mx-auto p-8 relative"
+          className={revealContent ? "w-full h-full flex items-center relative" : "w-full h-full flex items-center justify-center max-w-3xl mx-auto p-8 relative"}
         >
-          <h1
-            className="text-white text-2xl md:text-4xl font-thin py-4 lowercase"
-            style={{ lineHeight: 1.6, fontFamily: 'Georgia, "Times New Roman", serif' }}
-          >
-            i photograph the spaces between things. the pause before a door opens. light that doesn&apos;t know it&apos;s being watched. i am interested in what a photograph can hold that a memory cannot.
-          </h1>
+          {revealContent ?? (
+            <h1
+              className="text-white text-2xl md:text-4xl font-thin py-4 lowercase"
+              style={{ lineHeight: 1.6, fontFamily: 'Georgia, "Times New Roman", serif' }}
+            >
+              i photograph the spaces between things. the pause before a door opens. light that doesn&apos;t know it&apos;s being watched. i am interested in what a photograph can hold that a memory cannot.
+            </h1>
+          )}
         </motion.div>
       </div>
     </div>

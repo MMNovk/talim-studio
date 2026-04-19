@@ -1,7 +1,6 @@
 import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
-import NameBanner from './NameBanner'
 import StephenYangGallery from './StephenYangGallery'
-import StephenYangContact from './StephenYangContact'
+import BioContact from './BioContact'
 
 export const metadata = {
   title: 'Stephen Yang — Fine Art Photography',
@@ -19,24 +18,33 @@ const galleryImages = [
 
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
+const stephenYangReveal = (
+  <div className="w-full px-8">
+    <h2
+      className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block"
+      style={{ fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.02em', fontFamily: 'Georgia, "Times New Roman", serif' }}
+    >
+      STEPHEN YANG
+    </h2>
+    <p className="text-[#666] text-sm mt-6 tracking-widest" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+      New York · Fine Art Photography · Est. 2019
+    </p>
+  </div>
+)
+
 export default function StephenYangPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen" style={serif}>
 
-      {/* Immersive scroll gallery */}
+      {/* Immersive scroll gallery — zooms into STEPHEN YANG */}
       <div id="gallery-section" className="bg-[#0a0a0a]">
-        <ImmersiveScrollGallery images={galleryImages} />
-      </div>
-
-      {/* Full-bleed typographic name banner */}
-      <div id="name-banner">
-        <NameBanner />
+        <ImmersiveScrollGallery images={galleryImages} revealContent={stephenYangReveal} />
       </div>
 
       {/* Selected works — 3-column masonry with hover title/year */}
       <StephenYangGallery />
 
-      {/* Bio + Portrait */}
+      {/* Bio + Portrait + Contact */}
       <section className="bg-[#0a0a0a] px-8 md:px-16 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <p
@@ -57,19 +65,9 @@ export default function StephenYangPage() {
             His archive, dating to 2008, is an ongoing document of cities and people
             caught at the threshold of motion.
           </p>
-          <div className="relative w-full aspect-[3/4] overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Stephen Yang"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+          <BioContact />
         </div>
       </section>
-
-      {/* Immersive portrait zoom → contact form */}
-      <StephenYangContact />
 
       {/* Footer — email left, credit right */}
       <footer className="bg-[#0a0a0a] px-8 md:px-16 py-8 border-t border-white/10 flex items-center justify-between">
