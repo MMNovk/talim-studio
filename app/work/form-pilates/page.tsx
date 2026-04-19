@@ -1,19 +1,10 @@
-import LuminaInteractiveList from '@/components/ui/lumina-interactive-list'
+import ClarteHero from './ClarteHero'
 import ClarteBooking from './ClarteBooking'
 
 export const metadata = {
   title: 'Clarté — Luxury Facial Studio, Tribeca NYC',
   description: 'Precision skincare in Tribeca. Appointments by design, results by intention.',
 }
-
-const slides = [
-  { title: 'HydraFacial', description: 'Deep cleanse, extract, and hydrate in one transformative session.', media: 'https://assets.codepen.io/7558/orange-portrait-001.jpg' },
-  { title: 'LED Therapy', description: 'Wavelengths of light working beneath the surface to restore and renew.', media: 'https://assets.codepen.io/7558/orange-portrait-002.jpg' },
-  { title: 'Microneedling', description: "Precision micro-channels that awaken your skin's natural repair.", media: 'https://assets.codepen.io/7558/orange-portrait-003.jpg' },
-  { title: 'Gua Sha Ritual', description: 'An ancient practice, refined for the modern complexion.', media: 'https://assets.codepen.io/7558/orange-portrait-004.jpg' },
-  { title: 'Chemical Peel', description: 'Controlled renewal that reveals the skin you were meant to have.', media: 'https://assets.codepen.io/7558/orange-portrait-005.jpg' },
-  { title: 'Bespoke Facial', description: 'Formulated entirely around you. No two are ever the same.', media: 'https://assets.codepen.io/7558/orange-portrait-006.jpg' },
-]
 
 const services = [
   { name: 'HydraFacial', price: '$185', duration: '60 min', description: 'Full cleanse, extraction, and hydration in one session.' },
@@ -31,7 +22,7 @@ export default function ClartePage() {
     <div className="bg-cream text-clay-dark">
 
       {/* ── 1. Hero ──────────────────────────────────────────────────── */}
-      <LuminaInteractiveList slides={slides} studioName="Clarté" ctaHref="#booking" />
+      <ClarteHero />
 
       {/* ── 2. Services ──────────────────────────────────────────────── */}
       <section id="services" className="bg-cream px-8 md:px-16 py-28">
