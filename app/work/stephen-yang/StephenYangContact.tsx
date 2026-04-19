@@ -8,16 +8,6 @@ const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 const PORTRAIT =
   'https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=90&w=3000&auto=format&fit=crop'
 
-const IMAGE_STYLES = [
-  'w-[25vw] h-[25vh]',
-  'w-[35vw] h-[30vh] -top-[30vh] left-[5vw]',
-  'w-[20vw] h-[55vh] -top-[15vh] -left-[25vw]',
-  'w-[25vw] h-[25vh] left-[27.5vw]',
-  'w-[20vw] h-[30vh] top-[30vh] left-[5vw]',
-  'w-[30vw] h-[25vh] top-[27.5vh] -left-[22.5vw]',
-  'w-[15vw] h-[15vh] top-[22.5vh] left-[25vw]',
-]
-
 export default function StephenYangContact() {
   const container = useRef<HTMLDivElement>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -27,38 +17,30 @@ export default function StephenYangContact() {
     offset: ['start start', 'end end'],
   })
 
-  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4])
-  const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5])
-  const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6])
-  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8])
-  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9])
-  // Tiles fully transparent by 65% — form starts at 70% — no overlap
-  const opacityImage = useTransform(scrollYProgress, [0.3, 0.65], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 8])
+  const opacityImage = useTransform(scrollYProgress, [0.35, 0.65], [1, 0])
   const opacityForm = useTransform(scrollYProgress, [0.7, 0.9], [0, 1])
   const scaleForm = useTransform(scrollYProgress, [0.7, 0.9], [0.9, 1])
-
-  const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9]
 
   return (
     <div ref={container} className="relative h-[200vh] bg-[#0a0a0a]" id="contact">
       <div className="sticky top-0 h-[100vh] overflow-hidden bg-[#0a0a0a]">
 
-        {IMAGE_STYLES.map((style, i) => (
-          <motion.div
-            key={i}
-            style={{ scale: scales[i], opacity: opacityImage }}
-            className="absolute flex items-center justify-center w-full h-full top-0"
-          >
-            <div className={`relative ${style}`}>
-              <img
-                src={PORTRAIT}
-                alt="Stephen Yang"
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </motion.div>
-        ))}
+        {/* Portrait — zooms in and disappears */}
+        <motion.div
+          style={{ scale, opacity: opacityImage }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <div className="w-[38vw] h-[52vh]">
+            <img
+              src={PORTRAIT}
+              alt="Stephen Yang"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
 
+        {/* Contact form — revealed after portrait fully disappears */}
         <motion.div
           style={{ opacity: opacityForm, scale: scaleForm }}
           className="w-full h-full flex items-center justify-center px-8 relative"
