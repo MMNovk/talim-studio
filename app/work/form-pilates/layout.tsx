@@ -1,4 +1,4 @@
-import { Playfair_Display } from 'next/font/google'
+import { Playfair_Display, Cormorant_Garamond } from 'next/font/google'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -8,6 +8,14 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+})
+
 export default function ClarteLayout({ children }: { children: React.ReactNode }) {
-  return <div className={playfair.variable}>{children}</div>
+  return <div className={`${playfair.variable} ${cormorant.variable}`}>{children}</div>
 }
