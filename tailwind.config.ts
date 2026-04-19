@@ -52,6 +52,7 @@ const config: Config = {
       },
     },
   },
+  safelist: ['col-span-2', 'row-span-2'],
   plugins: [],
 }
 
