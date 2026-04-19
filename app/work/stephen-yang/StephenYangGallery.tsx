@@ -37,13 +37,13 @@ function GalleryItem({ src, title, year, size = 'normal', delay = 0 }: Photo & {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px 0px' })
 
+  const spanClass = size === 'tall' ? 'row-span-2' : size === 'wide' ? 'col-span-2' : ''
+
   return (
     <div
       ref={ref}
-      className="relative group overflow-hidden"
+      className={`relative group overflow-hidden ${spanClass}`}
       style={{
-        gridRow: size === 'tall' ? 'span 2' : 'span 1',
-        gridColumn: size === 'wide' ? 'span 2' : 'span 1',
         opacity: isInView ? 1 : 0,
         transform: isInView ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
