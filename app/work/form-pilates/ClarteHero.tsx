@@ -1,18 +1,40 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import './clarte-hero.css'
 
-declare const gsap: any
-declare const THREE: any
-
 const slides = [
-  { title: 'HydraFacial',    description: 'Deep cleanse, extract, and hydrate in one transformative session.', media: 'https://assets.codepen.io/7558/orange-portrait-001.jpg' },
-  { title: 'LED Therapy',    description: 'Wavelengths of light working beneath the surface to restore and renew.', media: 'https://assets.codepen.io/7558/orange-portrait-002.jpg' },
-  { title: 'Microneedling',  description: "Precision micro-channels that awaken your skin's natural repair.", media: 'https://assets.codepen.io/7558/orange-portrait-003.jpg' },
-  { title: 'Gua Sha Ritual', description: 'An ancient practice, refined for the modern complexion.', media: 'https://assets.codepen.io/7558/orange-portrait-004.jpg' },
-  { title: 'Chemical Peel',  description: 'Controlled renewal that reveals the skin you were meant to have.', media: 'https://assets.codepen.io/7558/orange-portrait-005.jpg' },
-  { title: 'Bespoke Facial', description: 'Formulated entirely around you. No two are ever the same.', media: 'https://assets.codepen.io/7558/orange-portrait-006.jpg' },
+  {
+    title: 'HydraFacial',
+    description: 'Deep cleanse, extract, and hydrate in one transformative session.',
+    media: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1400&auto=format&fit=crop',
+  },
+  {
+    title: 'LED Therapy',
+    description: 'Wavelengths of light working beneath the surface to restore and renew.',
+    media: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1400&auto=format&fit=crop',
+  },
+  {
+    title: 'Microneedling',
+    description: "Precision micro-channels that awaken your skin's natural repair.",
+    media: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1400&auto=format&fit=crop',
+  },
+  {
+    title: 'Gua Sha Ritual',
+    description: 'An ancient practice, refined for the modern complexion.',
+    media: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1400&auto=format&fit=crop',
+  },
+  {
+    title: 'Chemical Peel',
+    description: 'Controlled renewal that reveals the skin you were meant to have.',
+    media: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1400&auto=format&fit=crop',
+  },
+  {
+    title: 'Bespoke Facial',
+    description: 'Formulated entirely around you. No two are ever the same.',
+    media: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=1400&auto=format&fit=crop',
+  },
 ]
 
 export default function ClarteHero() {
@@ -26,35 +48,11 @@ export default function ClarteHero() {
     let rendererRef: any = null
     let texturesRef: any[] = []
 
-    const loadScripts = async () => {
-      const loadScript = (src: string, globalName: string) =>
-        new Promise<void>((res, rej) => {
-          if ((window as any)[globalName]) { res(); return }
-          const existing = document.querySelector(`script[src="${src}"]`)
-          if (existing) {
-            const check = setInterval(() => { if ((window as any)[globalName]) { clearInterval(check); res() } }, 50)
-            setTimeout(() => { clearInterval(check); rej(new Error(`Timeout ${globalName}`)) }, 10000)
-            return
-          }
-          const s = document.createElement('script')
-          s.src = src
-          s.onload = () => setTimeout(() => res(), 100)
-          s.onerror = () => rej(new Error(`Failed ${src}`))
-          document.head.appendChild(s)
-        })
+    const init = async () => {
+      const THREE = await import('three')
 
-      try {
-        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', 'gsap')
-        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'THREE')
-      } catch (e) {
-        console.error('Script load failed:', e)
-        return
-      }
+      if (!mounted) return
 
-      if (mounted) initApplication()
-    }
-
-    const initApplication = () => {
       const TRANSITION_DURATION = 2.5
       const AUTO_SLIDE_SPEED = 5000
       const PROGRESS_INTERVAL = 50
@@ -139,6 +137,7 @@ export default function ClarteHero() {
         gsap.to(descEl, { y: -10, opacity: 0, duration: 0.4, ease: 'power2.in' })
 
         setTimeout(() => {
+          if (!mounted) return
           titleEl.innerHTML = splitText(slides[idx].title)
           descEl.textContent = slides[idx].description
           gsap.set(titleEl.children, { opacity: 0 })
@@ -185,25 +184,36 @@ export default function ClarteHero() {
       }
 
       // ── NAVIGATION ───────────────────────────────────────────────────
-      const updateNavState    = (idx: number) => document.querySelectorAll('.slide-nav-item').forEach((el, i) => el.classList.toggle('active', i === idx))
-      const updateCounter     = (idx: number) => {
-        const sn = document.getElementById('clarteSlideNumber'); if (sn) sn.textContent = String(idx + 1).padStart(2, '0')
-        const st = document.getElementById('clarteSlideTotal');  if (st) st.textContent = String(slides.length).padStart(2, '0')
+      const updateNavState = (idx: number) =>
+        document.querySelectorAll('.slide-nav-item').forEach((el, i) => el.classList.toggle('active', i === idx))
+
+      const updateCounter = (idx: number) => {
+        const sn = document.getElementById('clarteSlideNumber')
+        if (sn) sn.textContent = String(idx + 1).padStart(2, '0')
+        const st = document.getElementById('clarteSlideTotal')
+        if (st) st.textContent = String(slides.length).padStart(2, '0')
       }
-      const updateProgress    = (idx: number, pct: number) => {
-        const el = (document.querySelectorAll('.slide-nav-item')[idx]?.querySelector('.slide-progress-fill')) as HTMLElement | null
+
+      const updateProgress = (idx: number, pct: number) => {
+        const el = document.querySelectorAll('.slide-nav-item')[idx]?.querySelector('.slide-progress-fill') as HTMLElement | null
         if (el) { el.style.width = `${pct}%`; el.style.opacity = '1' }
       }
+
       const quickResetProgress = (idx: number) => {
-        const el = (document.querySelectorAll('.slide-nav-item')[idx]?.querySelector('.slide-progress-fill')) as HTMLElement | null
-        if (el) { el.style.transition = 'width 0.2s ease-out'; el.style.width = '0%'; setTimeout(() => { el.style.transition = 'width 0.1s ease, opacity 0.3s ease' }, 200) }
+        const el = document.querySelectorAll('.slide-nav-item')[idx]?.querySelector('.slide-progress-fill') as HTMLElement | null
+        if (el) {
+          el.style.transition = 'width 0.2s ease-out'
+          el.style.width = '0%'
+          setTimeout(() => { el.style.transition = 'width 0.1s ease, opacity 0.3s ease' }, 200)
+        }
       }
 
       // ── TIMER ────────────────────────────────────────────────────────
       const stopTimer = () => {
         if (progressAnimation) clearInterval(progressAnimation)
         if (autoSlideTimer) clearTimeout(autoSlideTimer)
-        progressAnimation = null; autoSlideTimer = null
+        progressAnimation = null
+        autoSlideTimer = null
       }
 
       const startTimer = () => {
@@ -215,7 +225,11 @@ export default function ClarteHero() {
           if (!sliderEnabled || !mounted) { stopTimer(); return }
           pct += increment
           updateProgress(currentSlideIndex, pct)
-          if (pct >= 100) { clearInterval(progressAnimation!); progressAnimation = null; if (!isTransitioning) handleSlideChange() }
+          if (pct >= 100) {
+            clearInterval(progressAnimation!)
+            progressAnimation = null
+            if (!isTransitioning) handleSlideChange()
+          }
         }, PROGRESS_INTERVAL)
       }
 
@@ -238,17 +252,18 @@ export default function ClarteHero() {
         if (!fromTex || !toTex) return
 
         isTransitioning = true
-        shaderMaterial.uniforms.uTexture1.value      = fromTex
-        shaderMaterial.uniforms.uTexture2.value      = toTex
-        shaderMaterial.uniforms.uTexture1Size.value  = fromTex.userData.size
-        shaderMaterial.uniforms.uTexture2Size.value  = toTex.userData.size
+        shaderMaterial.uniforms.uTexture1.value     = fromTex
+        shaderMaterial.uniforms.uTexture2.value     = toTex
+        shaderMaterial.uniforms.uTexture1Size.value = fromTex.userData.size
+        shaderMaterial.uniforms.uTexture2Size.value = toTex.userData.size
 
         updateContent(targetIndex)
         currentSlideIndex = targetIndex
         updateCounter(currentSlideIndex)
         updateNavState(currentSlideIndex)
 
-        gsap.fromTo(shaderMaterial.uniforms.uProgress,
+        gsap.fromTo(
+          shaderMaterial.uniforms.uProgress,
           { value: 0 },
           {
             value: 1,
@@ -272,7 +287,8 @@ export default function ClarteHero() {
 
       // ── BUILD NAV ────────────────────────────────────────────────────
       const createNav = () => {
-        const nav = document.getElementById('clarteSlidesNav'); if (!nav) return
+        const nav = document.getElementById('clarteSlidesNav')
+        if (!nav) return
         nav.innerHTML = ''
         slides.forEach((slide, i) => {
           const item = document.createElement('div')
@@ -282,7 +298,9 @@ export default function ClarteHero() {
           item.addEventListener('click', (e) => {
             e.stopPropagation()
             if (!isTransitioning && i !== currentSlideIndex) {
-              stopTimer(); quickResetProgress(currentSlideIndex); navigateToSlide(i)
+              stopTimer()
+              quickResetProgress(currentSlideIndex)
+              navigateToSlide(i)
             }
           })
           nav.appendChild(item)
@@ -291,11 +309,12 @@ export default function ClarteHero() {
 
       // ── THREE.JS RENDERER ─────────────────────────────────────────────
       const initRenderer = async () => {
-        const canvas = containerRef.current?.querySelector('.webgl-canvas') as HTMLCanvasElement | null
+        if (!containerRef.current) return
+        const canvas = containerRef.current.querySelector('.webgl-canvas') as HTMLCanvasElement | null
         if (!canvas) return
 
-        scene  = new THREE.Scene()
-        camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
+        scene    = new THREE.Scene()
+        camera   = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
         renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false })
         rendererRef = renderer
         renderer.setSize(window.innerWidth, window.innerHeight)
@@ -303,13 +322,13 @@ export default function ClarteHero() {
 
         shaderMaterial = new THREE.ShaderMaterial({
           uniforms: {
-            uTexture1: { value: null },
-            uTexture2: { value: null },
-            uProgress:  { value: 0 },
-            uResolution:   { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-            uTexture1Size: { value: new THREE.Vector2(1, 1) },
-            uTexture2Size: { value: new THREE.Vector2(1, 1) },
-            uEffectType:   { value: 0 },
+            uTexture1:                { value: null },
+            uTexture2:                { value: null },
+            uProgress:                { value: 0 },
+            uResolution:              { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+            uTexture1Size:            { value: new THREE.Vector2(1, 1) },
+            uTexture2Size:            { value: new THREE.Vector2(1, 1) },
+            uEffectType:              { value: 0 },
             uGlobalIntensity:         { value: 1.0 },
             uSpeedMultiplier:         { value: 1.0 },
             uDistortionStrength:      { value: 1.0 },
@@ -327,20 +346,32 @@ export default function ClarteHero() {
         scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), shaderMaterial))
 
         const loader = new THREE.TextureLoader()
+        loader.crossOrigin = 'anonymous'
+
         const loadTex = (src: string): Promise<any> =>
           new Promise((res, rej) => {
-            loader.load(src, (t: any) => {
-              t.minFilter = t.magFilter = THREE.LinearFilter
-              t.userData = { size: new THREE.Vector2(t.image.width, t.image.height) }
-              res(t)
-            }, undefined, rej)
+            loader.load(
+              src,
+              (t: any) => {
+                t.minFilter = t.magFilter = THREE.LinearFilter
+                t.userData  = { size: new THREE.Vector2(t.image.width, t.image.height) }
+                res(t)
+              },
+              undefined,
+              rej
+            )
           })
 
         for (const s of slides) {
-          try { slideTextures.push(await loadTex(s.media)) }
-          catch { console.warn('Texture failed:', s.media) }
+          try {
+            slideTextures.push(await loadTex(s.media))
+          } catch {
+            console.warn('Texture failed:', s.media)
+          }
         }
         texturesRef = slideTextures
+
+        if (!mounted) return
 
         if (slideTextures.length >= 2) {
           shaderMaterial.uniforms.uTexture1.value     = slideTextures[0]
@@ -349,7 +380,9 @@ export default function ClarteHero() {
           shaderMaterial.uniforms.uTexture2Size.value = slideTextures[1].userData.size
           texturesLoaded = true
           sliderEnabled  = true
-          containerRef.current?.querySelector('.slider-wrapper')?.classList.add('loaded')
+
+          // FIX: containerRef.current IS the .slider-wrapper element
+          containerRef.current?.classList.add('loaded')
           safeStartTimer(500)
         }
 
@@ -375,7 +408,7 @@ export default function ClarteHero() {
       window.addEventListener('resize', onResize)
       document.addEventListener('visibilitychange', onVisibilityChange)
 
-      // ── INIT ─────────────────────────────────────────────────────────
+      // ── INIT TEXT + NAV ───────────────────────────────────────────────
       createNav()
       updateCounter(0)
 
@@ -388,16 +421,15 @@ export default function ClarteHero() {
         gsap.fromTo(dEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 })
       }
 
-      initRenderer()
+      await initRenderer()
 
-      // Store cleanup refs
-      ;(containerRef as any)._cleanup = () => {
+      ;(containerRef as any)._removeListeners = () => {
         window.removeEventListener('resize', onResize)
         document.removeEventListener('visibilitychange', onVisibilityChange)
       }
     }
 
-    loadScripts()
+    init()
 
     return () => {
       mounted = false
@@ -406,7 +438,7 @@ export default function ClarteHero() {
       if (autoSlideTimer)    clearTimeout(autoSlideTimer)
       if (rendererRef)       rendererRef.dispose()
       texturesRef.forEach(t => t?.dispose())
-      ;(containerRef as any)?._cleanup?.()
+      ;(containerRef as any)?._removeListeners?.()
     }
   }, [])
 
@@ -425,7 +457,7 @@ export default function ClarteHero() {
 
       <div className="slide-content">
         <h1 className="slide-title"       id="clarteMainTitle" />
-        <p  className="slide-description" id="clarteMainDesc" />
+        <p  className="slide-description" id="clarteMainDesc"  />
       </div>
 
       <nav className="slides-navigation" id="clarteSlidesNav" />
