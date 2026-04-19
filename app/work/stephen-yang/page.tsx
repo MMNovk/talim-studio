@@ -18,33 +18,32 @@ const galleryImages = [
 
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
-const stephenYangReveal = (
-  <div className="w-full px-8">
-    <h2
-      className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block"
-      style={{ fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.02em', fontFamily: 'Georgia, "Times New Roman", serif' }}
-    >
-      STEPHEN YANG
-    </h2>
-    <p className="text-[#666] text-sm mt-6 tracking-widest" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
-      New York · Fine Art Photography · Est. 2019
-    </p>
-  </div>
-)
-
 export default function StephenYangPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen" style={serif}>
 
-      {/* Immersive scroll gallery — zooms into STEPHEN YANG */}
+      {/* Immersive scroll gallery */}
       <div id="gallery-section" className="bg-[#0a0a0a]">
-        <ImmersiveScrollGallery images={galleryImages} revealContent={stephenYangReveal} />
+        <ImmersiveScrollGallery images={galleryImages} />
       </div>
 
-      {/* Selected works — 3-column masonry with hover title/year */}
+      {/* STEPHEN YANG — static heading revealed after gallery */}
+      <section className="bg-[#0a0a0a] px-8 md:px-16 pt-20 pb-8">
+        <h1
+          className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block"
+          style={{ fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.02em', ...serif }}
+        >
+          STEPHEN YANG
+        </h1>
+        <p className="text-[#666] text-sm mt-6 tracking-widest" style={serif}>
+          New York · Fine Art Photography · Est. 2019
+        </p>
+      </section>
+
+      {/* Selected works */}
       <StephenYangGallery />
 
-      {/* Bio + Portrait + Contact */}
+      {/* Bio + Portrait */}
       <section className="bg-[#0a0a0a] px-8 md:px-16 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <p
@@ -65,11 +64,23 @@ export default function StephenYangPage() {
             His archive, dating to 2008, is an ongoing document of cities and people
             caught at the threshold of motion.
           </p>
-          <BioContact />
+          <div className="relative w-full aspect-[3/4] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Stephen Yang"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Footer — email left, credit right */}
+      {/* Contact — centered */}
+      <section className="bg-[#0a0a0a] px-8 md:px-16 py-24 flex justify-center" id="contact">
+        <BioContact />
+      </section>
+
+      {/* Footer */}
       <footer className="bg-[#0a0a0a] px-8 md:px-16 py-8 border-t border-white/10 flex items-center justify-between">
         <a
           href="mailto:hello@stephenyang.com"
