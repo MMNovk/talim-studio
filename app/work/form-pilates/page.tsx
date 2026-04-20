@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import ClarteHero from './ClarteHero'
+import ClarteMarquee from './ClarteMarquee'
 import ClarteBooking from './ClarteBooking'
 
 const serif     = { fontFamily: 'var(--font-playfair), Georgia, serif' }
@@ -54,10 +55,13 @@ export default function ClartePage() {
       {/* ── 1. Hero ──────────────────────────────────────────────────── */}
       <ClarteHero />
 
-      {/* ── 2. Statement ─────────────────────────────────────────────── */}
+      {/* ── 2. Marquee ───────────────────────────────────────────────── */}
+      <ClarteMarquee />
+
+      {/* ── 3. Statement ─────────────────────────────────────────────── */}
       <TypographicStatement text="Skin that speaks for itself." />
 
-      {/* ── 3. Services ──────────────────────────────────────────────── */}
+      {/* ── 4. Services ──────────────────────────────────────────────── */}
       <section id="services" className="bg-cream px-8 md:px-16 py-28">
         <div className="max-w-6xl mx-auto">
           <motion.p
