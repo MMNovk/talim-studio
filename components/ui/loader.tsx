@@ -2,45 +2,55 @@
 
 import { useState, useEffect } from 'react'
 
-const ORBIT_CSS = `
-@keyframes orbit {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-`
-
-const spanBase: React.CSSProperties = {
-  position: 'absolute',
-  left: '50%',
-  fontFamily: 'var(--font-cormorant), Georgia, serif',
-  fontStyle: 'italic',
-  fontWeight: 300,
-  fontSize: 11,
-  color: '#F7F3EE',
-  letterSpacing: '0.15em',
-  whiteSpace: 'nowrap',
-}
-
 export function ModifiedClassicLoader() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: ORBIT_CSS }} />
-      <div
-        style={{
-          position: 'relative',
-          width: 80,
-          height: 80,
-          animation: 'orbit 2.5s linear infinite',
-        }}
+    <svg
+      width="120"
+      height="120"
+      viewBox="0 0 120 120"
+      style={{ animation: "orbit 3s linear infinite" }}
+    >
+      <defs>
+        <path
+          id="topCircle"
+          d="M 60,60 m -40,0 a 40,40 0 1,1 80,0"
+        />
+        <path
+          id="bottomCircle"
+          d="M 60,60 m 40,0 a 40,40 0 1,1 -80,0"
+        />
+      </defs>
+      <text
+        fontFamily="Cormorant Garamond"
+        fontStyle="italic"
+        fontWeight="300"
+        fontSize="10"
+        fill="#F7F3EE"
+        letterSpacing="3"
       >
-        <span style={{ ...spanBase, top: 0, transform: 'translateX(-50%)' }}>
+        <textPath href="#topCircle" startOffset="0%">
           Clarté
-        </span>
-        <span style={{ ...spanBase, bottom: 0, transform: 'translateX(-50%) rotate(180deg)' }}>
+        </textPath>
+      </text>
+      <text
+        fontFamily="Cormorant Garamond"
+        fontStyle="italic"
+        fontWeight="300"
+        fontSize="10"
+        fill="#F7F3EE"
+        letterSpacing="3"
+      >
+        <textPath href="#bottomCircle" startOffset="0%">
           Clarté
-        </span>
-      </div>
-    </>
+        </textPath>
+      </text>
+      <style>{`
+        @keyframes orbit {
+          from { transform: rotate(0deg); transform-origin: 60px 60px; }
+          to { transform: rotate(360deg); transform-origin: 60px 60px; }
+        }
+      `}</style>
+    </svg>
   )
 }
 
