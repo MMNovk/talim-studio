@@ -1,0 +1,20 @@
+.clarte-confirm-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.clarte-confirm-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+  animation: clarte-shimmer 2.4s ease-in-out infinite;
+}
+
+@keyframes clarte-shimmer {
+  0%   { left: -80%; }
+  100% { left: 160%; }
+}

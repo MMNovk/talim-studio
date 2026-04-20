@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from 'react'
 import { useState } from 'react'
+import './clarte-booking.css'
 
 const INK    = '#1C1814'
 const ACCENT = '#B5623E'
@@ -92,7 +93,13 @@ export default function ClarteBooking() {
           }
 
           return (
-            <button key={i} onClick={() => avail && setSelectedDate(day)} style={btnStyle}>
+            <button
+              key={i}
+              onClick={() => avail && setSelectedDate(day)}
+              style={btnStyle}
+              onMouseEnter={e => { if (avail) (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.08)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)' }}
+            >
               {day}
             </button>
           )
@@ -136,6 +143,7 @@ export default function ClarteBooking() {
       <button
         onClick={() => canConfirm && setConfirmed(true)}
         disabled={!canConfirm}
+        className={`clarte-confirm-btn${canConfirm ? ' active' : ''}`}
         style={{
           ...DM400,
           marginTop: 24,

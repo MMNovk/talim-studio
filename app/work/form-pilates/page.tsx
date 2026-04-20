@@ -2,9 +2,12 @@
 
 import type { CSSProperties } from 'react'
 import { motion } from 'motion/react'
-import ClarteHero from './ClarteHero'
-import ClarteMarquee from './ClarteMarquee'
-import ClarteBooking from './ClarteBooking'
+import ClarteHero       from './ClarteHero'
+import ClarteMarquee    from './ClarteMarquee'
+import ClarteServices   from './ClarteServices'
+import ClartePhotoBreak from './ClartePhotoBreak'
+import ClarteAbout      from './ClarteAbout'
+import ClarteBooking    from './ClarteBooking'
 
 // ── Design tokens ─────────────────────────────────────────────────────
 const BG     = '#F7F3EE'
@@ -13,6 +16,7 @@ const ACCENT = '#B5623E'
 const MUTED  = '#8C7B6E'
 const RULE   = '#D4C9BC'
 const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const SLOT:  [number, number, number, number] = [0.76, 0, 0.24, 1]
 
 // ── Type-safe style objects ───────────────────────────────────────────
 const C300:  CSSProperties = { fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }
@@ -20,24 +24,7 @@ const C300I: CSSProperties = { fontFamily: 'var(--font-cormorant), Georgia, seri
 const DM300: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 300 }
 const DM400: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 400 }
 
-// ── Shared animation props ────────────────────────────────────────────
-const appear = (delay = 0) => ({
-  initial:     { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition:  { duration: 0.9, delay, ease: EASE },
-  viewport:    { once: true, margin: '-100px' as const },
-})
-
 // ── Data ──────────────────────────────────────────────────────────────
-const services = [
-  { name: 'HydraFacial',    price: '$185', duration: '60 min' },
-  { name: 'LED Therapy',    price: '$95',  duration: '45 min' },
-  { name: 'Microneedling',  price: '$275', duration: '75 min' },
-  { name: 'Gua Sha Ritual', price: '$120', duration: '60 min' },
-  { name: 'Chemical Peel',  price: '$150', duration: '45 min' },
-  { name: 'Bespoke Facial', price: '$220', duration: '90 min' },
-]
-
 const testimonials = [
   { quote: "I've tried every facial in the city. Nothing compares to what Sophie does.", name: 'Margaux T.', location: 'Tribeca' },
   { quote: "My skin has never looked like this. I refer everyone I know.",               name: 'Diana L.',   location: 'West Village' },
@@ -59,26 +46,64 @@ function Label({ children }: { children: string }) {
   )
 }
 
-function HRule() {
-  return <div style={{ width: 96, height: 1, background: RULE, margin: '0 auto' }} />
+/** Each word rises from overflow:hidden slot, staggered */
+function WordSlot({ text, style }: { text: string; style?: CSSProperties }) {
+  const words = text.split(' ')
+  return (
+    <span style={{ display: 'flex', flexWrap: 'wrap', rowGap: '0.15em', columnGap: '0.28em', ...style }}>
+      {words.map((word, i) => (
+        <span key={i} style={{ overflow: 'hidden', display: 'inline-block', lineHeight: 1.1 }}>
+          <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ y: '110%' }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.75, delay: i * 0.12, ease: SLOT }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  )
 }
 
 function TypographicStatement({ text }: { text: string }) {
+  const wordCount = text.split(' ').length
+  const ruleDelay = wordCount * 0.12 + 0.2
   return (
-    <motion.section className="px-8 py-40 text-center" style={{ background: BG }} {...appear()}>
-      <HRule />
-      <p style={{
-        ...C300,
-        fontSize: 'clamp(3.5rem, 7vw, 6.5rem)',
-        color: INK,
-        letterSpacing: '-0.02em',
-        lineHeight: 1.1,
-        margin: '48px 0',
-      }}>
-        {text}
-      </p>
-      <HRule />
-    </motion.section>
+    <section className="px-8 py-40 text-center" style={{ background: BG }}>
+      {/* top rule */}
+      <motion.div
+        style={{ width: 96, height: 1, background: RULE, margin: '0 auto', transformOrigin: 'center' }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.6, ease: EASE }}
+        viewport={{ once: true, margin: '-80px' }}
+      />
+
+      <div style={{ margin: '48px 0' }}>
+        <WordSlot
+          text={text}
+          style={{
+            ...C300,
+            fontSize: 'clamp(3.5rem, 7vw, 6.5rem)',
+            color: INK,
+            letterSpacing: '-0.02em',
+            justifyContent: 'center',
+          }}
+        />
+      </div>
+
+      {/* bottom rule */}
+      <motion.div
+        style={{ width: 96, height: 1, background: RULE, margin: '0 auto', transformOrigin: 'center' }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.6, delay: ruleDelay, ease: EASE }}
+        viewport={{ once: true, margin: '-80px' }}
+      />
+    </section>
   )
 }
 
@@ -87,164 +112,152 @@ export default function ClartePage() {
   return (
     <div style={{ background: BG, color: INK }}>
 
-      {/* ── 1. Hero ────────────────────────────────────────────────── */}
+      {/* 1. Hero */}
       <ClarteHero />
 
-      {/* ── 2. Marquee ─────────────────────────────────────────────── */}
+      {/* 2. Marquee */}
       <ClarteMarquee />
 
-      {/* ── 3. Statement ───────────────────────────────────────────── */}
+      {/* 3. Statement */}
       <TypographicStatement text="Skin that speaks for itself." />
 
-      {/* ── 4. Services ────────────────────────────────────────────── */}
-      <section style={{ background: BG }} className="px-8 md:px-16 lg:px-24 py-32">
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
+      {/* 4. Services — 50/50 sticky split */}
+      <ClarteServices />
 
-          <motion.div style={{ marginBottom: 64 }} {...appear()}>
-            <Label>Treatments</Label>
-            <h2 style={{ ...C300, fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', color: INK, marginTop: 16 }}>
-              Our Services
-            </h2>
-          </motion.div>
+      {/* 5. Photo break */}
+      <ClartePhotoBreak />
 
-          {services.map((s, i) => (
-            <motion.div
-              key={s.name}
-              className="group flex items-center justify-between py-8"
-              style={{ borderTop: `1px solid ${RULE}` }}
-              {...appear(i * 0.06)}
-            >
-              <h3
-                className="transition-transform duration-300 ease-out group-hover:translate-x-2"
-                style={{ ...C300, fontSize: 28, color: INK, lineHeight: 1 }}
-              >
-                {s.name}
-              </h3>
-              <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 24 }}>
-                <span style={{ ...DM300, fontSize: 18, color: ACCENT, display: 'block' }}>{s.price}</span>
-                <span style={{ ...DM400, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: MUTED, display: 'block', marginTop: 4 }}>
-                  {s.duration}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-          <div style={{ borderTop: `1px solid ${RULE}` }} />
-
-        </div>
-      </section>
-
-      {/* ── 5. Statement 2 ─────────────────────────────────────────── */}
+      {/* 6. Statement 2 */}
       <TypographicStatement text="One client at a time. Always." />
 
-      {/* ── 6. About / Sophie ──────────────────────────────────────── */}
-      <section id="about" style={{ background: BG }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+      {/* 7. About / Sophie */}
+      <ClarteAbout />
 
-          {/* Portrait */}
-          <motion.div
-            className="relative overflow-hidden"
-            style={{ minHeight: '60vh' }}
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: EASE }}
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <img
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop"
-              alt="Sophie Marchand, founder of Clarté"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-            />
-          </motion.div>
-
-          {/* Text */}
-          <motion.div
-            className="flex flex-col justify-center"
-            style={{ padding: 'clamp(48px, 7vw, 96px)' }}
-            initial={{ x: 40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.15, ease: EASE }}
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <Label>Founder</Label>
-            <h2 style={{ ...C300, fontSize: 'clamp(3rem, 5vw, 4rem)', color: INK, lineHeight: 1.05, marginTop: 16, marginBottom: 32 }}>
-              Sophie<br />Marchand
-            </h2>
-            <p style={{ ...DM300, fontSize: 16, lineHeight: 1.85, color: MUTED, maxWidth: 400 }}>
-              I spent eight years training in Paris and working across some of New York&apos;s most
-              sought-after skin clinics before opening Clarté in 2021. I started this studio
-              because I believed skincare should be slow, intentional, and built around one
-              person at a time. We see a limited number of clients each week by design. Every
-              treatment is adapted in the room, not decided in advance.
-            </p>
-
-            <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${RULE}`, display: 'flex', gap: 48 }}>
-              <div>
-                <span style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, display: 'block', marginBottom: 8 }}>
-                  Established
-                </span>
-                <span style={{ ...C300, fontSize: 24, color: ACCENT }}>2021</span>
-              </div>
-              <div>
-                <span style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, display: 'block', marginBottom: 8 }}>
-                  Location
-                </span>
-                <span style={{ ...C300, fontSize: 24, color: INK }}>Tribeca, NYC</span>
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-      {/* ── 7. Testimonials ────────────────────────────────────────── */}
+      {/* 8. Testimonials */}
       <section style={{ background: BG }} className="px-8 md:px-16 lg:px-24 py-32">
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
 
-          <motion.div style={{ marginBottom: 64 }} {...appear()}>
+          <motion.div
+            style={{ marginBottom: 64 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+            viewport={{ once: true, margin: '-100px' }}
+          >
             <Label>Client Words</Label>
           </motion.div>
 
           {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              style={{ borderTop: `1px solid ${RULE}`, padding: '40px 0' }}
-              {...appear(i * 0.15)}
-            >
-              <blockquote style={{ paddingLeft: 28, borderLeft: `1px solid ${ACCENT}` }}>
+            <div key={t.name} style={{ borderTop: `1px solid ${RULE}`, padding: '40px 0 40px 28px', position: 'relative' }}>
+              {/* scaleY bar */}
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 40,
+                  bottom: 40,
+                  width: 1,
+                  background: ACCENT,
+                  transformOrigin: 'top center',
+                }}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.18, ease: EASE }}
+                viewport={{ once: true, margin: '-100px' }}
+              />
+              <motion.blockquote
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: i * 0.18 + 0.15, ease: EASE }}
+                viewport={{ once: true, margin: '-100px' }}
+              >
                 <p style={{ ...C300I, fontSize: 'clamp(1.2rem, 2.2vw, 1.5rem)', color: INK, lineHeight: 1.55, marginBottom: 20 }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <p style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED }}>
+                <motion.p
+                  style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: i * 0.18 + 0.25, ease: EASE }}
+                  viewport={{ once: true, margin: '-100px' }}
+                >
                   {t.name} · {t.location}
-                </p>
-              </blockquote>
-            </motion.div>
+                </motion.p>
+              </motion.blockquote>
+            </div>
           ))}
           <div style={{ borderTop: `1px solid ${RULE}` }} />
 
         </div>
       </section>
 
-      {/* ── 8. What to Expect ──────────────────────────────────────── */}
+      {/* 9. What to Expect */}
       <section style={{ background: INK }} className="px-8 md:px-16 lg:px-24 py-32">
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
 
-          <motion.h2
-            style={{ ...C300, fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)', color: BG, textAlign: 'center', marginBottom: 80 }}
-            {...appear()}
-          >
-            The Clarté Experience
-          </motion.h2>
+          <div style={{ textAlign: 'center', marginBottom: 80 }}>
+            <WordSlot
+              text="The Clarté Experience"
+              style={{
+                ...C300,
+                fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
+                color: BG,
+                justifyContent: 'center',
+              }}
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
             {steps.map((step, i) => (
-              <motion.div key={step.num} {...appear(i * 0.15)}>
-                <span style={{ ...C300, fontSize: 'clamp(3.5rem, 6vw, 5rem)', color: ACCENT, display: 'block', lineHeight: 1, marginBottom: 24 }}>
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: i * 0.2, ease: EASE }}
+                viewport={{ once: true, margin: '-80px' }}
+                className="group"
+                style={{ cursor: 'default' }}
+              >
+                {/* elastic numeral pop */}
+                <motion.span
+                  style={{
+                    ...C300,
+                    fontSize: 'clamp(3.5rem, 6vw, 5rem)',
+                    color: ACCENT,
+                    display: 'block',
+                    lineHeight: 1,
+                    marginBottom: 24,
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.55, delay: i * 0.2 + 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                  viewport={{ once: true, margin: '-80px' }}
+                >
                   {step.num}
-                </span>
-                <h3 style={{ ...C300, fontSize: 28, color: BG, marginBottom: 16 }}>
+                </motion.span>
+
+                <h3
+                  style={{
+                    ...C300,
+                    fontSize: 28,
+                    color: BG,
+                    marginBottom: 16,
+                    transition: 'transform 0.3s ease',
+                  }}
+                  className="group-hover:translate-x-1"
+                >
                   {step.title}
                 </h3>
+
+                {/* terracotta underline on hover */}
+                <div style={{
+                  height: 1,
+                  background: ACCENT,
+                  marginBottom: 16,
+                  transformOrigin: 'left center',
+                  transition: 'transform 0.4s cubic-bezier(0.76,0,0.24,1)',
+                }} className="group-hover:scale-x-100 scale-x-0" />
+
                 <p style={{ ...DM300, fontSize: 14, color: MUTED, lineHeight: 1.8 }}>
                   {step.body}
                 </p>
@@ -255,33 +268,60 @@ export default function ClartePage() {
         </div>
       </section>
 
-      {/* ── 9. Booking ─────────────────────────────────────────────── */}
+      {/* 10. Booking */}
       <section id="booking" style={{ background: BG }} className="px-8 md:px-16 py-32">
-        <motion.div style={{ maxWidth: 520, margin: '0 auto', textAlign: 'center' }} {...appear()}>
-
+        <motion.div
+          style={{ maxWidth: 520, margin: '0 auto', textAlign: 'center' }}
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: EASE }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
           <Label>Availability</Label>
-          <h2 style={{ ...C300, fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)', color: INK, marginTop: 16, marginBottom: 12 }}>
-            Reserve Your Visit
-          </h2>
+          <div style={{ margin: '16px 0 12px' }}>
+            <WordSlot
+              text="Reserve Your Visit"
+              style={{
+                ...C300,
+                fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
+                color: INK,
+                justifyContent: 'center',
+              }}
+            />
+          </div>
           <p style={{ ...DM300, fontSize: 11, color: MUTED, letterSpacing: '0.05em', marginBottom: 40 }}>
             Scheduling powered by Calendly — live booking available on your site.
           </p>
           <ClarteBooking />
-
         </motion.div>
       </section>
 
-      {/* ── 10. Find Us ────────────────────────────────────────────── */}
+      {/* 11. Find Us */}
       <section id="find-us" style={{ background: BG }}>
         <div className="grid grid-cols-1 lg:grid-cols-2">
 
           {/* Info */}
           <motion.div
             style={{ padding: 'clamp(48px, 7vw, 96px)' }}
-            {...appear()}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE }}
+            viewport={{ once: true, margin: '-100px' }}
           >
+            {/* letter-by-letter "Clarté" */}
             <h2 style={{ ...C300I, fontSize: 'clamp(3rem, 5vw, 4rem)', color: INK, marginBottom: 56 }}>
-              Clarté
+              {'Clarté'.split('').map((char, i) => (
+                <motion.span
+                  key={i}
+                  style={{ display: 'inline-block' }}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: i * 0.07, ease: SLOT }}
+                  viewport={{ once: true, margin: '-80px' }}
+                >
+                  {char}
+                </motion.span>
+              ))}
             </h2>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
@@ -360,7 +400,7 @@ export default function ClartePage() {
       {/* Footer separator */}
       <div style={{ height: 1, background: '#2C2420' }} />
 
-      {/* ── 11. Footer ─────────────────────────────────────────────── */}
+      {/* 12. Footer */}
       <footer
         style={{ background: INK }}
         className="px-8 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
@@ -371,9 +411,17 @@ export default function ClartePage() {
         </span>
         <a
           href="https://talimstudio.com"
-          style={{ ...DM300, fontSize: 11, color: MUTED, textDecoration: 'none' }}
+          style={{ ...DM300, fontSize: 11, color: MUTED, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}
+          className="hover:text-[#8C7B6E]"
         >
-          Built by Talim Studio →
+          Built by Talim Studio
+          <motion.span
+            style={{ display: 'inline-block' }}
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+          >
+            →
+          </motion.span>
         </a>
       </footer>
 
