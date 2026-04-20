@@ -1,20 +1,29 @@
 'use client'
 
+import type { CSSProperties } from 'react'
 import { useState } from 'react'
 
-const serif = { fontFamily: 'var(--font-playfair), Georgia, serif' }
+const INK    = '#1C1814'
+const ACCENT = '#B5623E'
+const MUTED  = '#8C7B6E'
+const RULE   = '#D4C9BC'
+const BG     = '#FDFAF7'
+
+const C300: CSSProperties  = { fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }
+const C300I: CSSProperties = { fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300, fontStyle: 'italic' }
+const DM300: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 300 }
+const DM400: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 400 }
 
 const AVAILABLE = new Set([3, 5, 8, 10, 12, 15, 17, 19, 22, 24, 26, 29])
 const TIME_SLOTS = ['10:00 AM', '11:30 AM', '2:00 PM']
 const DAY_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
-// April 2025: starts on Tuesday (offset 1)
 const CELLS: (number | null)[] = [
-  null, null, 1, 2, 3, 4, 5,
-  6, 7, 8, 9, 10, 11, 12,
-  13, 14, 15, 16, 17, 18, 19,
-  20, 21, 22, 23, 24, 25, 26,
-  27, 28, 29, 30, null, null, null,
+  null, null, 1,  2,  3,  4,  5,
+  6,    7,    8,  9,  10, 11, 12,
+  13,   14,   15, 16, 17, 18, 19,
+  20,   21,   22, 23, 24, 25, 26,
+  27,   28,   29, 30, null, null, null,
 ]
 
 export default function ClarteBooking() {
@@ -24,9 +33,11 @@ export default function ClarteBooking() {
 
   if (confirmed) {
     return (
-      <div className="text-center py-20">
-        <p className="font-playfair text-3xl text-clay-dark italic" style={serif}>Your visit is reserved.</p>
-        <p className="text-clay-mid text-sm mt-3">We&apos;ll be in touch to confirm your details.</p>
+      <div style={{ textAlign: 'center', padding: '64px 0' }}>
+        <p style={{ ...C300I, fontSize: 32, color: INK }}>Your visit is reserved.</p>
+        <p style={{ ...DM300, fontSize: 13, color: MUTED, marginTop: 12 }}>
+          We&apos;ll be in touch to confirm your details.
+        </p>
       </div>
     )
   }
@@ -34,42 +45,54 @@ export default function ClarteBooking() {
   const canConfirm = selectedDate !== null && selectedTime !== null
 
   return (
-    <div className="rounded-2xl border border-clay-border bg-cream p-8 md:p-10 max-w-md mx-auto shadow-sm">
+    <div style={{
+      border: `1px solid ${RULE}`,
+      background: BG,
+      borderRadius: 4,
+      padding: '32px 28px',
+      textAlign: 'left',
+    }}>
 
       {/* Month header */}
-      <div className="flex items-center justify-between mb-6">
-        <button className="text-clay-light hover:text-terracotta transition-colors text-lg leading-none">‹</button>
-        <h3 className="font-playfair text-xl text-clay-dark" style={serif}>April 2025</h3>
-        <button className="text-clay-light hover:text-terracotta transition-colors text-lg leading-none">›</button>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+        <button style={{ ...DM300, fontSize: 18, color: MUTED, cursor: 'pointer', background: 'none', border: 'none', lineHeight: 1 }}>‹</button>
+        <p style={{ ...C300, fontSize: 18, color: INK }}>April 2025</p>
+        <button style={{ ...DM300, fontSize: 18, color: MUTED, cursor: 'pointer', background: 'none', border: 'none', lineHeight: 1 }}>›</button>
       </div>
 
-      {/* Day of week headers */}
-      <div className="grid grid-cols-7 mb-2">
+      {/* Day labels */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', marginBottom: 8 }}>
         {DAY_LABELS.map(d => (
-          <div key={d} className="text-center text-[10px] text-clay-light tracking-widest uppercase py-1">
+          <div key={d} style={{ ...DM400, fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: MUTED, textAlign: 'center', paddingBottom: 8 }}>
             {d}
           </div>
         ))}
       </div>
 
-      {/* Calendar dates */}
-      <div className="grid grid-cols-7 gap-0.5">
+      {/* Dates */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 3 }}>
         {CELLS.map((day, i) => {
           if (!day) return <div key={i} />
           const avail = AVAILABLE.has(day)
-          const sel = selectedDate === day
+          const sel   = selectedDate === day
+
+          const btnStyle: CSSProperties = {
+            ...DM300,
+            height: 34,
+            width: '100%',
+            fontSize: 13,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: avail ? 'pointer' : 'default',
+            transition: 'all 0.2s ease',
+            border: avail ? `1px solid ${ACCENT}` : 'none',
+            background: sel ? ACCENT : 'transparent',
+            color: sel ? '#fff' : avail ? ACCENT : RULE,
+          }
+
           return (
-            <button
-              key={i}
-              onClick={() => avail && setSelectedDate(day)}
-              className={`h-9 w-full rounded-full text-sm transition-all ${
-                sel
-                  ? 'bg-terracotta text-white font-medium'
-                  : avail
-                  ? 'text-terracotta hover:bg-terracotta/10 font-medium cursor-pointer'
-                  : 'text-clay-border cursor-default'
-              }`}
-            >
+            <button key={i} onClick={() => avail && setSelectedDate(day)} style={btnStyle}>
               {day}
             </button>
           )
@@ -78,35 +101,55 @@ export default function ClarteBooking() {
 
       {/* Time slots */}
       {selectedDate && (
-        <div className="mt-6">
-          <p className="text-[10px] text-clay-light tracking-widest uppercase mb-3">Select a Time</p>
-          <div className="flex gap-3">
-            {TIME_SLOTS.map(t => (
-              <button
-                key={t}
-                onClick={() => setSelectedTime(t)}
-                className={`flex-1 py-2.5 text-sm rounded-lg border transition-all ${
-                  selectedTime === t
-                    ? 'bg-terracotta border-terracotta text-white'
-                    : 'border-clay-border text-clay-mid hover:border-terracotta hover:text-terracotta'
-                }`}
-              >
-                {t}
-              </button>
-            ))}
+        <div style={{ marginTop: 24 }}>
+          <p style={{ ...DM400, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, marginBottom: 12 }}>
+            Select a Time
+          </p>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {TIME_SLOTS.map(t => {
+              const sel = selectedTime === t
+              return (
+                <button
+                  key={t}
+                  onClick={() => setSelectedTime(t)}
+                  style={{
+                    ...DM300,
+                    flex: 1,
+                    padding: '10px 4px',
+                    fontSize: 12,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    border: `1px solid ${ACCENT}`,
+                    background: sel ? ACCENT : 'transparent',
+                    color: sel ? '#fff' : ACCENT,
+                  }}
+                >
+                  {t}
+                </button>
+              )
+            })}
           </div>
         </div>
       )}
 
-      {/* CTA */}
+      {/* Confirm */}
       <button
         onClick={() => canConfirm && setConfirmed(true)}
         disabled={!canConfirm}
-        className={`mt-6 w-full py-3.5 text-[11px] tracking-[0.2em] uppercase transition-all ${
-          canConfirm
-            ? 'bg-terracotta text-white hover:bg-terracotta-dark cursor-pointer'
-            : 'bg-clay-border text-clay-light cursor-not-allowed'
-        }`}
+        style={{
+          ...DM400,
+          marginTop: 24,
+          width: '100%',
+          padding: '14px 0',
+          fontSize: 10,
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          cursor: canConfirm ? 'pointer' : 'not-allowed',
+          background: canConfirm ? INK : RULE,
+          color: canConfirm ? '#F7F3EE' : MUTED,
+          border: 'none',
+          transition: 'all 0.2s ease',
+        }}
       >
         Confirm Booking
       </button>
