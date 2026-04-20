@@ -2,65 +2,41 @@
 
 import { useState, useEffect } from 'react'
 
-// ── Orbit animation injected once ────────────────────────────────────
 const ORBIT_CSS = `
-@keyframes clarte-orbit {
-  from { rotate: 0deg; }
-  to   { rotate: 360deg; }
-}
-@keyframes clarte-counter {
-  from { rotate: 0deg; }
-  to   { rotate: -360deg; }
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 `
 
-function OrbitStyles() {
-  return <style dangerouslySetInnerHTML={{ __html: ORBIT_CSS }} />
+const spanBase: React.CSSProperties = {
+  position: 'absolute',
+  left: '50%',
+  fontFamily: 'var(--font-cormorant), Georgia, serif',
+  fontStyle: 'italic',
+  fontWeight: 300,
+  fontSize: 11,
+  color: '#F7F3EE',
+  letterSpacing: '0.15em',
+  whiteSpace: 'nowrap',
 }
 
-// ── Loader (replaces ModifiedClassicLoader) ───────────────────────────
 export function ModifiedClassicLoader() {
-  const spanBase: React.CSSProperties = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    fontFamily: 'var(--font-cormorant), Georgia, serif',
-    fontStyle: 'italic',
-    fontWeight: 300,
-    fontSize: 11,
-    color: '#F7F3EE',
-    letterSpacing: '0.15em',
-    whiteSpace: 'nowrap',
-    animation: 'clarte-counter 3s linear infinite',
-  }
-
   return (
     <>
-      <OrbitStyles />
+      <style dangerouslySetInnerHTML={{ __html: ORBIT_CSS }} />
       <div
         style={{
           position: 'relative',
-          width: 64,
-          height: 64,
-          animation: 'clarte-orbit 3s linear infinite',
+          width: 80,
+          height: 80,
+          animation: 'orbit 2.5s linear infinite',
         }}
       >
-        {/* top — rotate(0deg) translateY(-22px) */}
-        <span
-          style={{
-            ...spanBase,
-            transform: 'translate(-50%, -50%) rotate(0deg) translateY(-22px)',
-          }}
-        >
+        <span style={{ ...spanBase, top: 0, transform: 'translateX(-50%)' }}>
           Clarté
         </span>
-        {/* bottom — rotate(180deg) translateY(-22px) */}
-        <span
-          style={{
-            ...spanBase,
-            transform: 'translate(-50%, -50%) rotate(180deg) translateY(-22px)',
-          }}
-        >
+        <span style={{ ...spanBase, bottom: 0, transform: 'translateX(-50%) rotate(180deg)' }}>
           Clarté
         </span>
       </div>
@@ -90,7 +66,7 @@ export default function PageLoader() {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: '#1C1814',
+        background: '#0A0A0A',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
