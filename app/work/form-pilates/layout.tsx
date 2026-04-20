@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { Playfair_Display, Cormorant_Garamond } from 'next/font/google'
+
+export const metadata: Metadata = {
+  title: 'Clarté — Luxury Facial Studio, Tribeca NYC',
+  description: 'Precision skincare in Tribeca. Appointments by design, results by intention.',
+}
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
