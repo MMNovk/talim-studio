@@ -5,28 +5,28 @@ import { useState, useEffect } from 'react'
 export function ModifiedClassicLoader() {
   return (
     <svg
-      width="160"
-      height="160"
-      viewBox="0 0 160 160"
+      width="220"
+      height="220"
+      viewBox="0 0 220 220"
       style={{ animation: "orbit 3s linear infinite" }}
     >
       <defs>
         <path
           id="topCircle"
-          d="M 80,80 m -55,0 a 55,55 0 1,1 110,0"
+          d="M 110,110 m -80,0 a 80,80 0 1,1 160,0"
         />
         <path
           id="bottomCircle"
-          d="M 80,80 m 55,0 a 55,55 0 1,1 -110,0"
+          d="M 110,110 m 80,0 a 80,80 0 1,1 -160,0"
         />
       </defs>
       <text
         fontFamily="Cormorant Garamond"
         fontStyle="italic"
         fontWeight="400"
-        fontSize="11.5"
+        fontSize="13"
         fill="#F7F3EE"
-        letterSpacing="5"
+        letterSpacing="12"
       >
         <textPath href="#topCircle" startOffset="0%">
           Clarté
@@ -36,9 +36,9 @@ export function ModifiedClassicLoader() {
         fontFamily="Cormorant Garamond"
         fontStyle="italic"
         fontWeight="400"
-        fontSize="11.5"
+        fontSize="13"
         fill="#F7F3EE"
-        letterSpacing="5"
+        letterSpacing="12"
       >
         <textPath href="#bottomCircle" startOffset="0%">
           Clarté
@@ -46,8 +46,8 @@ export function ModifiedClassicLoader() {
       </text>
       <style>{`
         @keyframes orbit {
-          from { transform: rotate(0deg); transform-origin: 80px 80px; }
-          to { transform: rotate(360deg); transform-origin: 80px 80px; }
+          from { transform: rotate(0deg); transform-origin: 110px 110px; }
+          to { transform: rotate(360deg); transform-origin: 110px 110px; }
         }
       `}</style>
     </svg>
