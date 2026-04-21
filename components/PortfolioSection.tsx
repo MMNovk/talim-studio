@@ -6,11 +6,11 @@ import { RadialScrollGallery } from './RadialScrollGallery'
 
 const portfolioItems = [
   {
-    key: '5',
-    src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
-    label: 'Clarté — Luxury Facial Studio',
-    tier: 'Storefront · $1,099',
-    slug: '/work/form-pilates',
+    key: '2',
+    src: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80',
+    label: 'Cinder & Co.',
+    tier: 'Starter · $499',
+    slug: '/work/mesa-kitchen',
   },
   {
     key: '6',
@@ -34,11 +34,11 @@ const portfolioItems = [
     slug: '/work/vela-nails',
   },
   {
-    key: '2',
-    src: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80',
-    label: 'Cinder & Co.',
-    tier: 'Starter · $499',
-    slug: '/work/mesa-kitchen',
+    key: '5',
+    src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
+    label: 'Clarté — Luxury Facial Studio',
+    tier: 'Storefront · $1,099',
+    slug: '/work/form-pilates',
   },
 ]
 
