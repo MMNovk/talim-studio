@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*, *::before, *::after {
+  cursor: none !important;
+}
+
 :root {
   --ink: #0e0e0e;
   --ink-2: #3a3a3a;
