@@ -12,12 +12,22 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
   const mouse   = useRef({ x: -100, y: -100 })
   const lerp    = useRef({ x: -100, y: -100 })
   const [hovered, setHovered] = useState(false)
-  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const ringEl = ringRef.current!
     const dotEl  = dotRef.current!
     if (!ringEl || !dotEl) return
+
+    document.body.style.cursor = 'none'
+
+    // Position and opacity are owned entirely by direct DOM — never by React.
+    // React only manages width/height (hover size) via state above.
+    ringEl.style.left    = '-100px'
+    ringEl.style.top     = '-100px'
+    ringEl.style.opacity = '0'
+    dotEl.style.left     = '-100px'
+    dotEl.style.top      = '-100px'
+    dotEl.style.opacity  = '0'
 
     let rafId: number
     let started = false
@@ -26,15 +36,17 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
       mouse.current.x = e.clientX
       mouse.current.y = e.clientY
 
-      if (!started) {
-        started = true
-        lerp.current.x = e.clientX
-        lerp.current.y = e.clientY
-        setVisible(true)
-      }
-
+      // Dot follows exactly — direct DOM only
       dotEl.style.left = `${e.clientX}px`
       dotEl.style.top  = `${e.clientY}px`
+
+      if (!started) {
+        started = true
+        lerp.current.x   = e.clientX
+        lerp.current.y   = e.clientY
+        ringEl.style.opacity = '1'
+        dotEl.style.opacity  = '1'
+      }
     }
 
     function onOver(e: MouseEvent) {
@@ -55,6 +67,7 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     function tick() {
       lerp.current.x += (mouse.current.x - lerp.current.x) * 0.12
       lerp.current.y += (mouse.current.y - lerp.current.y) * 0.12
+      // Ring position — direct DOM only
       ringEl.style.left = `${lerp.current.x}px`
       ringEl.style.top  = `${lerp.current.y}px`
       rafId = requestAnimationFrame(tick)
@@ -66,6 +79,7 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     rafId = requestAnimationFrame(tick)
 
     return () => {
+      document.body.style.cursor = ''
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseover',  onOver)
       document.removeEventListener('mouseout',   onOut)
@@ -76,48 +90,40 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
   if (isLoaderVisible) return null
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        pointerEvents: 'none',
-        zIndex: 99999,
-        mixBlendMode: 'difference',
-      }}
-    >
-      {/* Outer ring — lerp-smoothed */}
+    // mix-blend-mode: difference — cursor inverts on light/dark backgrounds
+    <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 99999, mixBlendMode: 'difference' }}>
+
+      {/* Outer ring — position/opacity via direct DOM, size via React state */}
       <div
         ref={ringRef}
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width:  hovered ? 48 : 32,
-          height: hovered ? 48 : 32,
-          border: '1.5px solid #ffffff',
-          background: 'transparent',
+          width:        hovered ? 48 : 32,
+          height:       hovered ? 48 : 32,
+          border:       '1.5px solid #ffffff',
+          background:   'transparent',
           borderRadius: '50%',
-          transform: 'translate(-50%, -50%)',
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 300ms ease, width 300ms ease, height 300ms ease',
+          transform:    'translate(-50%, -50%)',
+          pointerEvents: 'none',
+          transition:   'width 300ms ease, height 300ms ease',
         }}
       />
-      {/* Inner dot — exact position */}
+
+      {/* Inner dot — position/opacity via direct DOM, size via React state */}
       <div
         ref={dotRef}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width:  hovered ? 6 : 4,
-          height: hovered ? 6 : 4,
-          background: '#ffffff',
+          position:     'absolute',
+          width:        hovered ? 6 : 4,
+          height:       hovered ? 6 : 4,
+          background:   '#ffffff',
           borderRadius: '50%',
-          transform: 'translate(-50%, -50%)',
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 300ms ease, width 300ms ease, height 300ms ease',
+          transform:    'translate(-50%, -50%)',
+          pointerEvents: 'none',
+          transition:   'width 300ms ease, height 300ms ease',
         }}
       />
+
     </div>
   )
 }
