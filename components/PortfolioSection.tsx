@@ -36,7 +36,7 @@ const portfolioItems = [
   {
     key: '5',
     src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
-    label: 'Clarté — Luxury Facial Studio',
+    label: 'Clarté',
     tier: 'Storefront · $1,099',
     slug: '/work/form-pilates',
   },
