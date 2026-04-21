@@ -29,9 +29,9 @@ const PANEL_IMAGES = [
   "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&q=80",
   "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
   "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
   "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1633177188754-980c2a6b6266?w=600&q=80",
+  "https://assets.codepen.io/7558/orange-portrait-001.jpg",
 ];
 
 const GRADIENT_OVERLAYS = [
