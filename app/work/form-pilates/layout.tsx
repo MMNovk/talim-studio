@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Playfair_Display, Cormorant_Garamond } from 'next/font/google'
 import ClarteScroll from './ClarteScroll'
 import PageLoader from '@/components/ui/loader'
+import CustomCursor from '@/components/ui/custom-cursor'
 
 export const metadata: Metadata = {
   title: 'Clarté — Luxury Facial Studio, Tribeca NYC',
@@ -27,6 +28,7 @@ const cormorant = Cormorant_Garamond({
 export default function ClarteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`${playfair.variable} ${cormorant.variable}`}>
+      <CustomCursor />
       <PageLoader />
       <ClarteScroll />
       {children}
