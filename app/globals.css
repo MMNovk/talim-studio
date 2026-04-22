@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  cursor: none !important;
-}
-
-a, button, input, textarea, select, label, [role="button"] {
-  cursor: none !important;
-}
 
 :root {
   --ink: #0e0e0e;

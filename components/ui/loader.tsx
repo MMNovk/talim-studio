@@ -77,7 +77,6 @@ export default function PageLoader() {
         inset: 0,
         zIndex: 9999,
         background: '#0A0A0A',
-        cursor: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
