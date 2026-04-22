@@ -1,7 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 
 const INK    = '#1C1814'
@@ -15,28 +15,10 @@ const C300:  CSSProperties = { fontFamily: 'var(--font-cormorant), Georgia, seri
 const DM300: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 300 }
 const DM400: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 400 }
 
-function LineSlot({ children, delay = 0 }: { children: string; delay?: number }) {
-  return (
-    <span style={{ display: 'block', overflow: 'hidden', lineHeight: 1.1 }}>
-      <motion.span
-        style={{ display: 'block' }}
-        initial={{ y: '105%' }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 0.75, delay, ease: [0.76, 0, 0.24, 1] }}
-        viewport={{ once: true, margin: '-80px' }}
-      >
-        {children}
-      </motion.span>
-    </span>
-  )
-}
 
 export default function ClarteAbout() {
   const containerRef = useRef<HTMLDivElement>(null)
   const imgRef       = useRef<HTMLImageElement>(null)
-  const countElRef   = useRef<HTMLSpanElement>(null)
-  const [count, setCount]     = useState(2018)
-  const hasCounted            = useRef(false)
 
   useEffect(() => {
     let ctx: { revert?: () => void } = {}
@@ -66,24 +48,6 @@ export default function ClarteAbout() {
     })()
 
     return () => { if (ctx.revert) ctx.revert() }
-  }, [])
-
-  useEffect(() => {
-    const el = countElRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasCounted.current) {
-        hasCounted.current = true
-        let cur = 2018
-        const iv = setInterval(() => {
-          cur++
-          setCount(cur)
-          if (cur >= 2021) clearInterval(iv)
-        }, 110)
-      }
-    }, { threshold: 0.5 })
-    observer.observe(el)
-    return () => observer.disconnect()
   }, [])
 
   return (
@@ -119,54 +83,39 @@ export default function ClarteAbout() {
             transition={{ duration: 0.6, ease: EASE }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            Founder
-          </motion.p>
-
-          <h2 style={{ ...C300, fontSize: 'clamp(3rem, 5vw, 4rem)', color: INK, marginTop: 16, marginBottom: 32 }}>
-            <LineSlot delay={0.1}>Sophie</LineSlot>
-            <LineSlot delay={0.22}>Marchand</LineSlot>
-          </h2>
-
-          <motion.div
-            style={{ width: '100%', height: 1, background: RULE, marginBottom: 32, transformOrigin: 'left center' }}
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-            viewport={{ once: true, margin: '-80px' }}
-          />
-
-          <motion.p
-            style={{ ...DM300, fontSize: 16, lineHeight: 1.85, color: MUTED, maxWidth: 400 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
-            viewport={{ once: true, margin: '-80px' }}
-          >
-            I spent eight years training in Paris and working across some of New York&apos;s most
-            sought-after skin clinics before opening Clarté in 2021. I started this studio
-            because I believed skincare should be slow, intentional, and built around one
-            person at a time. We see a limited number of clients each week by design. Every
-            treatment is adapted in the room, not decided in advance.
+            The Studio
           </motion.p>
 
           <motion.div
-            style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${RULE}`, display: 'flex', gap: 48 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease: EASE }}
+            transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            <div>
-              <span style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, display: 'block', marginBottom: 8 }}>
-                Established
-              </span>
-              <span ref={countElRef} style={{ ...C300, fontSize: 24, color: ACCENT }}>{count}</span>
-            </div>
-            <div>
-              <span style={{ ...DM400, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, display: 'block', marginBottom: 8 }}>
-                Location
-              </span>
-              <span style={{ ...C300, fontSize: 24, color: INK }}>Tribeca, NYC</span>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', gap: '48px', marginTop: 40 }}>
+
+              <p style={{ ...DM300, fontSize: 16, lineHeight: 1.9, color: INK, margin: 0 }}>
+                Our Tribeca studio is small by design. One room, one practitioner, one client at a time. You&apos;ll find us on Thomas Street — quiet, unhurried, nothing like a typical skin clinic. We built the space to feel like somewhere you exhale the moment you walk in.
+              </p>
+
+              <div style={{ width: '100%', height: '1px', backgroundColor: RULE }} />
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {[
+                  "We don't upsell.",
+                  "We don't book back-to-back.",
+                  "Every treatment is adapted in the room, never decided in advance.",
+                  "You'll see the same face every visit.",
+                ].map((principle, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: ACCENT, ...DM300, fontSize: 14, marginTop: 2, flexShrink: 0 }}>—</span>
+                    <p style={{ ...C300, fontStyle: 'italic', fontSize: 20, color: INK, margin: 0, lineHeight: 1.4 }}>
+                      {principle}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </motion.div>
         </div>
