@@ -8,7 +8,7 @@ import TreatmentGrid    from './TreatmentGrid'
 import ClarteManifesto  from './ClarteManifesto'
 import { TestimonialSlider } from './ClarteTeam'
 import OurWorkScroll        from './OurWorkScroll'
-import ClarteAbout      from './ClarteAbout'
+import StudioGallery      from './StudioGallery'
 import ClarteBooking    from './ClarteBooking'
 
 // ── Design tokens ─────────────────────────────────────────────────────
@@ -179,8 +179,8 @@ export default function ClartePage() {
         <TestimonialSlider reviews={team} />
       </div>
 
-      {/* 7. About / Sophie */}
-      <ClarteAbout />
+      {/* 7. The Studio gallery */}
+      <StudioGallery />
 
       {/* 8. Testimonials */}
       <section style={{ background: BG }} className="px-8 md:px-16 lg:px-24 py-32">
