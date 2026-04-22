@@ -179,9 +179,6 @@ export default function ClartePage() {
         <TestimonialSlider reviews={team} />
       </div>
 
-      {/* 7. Statement 2 */}
-      <TypographicStatement text="One client at a time. Always." />
-
       {/* 7. About / Sophie */}
       <ClarteAbout />
 
