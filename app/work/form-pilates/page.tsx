@@ -4,7 +4,7 @@ import type { CSSProperties } from 'react'
 import { motion } from 'motion/react'
 import ClarteHero       from './ClarteHero'
 import ClarteMarquee    from './ClarteMarquee'
-import ClarteServices   from './ClarteServices'
+import ClarteShowcase   from './ClarteShowcase'
 import ClartePhotoBreak from './ClartePhotoBreak'
 import ClarteAbout      from './ClarteAbout'
 import ClarteBooking    from './ClarteBooking'
@@ -121,8 +121,8 @@ export default function ClartePage() {
       {/* 3. Statement */}
       <TypographicStatement text="Skin that speaks for itself." />
 
-      {/* 4. Services — 50/50 sticky split */}
-      <ClarteServices />
+      {/* 4. Services — hover image showcase */}
+      <ClarteShowcase />
 
       {/* 5. Photo break */}
       <ClartePhotoBreak />
