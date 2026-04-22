@@ -39,6 +39,8 @@ const team = [
     name: 'Sophie Marchand',
     affiliation: 'Founder & Lead Esthetician',
     quote: 'I started Clarté because I believed every client deserves a practitioner who actually listens. We adapt every treatment in the room. Nothing is decided in advance.',
+    joined: 'Est. 2021',
+    specialization: 'Bespoke Facials · HydraFacial · Client Experience',
     imageSrc: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=600&fit=crop&q=80',
     thumbnailSrc: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=120&fit=crop&q=80',
   },
@@ -47,6 +49,8 @@ const team = [
     name: 'Ines Vidal',
     affiliation: 'Senior Esthetician',
     quote: 'Microneedling and chemical peels are my specialty. I approach every treatment with precision — the results speak for themselves.',
+    joined: 'Joined 2022',
+    specialization: 'Microneedling · Chemical Peels · Skin Resurfacing',
     imageSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=600&fit=crop&q=80',
     thumbnailSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=120&fit=crop&q=80',
   },
@@ -54,7 +58,9 @@ const team = [
     id: 3,
     name: 'Camille Tran',
     affiliation: 'Holistic Treatment Specialist',
-    quote: 'Gua sha is more than technique — it\'s about understanding how the body holds tension and releasing it with intention. Every session is a ritual.',
+    quote: "Gua sha is more than technique — it's about understanding how the body holds tension and releasing it with intention. Every session is a ritual.",
+    joined: 'Joined 2023',
+    specialization: 'Gua Sha · LED Therapy · Lymphatic Massage',
     imageSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=400&h=600&fit=crop&q=80',
     thumbnailSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=100&h=120&fit=crop&q=80',
   },
@@ -168,7 +174,7 @@ export default function ClartePage() {
           padding: '64px 64px 0',
           margin: 0,
         }}>
-          THE TEAM
+          MEET THE TEAM
         </p>
         <TestimonialSlider reviews={team} />
       </div>

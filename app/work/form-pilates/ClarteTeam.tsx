@@ -9,6 +9,8 @@ interface Review {
   name: string
   affiliation: string
   quote: string
+  joined: string
+  specialization: string
   imageSrc: string
   thumbnailSrc: string
 }
@@ -54,49 +56,38 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
   const review = reviews[current]
 
   return (
-    <div style={{ backgroundColor: '#F7F3EE', padding: '48px 64px 80px' }}>
-      <div style={{ display: 'flex', gap: 56, alignItems: 'flex-start' }}>
+    <div
+      className="min-h-[650px] md:min-h-[600px] p-8 md:p-12"
+      style={{ backgroundColor: '#F7F3EE' }}
+    >
+      <div style={{ display: 'flex', gap: 56, alignItems: 'flex-start', height: '100%' }}>
 
-        {/* Left sidebar: vertical label + thumbnails */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28, paddingTop: 4, flexShrink: 0 }}>
-          <span style={{
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
-            fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 400,
-            fontSize: 11,
-            letterSpacing: '0.25em',
-            textTransform: 'uppercase',
-            color: '#8C7B6E',
-          }}>
-            THE TEAM
-          </span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {reviews.map((r, i) => (
-              <button
-                key={r.id}
-                onClick={() => handleThumbnailClick(i)}
-                style={{
-                  width: 56,
-                  height: 72,
-                  borderRadius: '2px',
-                  overflow: 'hidden',
-                  opacity: i === current ? 1 : 0.35,
-                  transition: 'opacity 0.3s ease',
-                  border: 'none',
-                  padding: 0,
-                  cursor: 'pointer',
-                  display: 'block',
-                }}
-              >
-                <img
-                  src={r.thumbnailSrc}
-                  alt={r.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </button>
-            ))}
-          </div>
+        {/* Thumbnails */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, paddingTop: 4, flexShrink: 0 }}>
+          {reviews.map((r, i) => (
+            <button
+              key={r.id}
+              onClick={() => handleThumbnailClick(i)}
+              style={{
+                width: 56,
+                height: 72,
+                borderRadius: '2px',
+                overflow: 'hidden',
+                opacity: i === current ? 1 : 0.35,
+                transition: 'opacity 0.3s ease',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+                display: 'block',
+              }}
+            >
+              <img
+                src={r.thumbnailSrc}
+                alt={r.name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </button>
+          ))}
         </div>
 
         {/* Animated content: image + text */}
@@ -164,6 +155,16 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
               }}>
                 {review.quote}
               </blockquote>
+
+              {/* Joined */}
+              <p style={{ fontFamily: 'DM Sans', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E', marginTop: '24px' }}>
+                {review.joined}
+              </p>
+
+              {/* Specialization */}
+              <p style={{ fontFamily: 'DM Sans', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', marginTop: '8px' }}>
+                {review.specialization}
+              </p>
 
               {/* Navigation */}
               <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
