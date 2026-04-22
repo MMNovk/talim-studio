@@ -122,10 +122,7 @@ export default function ClartePage() {
       {/* 3. Manifesto */}
       <ClarteManifesto />
 
-      {/* 4. Statement */}
-      <TypographicStatement text="Skin that speaks for itself." />
-
-      {/* 5. Services — 2-col treatment grid */}
+      {/* 4. Services — 2-col treatment grid */}
       <TreatmentGrid />
 
       {/* 5. Photo break */}
