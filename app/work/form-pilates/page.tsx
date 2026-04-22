@@ -9,6 +9,7 @@ import ClarteManifesto  from './ClarteManifesto'
 import { TestimonialSlider } from './ClarteTeam'
 import OurWorkScroll        from './OurWorkScroll'
 import StudioGallery      from './StudioGallery'
+import { ProductStrip }   from './ProductStrip'
 import ClarteBooking    from './ClarteBooking'
 
 // ── Design tokens ─────────────────────────────────────────────────────
@@ -240,7 +241,10 @@ export default function ClartePage() {
         </div>
       </section>
 
-      {/* 9. What to Expect */}
+      {/* 9. The Edit — product strip */}
+      <ProductStrip />
+
+      {/* 10. What to Expect */}
       <section style={{ background: INK }} className="px-8 md:px-16 lg:px-24 py-32">
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
 
