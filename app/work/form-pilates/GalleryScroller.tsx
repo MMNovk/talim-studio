@@ -1,61 +1,57 @@
 'use client'
 
-import { InfiniteSlider } from '@/components/ui/infinite-slider-horizontal'
-import Image from 'next/image'
+import { DraggableContainer, GridBody, GridItem } from '@/components/ui/infinite-drag-scroll'
 
-const galleryImages = [
-  { title: 'Treatment 1', image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 2', image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 3', image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 4', image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 5', image: 'https://images.unsplash.com/photo-1552693673-1bf958298935?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 6', image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 7', image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&h=400&fit=crop&q=80' },
-  { title: 'Treatment 8', image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop&q=80' },
+const images = [
+  { id: 1,  alt: "Facial treatment", src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" },
+  { id: 2,  alt: "Skin care",        src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80" },
+  { id: 3,  alt: "LED therapy",      src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80" },
+  { id: 4,  alt: "Gua sha",          src: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" },
+  { id: 5,  alt: "Facial massage",   src: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80" },
+  { id: 6,  alt: "Microneedling",    src: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80" },
+  { id: 7,  alt: "Skin treatment",   src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80" },
+  { id: 8,  alt: "Beauty ritual",    src: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80" },
+  { id: 9,  alt: "Clean skin",       src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=800&q=80" },
+  { id: 10, alt: "Face mask",        src: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" },
+  { id: 11, alt: "Spa treatment",    src: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=800&q=80" },
+  { id: 12, alt: "Skin glow",        src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" },
+  { id: 13, alt: "Face care",        src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80" },
+  { id: 14, alt: "Hydrafacial",      src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80" },
+  { id: 15, alt: "Ritual",           src: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" },
+  { id: 16, alt: "Glow treatment",   src: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80" },
+  { id: 17, alt: "Studio",           src: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80" },
+  { id: 18, alt: "Clarté",           src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80" },
 ]
 
 export function GalleryScroller() {
   return (
-    <section style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
+    <section style={{ backgroundColor: '#F7F3EE' }}>
       <p style={{
         fontFamily: 'DM Sans, sans-serif',
         fontSize: '11px',
         letterSpacing: '0.25em',
         textTransform: 'uppercase',
         color: '#8C7B6E',
-        paddingLeft: '64px',
-        marginBottom: '40px',
+        padding: '64px 64px 32px',
       }}>
         Our Work
       </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <InfiniteSlider direction="horizontal" duration={40}>
-          {galleryImages.map((image) => (
-            <div key={image.title} style={{ width: '280px', height: '200px', borderRadius: '2px', overflow: 'hidden', flexShrink: 0 }}>
-              <Image
-                src={image.image}
-                alt={image.title}
-                width={400}
-                height={400}
-                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+      <DraggableContainer variant="masonry">
+        <GridBody>
+          {images.map((image) => (
+            <GridItem
+              key={image.id}
+              className="relative h-54 w-36 md:h-96 md:w-64"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="pointer-events-none absolute h-full w-full object-cover"
               />
-            </div>
+            </GridItem>
           ))}
-        </InfiniteSlider>
-        <InfiniteSlider direction="horizontal" duration={40} reverse>
-          {galleryImages.map((image) => (
-            <div key={image.title + '-reverse'} style={{ width: '280px', height: '200px', borderRadius: '2px', overflow: 'hidden', flexShrink: 0 }}>
-              <Image
-                src={image.image}
-                alt={image.title}
-                width={400}
-                height={400}
-                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-              />
-            </div>
-          ))}
-        </InfiniteSlider>
-      </div>
+        </GridBody>
+      </DraggableContainer>
     </section>
   )
 }
