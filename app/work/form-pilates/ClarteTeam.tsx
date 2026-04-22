@@ -60,10 +60,10 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
       className="min-h-[650px] md:min-h-[600px] p-8 md:p-12"
       style={{ backgroundColor: '#F7F3EE' }}
     >
-      <div style={{ display: 'flex', gap: 56, alignItems: 'flex-start', height: '100%' }}>
+      <div className="grid grid-cols-12 gap-6 items-start">
 
-        {/* Thumbnails */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, paddingTop: 4, flexShrink: 0 }}>
+        {/* Left col: thumbnails — md:col-span-2 */}
+        <div className="col-span-2 flex flex-col items-center gap-2 pt-1">
           {reviews.map((r, i) => (
             <button
               key={r.id}
@@ -90,7 +90,7 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
           ))}
         </div>
 
-        {/* Animated content: image + text */}
+        {/* Animated content: image + text — col-span-10 */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={review.id}
@@ -99,23 +99,22 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
             initial="enter"
             animate="center"
             exit="exit"
-            style={{ display: 'flex', flex: 1, gap: 64, alignItems: 'flex-start' }}
+            className="col-span-10 grid grid-cols-10 gap-8 items-start"
           >
-            {/* Main image */}
+            {/* Center col: image — col-span-6 */}
             <div
-              className="min-h-[500px] md:min-h-[620px]"
-              style={{ flexShrink: 0, width: 300, borderRadius: '2px', overflow: 'hidden' }}
+              className="col-span-6"
+              style={{ width: '100%', minHeight: '620px', position: 'relative', overflow: 'hidden' }}
             >
               <img
                 src={review.imageSrc}
                 alt={review.name}
-                className="min-h-[500px] md:min-h-[620px]"
-                style={{ width: '100%', objectFit: 'cover', display: 'block' }}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
               />
             </div>
 
-            {/* Text + nav */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8 }}>
+            {/* Right col: text + nav — col-span-4 */}
+            <div className="col-span-4" style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8 }}>
 
               {/* Pagination */}
               <span style={{ fontFamily: '"DM Sans", sans-serif', color: '#8C7B6E', fontSize: 11 }}>
@@ -214,3 +213,4 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
     </div>
   )
 }
+
