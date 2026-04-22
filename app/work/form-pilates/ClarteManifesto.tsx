@@ -1,30 +1,28 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useEffect } from 'react'
 
-const words = "We built Clarté around a single belief: that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that is decided in the moment — not in advance. We don’t upsell. We don’t rush. We see fewer people by design, so that everyone we see leaves different than they came in.".split(' ')
+const TEXT = "We built Clarté around a single belief: that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that is decided in the moment — not in advance. We don't upsell. We don't rush. We see fewer people by design, so that everyone we see leaves different than they came in."
+const words = TEXT.split(' ')
 
 export default function ClarteManifesto() {
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([])
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            ;(entry.target as HTMLElement).style.color = '#1C1814'
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 1.0, rootMargin: '0px 0px -10% 0px' }
-    )
+    const wordEls = document.querySelectorAll('.manifesto-word')
 
-    wordRefs.current.forEach((el) => {
-      if (el) observer.observe(el)
-    })
+    const handleScroll = () => {
+      wordEls.forEach((word, index) => {
+        const rect = word.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        if (rect.top < windowHeight * 0.85) {
+          setTimeout(() => {
+            ;(word as HTMLElement).style.color = '#1C1814'
+          }, index * 40)
+        }
+      })
+    }
 
-    return () => observer.disconnect()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -34,34 +32,32 @@ export default function ClarteManifesto() {
         padding: '80px 64px',
         display: 'flex',
         alignItems: 'center',
-        minHeight: '60vh',
+        textAlign: 'center',
       }}
     >
-      <div style={{ maxWidth: '60%' }}>
+      <div style={{ maxWidth: '60%', margin: '0 auto' }}>
         <p
           style={{
             fontFamily: 'DM Sans, sans-serif',
             fontWeight: 300,
-            fontSize: 'clamp(1rem, 1.4vw, 1.2rem)',
+            fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)',
             lineHeight: 2,
             letterSpacing: '0.01em',
             margin: '0 0 32px 0',
           }}
         >
           {words.map((word, i) => (
-            <span key={i}>
-              <span
-                ref={(el) => { wordRefs.current[i] = el }}
-                style={{
-                  position: 'relative',
-                  display: 'inline-block',
-                  color: '#D4C9BC',
-                  transition: 'color 0.4s ease',
-                }}
-              >
-                {word}
-              </span>
-              {i < words.length - 1 && ' '}
+            <span
+              key={i}
+              className="manifesto-word"
+              style={{
+                color: '#D4C9BC',
+                transition: 'color 0.5s ease',
+                display: 'inline-block',
+                marginRight: '0.25em',
+              }}
+            >
+              {word}
             </span>
           ))}
         </p>
