@@ -387,7 +387,7 @@ export function Component() {
   return (
     <>
       <main className="slider-wrapper" ref={containerRef}>
-        <canvas className="webgl-canvas"></canvas>
+        <canvas className="webgl-canvas" style={{ pointerEvents: 'none' }}></canvas>
         <span className="slide-number" id="slideNumber">01</span>
         <span className="slide-total" id="slideTotal">06</span>
 

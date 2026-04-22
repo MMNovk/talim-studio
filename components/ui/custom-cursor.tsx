@@ -7,14 +7,14 @@ interface Props {
 }
 
 export default function CustomCursor({ isLoaderVisible = false }: Props) {
-  const ringRef = useRef<HTMLDivElement>(null)
-  const dotRef  = useRef<HTMLDivElement>(null)
-  const mouse   = useRef<{ x: number; y: number } | null>(null)
-  const lerp    = useRef<{ x: number; y: number } | null>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const ringRef    = useRef<HTMLDivElement>(null)
+  const dotRef     = useRef<HTMLDivElement>(null)
+  const mouse      = useRef<{ x: number; y: number } | null>(null)
+  const lerp       = useRef<{ x: number; y: number } | null>(null)
   const [hovered, setHovered] = useState(false)
   const [ready,   setReady]   = useState(false)
 
-  // Event listeners + RAF — set up once, independent of element refs
   useEffect(() => {
     document.body.style.cursor = 'none'
 
@@ -22,7 +22,6 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
 
     function onMove(e: MouseEvent) {
       if (!mouse.current) {
-        // First move: snap both refs to exact cursor position (no lerp from 0,0)
         mouse.current = { x: e.clientX, y: e.clientY }
         lerp.current  = { x: e.clientX, y: e.clientY }
         setReady(true)
@@ -30,9 +29,20 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
         mouse.current.x = e.clientX
         mouse.current.y = e.clientY
       }
+
       if (dotRef.current) {
         dotRef.current.style.left = `${e.clientX}px`
         dotRef.current.style.top  = `${e.clientY}px`
+      }
+
+      // Hero detection — switch blend mode so ring is visible over WebGL canvas
+      if (wrapperRef.current && ringRef.current) {
+        const heroEl  = document.querySelector('.slider-wrapper')
+        const overHero = heroEl
+          ? (() => { const r = heroEl.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom })()
+          : false
+        wrapperRef.current.style.mixBlendMode = overHero ? 'normal' : 'difference'
+        ringRef.current.style.border = `1.5px solid ${overHero ? 'rgba(255,255,255,0.9)' : '#ffffff'}`
       }
     }
 
@@ -52,7 +62,6 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     }
 
     function tick() {
-      // Skip frames until first mousemove initializes positions
       if (lerp.current && mouse.current && ringRef.current) {
         lerp.current.x += (mouse.current.x - lerp.current.x) * 0.12
         lerp.current.y += (mouse.current.y - lerp.current.y) * 0.12
@@ -76,7 +85,6 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     }
   }, [])
 
-  // Snap to cursor before first paint so elements never appear at 0,0
   useLayoutEffect(() => {
     if (!ready || !ringRef.current || !dotRef.current || !lerp.current || !mouse.current) return
     ringRef.current.style.left = `${lerp.current.x}px`
@@ -85,7 +93,6 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     dotRef.current.style.top   = `${mouse.current.y}px`
   }, [ready])
 
-  // Fade in after first paint at correct position (triggers CSS transition)
   useEffect(() => {
     if (!ready || !ringRef.current || !dotRef.current) return
     ringRef.current.style.opacity = '1'
@@ -95,9 +102,16 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
   if (isLoaderVisible) return null
 
   return (
-    <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 99999, mixBlendMode: 'difference' }}>
-
-      {/* Elements only mount after first mousemove — no 0,0 flash on load */}
+    <div
+      ref={wrapperRef}
+      style={{
+        position:      'fixed',
+        inset:         0,
+        pointerEvents: 'none',
+        zIndex:        999999,
+        mixBlendMode:  'difference',
+      }}
+    >
       {ready && (
         <>
           <div
@@ -131,7 +145,6 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
           />
         </>
       )}
-
     </div>
   )
 }
