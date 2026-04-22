@@ -29,19 +29,22 @@ export default function ClarteManifesto() {
     <section
       style={{
         backgroundColor: '#F7F3EE',
-        padding: '80px 64px',
+        padding: '160px 64px',
         display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
+        minHeight: '100vh',
         textAlign: 'center',
       }}
     >
-      <div style={{ maxWidth: '60%', margin: '0 auto' }}>
+      <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
         <p
           style={{
             fontFamily: 'DM Sans, sans-serif',
             fontWeight: 300,
-            fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)',
-            lineHeight: 2,
+            fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)',
+            lineHeight: 2.2,
             letterSpacing: '0.01em',
             margin: '0 0 32px 0',
           }}
