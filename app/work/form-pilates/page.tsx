@@ -7,6 +7,7 @@ import ClarteMarquee    from './ClarteMarquee'
 import TreatmentGrid    from './TreatmentGrid'
 import ClarteManifesto  from './ClarteManifesto'
 import { TestimonialSlider } from './ClarteTeam'
+import { GalleryScroller }  from './GalleryScroller'
 import ClartePhotoBreak from './ClartePhotoBreak'
 import ClarteAbout      from './ClarteAbout'
 import ClarteBooking    from './ClarteBooking'
@@ -159,8 +160,8 @@ export default function ClartePage() {
       {/* 4. Services — 2-col treatment grid */}
       <TreatmentGrid />
 
-      {/* 5. Photo break */}
-      <ClartePhotoBreak />
+      {/* 5. Gallery scroller */}
+      <GalleryScroller />
 
       {/* 6. Meet the Team */}
       <div style={{ backgroundColor: '#F7F3EE' }}>
