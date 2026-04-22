@@ -102,11 +102,15 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
             style={{ display: 'flex', flex: 1, gap: 64, alignItems: 'flex-start' }}
           >
             {/* Main image */}
-            <div style={{ flexShrink: 0, width: 260, height: 360, borderRadius: '2px', overflow: 'hidden' }}>
+            <div
+              className="min-h-[500px] md:min-h-[620px]"
+              style={{ flexShrink: 0, width: 300, borderRadius: '2px', overflow: 'hidden' }}
+            >
               <img
                 src={review.imageSrc}
                 alt={review.name}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                className="min-h-[500px] md:min-h-[620px]"
+                style={{ width: '100%', objectFit: 'cover', display: 'block' }}
               />
             </div>
 
@@ -153,7 +157,7 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
                 margin: 0,
                 lineHeight: 1.65,
               }}>
-                {review.quote}
+                &ldquo;{review.quote}&rdquo;
               </blockquote>
 
               {/* Joined */}
