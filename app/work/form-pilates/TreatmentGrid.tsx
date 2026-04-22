@@ -59,22 +59,20 @@ const projects: Project[] = [
 export default function TreatmentGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [visible, setVisible] = useState(false)
-  const imgRef = useRef<HTMLDivElement>(null)
-  const target = useRef({ x: 0, y: 0 })
-  const current = useRef({ x: 0, y: 0 })
+  const [smoothPosition, setSmoothPosition] = useState<{ x: number; y: number } | null>(null)
+  const mousePosition = useRef<{ x: number; y: number } | null>(null)
   const rafRef = useRef<number | null>(null)
 
   useEffect(() => {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
     const animate = () => {
-      current.current.x = lerp(current.current.x, target.current.x, 0.1)
-      current.current.y = lerp(current.current.y, target.current.y, 0.1)
-
-      if (imgRef.current) {
-        imgRef.current.style.transform = `translate(${current.current.x}px, ${current.current.y}px)`
+      if (mousePosition.current) {
+        setSmoothPosition((prev) => ({
+          x: lerp(prev?.x ?? mousePosition.current!.x, mousePosition.current!.x, 0.15),
+          y: lerp(prev?.y ?? mousePosition.current!.y, mousePosition.current!.y, 0.15),
+        }))
       }
-
       rafRef.current = requestAnimationFrame(animate)
     }
 
@@ -85,7 +83,7 @@ export default function TreatmentGrid() {
   }, [])
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    target.current = { x: e.clientX + 24, y: e.clientY - 140 }
+    mousePosition.current = { x: e.clientX, y: e.clientY }
   }
 
   const handleMouseEnter = (index: number) => {
@@ -106,7 +104,6 @@ export default function TreatmentGrid() {
     >
       {/* Floating image */}
       <div
-        ref={imgRef}
         style={{
           position: "fixed",
           top: 0,
@@ -119,7 +116,9 @@ export default function TreatmentGrid() {
           overflow: "hidden",
           opacity: visible ? 1 : 0,
           transition: "opacity 0.35s ease",
-          willChange: "transform",
+          transform: smoothPosition
+            ? `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 160}px, 0)`
+            : "translate3d(-9999px, -9999px, 0)",
         }}
       >
         {hoveredIndex !== null && (
