@@ -62,8 +62,8 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
     >
       <div className="grid grid-cols-12 gap-6 items-start">
 
-        {/* Left col: thumbnails — md:col-span-2 */}
-        <div className="col-span-2 flex flex-col items-center gap-2 pt-1">
+        {/* Left col: thumbnails — col-span-3 */}
+        <div className="col-span-3 flex flex-col items-center gap-2 pt-1">
           {reviews.map((r, i) => (
             <button
               key={r.id}
@@ -90,7 +90,7 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
           ))}
         </div>
 
-        {/* Animated content: image + text — col-span-10 */}
+        {/* Animated content: image + text — col-span-9 */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={review.id}
@@ -99,11 +99,11 @@ export function TestimonialSlider({ reviews }: { reviews: Review[] }) {
             initial="enter"
             animate="center"
             exit="exit"
-            className="col-span-10 grid grid-cols-10 gap-8 items-start"
+            className="col-span-9 grid grid-cols-9 gap-8 items-start"
           >
-            {/* Center col: image — col-span-6 */}
+            {/* Center col: image — col-span-5 */}
             <div
-              className="col-span-6"
+              className="col-span-5"
               style={{ width: '100%', minHeight: '620px', position: 'relative', overflow: 'hidden' }}
             >
               <img
