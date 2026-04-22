@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import ClarteHero       from './ClarteHero'
 import ClarteMarquee    from './ClarteMarquee'
 import TreatmentGrid    from './TreatmentGrid'
+import ClarteManifesto  from './ClarteManifesto'
 import ClartePhotoBreak from './ClartePhotoBreak'
 import ClarteAbout      from './ClarteAbout'
 import ClarteBooking    from './ClarteBooking'
@@ -118,35 +119,11 @@ export default function ClartePage() {
       {/* 2. Marquee */}
       <ClarteMarquee />
 
-      {/* 3. Statement */}
-      <TypographicStatement text="Skin that speaks for itself." />
+      {/* 3. Manifesto */}
+      <ClarteManifesto />
 
-      {/* 4. Manifesto */}
-      <section style={{ backgroundColor: "#F7F3EE", padding: "120px 64px" }}>
-        <div style={{ maxWidth: "60%" }}>
-          <p style={{
-            fontFamily: "DM Sans, sans-serif",
-            fontWeight: 300,
-            fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-            color: "#1C1814",
-            lineHeight: 2,
-            letterSpacing: "0.01em",
-            margin: "0 0 32px 0",
-          }}>
-            We built Clarté around a single belief: that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that is decided in the moment — not in advance. We don&apos;t upsell. We don&apos;t rush. We see fewer people by design, so that everyone we see leaves different than they came in.
-          </p>
-          <span style={{
-            fontFamily: "DM Sans, sans-serif",
-            fontWeight: 300,
-            fontSize: "11px",
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "#B5623E",
-          }}>
-            Sophie Marchand, Founder
-          </span>
-        </div>
-      </section>
+      {/* 4. Statement */}
+      <TypographicStatement text="Skin that speaks for itself." />
 
       {/* 5. Services — 2-col treatment grid */}
       <TreatmentGrid />
