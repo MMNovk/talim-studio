@@ -43,17 +43,17 @@ const team = [
     joined: 'Founded in 2024',
     specialization: 'Bespoke Facials · HydraFacial · Client Experience',
     imageSrc: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=987&auto=format&fit=crop',
-    thumbnailSrc: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=100&h=120&fit=crop',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&fit=crop',
   },
   {
     id: 2,
     name: 'Ines Vidal',
     affiliation: 'Senior Esthetician',
-    quote: 'Microneedling and chemical peels are my specialty. I approach every treatment with precision. The results speak for themselves!',
+    quote: 'Microneedling and chemical peels are my specialty. I approach every treatment with precision. The results speak for themselves.',
     joined: 'Joined in 2025',
     specialization: 'Microneedling · Chemical Peels · Skin Resurfacing',
     imageSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=600&fit=crop&q=80',
-    thumbnailSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=120&fit=crop&q=80',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&fit=crop&q=80',
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const team = [
     joined: 'Joined in 2026',
     specialization: 'Gua Sha · LED Therapy · Lymphatic Massage',
     imageSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=400&h=600&fit=crop&q=80',
-    thumbnailSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=100&h=120&fit=crop&q=80',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=200&fit=crop&q=80',
   },
 ]
 
