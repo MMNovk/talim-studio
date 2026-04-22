@@ -7,18 +7,18 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Lens } from '@/components/ui/magnifier-lens'
 
 const items = [
-  { id: 1,  url: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=880&h=600&fit=crop&q=80',  title: 'HydraFacial treatment' },
-  { id: 2,  url: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=880&h=600&fit=crop&q=80',  title: 'Skin care ritual' },
-  { id: 3,  url: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=880&h=600&fit=crop&q=80',  title: 'LED therapy' },
-  { id: 4,  url: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=880&h=600&fit=crop&q=80',  title: 'Gua sha ritual' },
-  { id: 5,  url: 'https://images.unsplash.com/photo-1552693673-1bf958298935?w=880&h=600&fit=crop&q=80',  title: 'Bespoke facial' },
-  { id: 6,  url: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=880&h=600&fit=crop&q=80',  title: 'Microneedling' },
-  { id: 7,  url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=880&h=600&fit=crop&q=80',  title: 'Skin treatment' },
-  { id: 8,  url: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=880&h=600&fit=crop&q=80',  title: 'Beauty ritual' },
-  { id: 9,  url: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=880&h=600&fit=crop&q=80',  title: 'Clean skin' },
-  { id: 10, url: 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=880&h=600&fit=crop&q=80',  title: 'Spa treatment' },
-  { id: 11, url: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=880&h=600&fit=crop&q=80',  title: 'Founder portrait' },
-  { id: 12, url: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=880&h=600&fit=crop&q=80',  title: 'Esthetician' },
+  { id: 1,  url: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&h=800&fit=crop&q=90', title: 'Facial treatment' },
+  { id: 2,  url: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&h=800&fit=crop&q=90', title: 'HydraFacial' },
+  { id: 3,  url: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&h=800&fit=crop&q=90', title: 'LED therapy' },
+  { id: 4,  url: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=800&fit=crop&q=90', title: 'Gua sha' },
+  { id: 5,  url: 'https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&h=800&fit=crop&q=90', title: 'Bespoke facial' },
+  { id: 6,  url: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=1200&h=800&fit=crop&q=90', title: 'Microneedling' },
+  { id: 7,  url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&h=800&fit=crop&q=90', title: 'Skin treatment' },
+  { id: 8,  url: 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1200&h=800&fit=crop&q=90', title: 'Spa treatment' },
+  { id: 9,  url: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=800&fit=crop&q=90', title: 'Face massage' },
+  { id: 10, url: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=800&fit=crop&q=90', title: 'Skin care' },
+  { id: 11, url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=90', title: 'Facial massage' },
+  { id: 12, url: 'https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=1200&h=800&fit=crop&q=90', title: 'Chemical peel' },
 ]
 
 const DRAG_THRESHOLD = 80
@@ -38,6 +38,7 @@ const slideVariants = {
 export default function OurWorkGallery() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [lensEnabled, setLensEnabled] = useState(true)
   const thumbsRef = useRef<HTMLDivElement>(null)
 
   const goTo = (index: number) => {
@@ -76,7 +77,66 @@ export default function OurWorkGallery() {
         OUR WORK
       </p>
 
-      <div className="max-w-4xl mx-auto px-16">
+      <div className="max-w-5xl mx-auto px-16">
+        <div style={{ display: 'flex', alignItems: 'stretch', gap: 0 }}>
+          {/* Left column — hint + lens toggle */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: '24px',
+            paddingRight: '32px',
+            minWidth: '180px',
+          }}>
+            <p style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              fontSize: '18px',
+              color: '#1C1814',
+              lineHeight: 1.6,
+            }}>
+              Hover over any image to inspect the detail up close.
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div
+                onClick={() => setLensEnabled(prev => !prev)}
+                style={{
+                  width: '40px',
+                  height: '22px',
+                  borderRadius: '11px',
+                  backgroundColor: lensEnabled ? '#B5623E' : '#D4C9BC',
+                  position: 'relative',
+                  cursor: 'pointer',
+                  transition: 'background-color 300ms ease',
+                  flexShrink: 0,
+                }}
+              >
+                <div style={{
+                  position: 'absolute',
+                  top: '3px',
+                  left: lensEnabled ? '21px' : '3px',
+                  width: '16px',
+                  height: '16px',
+                  borderRadius: '50%',
+                  backgroundColor: '#F7F3EE',
+                  transition: 'left 300ms ease',
+                }} />
+              </div>
+              <span style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: '#8C7B6E',
+              }}>
+                {lensEnabled ? 'Lens On' : 'Lens Off'}
+              </span>
+            </div>
+          </div>
+
+          {/* Right column — carousel */}
+          <div style={{ flex: 1, minWidth: 0 }}>
         {/* Main carousel */}
         <div
           className="relative overflow-hidden"
@@ -105,14 +165,23 @@ export default function OurWorkGallery() {
                 transition={{ type: 'spring', stiffness: 300, damping: 30, restDelta: 0.001 }}
                 className="absolute inset-0"
               >
-                <Lens zoomFactor={2.5} lensSize={180}>
+                {lensEnabled ? (
+                  <Lens zoomFactor={2.5} lensSize={180}>
+                    <img
+                      src={items[current].url}
+                      alt={items[current].title}
+                      className="w-full h-full object-cover rounded-lg select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  </Lens>
+                ) : (
                   <img
                     src={items[current].url}
                     alt={items[current].title}
                     className="w-full h-full object-cover rounded-lg select-none pointer-events-none"
                     draggable={false}
                   />
-                </Lens>
+                )}
               </motion.div>
             </AnimatePresence>
           </motion.div>
@@ -195,6 +264,8 @@ export default function OurWorkGallery() {
             </button>
           ))}
         </div>
+          </div>{/* right column */}
+        </div>{/* flex row */}
       </div>
     </section>
   )
