@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 interface Props {
   isLoaderVisible?: boolean
@@ -9,43 +9,30 @@ interface Props {
 export default function CustomCursor({ isLoaderVisible = false }: Props) {
   const ringRef = useRef<HTMLDivElement>(null)
   const dotRef  = useRef<HTMLDivElement>(null)
-  const mouse   = useRef({ x: -100, y: -100 })
-  const lerp    = useRef({ x: -100, y: -100 })
+  const mouse   = useRef<{ x: number; y: number } | null>(null)
+  const lerp    = useRef<{ x: number; y: number } | null>(null)
   const [hovered, setHovered] = useState(false)
+  const [ready,   setReady]   = useState(false)
 
+  // Event listeners + RAF — set up once, independent of element refs
   useEffect(() => {
-    const ringEl = ringRef.current!
-    const dotEl  = dotRef.current!
-    if (!ringEl || !dotEl) return
-
     document.body.style.cursor = 'none'
 
-    // Position and opacity are owned entirely by direct DOM — never by React.
-    // React only manages width/height (hover size) via state above.
-    ringEl.style.left    = '-100px'
-    ringEl.style.top     = '-100px'
-    ringEl.style.opacity = '0'
-    dotEl.style.left     = '-100px'
-    dotEl.style.top      = '-100px'
-    dotEl.style.opacity  = '0'
-
     let rafId: number
-    let started = false
 
     function onMove(e: MouseEvent) {
-      mouse.current.x = e.clientX
-      mouse.current.y = e.clientY
-
-      // Dot follows exactly — direct DOM only
-      dotEl.style.left = `${e.clientX}px`
-      dotEl.style.top  = `${e.clientY}px`
-
-      if (!started) {
-        started = true
-        lerp.current.x   = e.clientX
-        lerp.current.y   = e.clientY
-        ringEl.style.opacity = '1'
-        dotEl.style.opacity  = '1'
+      if (!mouse.current) {
+        // First move: snap both refs to exact cursor position (no lerp from 0,0)
+        mouse.current = { x: e.clientX, y: e.clientY }
+        lerp.current  = { x: e.clientX, y: e.clientY }
+        setReady(true)
+      } else {
+        mouse.current.x = e.clientX
+        mouse.current.y = e.clientY
+      }
+      if (dotRef.current) {
+        dotRef.current.style.left = `${e.clientX}px`
+        dotRef.current.style.top  = `${e.clientY}px`
       }
     }
 
@@ -65,11 +52,13 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     }
 
     function tick() {
-      lerp.current.x += (mouse.current.x - lerp.current.x) * 0.12
-      lerp.current.y += (mouse.current.y - lerp.current.y) * 0.12
-      // Ring position — direct DOM only
-      ringEl.style.left = `${lerp.current.x}px`
-      ringEl.style.top  = `${lerp.current.y}px`
+      // Skip frames until first mousemove initializes positions
+      if (lerp.current && mouse.current && ringRef.current) {
+        lerp.current.x += (mouse.current.x - lerp.current.x) * 0.12
+        lerp.current.y += (mouse.current.y - lerp.current.y) * 0.12
+        ringRef.current.style.left = `${lerp.current.x}px`
+        ringRef.current.style.top  = `${lerp.current.y}px`
+      }
       rafId = requestAnimationFrame(tick)
     }
 
@@ -87,42 +76,61 @@ export default function CustomCursor({ isLoaderVisible = false }: Props) {
     }
   }, [])
 
+  // Snap to cursor before first paint so elements never appear at 0,0
+  useLayoutEffect(() => {
+    if (!ready || !ringRef.current || !dotRef.current || !lerp.current || !mouse.current) return
+    ringRef.current.style.left = `${lerp.current.x}px`
+    ringRef.current.style.top  = `${lerp.current.y}px`
+    dotRef.current.style.left  = `${mouse.current.x}px`
+    dotRef.current.style.top   = `${mouse.current.y}px`
+  }, [ready])
+
+  // Fade in after first paint at correct position (triggers CSS transition)
+  useEffect(() => {
+    if (!ready || !ringRef.current || !dotRef.current) return
+    ringRef.current.style.opacity = '1'
+    dotRef.current.style.opacity  = '1'
+  }, [ready])
+
   if (isLoaderVisible) return null
 
   return (
-    // mix-blend-mode: difference — cursor inverts on light/dark backgrounds
     <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 99999, mixBlendMode: 'difference' }}>
 
-      {/* Outer ring — position/opacity via direct DOM, size via React state */}
-      <div
-        ref={ringRef}
-        style={{
-          position: 'absolute',
-          width:        hovered ? 48 : 32,
-          height:       hovered ? 48 : 32,
-          border:       '1.5px solid #ffffff',
-          background:   'transparent',
-          borderRadius: '50%',
-          transform:    'translate(-50%, -50%)',
-          pointerEvents: 'none',
-          transition:   'width 300ms ease, height 300ms ease',
-        }}
-      />
-
-      {/* Inner dot — position/opacity via direct DOM, size via React state */}
-      <div
-        ref={dotRef}
-        style={{
-          position:     'absolute',
-          width:        hovered ? 6 : 4,
-          height:       hovered ? 6 : 4,
-          background:   '#ffffff',
-          borderRadius: '50%',
-          transform:    'translate(-50%, -50%)',
-          pointerEvents: 'none',
-          transition:   'width 300ms ease, height 300ms ease',
-        }}
-      />
+      {/* Elements only mount after first mousemove — no 0,0 flash on load */}
+      {ready && (
+        <>
+          <div
+            ref={ringRef}
+            style={{
+              position:      'absolute',
+              opacity:       0,
+              width:         hovered ? 48 : 32,
+              height:        hovered ? 48 : 32,
+              border:        '1.5px solid #ffffff',
+              background:    'transparent',
+              borderRadius:  '50%',
+              transform:     'translate(-50%, -50%)',
+              pointerEvents: 'none',
+              transition:    'opacity 300ms ease, width 300ms ease, height 300ms ease',
+            }}
+          />
+          <div
+            ref={dotRef}
+            style={{
+              position:      'absolute',
+              opacity:       0,
+              width:         hovered ? 6 : 4,
+              height:        hovered ? 6 : 4,
+              background:    '#ffffff',
+              borderRadius:  '50%',
+              transform:     'translate(-50%, -50%)',
+              pointerEvents: 'none',
+              transition:    'opacity 300ms ease, width 300ms ease, height 300ms ease',
+            }}
+          />
+        </>
+      )}
 
     </div>
   )
