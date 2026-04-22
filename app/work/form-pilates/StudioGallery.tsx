@@ -97,7 +97,7 @@ export default function StudioGallery() {
 
   return (
     <section id="about" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
-      <div className="max-w-4xl mx-auto px-16">
+      <div className="px-16">
 
         <p
           style={{
@@ -127,7 +127,7 @@ export default function StudioGallery() {
         </p>
 
         {/* Split layout: 3fr photo + 2fr description */}
-        <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '48px', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '64px', alignItems: 'start' }}>
 
           {/* Left column — carousel + thumbnails */}
           <div>
@@ -234,6 +234,7 @@ export default function StudioGallery() {
           </div>
 
           {/* Right column — animated description panel */}
+          <div style={{ paddingTop: '48px' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -282,6 +283,7 @@ export default function StudioGallery() {
               </p>
             </motion.div>
           </AnimatePresence>
+          </div>
 
         </div>
       </div>
