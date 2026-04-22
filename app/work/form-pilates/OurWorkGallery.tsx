@@ -77,66 +77,7 @@ export default function OurWorkGallery() {
         OUR WORK
       </p>
 
-      <div className="max-w-5xl mx-auto px-16">
-        <div style={{ display: 'flex', alignItems: 'stretch', gap: 0 }}>
-          {/* Left column — hint + lens toggle */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: '24px',
-            paddingRight: '32px',
-            minWidth: '180px',
-          }}>
-            <p style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 300,
-              fontStyle: 'italic',
-              fontSize: '18px',
-              color: '#1C1814',
-              lineHeight: 1.6,
-            }}>
-              Hover over any image to inspect the detail up close.
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div
-                onClick={() => setLensEnabled(prev => !prev)}
-                style={{
-                  width: '40px',
-                  height: '22px',
-                  borderRadius: '11px',
-                  backgroundColor: lensEnabled ? '#B5623E' : '#D4C9BC',
-                  position: 'relative',
-                  cursor: 'pointer',
-                  transition: 'background-color 300ms ease',
-                  flexShrink: 0,
-                }}
-              >
-                <div style={{
-                  position: 'absolute',
-                  top: '3px',
-                  left: lensEnabled ? '21px' : '3px',
-                  width: '16px',
-                  height: '16px',
-                  borderRadius: '50%',
-                  backgroundColor: '#F7F3EE',
-                  transition: 'left 300ms ease',
-                }} />
-              </div>
-              <span style={{
-                fontFamily: 'DM Sans, sans-serif',
-                fontSize: '11px',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: '#8C7B6E',
-              }}>
-                {lensEnabled ? 'Lens On' : 'Lens Off'}
-              </span>
-            </div>
-          </div>
-
-          {/* Right column — carousel */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+      <div className="max-w-4xl mx-auto px-16">
         {/* Main carousel */}
         <div
           className="relative overflow-hidden"
@@ -165,23 +106,14 @@ export default function OurWorkGallery() {
                 transition={{ type: 'spring', stiffness: 300, damping: 30, restDelta: 0.001 }}
                 className="absolute inset-0"
               >
-                {lensEnabled ? (
-                  <Lens zoomFactor={2.5} lensSize={180}>
-                    <img
-                      src={items[current].url}
-                      alt={items[current].title}
-                      className="w-full h-full object-cover rounded-lg select-none pointer-events-none"
-                      draggable={false}
-                    />
-                  </Lens>
-                ) : (
+                <Lens zoomFactor={lensEnabled ? 2.5 : 1} lensSize={lensEnabled ? 180 : 0}>
                   <img
                     src={items[current].url}
                     alt={items[current].title}
                     className="w-full h-full object-cover rounded-lg select-none pointer-events-none"
                     draggable={false}
                   />
-                )}
+                </Lens>
               </motion.div>
             </AnimatePresence>
           </motion.div>
@@ -264,8 +196,60 @@ export default function OurWorkGallery() {
             </button>
           ))}
         </div>
-          </div>{/* right column */}
-        </div>{/* flex row */}
+
+        {/* Hint + lens toggle */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingTop: '20px',
+        }}>
+          <p style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontStyle: 'italic',
+            fontSize: '16px',
+            color: '#8C7B6E',
+            margin: 0,
+          }}>
+            Hover over any image to inspect the detail up close.
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div
+              onClick={() => setLensEnabled(prev => !prev)}
+              style={{
+                width: '40px',
+                height: '22px',
+                borderRadius: '11px',
+                backgroundColor: lensEnabled ? '#B5623E' : '#D4C9BC',
+                position: 'relative',
+                cursor: 'pointer',
+                transition: 'background-color 300ms ease',
+                flexShrink: 0,
+              }}
+            >
+              <div style={{
+                position: 'absolute',
+                top: '3px',
+                left: lensEnabled ? '21px' : '3px',
+                width: '16px',
+                height: '16px',
+                borderRadius: '50%',
+                backgroundColor: '#F7F3EE',
+                transition: 'left 300ms ease',
+              }} />
+            </div>
+            <span style={{
+              fontFamily: 'DM Sans, sans-serif',
+              fontSize: '11px',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: '#8C7B6E',
+            }}>
+              {lensEnabled ? 'Lens On' : 'Lens Off'}
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   )
