@@ -126,8 +126,7 @@ export const TestimonialSlider = ({
               animate="center"
               exit="exit"
               transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute inset-0 w-full h-full object-cover object-top rounded-lg"
-              style={{ objectPosition: "center 10%" }}
+              className="absolute inset-0 w-full h-full object-cover rounded-lg"
             />
           </AnimatePresence>
         </div>
