@@ -6,6 +6,7 @@ import ClarteHero       from './ClarteHero'
 import ClarteMarquee    from './ClarteMarquee'
 import TreatmentGrid    from './TreatmentGrid'
 import ClarteManifesto  from './ClarteManifesto'
+import { TestimonialSlider } from './ClarteTeam'
 import ClartePhotoBreak from './ClartePhotoBreak'
 import ClarteAbout      from './ClarteAbout'
 import ClarteBooking    from './ClarteBooking'
@@ -30,6 +31,33 @@ const testimonials = [
   { quote: "I've tried every facial in the city. Nothing compares to what Sophie does.", name: 'Margaux T.', location: 'Tribeca' },
   { quote: "My skin has never looked like this. I refer everyone I know.",               name: 'Diana L.',   location: 'West Village' },
   { quote: "Clarté is the only place I trust with my skin. Worth every penny.",          name: 'Priya S.',   location: 'Nolita' },
+]
+
+const team = [
+  {
+    id: 1,
+    name: 'Sophie Marchand',
+    affiliation: 'Founder & Lead Esthetician',
+    quote: 'I started Clarté because I believed every client deserves a practitioner who actually listens. We adapt every treatment in the room. Nothing is decided in advance.',
+    imageSrc: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=600&fit=crop&q=80',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=120&fit=crop&q=80',
+  },
+  {
+    id: 2,
+    name: 'Ines Vidal',
+    affiliation: 'Senior Esthetician',
+    quote: 'Microneedling and chemical peels are my specialty. I approach every treatment with precision — the results speak for themselves.',
+    imageSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=600&fit=crop&q=80',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=120&fit=crop&q=80',
+  },
+  {
+    id: 3,
+    name: 'Camille Tran',
+    affiliation: 'Holistic Treatment Specialist',
+    quote: 'Gua sha is more than technique — it\'s about understanding how the body holds tension and releasing it with intention. Every session is a ritual.',
+    imageSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=400&h=600&fit=crop&q=80',
+    thumbnailSrc: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=100&h=120&fit=crop&q=80',
+  },
 ]
 
 const steps = [
@@ -128,7 +156,24 @@ export default function ClartePage() {
       {/* 5. Photo break */}
       <ClartePhotoBreak />
 
-      {/* 6. Statement 2 */}
+      {/* 6. Meet the Team */}
+      <div style={{ backgroundColor: '#F7F3EE' }}>
+        <p style={{
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: 400,
+          fontSize: '11px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.25em',
+          color: '#8C7B6E',
+          padding: '64px 64px 0',
+          margin: 0,
+        }}>
+          THE TEAM
+        </p>
+        <TestimonialSlider reviews={team} />
+      </div>
+
+      {/* 7. Statement 2 */}
       <TypographicStatement text="One client at a time. Always." />
 
       {/* 7. About / Sophie */}
