@@ -115,6 +115,8 @@ export default function TreatmentGrid() {
           zIndex: 50,
           width: 220,
           height: 280,
+          borderRadius: "8px",
+          overflow: "hidden",
           opacity: visible ? 1 : 0,
           transition: "opacity 0.35s ease",
           willChange: "transform",
@@ -171,7 +173,7 @@ export default function TreatmentGrid() {
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
           >
-            {/* Title */}
+            {/* Title with scoped underline */}
             <h3
               style={{
                 fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif',
@@ -179,24 +181,25 @@ export default function TreatmentGrid() {
                 fontSize: "clamp(1.4rem, 2vw, 1.8rem)",
                 color: "#1C1814",
                 margin: 0,
-                marginBottom: 8,
+                marginBottom: 20,
                 lineHeight: 1.1,
+                position: "relative",
+                display: "inline-block",
               }}
             >
               {project.title}
+              <span
+                style={{
+                  position: "absolute",
+                  bottom: -2,
+                  left: 0,
+                  height: 1,
+                  width: hoveredIndex === index ? "100%" : "0%",
+                  backgroundColor: "#B5623E",
+                  transition: "width 0.4s cubic-bezier(0.76, 0, 0.24, 1)",
+                }}
+              />
             </h3>
-
-            {/* Animated underline */}
-            <div
-              style={{
-                height: 1,
-                backgroundColor: "#B5623E",
-                transformOrigin: "left center",
-                transform: hoveredIndex === index ? "scaleX(1)" : "scaleX(0)",
-                transition: "transform 0.4s cubic-bezier(0.76, 0, 0.24, 1)",
-                marginBottom: 12,
-              }}
-            />
 
             {/* Description */}
             <p
