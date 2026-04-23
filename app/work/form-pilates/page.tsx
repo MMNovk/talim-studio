@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 import ClarteHero            from './ClarteHero'
 import ClarteManifesto       from './ClarteManifesto'
 import TreatmentGrid         from './TreatmentGrid'
-import { ProductStrip }      from './ProductStrip'
+import { ProductGallery }    from './ProductGallery'
 import OurWorkScroll         from './OurWorkScroll'
 import StudioGallery         from './StudioGallery'
 import { TestimonialSlider } from './ClarteTeam'
@@ -105,8 +105,8 @@ export default function ClartePage() {
       {/* 3. Services — 2-col treatment grid */}
       <TreatmentGrid />
 
-      {/* 4. The Edit — product strip */}
-      <ProductStrip />
+      {/* 4. The Edit — product gallery */}
+      <ProductGallery />
 
       {/* 5. Our Work — sticky scroll gallery */}
       <OurWorkScroll />
