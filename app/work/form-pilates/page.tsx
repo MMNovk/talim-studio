@@ -9,7 +9,7 @@ import { ProductGallery }    from './ProductGallery'
 import OurWorkScroll         from './OurWorkScroll'
 import StudioGallery         from './StudioGallery'
 import { TestimonialSlider } from './ClarteTeam'
-import ClarteBooking         from './ClarteBooking'
+import { InteractiveCalendar } from './VisualizeBooking'
 
 // ── Design tokens ─────────────────────────────────────────────────────
 const BG     = '#F7F3EE'
@@ -132,27 +132,14 @@ export default function ClartePage() {
       </div>
 
       {/* 8. Booking */}
-      <section id="booking" style={{ background: BG }} className="px-8 md:px-16 py-32">
-        <motion.div
-          style={{ maxWidth: 520, margin: '0 auto', textAlign: 'center' }}
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <div style={{ margin: '0 0 40px' }}>
-            <WordSlot
-              text="Book a Visit"
-              style={{
-                ...C300,
-                fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
-                color: INK,
-                justifyContent: 'center',
-              }}
-            />
-          </div>
-          <ClarteBooking />
-        </motion.div>
+      <section id="booking" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
+        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
+          Availability
+        </p>
+        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(2rem, 3vw, 2.8rem)', color: '#1C1814', marginBottom: '48px' }}>
+          Book a Visit
+        </p>
+        <InteractiveCalendar />
       </section>
 
       {/* 9. Find Us */}
