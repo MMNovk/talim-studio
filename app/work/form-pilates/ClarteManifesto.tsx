@@ -28,8 +28,7 @@ export default function ClarteManifesto() {
   return (
     <section
       style={{
-        backgroundColor: '#F7F3EE',
-        padding: '160px 64px',
+        padding: '80px 64px 160px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
