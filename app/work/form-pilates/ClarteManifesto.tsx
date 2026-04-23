@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 
-const TEXT = "We built Clarté around a single belief: that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that is decided in the moment — not in advance. We don't upsell. We don't rush. We see fewer people by design, so that everyone we see leaves different than they came in."
+const TEXT = "At Clarté, we believe that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that personally caters to them. We don't upsell. We don't rush. We see fewer people by design, so that everyone we see leaves different than they came in."
 
 export function ManifestoSection() {
   const ref = useRef(null)
