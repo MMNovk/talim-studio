@@ -94,8 +94,15 @@ export default function ClartePage() {
   return (
     <div style={{ background: BG, color: INK }}>
 
-      {/* 1. Hero */}
-      <ClarteHero />
+      {/* 1. Hero — sticky, sits behind cream card */}
+      <div style={{ position: 'sticky', top: 0, height: '100vh', zIndex: 1 }}>
+        <ClarteHero />
+      </div>
+
+      {/* Cream card — slides over the sticky hero */}
+      <div style={{ position: 'relative', zIndex: 2, backgroundColor: '#F7F3EE' }}>
+        {/* Spacer: full viewport so hero is visible before card slides up */}
+        <div style={{ height: '100vh' }} />
 
       {/* 2. Manifesto */}
       <ManifestoSection />
@@ -267,6 +274,8 @@ export default function ClartePage() {
           </motion.span>
         </a>
       </footer>
+
+      </div>{/* end cream card */}
 
     </div>
   )
