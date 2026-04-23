@@ -29,7 +29,9 @@ export default function ClarteLayout({ children }: { children: React.ReactNode }
     <div className={`${playfair.variable} ${cormorant.variable}`}>
       <ClarteProviders />
       <ClarteScroll />
-      {children}
+      <div style={{ opacity: 0, animation: 'pageReveal 0.5s ease forwards', animationDelay: '2.8s' }}>
+        {children}
+      </div>
     </div>
   )
 }
