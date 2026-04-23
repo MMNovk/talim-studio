@@ -14,7 +14,6 @@ const words = [
 
 export function ManifestoSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
   const [wordProgress, setWordProgress] = useState(0)
 
   useEffect(() => {
@@ -26,13 +25,12 @@ export function ManifestoSection() {
       const windowHeight = window.innerHeight
       const sectionHeight = section.offsetHeight
 
-      const totalScrollDistance = sectionHeight + windowHeight
       const scrolled = windowHeight - rect.top
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollDistance))
-      setScrollProgress(progress)
+      const total = sectionHeight + windowHeight
+      const progress = Math.max(0, Math.min(1, scrolled / total))
 
-      const wordStart = 0.15
-      const wordEnd = 0.75
+      const wordStart = 0.1
+      const wordEnd = 0.65
       const wordProg = Math.max(0, Math.min(1, (progress - wordStart) / (wordEnd - wordStart)))
       setWordProgress(wordProg)
     }
@@ -42,16 +40,9 @@ export function ManifestoSection() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const interpolateColor = (start: number[], end: number[], t: number) =>
-    start.map((s, i) => Math.round(s + (end[i] - s) * t))
-
-  const bg = interpolateColor([10, 10, 10], [247, 243, 238], scrollProgress)
-  const backgroundColor = `rgb(${bg[0]}, ${bg[1]}, ${bg[2]})`
-
-  const textColor = interpolateColor([247, 243, 238], [28, 24, 20], scrollProgress)
-  const mainTextColor = `rgb(${textColor[0]}, ${textColor[1]}, ${textColor[2]})`
-
-  const mutedColor = `rgba(${interpolateColor([200, 190, 180], [140, 123, 110], scrollProgress).join(',')}, 0.6)`
+  const backgroundColor = '#0A0A0A'
+  const mainTextColor   = '#F7F3EE'
+  const mutedColor      = 'rgba(247, 243, 238, 0.2)'
 
   const totalWords = words.length
 
@@ -60,6 +51,7 @@ export function ManifestoSection() {
       ref={sectionRef}
       style={{
         backgroundColor,
+        margin: 0,
         padding: '120px 64px',
         transition: 'none',
         minHeight: '100vh',
@@ -104,7 +96,7 @@ export function ManifestoSection() {
           letterSpacing: '0.25em',
           textTransform: 'uppercase',
           color: mainTextColor,
-          opacity: 0.6,
+          opacity: 0.5,
           margin: 0,
           transition: 'none',
         }}>
