@@ -3,7 +3,7 @@
 import type { CSSProperties } from 'react'
 import { motion } from 'motion/react'
 import ClarteHero            from './ClarteHero'
-import ClarteManifesto       from './ClarteManifesto'
+import { ManifestoSection }  from './ClarteManifesto'
 import TreatmentGrid         from './TreatmentGrid'
 import { ProductGallery }    from './ProductGallery'
 import OurWorkScroll         from './OurWorkScroll'
@@ -97,10 +97,8 @@ export default function ClartePage() {
       {/* 1. Hero */}
       <ClarteHero />
 
-      {/* 2. Manifesto — gradient fades from hero dark into cream */}
-      <div style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, #F7F3EE 12%)' }}>
-        <ClarteManifesto />
-      </div>
+      {/* 2. Manifesto */}
+      <ManifestoSection />
 
       {/* 3. Services — 2-col treatment grid */}
       <TreatmentGrid />
