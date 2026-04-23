@@ -15,8 +15,8 @@ const C300I: CSSProperties = { fontFamily: 'var(--font-cormorant), Georgia, seri
 const DM300: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 300 }
 const DM400: CSSProperties = { fontFamily: '"DM Sans", sans-serif', fontWeight: 400 }
 
-const AVAILABLE = new Set([3, 5, 8, 10, 12, 15, 17, 19, 22, 24, 26, 29])
-const TIME_SLOTS = ['10:00 AM', '11:30 AM', '2:00 PM']
+// April 2026: starts on Wednesday → 2 leading nulls in Mo-Tu-We grid
+const AVAILABLE = new Set([23, 24, 27, 28, 29, 30])
 const DAY_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
 const CELLS: (number | null)[] = [
@@ -27,9 +27,19 @@ const CELLS: (number | null)[] = [
   27,   28,   29, 30, null, null, null,
 ]
 
+const SERVICES = [
+  'HydraFacial — $185 · 60 min',
+  'LED Therapy — $95 · 45 min',
+  'Microneedling — $275 · 75 min',
+  'Gua Sha Ritual — $120 · 60 min',
+  'Chemical Peel — $150 · 45 min',
+  'Bespoke Facial — $220 · 90 min',
+]
+
 export default function ClarteBooking() {
-  const [selectedDate, setSelectedDate] = useState<number | null>(null)
-  const [selectedTime, setSelectedTime] = useState<string | null>(null)
+  const [selectedDate, setSelectedDate] = useState<number | null>(24)
+  const [selectedTime, setSelectedTime] = useState('11:30 AM')
+  const [selectedService, setSelectedService] = useState(SERVICES[0])
   const [confirmed, setConfirmed] = useState(false)
 
   if (confirmed) {
@@ -43,7 +53,7 @@ export default function ClarteBooking() {
     )
   }
 
-  const canConfirm = selectedDate !== null && selectedTime !== null
+  const canConfirm = selectedDate !== null
 
   return (
     <div style={{
@@ -54,10 +64,43 @@ export default function ClarteBooking() {
       textAlign: 'left',
     }}>
 
+      {/* Service selector */}
+      <div style={{ marginBottom: '24px' }}>
+        <p style={{
+          ...DM400,
+          fontSize: '11px',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          color: MUTED,
+          marginBottom: '8px',
+        }}>
+          Select a Treatment
+        </p>
+        <select
+          value={selectedService}
+          onChange={(e) => setSelectedService(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '12px 16px',
+            border: `1px solid ${RULE}`,
+            backgroundColor: BG,
+            fontFamily: 'var(--font-cormorant), Georgia, serif',
+            fontWeight: 300,
+            fontSize: '16px',
+            color: INK,
+            appearance: 'none',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        >
+          {SERVICES.map(s => <option key={s}>{s}</option>)}
+        </select>
+      </div>
+
       {/* Month header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
         <button style={{ ...DM300, fontSize: 18, color: MUTED, cursor: 'pointer', background: 'none', border: 'none', lineHeight: 1 }}>‹</button>
-        <p style={{ ...C300, fontSize: 18, color: INK }}>April 2025</p>
+        <p style={{ ...C300, fontSize: 18, color: INK }}>April 2026</p>
         <button style={{ ...DM300, fontSize: 18, color: MUTED, cursor: 'pointer', background: 'none', border: 'none', lineHeight: 1 }}>›</button>
       </div>
 
@@ -107,37 +150,32 @@ export default function ClarteBooking() {
       </div>
 
       {/* Time slots */}
-      {selectedDate && (
-        <div style={{ marginTop: 24 }}>
-          <p style={{ ...DM400, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: MUTED, marginBottom: 12 }}>
-            Select a Time
-          </p>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {TIME_SLOTS.map(t => {
-              const sel = selectedTime === t
-              return (
-                <button
-                  key={t}
-                  onClick={() => setSelectedTime(t)}
-                  style={{
-                    ...DM300,
-                    flex: 1,
-                    padding: '10px 4px',
-                    fontSize: 12,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    border: `1px solid ${ACCENT}`,
-                    background: sel ? ACCENT : 'transparent',
-                    color: sel ? '#fff' : ACCENT,
-                  }}
-                >
-                  {t}
-                </button>
-              )
-            })}
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        margin: '24px 0',
+        justifyContent: 'center',
+      }}>
+        {['10:00 AM', '11:30 AM', '2:00 PM'].map((time) => (
+          <div
+            key={time}
+            onClick={() => setSelectedTime(time)}
+            style={{
+              padding: '10px 20px',
+              border: `1px solid ${selectedTime === time ? ACCENT : RULE}`,
+              backgroundColor: selectedTime === time ? ACCENT : 'transparent',
+              color: selectedTime === time ? '#F7F3EE' : INK,
+              fontFamily: '"DM Sans", sans-serif',
+              fontSize: '12px',
+              letterSpacing: '0.1em',
+              cursor: 'pointer',
+              transition: 'all 200ms ease',
+            }}
+          >
+            {time}
           </div>
-        </div>
-      )}
+        ))}
+      </div>
 
       {/* Confirm */}
       <button
@@ -146,15 +184,14 @@ export default function ClarteBooking() {
         className={`clarte-confirm-btn${canConfirm ? ' active' : ''}`}
         style={{
           ...DM400,
-          marginTop: 24,
           width: '100%',
           padding: '14px 0',
           fontSize: 10,
           letterSpacing: '0.2em',
           textTransform: 'uppercase',
           cursor: canConfirm ? 'pointer' : 'not-allowed',
-          background: canConfirm ? INK : RULE,
-          color: canConfirm ? '#F7F3EE' : MUTED,
+          background: INK,
+          color: '#F7F3EE',
           border: 'none',
           transition: 'all 0.2s ease',
         }}

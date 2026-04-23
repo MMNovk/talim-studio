@@ -140,10 +140,9 @@ export default function ClartePage() {
           transition={{ duration: 0.8, ease: EASE }}
           viewport={{ once: true, margin: '-100px' }}
         >
-          <Label>Availability</Label>
-          <div style={{ margin: '16px 0 12px' }}>
+          <div style={{ margin: '0 0 40px' }}>
             <WordSlot
-              text="Reserve Your Visit"
+              text="Book a Visit"
               style={{
                 ...C300,
                 fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
@@ -152,9 +151,6 @@ export default function ClartePage() {
               }}
             />
           </div>
-          <p style={{ ...DM300, fontSize: 11, color: MUTED, letterSpacing: '0.05em', marginBottom: 40 }}>
-            Scheduling powered by Calendly — live booking available on your site.
-          </p>
           <ClarteBooking />
         </motion.div>
       </section>
