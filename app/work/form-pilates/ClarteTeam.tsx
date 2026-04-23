@@ -78,7 +78,7 @@ export const TestimonialSlider = ({
   return (
     <div
       className={cn(
-        "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden text-foreground p-8 md:p-12",
+        "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden p-8 md:p-12",
         className
       )}
       style={{ backgroundColor: "#F7F3EE" }}
@@ -167,7 +167,8 @@ export const TestimonialSlider = ({
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full w-12 h-12 border-muted-foreground/50"
+              className="rounded-full w-12 h-12"
+              style={{ borderColor: '#D4C9BC' }}
               onClick={handlePrev}
               aria-label="Previous"
             >
@@ -176,7 +177,8 @@ export const TestimonialSlider = ({
             <Button
               variant="default"
               size="icon"
-              className="rounded-full w-12 h-12 bg-primary text-primary-foreground hover:bg-primary/90"
+              className="rounded-full w-12 h-12"
+              style={{ backgroundColor: '#1C1814', color: '#F7F3EE' }}
               onClick={handleNext}
               aria-label="Next"
             >

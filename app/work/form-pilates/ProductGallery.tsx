@@ -18,7 +18,7 @@ const products = [
     name: 'Lotion P50',
     price: '$68',
     note: 'The cult exfoliant we use on almost everyone.',
-    image: 'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=800&h=800&fit=crop&q=90',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=800&fit=crop&q=90',
   },
   {
     id: 3,
@@ -104,7 +104,7 @@ export function ProductGallery() {
               flexGrow: hoveredId === product.id ? 4 : 1,
               flexShrink: 1,
               flexBasis: 0,
-              borderRadius: '2px',
+              borderRadius: '12px',
               overflow: 'hidden',
               transition: 'flex-grow 500ms ease',
               cursor: 'pointer',
