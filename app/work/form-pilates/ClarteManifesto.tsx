@@ -3,29 +3,6 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 
-const values = [
-  {
-    word: 'Slow',
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=1000&fit=crop&q=90',
-  },
-  {
-    word: 'Intentional',
-    image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=1000&fit=crop&q=90',
-  },
-  {
-    word: 'Precise',
-    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=1000&fit=crop&q=90',
-  },
-  {
-    word: 'Honest',
-    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&h=1000&fit=crop&q=90',
-  },
-  {
-    word: 'Personal',
-    image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=1000&fit=crop&q=90',
-  },
-]
-
 export function ManifestoSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const textRef = useRef(null)
@@ -41,16 +18,17 @@ export function ManifestoSection() {
       {/* Decorative CLARTÉ heading */}
       <div style={{
         width: '100%',
-        overflow: 'hidden',
-        paddingTop: '0',
+        paddingTop: '24px',
         paddingBottom: '0',
         textAlign: 'center',
+        marginTop: '0',
       }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 300,
           fontSize: 'clamp(8rem, 18vw, 18rem)',
-          lineHeight: 0.85,
+          lineHeight: 1,
+          paddingTop: '16px',
           color: 'transparent',
           WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.2)',
           letterSpacing: '0.15em',
@@ -99,40 +77,61 @@ export function ManifestoSection() {
         </p>
       </motion.div>
 
-      {/* OUR MOTTO label */}
-      <div style={{
-        width: '100%',
-        overflow: 'hidden',
-        textAlign: 'center',
-        padding: '0',
-        marginBottom: '-8px',
-      }}>
-        <p style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
-          fontSize: 'clamp(4rem, 10vw, 10rem)',
-          lineHeight: 0.85,
-          color: 'transparent',
-          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.2)',
-          letterSpacing: '0.15em',
-          margin: 0,
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}>
-          OUR MOTTO
-        </p>
-      </div>
-
-      {/* Value cards — accordion expand on hover */}
+      {/* Value section */}
       <div style={{
         display: 'flex',
         alignItems: 'stretch',
-        height: '560px',
         width: '100%',
-        gap: '2px',
-        backgroundColor: '#1C1814',
+        height: '320px',
+        gap: '0',
       }}>
-        {values.map((value, index) => (
+        {/* Left label column */}
+        <div style={{
+          width: '200px',
+          flexShrink: 0,
+          backgroundColor: '#1C1814',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          padding: '32px 28px',
+          gap: '8px',
+        }}>
+          <p style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+            lineHeight: 0.85,
+            color: 'transparent',
+            WebkitTextStroke: '1.5px rgba(247, 243, 238, 0.25)',
+            letterSpacing: '0.1em',
+            margin: 0,
+            userSelect: 'none',
+            writingMode: 'vertical-rl',
+            transform: 'rotate(180deg)',
+          }}>
+            OUR MOTTO
+          </p>
+        </div>
+
+        {/* Value cards */}
+        {[
+          {
+            word: 'Slow',
+            image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=1000&fit=crop&q=90',
+          },
+          {
+            word: 'Intentional',
+            image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=1000&fit=crop&q=90',
+          },
+          {
+            word: 'Precise',
+            image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=1000&fit=crop&q=90',
+          },
+          {
+            word: 'Personal',
+            image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=1000&fit=crop&q=90',
+          },
+        ].map((value, index) => (
           <motion.div
             key={value.word}
             onHoverStart={() => setHoveredIndex(index)}
@@ -149,7 +148,6 @@ export function ManifestoSection() {
               cursor: 'pointer',
             }}
           >
-            {/* Background image */}
             <img
               src={value.image}
               alt={value.word}
@@ -166,7 +164,6 @@ export function ManifestoSection() {
               draggable={false}
             />
 
-            {/* Dark overlay */}
             <div style={{
               position: 'absolute',
               inset: 0,
@@ -176,17 +173,16 @@ export function ManifestoSection() {
               transition: 'background 500ms ease',
             }} />
 
-            {/* Value word */}
             <div style={{
               position: 'absolute',
               bottom: 0,
               left: 0,
               right: 0,
-              padding: '28px 24px',
+              padding: '20px 18px',
             }}>
               <motion.p
                 animate={{
-                  fontSize: hoveredIndex === index ? 'clamp(2rem, 3vw, 2.8rem)' : '14px',
+                  fontSize: hoveredIndex === index ? 'clamp(1.6rem, 2.5vw, 2.2rem)' : '12px',
                   letterSpacing: hoveredIndex === index ? '-0.01em' : '0.2em',
                 }}
                 transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
@@ -207,7 +203,6 @@ export function ManifestoSection() {
           </motion.div>
         ))}
       </div>
-
 
     </section>
   )
