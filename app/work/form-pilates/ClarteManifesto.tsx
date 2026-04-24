@@ -104,12 +104,12 @@ export function ManifestoSection() {
 
         {/* Left label — vertical "OUR MOTTO" */}
         <div style={{
-          width: '220px',
+          width: '120px',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          paddingLeft: 'clamp(0.5rem, 1.5vw, 1rem)',
+          paddingLeft: '24px',
         }}>
           <p style={{
             writingMode: 'vertical-rl',
@@ -130,7 +130,7 @@ export function ManifestoSection() {
         </div>
 
         {/* Image gallery */}
-        <div style={{ flex: 1, paddingRight: 'clamp(2.5rem, 6vw, 5rem)' }}>
+        <div style={{ flex: 1, paddingLeft: '0px', paddingRight: '80px' }}>
           <div className="flex items-center gap-2 h-[460px] w-full">
             {values.map((item, idx) => (
               <div
@@ -148,6 +148,12 @@ export function ManifestoSection() {
                   inset: 0,
                   background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
                 }} />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'rgba(20,16,12,0)',
+                  transition: 'background 0.4s ease',
+                }} className="group-hover:[background:rgba(20,16,12,0.45)]" />
                 {/* Hover description */}
                 <p className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
                   position: 'absolute',
@@ -157,14 +163,23 @@ export function ManifestoSection() {
                   textAlign: 'center',
                   width: '75%',
                   fontFamily: 'DM Sans, sans-serif',
-                  fontSize: '12px',
+                  fontSize: '13px',
                   fontWeight: 400,
                   color: '#F7F3EE',
                   margin: 0,
                   lineHeight: 1.6,
                   zIndex: 1,
+                  textShadow: '0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  {item.description}
+                  <span style={{
+                    display: 'inline-block',
+                    background: 'rgba(20,16,12,0.45)',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    backdropFilter: 'blur(4px)',
+                  }}>
+                    {item.description}
+                  </span>
                 </p>
                 {/* Bottom label */}
                 <p style={{
