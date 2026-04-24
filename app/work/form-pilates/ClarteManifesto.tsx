@@ -3,6 +3,29 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 
+const values = [
+  {
+    src: 'https://images.unsplash.com/photo-1669093234697-b28cee17fbfb?q=80&w=987&auto=format&fit=crop',
+    label: 'SLOW',
+    description: 'We never rush a treatment. Every session is timed to your skin, not our schedule.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1700522924565-9fad1c05469e?q=80&w=987&auto=format&fit=crop',
+    label: 'INTENTIONAL',
+    description: 'Every product and technique is chosen with purpose. Nothing is applied by habit.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1731514771613-991a02407132?q=80&w=987&auto=format&fit=crop',
+    label: 'PRECISE',
+    description: 'We work with clinical detail, tracking changes session to session.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1668368753716-afb9ce4a5bbf?q=80&w=987&auto=format&fit=crop',
+    label: 'PERSONAL',
+    description: 'One room, one practitioner, one focus: you.',
+  },
+]
+
 export function ManifestoSection() {
   const textRef = useRef(null)
   const isInView = useInView(textRef, { once: true, margin: '-100px' })
@@ -61,7 +84,7 @@ export function ManifestoSection() {
           margin: '0 0 32px 0',
           letterSpacing: '0.01em',
         }}>
-          At Clarté, we believe that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that personally caters to them. We don&apos;t upsell. We don&apos;t rush. We see fewer people by design, so that everyone we see leaves different than they came in.
+          We believe that good skin is the result of attention, not product. Every client who comes through our door gets one practitioner, one room, and a treatment that personally caters to them. We don&apos;t upsell. We don&apos;t rush. We see fewer people by design, so that everyone we see leaves different than they came in.
         </p>
         <p style={{
           fontFamily: 'DM Sans, sans-serif',
@@ -86,7 +109,7 @@ export function ManifestoSection() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
+          paddingLeft: 'clamp(1rem, 2.5vw, 2rem)',
         }}>
           <p style={{
             writingMode: 'vertical-rl',
@@ -107,26 +130,9 @@ export function ManifestoSection() {
         </div>
 
         {/* Image gallery */}
-        <div style={{ flex: 1, paddingRight: 'clamp(1.5rem, 4vw, 3rem)' }}>
+        <div style={{ flex: 1, paddingRight: 'clamp(1rem, 2.5vw, 2rem)' }}>
           <div className="flex items-center gap-2 h-[460px] w-full">
-            {[
-              {
-                src: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=800&fit=crop&q=90',
-                label: 'SLOW',
-              },
-              {
-                src: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=800&fit=crop&q=90',
-                label: 'INTENTIONAL',
-              },
-              {
-                src: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=800&fit=crop&q=90',
-                label: 'PRECISE',
-              },
-              {
-                src: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=800&fit=crop&q=90',
-                label: 'PERSONAL',
-              },
-            ].map((item, idx) => (
+            {values.map((item, idx) => (
               <div
                 key={idx}
                 className="relative group flex-grow transition-all w-56 rounded-lg overflow-hidden h-full duration-500 hover:w-full"
@@ -142,6 +148,23 @@ export function ManifestoSection() {
                   inset: 0,
                   background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
                 }} />
+                {/* Hover description */}
+                <p className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                  position: 'absolute',
+                  top: '20px',
+                  left: '16px',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: '12px',
+                  fontWeight: 400,
+                  color: '#F7F3EE',
+                  margin: 0,
+                  maxWidth: '160px',
+                  lineHeight: 1.6,
+                  zIndex: 1,
+                }}>
+                  {item.description}
+                </p>
+                {/* Bottom label */}
                 <p style={{
                   position: 'absolute',
                   bottom: '16px',
