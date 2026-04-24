@@ -1,24 +1,23 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 
 export function ManifestoSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const textRef = useRef(null)
   const isInView = useInView(textRef, { once: true, margin: '-100px' })
 
   return (
     <section style={{
       backgroundColor: '#F7F3EE',
-      paddingTop: '120px',
+      paddingTop: '0',
       paddingBottom: '0',
     }}>
 
       {/* Decorative CLARTÉ heading */}
       <div style={{
         width: '100%',
-        paddingTop: '24px',
+        paddingTop: '0',
         paddingBottom: '0',
         textAlign: 'center',
         marginTop: '0',
@@ -28,7 +27,7 @@ export function ManifestoSection() {
           fontWeight: 300,
           fontSize: 'clamp(8rem, 18vw, 18rem)',
           lineHeight: 1,
-          paddingTop: '16px',
+          paddingTop: '0',
           color: 'transparent',
           WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.2)',
           letterSpacing: '0.15em',
@@ -78,131 +77,99 @@ export function ManifestoSection() {
       </motion.div>
 
       {/* Value section */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'stretch',
-        width: '100%',
-        height: '320px',
-        gap: '0',
-      }}>
-        {/* Left label column */}
-        <div style={{
-          width: '200px',
-          flexShrink: 0,
-          backgroundColor: '#1C1814',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          padding: '32px 28px',
-          gap: '8px',
-        }}>
-          <p style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            lineHeight: 0.85,
-            color: 'transparent',
-            WebkitTextStroke: '1.5px rgba(247, 243, 238, 0.25)',
-            letterSpacing: '0.1em',
-            margin: 0,
-            userSelect: 'none',
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
-          }}>
-            OUR MOTTO
-          </p>
-        </div>
+      <section className="w-full flex flex-col items-start justify-start py-0">
+        <div className="flex items-center gap-2 h-[360px] w-full px-0">
 
-        {/* Value cards */}
-        {[
-          {
-            word: 'Slow',
-            image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=1000&fit=crop&q=90',
-          },
-          {
-            word: 'Intentional',
-            image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=1000&fit=crop&q=90',
-          },
-          {
-            word: 'Precise',
-            image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=1000&fit=crop&q=90',
-          },
-          {
-            word: 'Personal',
-            image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=1000&fit=crop&q=90',
-          },
-        ].map((value, index) => (
-          <motion.div
-            key={value.word}
-            onHoverStart={() => setHoveredIndex(index)}
-            onHoverEnd={() => setHoveredIndex(null)}
-            animate={{
-              flexGrow: hoveredIndex === index ? 4 : 1,
-            }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          {/* Left label */}
+          <div
+            className="relative flex-grow transition-all w-56 overflow-hidden h-[360px] duration-500"
             style={{
-              flexShrink: 1,
-              flexBasis: 0,
-              position: 'relative',
-              overflow: 'hidden',
-              cursor: 'pointer',
+              flexGrow: 1,
+              backgroundColor: '#F7F3EE',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              padding: '28px 24px',
+              borderRight: '1px solid #D4C9BC',
             }}
           >
-            <img
-              src={value.image}
-              alt={value.word}
-              style={{
+            <p style={{
+              fontFamily: 'DM Sans, sans-serif',
+              fontSize: '11px',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: '#8C7B6E',
+              margin: '0 0 12px 0',
+            }}>
+              Our Values
+            </p>
+            <p style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontWeight: 300,
+              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+              color: '#1C1814',
+              lineHeight: 1.1,
+              margin: 0,
+            }}>
+              Our<br />Motto
+            </p>
+          </div>
+
+          {/* Four value cards */}
+          {[
+            {
+              word: 'Slow',
+              image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=800&fit=crop&q=90',
+            },
+            {
+              word: 'Intentional',
+              image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=800&fit=crop&q=90',
+            },
+            {
+              word: 'Precise',
+              image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=800&fit=crop&q=90',
+            },
+            {
+              word: 'Personal',
+              image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=800&fit=crop&q=90',
+            },
+          ].map((value, idx) => (
+            <div
+              key={idx}
+              className="relative group flex-grow transition-all w-56 overflow-hidden h-[360px] duration-500 hover:w-full"
+              style={{ cursor: 'pointer' }}
+            >
+              <img
+                className="h-full w-full object-cover object-center"
+                src={value.image}
+                alt={value.word}
+              />
+              <div style={{
                 position: 'absolute',
                 inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                pointerEvents: 'none',
-                userSelect: 'none',
-              }}
-              draggable={false}
-            />
-
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: hoveredIndex === index
-                ? 'linear-gradient(to top, rgba(28,24,20,0.85) 0%, rgba(28,24,20,0.1) 60%, transparent 100%)'
-                : 'linear-gradient(to top, rgba(28,24,20,0.95) 0%, rgba(28,24,20,0.6) 100%)',
-              transition: 'background 500ms ease',
-            }} />
-
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '20px 18px',
-            }}>
-              <motion.p
-                animate={{
-                  fontSize: hoveredIndex === index ? 'clamp(1.6rem, 2.5vw, 2.2rem)' : '12px',
-                  letterSpacing: hoveredIndex === index ? '-0.01em' : '0.2em',
-                }}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                style={{
-                  fontFamily: hoveredIndex === index ? 'Cormorant Garamond, serif' : 'DM Sans, sans-serif',
-                  fontWeight: 300,
-                  textTransform: hoveredIndex === index ? 'none' : 'uppercase',
+                background: 'linear-gradient(to top, rgba(28,24,20,0.85) 0%, rgba(28,24,20,0.1) 60%, transparent 100%)',
+              }} />
+              <div style={{
+                position: 'absolute',
+                bottom: '20px',
+                left: '20px',
+              }}>
+                <p style={{
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: '11px',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
                   color: '#F7F3EE',
                   margin: 0,
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {value.word}
-              </motion.p>
+                }}>
+                  {value.word}
+                </p>
+              </div>
             </div>
-          </motion.div>
-        ))}
-      </div>
+          ))}
+
+        </div>
+      </section>
 
     </section>
   )
