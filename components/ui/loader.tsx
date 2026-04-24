@@ -60,8 +60,8 @@ export default function PageLoader() {
   const [mounted, setMounted]   = useState(true)
 
   useEffect(() => {
-    const fadeTimer  = setTimeout(() => setVisible(false), 2800)
-    const unmountTimer = setTimeout(() => setMounted(false), 3400)
+    const fadeTimer  = setTimeout(() => setVisible(false), 5600)
+    const unmountTimer = setTimeout(() => setMounted(false), 6800)
     return () => {
       clearTimeout(fadeTimer)
       clearTimeout(unmountTimer)

@@ -17,7 +17,7 @@ const projects: Project[] = [
     description: "Full cleanse, extraction, and hydration in one session.",
     year: "$185 · 60 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1707303674503-83668192088e?q=80&w=1064&auto=format&fit=crop",
   },
   {
     title: "LED Therapy",
@@ -45,7 +45,7 @@ const projects: Project[] = [
     description: "Precision exfoliation revealing fresh, even skin beneath.",
     year: "$150 · 45 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1737215398544-94db22a53a01?q=80&w=987&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?q=80&w=987&auto=format&fit=crop",
   },
   {
     title: "Bespoke Facial",
@@ -102,12 +102,11 @@ export default function TreatmentGrid() {
       style={{ background: "#F7F3EE", position: "relative" }}
       className="w-full px-8 md:px-16 py-24"
     >
-      {/* TREATMENTS label — absolutely positioned, vertically centered */}
+      {/* TREATMENTS label — top right */}
       <div style={{
         position: "absolute",
-        left: "24px",
-        top: "50%",
-        transform: "translateY(-50%)",
+        right: "24px",
+        top: 0,
         zIndex: 1,
       }}>
         <p style={{
