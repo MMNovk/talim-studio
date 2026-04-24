@@ -102,11 +102,11 @@ export default function TreatmentGrid() {
       style={{ background: "#F7F3EE", position: "relative" }}
       className="w-full px-8 md:px-16 py-24"
     >
-      {/* TREATMENTS label — top right */}
+      {/* TREATMENTS label — top left */}
       <div style={{
         position: "absolute",
-        right: "24px",
-        top: 0,
+        left: "24px",
+        top: "24px",
         zIndex: 1,
       }}>
         <p style={{

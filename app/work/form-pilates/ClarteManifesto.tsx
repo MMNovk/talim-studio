@@ -127,7 +127,7 @@ export function ManifestoSection() {
           </p>
         </div>
 
-        {/* OUR MOTTO — right side */}
+        {/* OUR MOTTO — right side (mirror of left) */}
         <div style={{
           position: 'absolute',
           right: '24px',
@@ -137,7 +137,7 @@ export function ManifestoSection() {
         }}>
           <p style={{
             writingMode: 'vertical-rl',
-            transform: 'rotate(0deg)',
+            transform: 'rotate(180deg)',
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
             fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
