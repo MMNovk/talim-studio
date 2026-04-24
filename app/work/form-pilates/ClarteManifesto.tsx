@@ -100,65 +100,36 @@ export function ManifestoSection() {
       </motion.div>
 
       {/* Values section */}
-      <section className="w-full relative" style={{ paddingTop: '48px', paddingBottom: '48px', overflow: 'visible' }}>
+      <section className="w-full" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
+        <div style={{ display: 'flex', alignItems: 'stretch', height: '460px' }}>
 
-        {/* OUR MOTTO — absolutely positioned, vertically centered */}
-        <div style={{
-          position: 'absolute',
-          left: '24px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}>
-          <p style={{
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-            letterSpacing: '0.12em',
-            color: '#C8BEB4',
-            textTransform: 'uppercase',
-            margin: 0,
-            lineHeight: 1,
-            userSelect: 'none',
+          {/* Left OUR MOTTO */}
+          <div style={{
+            width: '80px',
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}>
-            Our Motto
-          </p>
-        </div>
+            <p style={{
+              writingMode: 'vertical-rl',
+              transform: 'rotate(180deg)',
+              fontFamily: 'Cormorant Garamond, serif',
+              fontWeight: 300,
+              fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+              letterSpacing: '0.12em',
+              color: '#C8BEB4',
+              textTransform: 'uppercase',
+              margin: 0,
+              lineHeight: 1,
+              userSelect: 'none',
+            }}>
+              Our Motto
+            </p>
+          </div>
 
-        {/* OUR MOTTO — right side (mirror of left) */}
-        <div style={{
-          position: 'absolute',
-          right: '24px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}>
-          <p style={{
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-            letterSpacing: '0.12em',
-            color: '#C8BEB4',
-            textTransform: 'uppercase',
-            margin: 0,
-            lineHeight: 1,
-            userSelect: 'none',
-          }}>
-            Our Motto
-          </p>
-        </div>
-
-        {/* Image gallery — centered on the page */}
-        <div className="flex items-center gap-2 mx-auto" style={{
-          height: '460px',
-          width: 'calc(100% - 160px)',
-          marginLeft: 'auto',
-          marginRight: '80px',
-        }}>
+          {/* Image gallery */}
+          <div className="flex items-center gap-2" style={{ flex: 1 }}>
             {values.map((item, idx) => (
               <div
                 key={idx}
@@ -224,8 +195,34 @@ export function ManifestoSection() {
                 </p>
               </div>
             ))}
-        </div>
+          </div>
 
+          {/* Right OUR MOTTO — exact mirror of left */}
+          <div style={{
+            width: '80px',
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <p style={{
+              writingMode: 'vertical-rl',
+              transform: 'rotate(180deg)',
+              fontFamily: 'Cormorant Garamond, serif',
+              fontWeight: 300,
+              fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+              letterSpacing: '0.12em',
+              color: '#C8BEB4',
+              textTransform: 'uppercase',
+              margin: 0,
+              lineHeight: 1,
+              userSelect: 'none',
+            }}>
+              Our Motto
+            </p>
+          </div>
+
+        </div>
       </section>
 
     </section>

@@ -102,25 +102,16 @@ export default function TreatmentGrid() {
       style={{ background: "#F7F3EE", position: "relative" }}
       className="w-full px-8 md:px-16 py-24"
     >
-      {/* TREATMENTS label — top left */}
-      <div style={{
-        position: "absolute",
-        left: "24px",
-        top: "24px",
-        zIndex: 1,
-      }}>
+      {/* TREATMENTS label — horizontal, top left */}
+      <div style={{ marginBottom: 48 }}>
         <p style={{
-          writingMode: "vertical-rl",
-          transform: "rotate(180deg)",
-          fontFamily: "Cormorant Garamond, serif",
-          fontWeight: 300,
-          fontSize: "clamp(1.6rem, 2.8vw, 2.8rem)",
-          letterSpacing: "0.12em",
-          color: "#C8BEB4",
-          textTransform: "uppercase",
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: 400,
+          fontSize: 11,
+          letterSpacing: '0.25em',
+          textTransform: 'uppercase',
+          color: '#8C7B6E',
           margin: 0,
-          lineHeight: 1,
-          userSelect: "none",
         }}>
           TREATMENTS
         </p>
