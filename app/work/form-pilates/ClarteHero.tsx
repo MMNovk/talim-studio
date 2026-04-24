@@ -387,47 +387,6 @@ export function Component() {
   return (
     <>
       <main className="slider-wrapper" ref={containerRef}>
-        {/* Nav bar */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '32px 48px',
-          pointerEvents: 'none',
-        }}>
-          <span style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontStyle: 'italic',
-            fontSize: '22px',
-            color: '#F7F3EE',
-            letterSpacing: '0.05em',
-            pointerEvents: 'auto',
-          }}>
-            Clarté
-          </span>
-          <a
-            href="#booking"
-            style={{
-              fontFamily: 'DM Sans, sans-serif',
-              fontSize: '11px',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: '#F7F3EE',
-              textDecoration: 'none',
-              border: '1px solid rgba(247,243,238,0.4)',
-              padding: '8px 16px',
-              pointerEvents: 'auto',
-            }}
-          >
-            Book Now
-          </a>
-        </div>
         <canvas className="webgl-canvas" style={{ pointerEvents: 'none' }}></canvas>
         <span className="slide-number" id="slideNumber">01</span>
         <span className="slide-total" id="slideTotal">06</span>
