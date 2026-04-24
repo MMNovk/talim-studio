@@ -102,7 +102,7 @@ export default function ClartePage() {
       {/* Cream card — slides over the sticky hero */}
       <div style={{ position: 'relative', zIndex: 2, backgroundColor: '#F7F3EE' }}>
         {/* Spacer: full viewport so hero is visible before card slides up */}
-        <div style={{ height: '30vh' }} />
+        <div style={{ height: '10vh' }} />
 
       {/* 2. Manifesto */}
       <ManifestoSection />

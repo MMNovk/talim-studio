@@ -38,30 +38,6 @@ export function ManifestoSection() {
       paddingBottom: '0',
     }}>
 
-      {/* Decorative CLARTÉ heading */}
-      <div style={{
-        width: '100%',
-        overflow: 'hidden',
-        paddingTop: '60px',
-        paddingBottom: '0',
-        textAlign: 'center',
-      }}>
-        <p style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
-          fontSize: 'clamp(8rem, 18vw, 18rem)',
-          lineHeight: 0.85,
-          color: 'transparent',
-          WebkitTextStroke: '1px rgba(28, 24, 20, 0.08)',
-          letterSpacing: '0.15em',
-          margin: 0,
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}>
-          CLARTÉ
-        </p>
-      </div>
-
       {/* Manifesto text */}
       <motion.div
         ref={textRef}
@@ -182,6 +158,31 @@ export function ManifestoSection() {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Decorative CLARTÉ heading */}
+      <div style={{
+        width: '100%',
+        overflow: 'hidden',
+        paddingTop: '0',
+        paddingBottom: '0',
+        textAlign: 'center',
+        marginTop: '-2px',
+      }}>
+        <p style={{
+          fontFamily: 'Cormorant Garamond, serif',
+          fontWeight: 300,
+          fontSize: 'clamp(8rem, 18vw, 18rem)',
+          lineHeight: 0.85,
+          color: 'transparent',
+          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.2)',
+          letterSpacing: '0.15em',
+          margin: 0,
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}>
+          CLARTÉ
+        </p>
       </div>
 
     </section>
