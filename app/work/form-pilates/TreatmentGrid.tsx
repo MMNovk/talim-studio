@@ -17,42 +17,42 @@ const projects: Project[] = [
     description: "Full cleanse, extraction, and hydration in one session.",
     year: "$185 · 60 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop",
   },
   {
     title: "LED Therapy",
     description: "Light wavelengths that calm, repair, and restore.",
     year: "$95 · 45 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1731515067388-d5df113d4326?q=80&w=987&auto=format&fit=crop",
   },
   {
     title: "Microneedling",
     description: "Controlled micro-channels for collagen stimulation.",
     year: "$275 · 75 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop",
   },
   {
-    title: "Gua Sha Ritual",
+    title: "Gua Sha",
     description: "Ancient lymphatic technique adapted for modern skin.",
     year: "$120 · 60 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1643379855211-45b5a4ef44c4?q=80&w=987&auto=format&fit=crop",
   },
   {
     title: "Chemical Peel",
     description: "Precision exfoliation revealing fresh, even skin beneath.",
     year: "$150 · 45 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1737215398544-94db22a53a01?q=80&w=987&auto=format&fit=crop",
   },
   {
     title: "Bespoke Facial",
     description: "A fully custom treatment built around your skin that day.",
     year: "$220 · 90 MIN",
     link: "#book",
-    image: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1614859278743-2a95e7d1e834?q=80&w=987&auto=format&fit=crop",
   },
 ]
 
@@ -99,9 +99,34 @@ export default function TreatmentGrid() {
   return (
     <section
       onMouseMove={handleMouseMove}
-      style={{ background: "#F7F3EE" }}
+      style={{ background: "#F7F3EE", position: "relative" }}
       className="w-full px-8 md:px-16 py-24"
     >
+      {/* TREATMENTS label — absolutely positioned, vertically centered */}
+      <div style={{
+        position: "absolute",
+        left: "24px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        zIndex: 1,
+      }}>
+        <p style={{
+          writingMode: "vertical-rl",
+          transform: "rotate(180deg)",
+          fontFamily: "Cormorant Garamond, serif",
+          fontWeight: 300,
+          fontSize: "clamp(1.6rem, 2.8vw, 2.8rem)",
+          letterSpacing: "0.12em",
+          color: "#C8BEB4",
+          textTransform: "uppercase",
+          margin: 0,
+          lineHeight: 1,
+          userSelect: "none",
+        }}>
+          TREATMENTS
+        </p>
+      </div>
+
       {/* Floating image */}
       <div
         style={{
@@ -128,22 +153,6 @@ export default function TreatmentGrid() {
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         )}
-      </div>
-
-      {/* Header */}
-      <div style={{ marginBottom: 48 }}>
-        <p
-          style={{
-            fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 400,
-            fontSize: 11,
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "#8C7B6E",
-          }}
-        >
-          TREATMENTS
-        </p>
       </div>
 
       {/* 2-column grid */}

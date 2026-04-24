@@ -100,7 +100,7 @@ export function ManifestoSection() {
       </motion.div>
 
       {/* Values section */}
-      <section className="w-full relative" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
+      <section className="w-full relative" style={{ paddingTop: '48px', paddingBottom: '48px', overflow: 'visible' }}>
 
         {/* OUR MOTTO — absolutely positioned, vertically centered */}
         <div style={{
