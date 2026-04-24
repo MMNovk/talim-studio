@@ -3,25 +3,25 @@
 import { ReactLenis } from 'lenis/react'
 
 const leftImages = [
-  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1552693673-1bf958298935?w=500&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=987&auto=format&fit=crop',
 ]
 
 const centerImages = [
-  'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=500&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=987&auto=format&fit=crop',
 ]
 
 const rightImages = [
-  'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=987&auto=format&fit=crop',
 ]
 
 export default function OurWorkScroll() {
@@ -29,11 +29,14 @@ export default function OurWorkScroll() {
     <>
       <p
         style={{
-          fontFamily: 'DM Sans, sans-serif',
-          fontSize: '11px',
-          letterSpacing: '0.25em',
+          fontFamily: 'Cormorant Garamond, serif',
+          fontWeight: 300,
+          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+          letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: '#8C7B6E',
+          color: '#C8BEB4',
+          textAlign: 'center',
+          width: '100%',
           padding: '80px 32px 32px',
           backgroundColor: '#F7F3EE',
           margin: 0,
