@@ -3,17 +3,17 @@
 import { ReactLenis } from 'lenis/react'
 
 const leftImages = [
-  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1643402305704-474b129161a5?q=80&w=2071&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1757689373248-a6cd07328ba5?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1731514899894-86ae464a9a21?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1643685276743-1b52832c58d5?q=80&w=1064&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1731514798247-2d7ecb6fa45a?q=80&w=987&auto=format&fit=crop',
 ]
 
 const centerImages = [
-  'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1650158638285-d137b8428582?q=80&w=1064&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1733685373334-c5ea7c0ee009?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1677682692989-0e54aa104350?q=80&w=2070&auto=format&fit=crop',
 ]
 
 const rightImages = [
