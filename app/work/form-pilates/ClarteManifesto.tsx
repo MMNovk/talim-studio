@@ -17,7 +17,7 @@ export function ManifestoSection() {
       {/* Decorative CLARTÉ heading */}
       <div style={{
         width: '100%',
-        paddingTop: '0',
+        paddingTop: '48px',
         paddingBottom: '0',
         textAlign: 'center',
         marginTop: '0',
@@ -76,85 +76,76 @@ export function ManifestoSection() {
         </p>
       </motion.div>
 
-      {/* Value section */}
-      <section className="w-full flex flex-col items-start justify-start py-0">
-        <div className="flex items-center gap-2 h-[360px] w-full px-0">
+      {/* Values section */}
+      <section className="w-full flex flex-row items-stretch" style={{ minHeight: '460px' }}>
 
-          {/* Left label */}
-          <div
-            className="relative flex-grow transition-all w-56 overflow-hidden h-[360px] duration-500"
-            style={{
-              flexGrow: 1,
-              backgroundColor: '#F7F3EE',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              padding: '28px 24px',
-              borderRight: '1px solid #D4C9BC',
-            }}
-          >
-            <p style={{
-              fontFamily: 'DM Sans, sans-serif',
-              fontSize: '11px',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: '#8C7B6E',
-              margin: '0 0 12px 0',
-            }}>
-              Our Values
-            </p>
-            <p style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 300,
-              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-              color: '#1C1814',
-              lineHeight: 1.1,
-              margin: 0,
-            }}>
-              Our<br />Motto
-            </p>
-          </div>
+        {/* Left label — vertical "OUR MOTTO" */}
+        <div style={{
+          width: '220px',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
+        }}>
+          <p style={{
+            writingMode: 'vertical-rl',
+            transform: 'rotate(180deg)',
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(3rem, 5vw, 5rem)',
+            letterSpacing: '0.12em',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px #C8BEB4',
+            textTransform: 'uppercase',
+            margin: 0,
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            Our Motto
+          </p>
+        </div>
 
-          {/* Four value cards */}
-          {[
-            {
-              word: 'Slow',
-              image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=800&fit=crop&q=90',
-            },
-            {
-              word: 'Intentional',
-              image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=800&fit=crop&q=90',
-            },
-            {
-              word: 'Precise',
-              image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=800&fit=crop&q=90',
-            },
-            {
-              word: 'Personal',
-              image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=800&fit=crop&q=90',
-            },
-          ].map((value, idx) => (
-            <div
-              key={idx}
-              className="relative group flex-grow transition-all w-56 overflow-hidden h-[360px] duration-500 hover:w-full"
-              style={{ cursor: 'pointer' }}
-            >
-              <img
-                className="h-full w-full object-cover object-center"
-                src={value.image}
-                alt={value.word}
-              />
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to top, rgba(28,24,20,0.85) 0%, rgba(28,24,20,0.1) 60%, transparent 100%)',
-              }} />
-              <div style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-              }}>
+        {/* Image gallery */}
+        <div style={{ flex: 1, paddingRight: 'clamp(1.5rem, 4vw, 3rem)' }}>
+          <div className="flex items-center gap-2 h-[460px] w-full">
+            {[
+              {
+                src: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=800&fit=crop&q=90',
+                label: 'SLOW',
+              },
+              {
+                src: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=800&fit=crop&q=90',
+                label: 'INTENTIONAL',
+              },
+              {
+                src: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&h=800&fit=crop&q=90',
+                label: 'PRECISE',
+              },
+              {
+                src: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=800&fit=crop&q=90',
+                label: 'PERSONAL',
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="relative group flex-grow transition-all w-56 rounded-lg overflow-hidden h-full duration-500 hover:w-full"
+              >
+                <img
+                  className="h-full w-full object-cover object-center"
+                  src={item.src}
+                  alt={item.label}
+                  style={{ filter: 'none' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
+                }} />
                 <p style={{
+                  position: 'absolute',
+                  bottom: '16px',
+                  left: '16px',
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '11px',
                   letterSpacing: '0.2em',
@@ -162,13 +153,13 @@ export function ManifestoSection() {
                   color: '#F7F3EE',
                   margin: 0,
                 }}>
-                  {value.word}
+                  {item.label}
                 </p>
               </div>
-            </div>
-          ))}
-
+            ))}
+          </div>
         </div>
+
       </section>
 
     </section>
