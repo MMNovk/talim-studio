@@ -105,13 +105,14 @@ export default function TreatmentGrid() {
       {/* TREATMENTS label — horizontal, top left */}
       <div style={{ marginBottom: 48 }}>
         <p style={{
-          fontFamily: '"DM Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: 11,
-          letterSpacing: '0.25em',
+          fontFamily: 'Cormorant Garamond, serif',
+          fontWeight: 300,
+          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+          letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: '#8C7B6E',
+          color: '#C8BEB4',
           margin: 0,
+          lineHeight: 1,
         }}>
           TREATMENTS
         </p>

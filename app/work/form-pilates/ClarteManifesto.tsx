@@ -197,7 +197,7 @@ export function ManifestoSection() {
             ))}
           </div>
 
-          {/* Right OUR MOTTO — exact mirror of left */}
+          {/* Right OUR MOTTO — flipped */}
           <div style={{
             width: '80px',
             flexShrink: 0,
@@ -207,7 +207,7 @@ export function ManifestoSection() {
           }}>
             <p style={{
               writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)',
+              transform: 'rotate(0deg)',
               fontFamily: 'Cormorant Garamond, serif',
               fontWeight: 300,
               fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
