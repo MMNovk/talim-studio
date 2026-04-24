@@ -72,7 +72,7 @@ export function ManifestoSection() {
           maxWidth: '720px',
           margin: '0 auto',
           textAlign: 'center',
-          padding: '0 64px 48px',
+          padding: '0 64px 96px',
         }}
       >
         <p style={{
@@ -109,7 +109,7 @@ export function ManifestoSection() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          paddingLeft: 'clamp(1rem, 2.5vw, 2rem)',
+          paddingLeft: 'clamp(0.5rem, 1.5vw, 1rem)',
         }}>
           <p style={{
             writingMode: 'vertical-rl',
@@ -130,7 +130,7 @@ export function ManifestoSection() {
         </div>
 
         {/* Image gallery */}
-        <div style={{ flex: 1, paddingRight: 'clamp(1rem, 2.5vw, 2rem)' }}>
+        <div style={{ flex: 1, paddingRight: 'clamp(2.5rem, 6vw, 5rem)' }}>
           <div className="flex items-center gap-2 h-[460px] w-full">
             {values.map((item, idx) => (
               <div
@@ -151,14 +151,16 @@ export function ManifestoSection() {
                 {/* Hover description */}
                 <p className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
                   position: 'absolute',
-                  top: '20px',
-                  left: '16px',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  textAlign: 'center',
+                  width: '75%',
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '12px',
                   fontWeight: 400,
                   color: '#F7F3EE',
                   margin: 0,
-                  maxWidth: '160px',
                   lineHeight: 1.6,
                   zIndex: 1,
                 }}>
