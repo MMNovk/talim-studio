@@ -127,6 +127,31 @@ export function ManifestoSection() {
           </p>
         </div>
 
+        {/* OUR MOTTO — right side */}
+        <div style={{
+          position: 'absolute',
+          right: '24px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 1,
+        }}>
+          <p style={{
+            writingMode: 'vertical-rl',
+            transform: 'rotate(0deg)',
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+            letterSpacing: '0.12em',
+            color: '#C8BEB4',
+            textTransform: 'uppercase',
+            margin: 0,
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            Our Motto
+          </p>
+        </div>
+
         {/* Image gallery — centered on the page */}
         <div className="flex items-center gap-2 mx-auto" style={{
           height: '460px',
