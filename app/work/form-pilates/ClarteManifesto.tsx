@@ -100,16 +100,15 @@ export function ManifestoSection() {
       </motion.div>
 
       {/* Values section */}
-      <section className="w-full flex flex-row items-stretch" style={{ minHeight: '460px' }}>
+      <section className="w-full relative" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
 
-        {/* Left label — vertical "OUR MOTTO" */}
+        {/* OUR MOTTO — absolutely positioned, vertically centered */}
         <div style={{
-          width: '120px',
-          flexShrink: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingLeft: '24px',
+          position: 'absolute',
+          left: '24px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 1,
         }}>
           <p style={{
             writingMode: 'vertical-rl',
@@ -128,9 +127,13 @@ export function ManifestoSection() {
           </p>
         </div>
 
-        {/* Image gallery */}
-        <div style={{ flex: 1, paddingLeft: '0px', paddingRight: '80px' }}>
-          <div className="flex items-center gap-2 h-[460px] w-full">
+        {/* Image gallery — centered on the page */}
+        <div className="flex items-center gap-2 mx-auto" style={{
+          height: '460px',
+          width: 'calc(100% - 160px)',
+          marginLeft: 'auto',
+          marginRight: '80px',
+        }}>
             {values.map((item, idx) => (
               <div
                 key={idx}
@@ -196,7 +199,6 @@ export function ManifestoSection() {
                 </p>
               </div>
             ))}
-          </div>
         </div>
 
       </section>
