@@ -108,7 +108,7 @@ export function ManifestoSection() {
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
           paddingLeft: '24px',
         }}>
           <p style={{
@@ -116,10 +116,9 @@ export function ManifestoSection() {
             transform: 'rotate(180deg)',
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
-            fontSize: 'clamp(3rem, 5vw, 5rem)',
+            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
             letterSpacing: '0.12em',
-            color: 'transparent',
-            WebkitTextStroke: '1.5px #C8BEB4',
+            color: '#C8BEB4',
             textTransform: 'uppercase',
             margin: 0,
             lineHeight: 1,
