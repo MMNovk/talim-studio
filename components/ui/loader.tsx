@@ -66,7 +66,7 @@ export default function PageLoader() {
     }
 
     window.addEventListener('clarte-hero-ready', dismiss, { once: true })
-    const fallback = setTimeout(dismiss, 1200)
+    const fallback = setTimeout(dismiss, 2000)
 
     return () => {
       window.removeEventListener('clarte-hero-ready', dismiss)

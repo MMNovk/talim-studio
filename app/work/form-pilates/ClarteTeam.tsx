@@ -150,7 +150,7 @@ export const TestimonialSlider = ({
                 <h3 style={{ fontFamily: "Cormorant Garamond", fontWeight: 300, fontSize: "40px", color: "#1C1814", marginTop: "8px" }}>
                   {activeReview.name}
                 </h3>
-                <blockquote style={{ fontFamily: "DM Sans, sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", color: "#1C1814", marginTop: "24px", lineHeight: 1.6 }}>
+                <blockquote style={{ fontFamily: "DM Sans, sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", color: "#8C7B6E", marginTop: "24px", lineHeight: 1.6 }}>
                   &ldquo;{activeReview.quote}&rdquo;
                 </blockquote>
                 <p style={{ fontFamily: "DM Sans", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C7B6E", marginTop: "24px" }}>

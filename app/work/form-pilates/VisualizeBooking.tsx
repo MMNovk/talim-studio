@@ -317,6 +317,35 @@ export function InteractiveCalendar() {
           selectedDate={selectedDate}
           onDayClick={handleDayClick}
         />
+
+        {/* Confirm button — under the calendar */}
+        <AnimatePresence>
+          {selectedTime && selectedEsthetician && !confirmed && (
+            <motion.div
+              key="confirm"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setConfirmed(true)}
+              style={{
+                marginTop: '24px',
+                padding: '14px',
+                backgroundColor: '#1C1814',
+                color: '#F7F3EE',
+                fontFamily: '"DM Sans", sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+                cursor: 'pointer',
+                borderRadius: '2px',
+              }}
+            >
+              Confirm Booking
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* ── Right panel — fades in when a date is selected ── */}
@@ -421,29 +450,6 @@ export function InteractiveCalendar() {
                         </div>
                       ))}
                     </div>
-                  </motion.div>
-                )}
-
-                {/* Confirm */}
-                {selectedTime && selectedEsthetician && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    onClick={() => setConfirmed(true)}
-                    style={{
-                      padding: '14px',
-                      backgroundColor: '#1C1814',
-                      color: '#F7F3EE',
-                      fontFamily: '"DM Sans", sans-serif',
-                      fontSize: '11px',
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      borderRadius: '2px',
-                    }}
-                  >
-                    Confirm Booking
                   </motion.div>
                 )}
 
