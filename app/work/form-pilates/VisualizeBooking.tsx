@@ -1,53 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-type DayType = {
-  day: string
-  classNames: string
-}
-
-const DAYS: DayType[] = [
-  { day: '-1', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '-2', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '-3', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '-4', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '1',  classNames: 'bg-[#EDE8E2]' },
-  { day: '2',  classNames: 'bg-[#EDE8E2]' },
-  { day: '3',  classNames: 'bg-[#EDE8E2]' },
-  { day: '4',  classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '5',  classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '6',  classNames: 'bg-[#EDE8E2]' },
-  { day: '7',  classNames: 'bg-[#EDE8E2]' },
-  { day: '8',  classNames: 'bg-[#EDE8E2]' },
-  { day: '9',  classNames: 'bg-[#EDE8E2]' },
-  { day: '10', classNames: 'bg-[#EDE8E2]' },
-  { day: '11', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '12', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '13', classNames: 'bg-[#EDE8E2]' },
-  { day: '14', classNames: 'bg-[#EDE8E2]' },
-  { day: '15', classNames: 'bg-[#EDE8E2]' },
-  { day: '16', classNames: 'bg-[#EDE8E2]' },
-  { day: '17', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '18', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '19', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '20', classNames: 'bg-[#EDE8E2]' },
-  { day: '21', classNames: 'bg-[#EDE8E2]' },
-  { day: '22', classNames: 'bg-[#EDE8E2]' },
-  { day: '23', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '24', classNames: 'bg-[#B5623E] cursor-pointer' },
-  { day: '25', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '26', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '27', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '28', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '29', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '30', classNames: 'bg-[#EDE8E2] border border-[#B5623E] cursor-pointer' },
-  { day: '+1', classNames: 'bg-[#F0EBE4] opacity-40' },
-  { day: '+2', classNames: 'bg-[#F0EBE4] opacity-40' },
-]
-
-const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+// ── Constants ─────────────────────────────────────────────────────────────
+const DAYS_OF_WEEK = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+const MONTH_NAMES  = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
 const ESTHETICIANS = [
   { name: 'Sophie Marchand', specialty: 'Bespoke Facials · HydraFacial' },
@@ -64,69 +23,117 @@ const SERVICES = [
   'Bespoke Facial — $220 · 90 min',
 ]
 
-// ── Day cell ──────────────────────────────────────────────────────────────
-interface DayProps {
-  dayInfo: DayType
-  isSelected: boolean
-  onClick: () => void
-  hasSelection: boolean
+// ── Calendar logic ────────────────────────────────────────────────────────
+type CalendarCell = {
+  day: number | null
+  available: boolean  // clickable, has terra-cotta border
+  closed: boolean     // Sunday / Monday — muted
 }
 
-function Day({ dayInfo, isSelected, onClick, hasSelection }: DayProps) {
-  const isPlaceholder = dayInfo.day.startsWith('-') || dayInfo.day.startsWith('+')
-  const isAvailable   = dayInfo.classNames.includes('cursor-pointer')
-  const isPreFilled   = dayInfo.classNames.includes('bg-[#B5623E]')
+function generateCalendarDays(year: number, month: number): CalendarCell[] {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const isCurrentMonth = year === today.getFullYear() && month === today.getMonth()
 
-  // Pre-filled day should lose its terra-cotta when another day is selected
-  const isDeselectedPreFill = isPreFilled && !isSelected && hasSelection
+  const firstDayOfWeek = new Date(year, month, 1).getDay() // 0=Sun
+  const daysInMonth    = new Date(year, month + 1, 0).getDate()
 
-  const textColor =
-    (isSelected && isAvailable) || (isPreFilled && !isSelected && !hasSelection)
-      ? '#F7F3EE'
-      : '#1C1814'
+  const cells: CalendarCell[] = []
+
+  // Leading empty cells
+  for (let i = 0; i < firstDayOfWeek; i++) {
+    cells.push({ day: null, available: false, closed: false })
+  }
+
+  // Days of the month
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dayOfWeek = new Date(year, month, d).getDay()
+    const closed    = dayOfWeek === 0 || dayOfWeek === 1          // Sun or Mon
+    const isPast    = isCurrentMonth && new Date(year, month, d) < today
+    cells.push({ day: d, available: !closed && !isPast, closed })
+  }
+
+  // Trailing empty cells to complete the last row
+  const remainder = cells.length % 7
+  if (remainder > 0) {
+    for (let i = 0; i < 7 - remainder; i++) {
+      cells.push({ day: null, available: false, closed: false })
+    }
+  }
+
+  return cells
+}
+
+// ── Day cell ──────────────────────────────────────────────────────────────
+interface DayProps {
+  cell: CalendarCell
+  isSelected: boolean
+  onClick: () => void
+}
+
+function Day({ cell, isSelected, onClick }: DayProps) {
+  if (cell.day === null) {
+    return (
+      <div style={{
+        height: '2.5rem',
+        borderRadius: '6px',
+        backgroundColor: '#F0EBE4',
+        opacity: 0.4,
+      }} />
+    )
+  }
+
+  const base: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '2.5rem',
+    width: '100%',
+    fontFamily: '"DM Sans", sans-serif',
+    fontSize: '12px',
+    fontWeight: 400,
+    borderRadius: '6px',
+    userSelect: 'none',
+    cursor: cell.available ? 'pointer' : 'default',
+    transition: 'background-color 150ms ease',
+  }
+
+  const variant: React.CSSProperties = isSelected
+    ? { backgroundColor: '#B5623E', color: '#F7F3EE', border: '1px solid #B5623E' }
+    : cell.closed
+    ? { backgroundColor: '#F0EBE4', color: '#1C1814', opacity: 0.4 }
+    : cell.available
+    ? { backgroundColor: '#EDE8E2', color: '#1C1814', border: '1px solid #B5623E' }
+    : { backgroundColor: '#EDE8E2', color: '#1C1814' }
 
   return (
     <motion.div
-      className={dayInfo.classNames}
-      onClick={isAvailable ? onClick : undefined}
-      whileHover={isAvailable ? { scale: 1.08 } : {}}
+      onClick={cell.available ? onClick : undefined}
+      whileHover={cell.available && !isSelected ? { scale: 1.08 } : {}}
       transition={{ duration: 0.15 }}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '2.5rem',
-        width: '100%',
-        fontFamily: '"DM Sans", sans-serif',
-        fontSize: '12px',
-        fontWeight: 400,
-        color: textColor,
-        ...(isSelected && isAvailable
-          ? { backgroundColor: '#B5623E', border: '1px solid #B5623E' }
-          : isDeselectedPreFill
-          ? { backgroundColor: '#EDE8E2' }
-          : {}),
-        cursor: isAvailable ? 'pointer' : 'default',
-        borderRadius: '6px',
-        userSelect: 'none',
-      }}
+      style={{ ...base, ...variant }}
     >
-      {!isPlaceholder ? dayInfo.day : ''}
+      {cell.day}
     </motion.div>
   )
 }
 
 // ── Calendar grid ─────────────────────────────────────────────────────────
 interface CalendarGridProps {
-  selectedDay: string | null
-  onDayClick: (day: string) => void
+  year: number
+  month: number
+  selectedDate: Date | null
+  onDayClick: (day: number) => void
 }
 
-function CalendarGrid({ selectedDay, onDayClick }: CalendarGridProps) {
+function CalendarGrid({ year, month, selectedDate, onDayClick }: CalendarGridProps) {
+  const cells = useMemo(() => generateCalendarDays(year, month), [year, month])
+
   return (
     <div>
+      {/* Weekday headers */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', marginBottom: '8px' }}>
-        {daysOfWeek.map(d => (
+        {DAYS_OF_WEEK.map(d => (
           <div
             key={d}
             style={{
@@ -144,16 +151,26 @@ function CalendarGrid({ selectedDay, onDayClick }: CalendarGridProps) {
           </div>
         ))}
       </div>
+
+      {/* Day cells */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
-        {DAYS.map((dayInfo, i) => (
-          <Day
-            key={i}
-            dayInfo={dayInfo}
-            isSelected={selectedDay === dayInfo.day}
-            onClick={() => onDayClick(dayInfo.day)}
-            hasSelection={selectedDay !== null}
-          />
-        ))}
+        {cells.map((cell, i) => {
+          const isSelected =
+            selectedDate !== null &&
+            cell.day !== null &&
+            selectedDate.getFullYear() === year &&
+            selectedDate.getMonth() === month &&
+            selectedDate.getDate() === cell.day
+
+          return (
+            <Day
+              key={i}
+              cell={cell}
+              isSelected={isSelected}
+              onClick={() => cell.day !== null && onDayClick(cell.day)}
+            />
+          )
+        })}
       </div>
     </div>
   )
@@ -161,151 +178,176 @@ function CalendarGrid({ selectedDay, onDayClick }: CalendarGridProps) {
 
 // ── Interactive calendar ──────────────────────────────────────────────────
 export function InteractiveCalendar() {
-  const [selectedDay,         setSelectedDay]         = useState<string | null>(null)
-  const [selectedTime,        setSelectedTime]        = useState<string | null>(null)
-  const [selectedEsthetician, setSelectedEsthetician] = useState<string | null>(null)
-  const [selectedTreatment,   setSelectedTreatment]   = useState(SERVICES[0])
-  const [confirmed,           setConfirmed]           = useState(false)
+  const today = useMemo(() => {
+    const d = new Date(); d.setHours(0, 0, 0, 0); return d
+  }, [])
 
-  const hasDate = selectedDay !== null
+  const [monthOffset,         setMonthOffset]         = useState(0)
+  const [selectedDate,        setSelectedDate]         = useState<Date | null>(null)
+  const [selectedTime,        setSelectedTime]         = useState<string | null>(null)
+  const [selectedEsthetician, setSelectedEsthetician]  = useState<string | null>(null)
+  const [selectedTreatment,   setSelectedTreatment]    = useState(SERVICES[0])
+  const [confirmed,           setConfirmed]            = useState(false)
 
-  const handleDayClick = (day: string) => {
-    setSelectedDay(day)
+  // Displayed month
+  const displayDate  = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1)
+  const displayYear  = displayDate.getFullYear()
+  const displayMonth = displayDate.getMonth()
+
+  const handleDayClick = (day: number) => {
+    setSelectedDate(new Date(displayYear, displayMonth, day))
     setSelectedTime(null)
     setSelectedEsthetician(null)
     setConfirmed(false)
   }
 
-  const handleReset = () => {
-    setSelectedDay(null)
-    setSelectedTime(null)
-    setSelectedEsthetician(null)
-    setConfirmed(false)
-  }
+  const formattedDate = selectedDate
+    ? selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    : null
 
   return (
     <div style={{
-      backgroundColor: '#F7F3EE',
       border: '1px solid rgba(200, 190, 180, 0.3)',
       borderRadius: '16px',
       padding: '48px',
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '48px',
+      width: '100%',
+      transition: 'all 0.3s ease',
     }}>
-      <motion.div
-        layout
-        style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}
-      >
 
-        {/* ── Calendar column ── */}
-        <motion.div
-          layout
-          style={{
-            flex: hasDate ? '0 0 60%' : '0 0 100%',
-            maxWidth: hasDate ? '60%' : '640px',
-            margin: hasDate ? '0' : '0 auto',
-            transition: 'all 400ms cubic-bezier(0.25, 0.1, 0.25, 1)',
-          }}
-        >
-          {/* Header row */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-            <h2 style={{
+      {/* ── Calendar column ── */}
+      <div style={{ flex: '1 1 0', minWidth: 0 }}>
+
+        {/* Month navigation */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+          <button
+            onClick={() => setMonthOffset(o => o - 1)}
+            disabled={monthOffset === 0}
+            aria-label="Previous month"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '36px',
+              border: '1px solid #D4C9BC',
+              borderRadius: '50%',
+              backgroundColor: 'transparent',
+              cursor: monthOffset === 0 ? 'default' : 'pointer',
+              opacity: monthOffset === 0 ? 0.3 : 1,
+              transition: 'opacity 200ms ease',
+              flexShrink: 0,
+            }}
+          >
+            <ChevronLeft size={16} color="#1C1814" />
+          </button>
+
+          <h2 style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: '32px',
+            color: '#1C1814',
+            letterSpacing: '0.05em',
+            margin: 0,
+            textAlign: 'center',
+          }}>
+            {MONTH_NAMES[displayMonth]}{' '}
+            <span style={{ color: '#B5623E' }}>{displayYear}</span>
+          </h2>
+
+          <button
+            onClick={() => setMonthOffset(o => o + 1)}
+            aria-label="Next month"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '36px',
+              border: '1px solid #D4C9BC',
+              borderRadius: '50%',
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            <ChevronRight size={16} color="#1C1814" />
+          </button>
+        </div>
+
+        {/* Treatment selector */}
+        <div style={{ marginBottom: '24px' }}>
+          <p style={{
+            fontFamily: '"DM Sans", sans-serif',
+            fontSize: '11px',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: '#8C7B6E',
+            marginBottom: '8px',
+          }}>
+            Select a Treatment
+          </p>
+          <select
+            value={selectedTreatment}
+            onChange={e => setSelectedTreatment(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '12px 16px',
+              border: '1px solid #D4C9BC',
+              backgroundColor: '#F7F3EE',
               fontFamily: 'Cormorant Garamond, serif',
               fontWeight: 300,
-              fontSize: '32px',
+              fontSize: '18px',
               color: '#1C1814',
-              letterSpacing: '0.05em',
-              margin: 0,
-            }}>
-              April <span style={{ color: '#B5623E' }}>2026</span>
-            </h2>
+              appearance: 'none',
+              cursor: 'pointer',
+              outline: 'none',
+              borderRadius: '2px',
+            }}
+          >
+            {SERVICES.map(s => <option key={s}>{s}</option>)}
+          </select>
+        </div>
 
-            {hasDate && (
-              <motion.button
-                onClick={handleReset}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileHover={{ scale: 1.02 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  border: '1px solid #D4C9BC',
-                  backgroundColor: 'transparent',
-                  padding: '8px 16px',
-                  cursor: 'pointer',
-                  fontFamily: '"DM Sans", sans-serif',
-                  fontSize: '11px',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#1C1814',
-                  borderRadius: '2px',
-                }}
-              >
-                <div style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: '#B5623E',
-                  flexShrink: 0,
-                }} />
-                RESET
-              </motion.button>
-            )}
-          </div>
+        <CalendarGrid
+          year={displayYear}
+          month={displayMonth}
+          selectedDate={selectedDate}
+          onDayClick={handleDayClick}
+        />
+      </div>
 
-          {/* Treatment selector */}
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{
-              fontFamily: '"DM Sans", sans-serif',
-              fontSize: '11px',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: '#8C7B6E',
-              marginBottom: '8px',
-            }}>
-              Select a Treatment
-            </p>
-            <select
-              value={selectedTreatment}
-              onChange={(e) => setSelectedTreatment(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #D4C9BC',
-                backgroundColor: '#F7F3EE',
-                fontFamily: 'Cormorant Garamond, serif',
-                fontWeight: 300,
-                fontSize: '18px',
-                color: '#1C1814',
-                appearance: 'none',
-                cursor: 'pointer',
-                outline: 'none',
-                borderRadius: '2px',
-              }}
-            >
-              {SERVICES.map(s => <option key={s}>{s}</option>)}
-            </select>
-          </div>
-
-          <CalendarGrid selectedDay={selectedDay} onDayClick={handleDayClick} />
-        </motion.div>
-
-        {/* ── Side panel — fades in when a date is selected ── */}
-        <AnimatePresence>
-          {hasDate && (
-            <motion.div
-              key="panel"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              style={{
-                flex: '0 0 38%',
-                maxWidth: '38%',
-                paddingTop: '8px',
-                borderLeft: '1px solid #D4C9BC',
-                paddingLeft: '32px',
-              }}
-            >
+      {/* ── Right panel — fades in when a date is selected ── */}
+      <AnimatePresence>
+        {selectedDate && (
+          <motion.div
+            key="panel"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={{
+              minWidth: '280px',
+              borderLeft: '1px solid #D4C9BC',
+              paddingLeft: '48px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            {confirmed ? (
+              /* ── Confirmation state ── */
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', gap: '12px' }}>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 300, color: '#1C1814', margin: 0 }}>
+                  You&apos;re booked.
+                </p>
+                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#8C7B6E', lineHeight: 1.6, margin: 0 }}>
+                  We&apos;ll see you soon. A confirmation has been sent to your email.
+                </p>
+              </div>
+            ) : (
+              /* ── Booking flow ── */
               <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
                 {/* Selected date */}
@@ -314,7 +356,7 @@ export function InteractiveCalendar() {
                     Selected Date
                   </p>
                   <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '28px', color: '#1C1814', margin: 0 }}>
-                    April {selectedDay}, 2026
+                    {formattedDate}
                   </p>
                 </div>
 
@@ -324,7 +366,7 @@ export function InteractiveCalendar() {
                     Available Times
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM'].map((time) => (
+                    {['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM'].map(time => (
                       <div
                         key={time}
                         onClick={() => setSelectedTime(time)}
@@ -357,7 +399,7 @@ export function InteractiveCalendar() {
                       Your Esthetician
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {ESTHETICIANS.map((est) => (
+                      {ESTHETICIANS.map(est => (
                         <div
                           key={est.name}
                           onClick={() => setSelectedEsthetician(est.name)}
@@ -387,31 +429,30 @@ export function InteractiveCalendar() {
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    onClick={confirmed ? undefined : () => setConfirmed(true)}
+                    onClick={() => setConfirmed(true)}
                     style={{
                       padding: '14px',
-                      backgroundColor: confirmed ? '#3A3028' : '#1C1814',
+                      backgroundColor: '#1C1814',
                       color: '#F7F3EE',
                       fontFamily: '"DM Sans", sans-serif',
                       fontSize: '11px',
                       letterSpacing: '0.2em',
-                      textTransform: confirmed ? 'none' : 'uppercase',
+                      textTransform: 'uppercase',
                       textAlign: 'center',
-                      cursor: confirmed ? 'default' : 'pointer',
+                      cursor: 'pointer',
                       borderRadius: '2px',
-                      transition: 'background-color 300ms ease',
                     }}
                   >
-                    {confirmed ? "Booking confirmed — we'll see you soon." : 'Confirm Booking'}
+                    Confirm Booking
                   </motion.div>
                 )}
 
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      </motion.div>
     </div>
   )
 }
