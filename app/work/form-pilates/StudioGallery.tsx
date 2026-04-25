@@ -8,51 +8,33 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const studioItems = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&h=800&fit=crop&q=90',
+    url: 'https://images.unsplash.com/photo-1611920630418-f587fdc3bf94?q=80&w=987&auto=format&fit=crop',
     title: 'The Treatment Room',
     description: 'One room. Always the same one. We keep it quiet, warm, and entirely yours for the duration of your visit. Nothing is rushed here.',
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1200&h=800&fit=crop&q=90',
+    url: 'https://images.unsplash.com/photo-1630595271375-5073a6c0638b?q=80&w=2052&auto=format&fit=crop',
     title: 'The Consultation',
     description: 'Every visit begins with a conversation. We ask about your skin, your week, your stress levels. The treatment is built around what we learn in that first five minutes.',
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=800&fit=crop&q=90',
-    title: 'The Touch',
-    description: "We don't use machines as a shortcut. Every treatment involves hands — reading the skin, adjusting pressure, responding in real time to what it needs.",
-  },
-  {
-    id: 4,
     url: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=800&fit=crop&q=90',
     title: 'The Products',
     description: "We use what works, not what's trending. Every product in the room has been chosen for a reason and is explained to you before it touches your skin.",
   },
   {
+    id: 4,
+    url: 'https://images.unsplash.com/photo-1761718210055-e83ca7e2c9ad?q=80&w=987&auto=format&fit=crop',
+    title: 'The Process',
+    description: 'We work slowly and methodically. Every step is deliberate — cleanse, treat, restore. You\'ll feel each layer, and we\'ll explain what\'s happening as we go.',
+  },
+  {
     id: 5,
-    url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=90',
-    title: 'The Atmosphere',
-    description: "No music you didn't choose. No unnecessary conversation. No clock watching. Just the kind of quiet that's hard to find anywhere else in this city.",
-  },
-  {
-    id: 6,
-    url: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=800&fit=crop&q=90',
-    title: 'The Detail',
-    description: "We notice things. The tension you're holding in your jaw. The dryness along your hairline. The things you didn't think to mention. That attention is the whole point.",
-  },
-  {
-    id: 7,
-    url: 'https://images.unsplash.com/photo-1470259078422-826894b933aa?w=1200&h=800&fit=crop&q=90',
-    title: 'After Your Visit',
-    description: "You leave with a simple, specific routine — not a bag of products. We tell you exactly what to do and what to avoid. No guesswork, no pressure.",
-  },
-  {
-    id: 8,
-    url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop&q=90',
-    title: 'The Return',
-    description: "Most of our clients come back. Not because we ask them to — because their skin tells them to. We keep your history and pick up exactly where we left off.",
+    url: 'https://images.unsplash.com/photo-1775642548864-40cb8768815a?q=80&w=2070&auto=format&fit=crop',
+    title: 'Afterwards',
+    description: 'You leave with a simple, specific routine. We tell you exactly what to do and what to avoid. No guesswork, no pressure.',
   },
 ]
 
