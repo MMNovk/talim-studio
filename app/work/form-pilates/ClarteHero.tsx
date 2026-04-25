@@ -79,7 +79,7 @@ export function Component() {
             { title: "HydraFacial", description: "Deep cleanse, extract, and hydrate in one transformative session.", media: "https://assets.codepen.io/7558/orange-portrait-001.jpg" },
             { title: "LED Therapy", description: "Wavelengths of light working beneath the surface to restore and renew.", media: "https://assets.codepen.io/7558/orange-portrait-002.jpg" },
             { title: "Microneedling", description: "Precision micro-channels that awaken your skin's natural repair.", media: "https://assets.codepen.io/7558/orange-portrait-003.jpg" },
-            { title: "Gua Sha Ritual", description: "An ancient practice, refined for the modern complexion.", media: "https://assets.codepen.io/7558/orange-portrait-004.jpg" },
+            { title: "Gua Sha", description: "An ancient practice, refined for the modern complexion.", media: "https://assets.codepen.io/7558/orange-portrait-004.jpg" },
             { title: "Chemical Peel", description: "Controlled renewal that reveals the skin you were meant to have.", media: "https://assets.codepen.io/7558/orange-portrait-005.jpg" },
             { title: "Bespoke Facial", description: "Formulated entirely around you. No two are ever the same.", media: "https://assets.codepen.io/7558/orange-portrait-006.jpg" }
         ];

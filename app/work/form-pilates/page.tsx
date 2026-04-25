@@ -93,6 +93,18 @@ export default function ClartePage() {
   return (
     <div style={{ background: BG, color: INK }}>
 
+      {/* Fixed minimal navbar */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        padding: "20px 40px",
+        background: "rgba(245, 240, 235, 0.85)",
+        backdropFilter: "blur(12px)",
+      }}>
+        <span style={{ fontFamily: "Cormorant Garamond, serif", fontWeight: 300, fontSize: "1.4rem", letterSpacing: "0.08em", color: "#1C1814" }}>Clarté</span>
+        <a href="#booking" onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C7B6E", textDecoration: "none" }}>Book a Visit</a>
+      </nav>
+
       {/* 1. Hero — sticky, sits behind cream card */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', zIndex: 1 }}>
         <ClarteHero />
@@ -103,7 +115,9 @@ export default function ClartePage() {
         {/* Spacer: full viewport so hero is visible before card slides up */}
 
       {/* 2. Manifesto */}
-      <ManifestoSection />
+      <div style={{ paddingTop: "80px" }}>
+        <ManifestoSection />
+      </div>
 
       {/* 3. Services — 2-col treatment grid */}
       <TreatmentGrid />
@@ -112,7 +126,7 @@ export default function ClartePage() {
       <div id="our-work"><OurWorkScroll /></div>
 
       {/* 6. The Studio carousel */}
-      <StudioGallery />
+      <div id="about"><StudioGallery /></div>
 
       {/* 7. Meet the Team */}
       <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
@@ -195,11 +209,11 @@ export default function ClartePage() {
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                   {[
-                    { day: 'Tue – Fri', hours: '10am – 7pm', closed: false },
-                    { day: 'Saturday',  hours: '9am – 5pm',  closed: false },
-                    { day: 'Sunday',    hours: '11am – 4pm', closed: false },
-                    { day: 'Monday',    hours: 'Closed',     closed: true  },
-                  ].map(({ day, hours, closed }) => (
+                    { day: 'Tue – Fri', hours: '10am – 7pm' },
+                    { day: 'Saturday',  hours: '9am – 5pm'  },
+                    { day: 'Sunday',    hours: '11am – 4pm' },
+                    { day: 'Monday',    hours: 'Closed'     },
+                  ].map(({ day, hours }) => (
                     <div key={day} style={{ display: 'flex', gap: 32 }}>
                       <span style={{ ...DM300, fontSize: 15, color: INK, width: 88 }}>{day}</span>
                       <span style={{ ...DM300, fontSize: 15, color: MUTED }}>{hours}</span>
