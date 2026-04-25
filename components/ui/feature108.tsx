@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,11 @@ const Feature108 = ({
   description = "Fast turnaround. Fixed prices.",
   tabs = [],
 }: Feature108Props) => {
+  useEffect(() => {
+    tabs.forEach(tab => { const img = new Image(); img.src = tab.content.imageSrc; });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className="py-32" id="what-we-build">
       <div className="container mx-auto">
@@ -80,6 +86,8 @@ const Feature108 = ({
                   alt={tab.content.imageAlt}
                   className="rounded-xl object-cover w-full"
                   style={{ height: '400px' }}
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </TabsContent>
             ))}

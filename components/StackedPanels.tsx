@@ -105,6 +105,7 @@ function Panel({
           backgroundImage: `url(${imageUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundColor: "#111",
         }}
       />
       <div
@@ -157,6 +158,11 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
 
   const rotY = useSpring(-42, SCENE_SPRING);
   const rotX = useSpring(18, SCENE_SPRING);
+
+  // Preload all panel images so they're in cache before the wave plays
+  useEffect(() => {
+    PANEL_IMAGES.forEach(src => { const img = new Image(); img.src = src; });
+  }, []);
 
   // Wave plays every time the carousel enters the viewport (initial load + scroll-back)
   useEffect(() => {

@@ -44,7 +44,7 @@ export default function Nav() {
   return (
     <>
       {/* Nav bar */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 md:px-14 lg:px-20 h-16">
+      <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-end px-8 md:px-14 lg:px-20 h-16">
         <button
           onClick={() => setOpen((v) => !v)}
           className={`w-10 h-10 flex items-center justify-center text-ink cursor-pointer transition-opacity duration-300 ${heroVisible ? 'max-md:opacity-0' : ''}`}
