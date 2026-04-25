@@ -109,13 +109,32 @@ export default function ClartePage() {
       <TreatmentGrid />
 
       {/* 4. Our Work — sticky scroll gallery */}
-      <OurWorkScroll />
+      <div id="our-work"><OurWorkScroll /></div>
 
       {/* 6. The Studio carousel */}
       <StudioGallery />
 
       {/* 7. Meet the Team */}
-      <div style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
+      <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
+        <p style={{
+          fontFamily: 'Cormorant Garamond, serif',
+          fontWeight: 300,
+          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+          letterSpacing: '0.12em',
+          color: '#C8BEB4',
+          textTransform: 'uppercase',
+          textAlign: 'center',
+          width: '100%',
+          display: 'block',
+          margin: '0 0 24px',
+        }}>
+          MEET THE TEAM
+        </p>
+        <TestimonialSlider reviews={team} />
+      </div>
+
+      {/* 8. Booking */}
+      <section id="booking" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 300,
@@ -127,20 +146,8 @@ export default function ClartePage() {
           width: '100%',
           display: 'block',
           marginBottom: '48px',
-          margin: '0 0 48px',
         }}>
-          MEET THE TEAM
-        </p>
-        <TestimonialSlider reviews={team} />
-      </div>
-
-      {/* 8. Booking */}
-      <section id="booking" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
-        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
-          Availability
-        </p>
-        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(2rem, 3vw, 2.8rem)', color: '#1C1814', marginBottom: '48px' }}>
-          Book a Visit
+          BOOK A VISIT
         </p>
         <InteractiveCalendar />
       </section>
@@ -194,7 +201,7 @@ export default function ClartePage() {
                     { day: 'Monday',    hours: 'Closed',     closed: true  },
                   ].map(({ day, hours, closed }) => (
                     <div key={day} style={{ display: 'flex', gap: 32 }}>
-                      <span style={{ ...DM300, fontSize: 15, color: closed ? MUTED : INK, width: 88 }}>{day}</span>
+                      <span style={{ ...DM300, fontSize: 15, color: INK, width: 88 }}>{day}</span>
                       <span style={{ ...DM300, fontSize: 15, color: MUTED }}>{hours}</span>
                     </div>
                   ))}
@@ -254,9 +261,25 @@ export default function ClartePage() {
         className="px-8 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
         <span style={{ ...C300I, fontSize: 18, color: 'rgba(247,243,238,0.75)' }}>Clarté</span>
-        <span style={{ ...DM300, fontSize: 11, color: MUTED, textAlign: 'center', letterSpacing: '0.05em' }}>
-          68 Thomas St, Tribeca, NY 10013
-        </span>
+        <nav style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+          {[
+            { label: 'Treatments',    href: '#treatments'  },
+            { label: 'Our Work',      href: '#our-work'    },
+            { label: 'The Studio',    href: '#about'       },
+            { label: 'Meet the Team', href: '#meet-the-team' },
+            { label: 'Book a Visit',  href: '#booking'     },
+          ].map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              onClick={(e) => { e.preventDefault(); document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' }) }}
+              style={{ ...DM300, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none' }}
+              className="hover:text-[#F7F3EE] transition-colors duration-200"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
         <a
           href="https://talimstudio.com"
           style={{ ...DM300, fontSize: 11, color: MUTED, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}

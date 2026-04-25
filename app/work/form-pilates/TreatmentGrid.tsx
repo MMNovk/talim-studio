@@ -98,6 +98,7 @@ export default function TreatmentGrid() {
 
   return (
     <section
+      id="treatments"
       onMouseMove={handleMouseMove}
       style={{ background: "#F7F3EE", position: "relative" }}
       className="w-full px-8 md:px-16 py-24"
@@ -158,7 +159,8 @@ export default function TreatmentGrid() {
         {projects.map((project, index) => (
           <a
             key={index}
-            href={project.link}
+            href="#"
+            onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
             style={{
               display: "block",
               textDecoration: "none",
@@ -168,6 +170,7 @@ export default function TreatmentGrid() {
               backgroundColor: hoveredIndex === index ? "#F0EBE4" : "#F7F3EE",
               transition: "background-color 300ms ease",
               position: "relative",
+              cursor: "pointer",
             }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
