@@ -17,11 +17,11 @@ const centerImages = [
 ]
 
 const rightImages = [
-  'https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=987&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1722350553295-ba84043b64cc?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1712725213051-8d7d6a52edaf?q=80&w=987&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1542848284-8afa78a08ccb?q=80&w=986&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1657757989675-a6cd679cebaf?q=80&w=1035&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1737215398544-94db22a53a01?q=80&w=987&auto=format&fit=crop',
 ]
 
 export default function OurWorkScroll() {

@@ -101,29 +101,16 @@ export default function StudioGallery() {
 
         <p
           style={{
-            fontFamily: 'DM Sans, sans-serif',
-            fontSize: '11px',
-            letterSpacing: '0.25em',
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+            letterSpacing: '0.12em',
+            color: '#C8BEB4',
             textTransform: 'uppercase',
-            color: '#8C7B6E',
-            margin: '0 0 24px',
+            margin: '0 0 48px',
           }}
         >
           THE STUDIO
-        </p>
-
-        <p
-          style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontStyle: 'italic',
-            fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)',
-            color: '#1C1814',
-            lineHeight: 1.7,
-            marginBottom: '48px',
-          }}
-        >
-          What you can expect during your next visit.
         </p>
 
         {/* Split layout: 3fr photo + 2fr description */}

@@ -47,7 +47,7 @@ export function ManifestoSection() {
       }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
+          fontWeight: 400,
           fontSize: 'clamp(8rem, 18vw, 18rem)',
           lineHeight: 1,
           paddingTop: '0',
