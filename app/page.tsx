@@ -43,14 +43,14 @@ export default function Home() {
             },
             {
               value: "tab-3",
-              label: "Storefront",
+              label: "Business",
               content: {
                 badge: "$1,099",
                 title: "All in.",
                 description: "Everything in Starter, built for a business that runs on bookings. Includes Calendly or Acuity scheduling, Google Business Profile setup and optimization, a verified Maps embed, and on-page SEO. Two rounds of revisions, delivered in 7–10 days.",
                 buttonText: "Book a Build",
                 imageSrc: "https://images.unsplash.com/photo-1650735311937-1876825e971b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                imageAlt: "Storefront tier",
+                imageAlt: "Business tier",
               },
             },
             {

@@ -105,7 +105,7 @@ function Panel({
           backgroundImage: `url(${imageUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundColor: "#111",
+          backgroundColor: "#1a1a1a",
         }}
       />
       <div
@@ -159,9 +159,15 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const rotY = useSpring(-42, SCENE_SPRING);
   const rotX = useSpring(18, SCENE_SPRING);
 
-  // Preload all panel images so they're in cache before the wave plays
+  // Preload all panel images + What I Build tab images so they're in cache before interaction
   useEffect(() => {
-    PANEL_IMAGES.forEach(src => { const img = new Image(); img.src = src; });
+    const TAB_IMAGES = [
+      'https://images.unsplash.com/photo-1631885777506-69a414ca3735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1737328519608-ee80fc77f72e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1650735311937-1876825e971b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1772475385509-93fd87a2d4ba?q=80&w=1028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    ];
+    [...PANEL_IMAGES, ...TAB_IMAGES].forEach(src => { const img = new Image(); img.src = src; });
   }, []);
 
   // Wave plays every time the carousel enters the viewport (initial load + scroll-back)
