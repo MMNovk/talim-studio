@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 type DayType = {
@@ -69,15 +69,19 @@ interface DayProps {
   dayInfo: DayType
   isSelected: boolean
   onClick: () => void
+  hasSelection: boolean
 }
 
-function Day({ dayInfo, isSelected, onClick }: DayProps) {
+function Day({ dayInfo, isSelected, onClick, hasSelection }: DayProps) {
   const isPlaceholder = dayInfo.day.startsWith('-') || dayInfo.day.startsWith('+')
   const isAvailable   = dayInfo.classNames.includes('cursor-pointer')
   const isPreFilled   = dayInfo.classNames.includes('bg-[#B5623E]')
 
+  // Pre-filled day should lose its terra-cotta when another day is selected
+  const isDeselectedPreFill = isPreFilled && !isSelected && hasSelection
+
   const textColor =
-    (isSelected && isAvailable) || (isPreFilled && !isSelected)
+    (isSelected && isAvailable) || (isPreFilled && !isSelected && !hasSelection)
       ? '#F7F3EE'
       : '#1C1814'
 
@@ -99,6 +103,8 @@ function Day({ dayInfo, isSelected, onClick }: DayProps) {
         color: textColor,
         ...(isSelected && isAvailable
           ? { backgroundColor: '#B5623E', border: '1px solid #B5623E' }
+          : isDeselectedPreFill
+          ? { backgroundColor: '#EDE8E2' }
           : {}),
         cursor: isAvailable ? 'pointer' : 'default',
         borderRadius: '6px',
@@ -145,6 +151,7 @@ function CalendarGrid({ selectedDay, onDayClick }: CalendarGridProps) {
             dayInfo={dayInfo}
             isSelected={selectedDay === dayInfo.day}
             onClick={() => onDayClick(dayInfo.day)}
+            hasSelection={selectedDay !== null}
           />
         ))}
       </div>
@@ -154,33 +161,36 @@ function CalendarGrid({ selectedDay, onDayClick }: CalendarGridProps) {
 
 // ── Interactive calendar ──────────────────────────────────────────────────
 export function InteractiveCalendar() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  const [moreView,            setMoreView]            = useState(false)
   const [selectedDay,         setSelectedDay]         = useState<string | null>(null)
   const [selectedTime,        setSelectedTime]        = useState<string | null>(null)
   const [selectedEsthetician, setSelectedEsthetician] = useState<string | null>(null)
   const [selectedTreatment,   setSelectedTreatment]   = useState(SERVICES[0])
+  const [confirmed,           setConfirmed]           = useState(false)
+
+  const hasDate = selectedDay !== null
 
   const handleDayClick = (day: string) => {
     setSelectedDay(day)
-    setMoreView(true)
     setSelectedTime(null)
     setSelectedEsthetician(null)
+    setConfirmed(false)
+  }
+
+  const handleReset = () => {
+    setSelectedDay(null)
+    setSelectedTime(null)
+    setSelectedEsthetician(null)
+    setConfirmed(false)
   }
 
   return (
     <div style={{
       backgroundColor: '#F7F3EE',
-      border: '1px solid #D4C9BC',
-      borderRadius: '4px',
-      overflow: 'hidden',
-      maxHeight: '100vh',
+      border: '1px solid rgba(200, 190, 180, 0.3)',
+      borderRadius: '16px',
       padding: '48px',
     }}>
       <motion.div
-        ref={ref}
-        className="relative w-full"
         layout
         style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}
       >
@@ -189,15 +199,15 @@ export function InteractiveCalendar() {
         <motion.div
           layout
           style={{
-            flex: moreView ? '0 0 60%' : '0 0 100%',
-            maxWidth: moreView ? '60%' : '640px',
-            margin: moreView ? '0' : '0 auto',
+            flex: hasDate ? '0 0 60%' : '0 0 100%',
+            maxWidth: hasDate ? '60%' : '640px',
+            margin: hasDate ? '0' : '0 auto',
             transition: 'all 400ms cubic-bezier(0.25, 0.1, 0.25, 1)',
           }}
         >
           {/* Header row */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-            <motion.h2 style={{
+            <h2 style={{
               fontFamily: 'Cormorant Garamond, serif',
               fontWeight: 300,
               fontSize: '32px',
@@ -206,37 +216,40 @@ export function InteractiveCalendar() {
               margin: 0,
             }}>
               April <span style={{ color: '#B5623E' }}>2026</span>
-            </motion.h2>
+            </h2>
 
-            <motion.button
-              onClick={() => setMoreView(v => !v)}
-              whileHover={{ scale: 1.02 }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                border: '1px solid #D4C9BC',
-                backgroundColor: 'transparent',
-                padding: '8px 16px',
-                cursor: 'pointer',
-                fontFamily: '"DM Sans", sans-serif',
-                fontSize: '11px',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: '#1C1814',
-                borderRadius: '2px',
-              }}
-            >
-              <div style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: moreView ? '#B5623E' : '#D4C9BC',
-                transition: 'background-color 300ms ease',
-                flexShrink: 0,
-              }} />
-              {moreView ? 'CLOSE' : 'BOOK'}
-            </motion.button>
+            {hasDate && (
+              <motion.button
+                onClick={handleReset}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                whileHover={{ scale: 1.02 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  border: '1px solid #D4C9BC',
+                  backgroundColor: 'transparent',
+                  padding: '8px 16px',
+                  cursor: 'pointer',
+                  fontFamily: '"DM Sans", sans-serif',
+                  fontSize: '11px',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: '#1C1814',
+                  borderRadius: '2px',
+                }}
+              >
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: '#B5623E',
+                  flexShrink: 0,
+                }} />
+                RESET
+              </motion.button>
+            )}
           </div>
 
           {/* Treatment selector */}
@@ -276,15 +289,15 @@ export function InteractiveCalendar() {
           <CalendarGrid selectedDay={selectedDay} onDayClick={handleDayClick} />
         </motion.div>
 
-        {/* ── Side panel — slides in from right ── */}
+        {/* ── Side panel — fades in when a date is selected ── */}
         <AnimatePresence>
-          {moreView && (
+          {hasDate && (
             <motion.div
               key="panel"
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 40 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
                 flex: '0 0 38%',
                 maxWidth: '38%',
@@ -293,12 +306,7 @@ export function InteractiveCalendar() {
                 paddingLeft: '32px',
               }}
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.3 }}
-                style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
-              >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
                 {/* Selected date */}
                 <div>
@@ -306,43 +314,45 @@ export function InteractiveCalendar() {
                     Selected Date
                   </p>
                   <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '28px', color: '#1C1814', margin: 0 }}>
-                    {selectedDay ? `April ${selectedDay}, 2026` : 'Select a date'}
+                    April {selectedDay}, 2026
                   </p>
                 </div>
 
                 {/* Time slots */}
-                {selectedDay && (
-                  <div>
-                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
-                      Available Times
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM'].map((time) => (
-                        <div
-                          key={time}
-                          onClick={() => setSelectedTime(time)}
-                          style={{
-                            padding: '12px 16px',
-                            border: `1px solid ${selectedTime === time ? '#B5623E' : '#D4C9BC'}`,
-                            backgroundColor: selectedTime === time ? '#B5623E' : 'transparent',
-                            color: selectedTime === time ? '#F7F3EE' : '#1C1814',
-                            fontFamily: '"DM Sans", sans-serif',
-                            fontSize: '14px',
-                            cursor: 'pointer',
-                            transition: 'all 200ms ease',
-                            borderRadius: '2px',
-                          }}
-                        >
-                          {time}
-                        </div>
-                      ))}
-                    </div>
+                <div>
+                  <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
+                    Available Times
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM'].map((time) => (
+                      <div
+                        key={time}
+                        onClick={() => setSelectedTime(time)}
+                        style={{
+                          padding: '12px 16px',
+                          border: `1px solid ${selectedTime === time ? '#B5623E' : '#D4C9BC'}`,
+                          backgroundColor: selectedTime === time ? '#B5623E' : 'transparent',
+                          color: selectedTime === time ? '#F7F3EE' : '#1C1814',
+                          fontFamily: '"DM Sans", sans-serif',
+                          fontSize: '14px',
+                          cursor: 'pointer',
+                          transition: 'all 200ms ease',
+                          borderRadius: '2px',
+                        }}
+                      >
+                        {time}
+                      </div>
+                    ))}
                   </div>
-                )}
+                </div>
 
                 {/* Esthetician */}
-                {selectedDay && selectedTime && (
-                  <div>
+                {selectedTime && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
                       Your Esthetician
                     </p>
@@ -369,32 +379,34 @@ export function InteractiveCalendar() {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Confirm */}
-                {selectedDay && selectedTime && selectedEsthetician && (
+                {selectedTime && selectedEsthetician && (
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
+                    onClick={confirmed ? undefined : () => setConfirmed(true)}
                     style={{
                       padding: '14px',
-                      backgroundColor: '#1C1814',
+                      backgroundColor: confirmed ? '#3A3028' : '#1C1814',
                       color: '#F7F3EE',
                       fontFamily: '"DM Sans", sans-serif',
                       fontSize: '11px',
                       letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
+                      textTransform: confirmed ? 'none' : 'uppercase',
                       textAlign: 'center',
-                      cursor: 'pointer',
+                      cursor: confirmed ? 'default' : 'pointer',
                       borderRadius: '2px',
+                      transition: 'background-color 300ms ease',
                     }}
                   >
-                    Confirm Booking
+                    {confirmed ? "Booking confirmed — we'll see you soon." : 'Confirm Booking'}
                   </motion.div>
                 )}
 
-              </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
