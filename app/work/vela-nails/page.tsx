@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/ui/hero-section'
 import VelaCarousel from '@/components/ui/elegant-carousel'
 import { VelaBookingForm } from '@/components/ui/vela-booking-form'
 import OwnerSection from './OwnerSection'
+import VelaFooter from './VelaFooter'
 
 const dmSans = DM_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600'] })
 
@@ -34,10 +35,10 @@ export default function VelaNailsPage() {
       </div>
 
       {/* SECTION 3 — Owner */}
-      <OwnerSection />
+      <div id="about"><OwnerSection /></div>
 
       {/* SECTION 4 — Booking */}
-      <section id="book" className="bg-white py-24">
+      <section id="booking" className="bg-white py-24">
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 mb-14">
           <h2 className="font-black text-ink mb-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
             Book a Visit
@@ -49,7 +50,7 @@ export default function VelaNailsPage() {
       </section>
 
       {/* SECTION 5 — Location */}
-      <section className="bg-white py-24">
+      <section id="find-us" className="bg-white py-24">
         <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left: info */}
@@ -57,7 +58,7 @@ export default function VelaNailsPage() {
             <h2 className="font-black text-ink mb-8" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Find Us
             </h2>
-            <div className="flex flex-col gap-6 text-sm text-ink/70 leading-relaxed">
+            <div className="flex flex-col gap-6 text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
               <div>
                 <p className="font-semibold text-ink">Address</p>
                 <p>284 Bedford Ave</p>
@@ -95,18 +96,7 @@ export default function VelaNailsPage() {
       </section>
 
       {/* SECTION 6 — Footer */}
-      <footer className="bg-white border-t border-stone-200 py-6 px-8 md:px-14 lg:px-20">
-        <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="font-semibold text-sm text-ink">Vela Nails</span>
-          <span className="text-xs text-ink/40">284 Bedford Ave, Brooklyn · hello@velanails.com</span>
-          <a
-            href="https://talimstudio.com"
-            className="text-xs text-ink/30 no-underline hover:text-ink/50 transition-colors"
-          >
-            Built by Talim Studio →
-          </a>
-        </div>
-      </footer>
+      <VelaFooter />
 
     </div>
   )

@@ -17,9 +17,9 @@ export default function OwnerSection() {
 
         {/* Bio */}
         <div className="flex flex-col gap-6 md:pl-8 lg:pl-12">
-          <p className="text-xs tracking-widest uppercase text-ink/40">The Owner</p>
+          <p className="text-xs tracking-widest uppercase" style={{ color: '#6B6B6B' }}>The Owner</p>
           <h2 className="font-semibold text-3xl text-ink">Mia Reyes</h2>
-          <div className="flex flex-col gap-4 text-ink/60 leading-relaxed">
+          <div className="flex flex-col gap-4 leading-relaxed" style={{ color: '#6B6B6B' }}>
             <p>
               I&rsquo;ve been doing nails in Brooklyn for nine years. Before I opened Vela in 2020,
               I trained in Seoul and worked across several salons in Manhattan. Through my training
@@ -40,12 +40,12 @@ export default function OwnerSection() {
           <hr className="border-ink/10" />
           <div className="flex gap-10">
             <div>
-              <p className="text-xs tracking-widest uppercase text-ink/35">Experience</p>
-              <p className="text-xs tracking-widest uppercase text-ink/60 mt-1">9 years</p>
+              <p className="text-xs tracking-widest uppercase mt-1" style={{ color: '#6B6B6B' }}>Experience</p>
+              <p className="text-xs tracking-widest uppercase mt-1" style={{ color: '#6B6B6B' }}>9 years</p>
             </div>
             <div>
-              <p className="text-xs tracking-widest uppercase text-ink/35">Est.</p>
-              <p className="text-xs tracking-widest uppercase text-ink/60 mt-1">2020</p>
+              <p className="text-xs tracking-widest uppercase mt-1" style={{ color: '#6B6B6B' }}>Est.</p>
+              <p className="text-xs tracking-widest uppercase mt-1" style={{ color: '#6B6B6B' }}>2020</p>
             </div>
           </div>
         </div>

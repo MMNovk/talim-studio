@@ -16,23 +16,23 @@ export function VelaBookingForm() {
     return (
       <div className="max-w-xl mx-auto text-center py-16 px-4">
         <p className="text-xl font-bold text-ink">Thanks — we'll be in touch soon.</p>
-        <p className="text-ink/40 mt-2 text-sm">See you at the studio.</p>
+        <p className="mt-2 text-sm" style={{ color: '#6B6B6B' }}>See you at the studio.</p>
       </div>
     )
   }
 
   const inputClass =
-    'w-full border border-stone-200 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-ink/40 transition-colors'
+    'w-full border border-stone-200 bg-white px-4 py-3 text-sm text-ink placeholder:text-[#6B6B6B] focus:outline-none focus:border-ink/40 transition-colors'
 
   return (
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto w-full flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="font-mono text-[10px] text-ink/40 tracking-widest uppercase mb-1.5 block">Name</label>
+          <label className="font-mono text-[10px] tracking-widest uppercase mb-1.5 block" style={{ color: '#6B6B6B' }}>Name</label>
           <input type="text" required placeholder="Your name" className={inputClass} />
         </div>
         <div>
-          <label className="font-mono text-[10px] text-ink/40 tracking-widest uppercase mb-1.5 block">Email</label>
+          <label className="font-mono text-[10px] tracking-widest uppercase mb-1.5 block" style={{ color: '#6B6B6B' }}>Email</label>
           <input type="email" required placeholder="your@email.com" className={inputClass} />
         </div>
       </div>
@@ -58,7 +58,7 @@ export function VelaBookingForm() {
         type="submit"
         className="w-full bg-black text-white py-3 text-xs font-bold tracking-widest hover:bg-ink/80 transition-colors"
       >
-        SEND INQUIRY
+        Send It
       </button>
     </form>
   )

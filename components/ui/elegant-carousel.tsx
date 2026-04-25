@@ -38,7 +38,7 @@ const VELA_SLIDES: SlideData[] = [
     subtitle: 'From $55',
     description: 'Full foot soak, exfoliation, shaping, and polish. A full reset. Add a paraffin treatment for $15.',
     accent: '#9E8E7E',
-    imageUrl: '/images/vela/pedicure.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1628610726537-6e9d2799f871?q=80&w=1480&auto=format&fit=crop',
   },
 ]
 
@@ -109,8 +109,8 @@ export default function VelaCarousel() {
 
         {/* Left: text */}
         <div className="flex flex-col gap-5 order-2 lg:order-1">
-          <h2 className="text-3xl font-semibold text-ink mb-3">What We Offer</h2>
-          <span className="text-ink/30 text-xs font-mono tracking-widest">
+          <h2 className="text-3xl font-semibold text-ink mb-3">The Services</h2>
+          <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
             {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
           </span>
 
@@ -132,8 +132,8 @@ export default function VelaCarousel() {
           </p>
 
           <p
-            className="text-ink/50 leading-relaxed max-w-sm transition-opacity duration-300"
-            style={{ opacity: isTransitioning ? 0 : 1 }}
+            className="leading-relaxed max-w-sm transition-opacity duration-300"
+            style={{ opacity: isTransitioning ? 0 : 1, color: '#6B6B6B' }}
           >
             {slide.description}
           </p>
@@ -191,7 +191,7 @@ export default function VelaCarousel() {
                 }}
               />
             </div>
-            <span className={`text-xs ${i === currentIndex ? 'text-ink' : 'text-ink/40'}`}>
+            <span className="text-xs" style={{ color: i === currentIndex ? '#0e0e0e' : '#6B6B6B' }}>
               {s.title}
             </span>
           </button>
