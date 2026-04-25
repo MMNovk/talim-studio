@@ -353,6 +353,7 @@ export function Component() {
                 texturesLoaded = true; sliderEnabled = true;
                 updateShaderUniforms(); // Apply config
                 document.querySelector(".slider-wrapper")?.classList.add("loaded"); // Fade in immediately
+                window.dispatchEvent(new Event('clarte-hero-ready'));
                 safeStartTimer(500);
             }
 
@@ -386,7 +387,7 @@ export function Component() {
 
   return (
     <>
-      <main className="slider-wrapper" ref={containerRef}>
+      <main className="slider-wrapper" ref={containerRef} style={{ background: '#F7F3EE' }}>
         <canvas className="webgl-canvas" style={{ pointerEvents: 'none' }}></canvas>
         <span className="slide-number" id="slideNumber">01</span>
         <span className="slide-total" id="slideTotal">06</span>

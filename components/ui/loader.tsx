@@ -60,11 +60,17 @@ export default function PageLoader() {
   const [mounted, setMounted]   = useState(true)
 
   useEffect(() => {
-    const fadeTimer  = setTimeout(() => setVisible(false), 5600)
-    const unmountTimer = setTimeout(() => setMounted(false), 6800)
+    const dismiss = () => {
+      setVisible(false)
+      setTimeout(() => setMounted(false), 800)
+    }
+
+    window.addEventListener('clarte-hero-ready', dismiss, { once: true })
+    const fallback = setTimeout(dismiss, 1200)
+
     return () => {
-      clearTimeout(fadeTimer)
-      clearTimeout(unmountTimer)
+      window.removeEventListener('clarte-hero-ready', dismiss)
+      clearTimeout(fallback)
     }
   }, [])
 
