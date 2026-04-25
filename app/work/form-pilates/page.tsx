@@ -1,6 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import ClarteHero            from './ClarteHero'
 import { ManifestoSection }  from './ClarteManifesto'
@@ -90,6 +91,13 @@ function WordSlot({ text, style }: { text: string; style?: CSSProperties }) {
 
 // ── Page ──────────────────────────────────────────────────────────────
 export default function ClartePage() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div style={{ background: BG, color: INK }}>
 
@@ -98,11 +106,12 @@ export default function ClartePage() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         display: "flex", justifyContent: "space-between", alignItems: "center",
         padding: "20px 40px",
-        background: "rgba(245, 240, 235, 0.85)",
-        backdropFilter: "blur(12px)",
+        background: scrolled ? "rgba(245, 240, 235, 0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        transition: "background 0.3s ease, backdrop-filter 0.3s ease",
       }}>
-        <span style={{ fontFamily: "Cormorant Garamond, serif", fontWeight: 300, fontSize: "1.4rem", letterSpacing: "0.08em", color: "#1C1814" }}>Clarté</span>
-        <a href="#booking" onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C7B6E", textDecoration: "none" }}>Book a Visit</a>
+        <span style={{ fontFamily: "Cormorant Garamond, serif", fontWeight: 300, fontSize: "1.4rem", letterSpacing: "0.08em", color: scrolled ? "#1C1814" : "#F7F3EE" }}>Clarté</span>
+        <a href="#booking" onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: scrolled ? "#1C1814" : "#F7F3EE", textDecoration: "none" }}>Book a Visit</a>
       </nav>
 
       {/* 1. Hero — sticky, sits behind cream card */}
