@@ -115,16 +115,19 @@ export default function ClartePage() {
       <StudioGallery />
 
       {/* 7. Meet the Team */}
-      <div style={{ backgroundColor: '#F7F3EE' }}>
+      <div style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
         <p style={{
-          fontFamily: '"DM Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '11px',
+          fontFamily: 'Cormorant Garamond, serif',
+          fontWeight: 300,
+          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
+          letterSpacing: '0.12em',
+          color: '#C8BEB4',
           textTransform: 'uppercase',
-          letterSpacing: '0.25em',
-          color: '#8C7B6E',
-          padding: '64px 64px 0',
-          margin: 0,
+          textAlign: 'center',
+          width: '100%',
+          display: 'block',
+          marginBottom: '48px',
+          margin: '0 0 48px',
         }}>
           MEET THE TEAM
         </p>

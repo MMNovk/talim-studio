@@ -37,9 +37,9 @@ export default function OurWorkScroll() {
           color: '#C8BEB4',
           textAlign: 'center',
           width: '100%',
-          padding: '80px 32px 32px',
+          padding: '80px 32px 0',
+          marginBottom: '48px',
           backgroundColor: '#F7F3EE',
-          margin: 0,
         }}
       >
         Our Work

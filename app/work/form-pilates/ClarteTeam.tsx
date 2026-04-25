@@ -81,7 +81,7 @@ export const TestimonialSlider = ({
         "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden p-8 md:p-12",
         className
       )}
-      style={{ backgroundColor: "#F7F3EE" }}
+      style={{ backgroundColor: "#F7F3EE", paddingBottom: "120px" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
         {/* Left Column */}
@@ -150,7 +150,7 @@ export const TestimonialSlider = ({
                 <h3 style={{ fontFamily: "Cormorant Garamond", fontWeight: 300, fontSize: "40px", color: "#1C1814", marginTop: "8px" }}>
                   {activeReview.name}
                 </h3>
-                <blockquote style={{ fontFamily: "Cormorant Garamond", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", color: "#1C1814", marginTop: "24px", lineHeight: 1.6 }}>
+                <blockquote style={{ fontFamily: "DM Sans, sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", color: "#1C1814", marginTop: "24px", lineHeight: 1.6 }}>
                   &ldquo;{activeReview.quote}&rdquo;
                 </blockquote>
                 <p style={{ fontFamily: "DM Sans", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C7B6E", marginTop: "24px" }}>
