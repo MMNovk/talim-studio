@@ -12,6 +12,7 @@ type Photo = {
   title: string
   year: string
   size?: Size
+  alt?: string
 }
 
 // Array order is deliberate: with CSS dense auto-placement these 16 items fill
@@ -29,26 +30,26 @@ const photos: Photo[] = [
   { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?w=1200&q=80', title: 'Coastal Aerial', year: '2024', size: 'wide' },
   { src: 'https://images.unsplash.com/photo-1553485580-4ffd03ed5ea1?w=800&q=80', title: 'Shore Study', year: '2024' },
   // Row 2–3
-  { src: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&q=80', title: 'Alpine Study', year: '2024', size: 'tall' },
+  { src: 'https://images.pexels.com/photos/28447599/pexels-photo-28447599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Alpine Study', year: '2024', size: 'tall', alt: 'Tokyo street at night' },
   { src: 'https://images.unsplash.com/photo-1514824068966-23f7d658a8b9?w=800&q=80', title: 'Passage', year: '2023' },
-  { src: 'https://images.unsplash.com/photo-1571164890821-dd30a1f9180d?w=800&q=80', title: 'Signal', year: '2023' },
-  { src: 'https://images.unsplash.com/photo-1620760585223-bfe4c8ece4be?w=1200&q=80', title: 'Dawn Study', year: '2023', size: 'wide' },
+  { src: 'https://images.pexels.com/photos/4344753/pexels-photo-4344753.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Signal', year: '2023', alt: 'Shinjuku empty street, wet pavement' },
+  { src: 'https://images.pexels.com/photos/31161580/pexels-photo-31161580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Dawn Study', year: '2023', size: 'wide', alt: 'Modern urban architecture at night' },
   // Row 4
   { src: 'https://images.unsplash.com/photo-1642383942262-eda4be3f030e?w=800&q=80', title: 'Exposed', year: '2022' },
   { src: 'https://images.unsplash.com/photo-1598084331228-71bd91b70e59?w=800&q=80', title: 'Aperture II', year: '2022' },
-  { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', title: 'High Country', year: '2022' },
+  { src: 'https://images.pexels.com/photos/30642656/pexels-photo-30642656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'High Country', year: '2022', alt: 'Black and white urban night walk' },
   // Row 5–6
-  { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', title: 'Still Water', year: '2022' },
+  { src: 'https://images.pexels.com/photos/30315841/pexels-photo-30315841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Still Water', year: '2022', alt: 'Rainy street at night' },
   { src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80', title: 'Amber Valley', year: '2021' },
-  { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80', title: 'Forest Interior', year: '2021', size: 'tall' },
+  { src: 'https://images.pexels.com/photos/2458127/pexels-photo-2458127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Forest Interior', year: '2021', size: 'tall', alt: 'Industrial site at night, glowing light' },
   { src: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1200&q=80', title: 'Horizon Line', year: '2021', size: 'wide' },
   // Row 7
   { src: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80', title: 'Open Road', year: '2020' },
-  { src: 'https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=800&q=80', title: 'Fog Study', year: '2020' },
+  { src: 'https://images.pexels.com/photos/10493305/pexels-photo-10493305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Fog Study', year: '2020', alt: 'Ground-level city night reflections' },
   { src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80', title: 'Night Passage', year: '2019' },
 ]
 
-function GalleryItem({ src, title, year, size = 'normal', delay = 0 }: Photo & { delay?: number }) {
+function GalleryItem({ src, title, year, size = 'normal', delay = 0, alt: altProp }: Photo & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px 0px' })
 
@@ -66,7 +67,7 @@ function GalleryItem({ src, title, year, size = 'normal', delay = 0 }: Photo & {
     >
       <img
         src={src}
-        alt={title}
+        alt={altProp ?? title}
         className="w-full h-full object-cover"
         loading="lazy"
       />

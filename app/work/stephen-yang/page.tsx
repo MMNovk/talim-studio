@@ -1,6 +1,7 @@
 import ImmersiveScrollGallery from '@/components/ImmersiveScrollGallery'
 import StephenYangGallery from './StephenYangGallery'
 import BioContact from './BioContact'
+import StephenYangNav from './StephenYangNav'
 
 export const metadata = {
   title: 'Stephen Yang — Fine Art Photography',
@@ -21,6 +22,9 @@ const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 export default function StephenYangPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen" style={serif}>
+
+      {/* Quiet top-right nav */}
+      <StephenYangNav />
 
       {/* Immersive scroll gallery */}
       <div id="gallery-section" className="bg-[#0a0a0a]">
@@ -44,7 +48,7 @@ export default function StephenYangPage() {
       <StephenYangGallery />
 
       {/* Bio + Portrait */}
-      <section className="bg-[#0a0a0a] px-8 md:px-16 py-24">
+      <section id="about" className="bg-[#0a0a0a] px-8 md:px-16 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <p
             className="text-white font-thin text-xl md:text-2xl leading-relaxed"
@@ -81,21 +85,20 @@ export default function StephenYangPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-8 border-t border-white/10 flex items-center justify-between">
+      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-6 border-t border-white/10 flex items-center justify-between">
         <a
           href="mailto:hello@stephenyang.com"
-          className="text-white/50 font-thin text-sm no-underline hover:text-white transition-colors duration-300"
+          className="text-white/40 text-[11px] tracking-[0.18em] uppercase no-underline hover:text-white/70 transition-colors duration-300"
           style={serif}
         >
           hello@stephenyang.com
         </a>
-        <a
-          href="https://talimstudio.com"
-          className="text-[#444] text-xs no-underline hover:text-[#666] transition-colors duration-300"
+        <span
+          className="text-[#444] text-[11px] tracking-[0.12em] uppercase"
           style={serif}
         >
           Built by Talim Studio →
-        </a>
+        </span>
       </footer>
 
     </div>

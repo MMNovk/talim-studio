@@ -19,6 +19,9 @@ export default function BioContact() {
           <p className="text-white font-thin text-4xl md:text-5xl tracking-wide mb-10" style={serif}>
             Stephen Yang
           </p>
+          <p className="text-white/50 text-sm font-thin mb-8" style={serif}>
+            Available for commissions, editorial, and print.
+          </p>
           <p className="text-white/40 text-[10px] tracking-[0.25em] uppercase mb-6" style={serif}>
             Get in Touch
           </p>
