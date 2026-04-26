@@ -80,6 +80,8 @@ export default function CinderCoAboutPage() {
                   alt={block.imageAlt}
                   fill
                   quality={100}
+                  priority={i === 0}
+                  loading={i === 0 ? undefined : 'eager'}
                   className="object-cover"
                 />
               </div>

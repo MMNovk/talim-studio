@@ -48,7 +48,7 @@ export default function MenuTabs({ tabs }: { tabs: MenuTab[] }) {
               ))}
             </div>
             <div className="relative h-64 lg:h-96 rounded-2xl overflow-hidden">
-              <Image src={tab.image} alt={tab.label} fill className="object-cover" />
+              <Image src={tab.image} alt={tab.label} fill quality={100} loading="eager" className="object-cover" />
             </div>
           </div>
         </TabsContent>

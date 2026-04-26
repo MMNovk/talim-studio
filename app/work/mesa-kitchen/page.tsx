@@ -74,7 +74,7 @@ export default function CinderCoPage() {
           quality={100}
           className="object-cover"
           style={{ objectPosition: "center 60%" }}
-          priority={false}
+          loading="eager"
         />
       </div>
 
