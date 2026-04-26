@@ -66,7 +66,7 @@ export function MarcoGallery() {
     <section id="work" className="bg-black py-16">
       <InteractiveBentoGallery
         mediaItems={mediaItems}
-        title="Check out my work."
+        title="Selected Work."
       />
     </section>
   )

@@ -48,7 +48,7 @@ export default function MarcoMillerPage() {
               </p>
             </div>
             <p className="text-neutral-500 text-xs text-center">
-              &copy; 2025 Marco Miller. All rights reserved.
+              &copy; 2026 Marco Miller. All rights reserved.
             </p>
             <a
               href="https://www.talimstudio.com"
