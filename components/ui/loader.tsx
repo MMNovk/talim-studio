@@ -61,14 +61,16 @@ export default function PageLoader() {
 
   useEffect(() => {
     const dismiss = () => {
-      requestAnimationFrame(() => {
+      // Wait 1000ms — matches the slider-wrapper opacity transition duration in clarte-hero.css
+      // so the hero is fully opaque before the loader starts fading out
+      setTimeout(() => {
         setVisible(false)
         setTimeout(() => setMounted(false), 800)
-      })
+      }, 1000)
     }
 
     window.addEventListener('clarte-hero-ready', dismiss, { once: true })
-    const fallback = setTimeout(dismiss, 2000)
+    const fallback = setTimeout(dismiss, 3000)
 
     return () => {
       window.removeEventListener('clarte-hero-ready', dismiss)

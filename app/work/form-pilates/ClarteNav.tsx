@@ -50,7 +50,7 @@ export default function ClarteNav() {
         <button
           onClick={() => setOpen(v => !v)}
           className="w-10 h-10 flex items-center justify-center cursor-pointer transition-colors duration-300"
-          style={{ color: scrolled ? '#1C1814' : '#F7F3EE' }}
+          style={{ color: (open || scrolled) ? '#1C1814' : '#F7F3EE' }}
           aria-label={open ? 'Close menu' : 'Open menu'}
         >
           <MenuToggleIcon open={open} className="w-7 h-7" />
@@ -64,7 +64,8 @@ export default function ClarteNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="fixed inset-0 z-[99] bg-white/95 backdrop-blur-md flex items-center justify-center"
+            className="fixed inset-0 z-[99] backdrop-blur-sm flex items-center justify-center"
+            style={{ background: 'rgba(247, 243, 238, 0.97)' }}
             onClick={(e) => { if (e.target === e.currentTarget) setOpen(false) }}
           >
             <div className="flex w-fit flex-col gap-4 px-10">
@@ -83,7 +84,7 @@ export default function ClarteNav() {
                     }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                   >
-                    <ArrowRight strokeWidth={3} className="size-10" />
+                    <ArrowRight strokeWidth={1.5} className="size-8" />
                   </motion.div>
                   <motion.span
                     variants={{
@@ -91,8 +92,8 @@ export default function ClarteNav() {
                       hover: { x: 0, color: ACCENT },
                     }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="text-4xl"
-                    style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300 }}
+                    className="text-5xl"
+                    style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }}
                   >
                     {item.label}
                   </motion.span>
