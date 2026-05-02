@@ -188,6 +188,9 @@ export function InteractiveCalendar() {
   const [selectedEsthetician, setSelectedEsthetician]  = useState<string | null>(null)
   const [selectedTreatment,   setSelectedTreatment]    = useState(SERVICES[0])
   const [confirmed,           setConfirmed]            = useState(false)
+  const [guestName,           setGuestName]            = useState('')
+  const [guestEmail,          setGuestEmail]           = useState('')
+  const [guestPhone,          setGuestPhone]           = useState('')
 
   // Displayed month
   const displayDate  = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1)
@@ -199,6 +202,9 @@ export function InteractiveCalendar() {
     setSelectedTime(null)
     setSelectedEsthetician(null)
     setConfirmed(false)
+    setGuestName('')
+    setGuestEmail('')
+    setGuestPhone('')
   }
 
   const formattedDate = selectedDate
@@ -320,7 +326,7 @@ export function InteractiveCalendar() {
 
         {/* Confirm button — under the calendar */}
         <AnimatePresence>
-          {selectedTime && selectedEsthetician && !confirmed && (
+          {selectedTime && selectedEsthetician && guestName.trim() && guestEmail.trim() && !confirmed && (
             <motion.div
               key="confirm"
               initial={{ opacity: 0, y: 8 }}
@@ -447,6 +453,50 @@ export function InteractiveCalendar() {
                           <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
                             {est.specialty}
                           </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Contact details */}
+                {selectedEsthetician && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '16px' }}>
+                      Your Details
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      {[
+                        { label: 'Full name',     value: guestName,  setter: setGuestName,  type: 'text',  required: true  },
+                        { label: 'Email address', value: guestEmail, setter: setGuestEmail, type: 'email', required: true  },
+                        { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel', required: false },
+                      ].map(({ label, value, setter, type }) => (
+                        <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
+                            {label}
+                          </label>
+                          <input
+                            type={type}
+                            value={value}
+                            onChange={e => setter(e.target.value)}
+                            style={{
+                              width: '100%',
+                              padding: '8px 0',
+                              border: 'none',
+                              borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
+                              backgroundColor: 'transparent',
+                              fontFamily: 'Cormorant Garamond, serif',
+                              fontWeight: 300,
+                              fontSize: '18px',
+                              color: '#1C1814',
+                              outline: 'none',
+                              transition: 'border-color 200ms ease',
+                            }}
+                          />
                         </div>
                       ))}
                     </div>
