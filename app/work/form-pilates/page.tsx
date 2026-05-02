@@ -1,9 +1,9 @@
 'use client'
 
 import type { CSSProperties } from 'react'
-import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import ClarteHero            from './ClarteHero'
+import ClarteNav             from './ClarteNav'
 import { ManifestoSection }  from './ClarteManifesto'
 import TreatmentGrid         from './TreatmentGrid'
 import OurWorkScroll         from './OurWorkScroll'
@@ -91,28 +91,10 @@ function WordSlot({ text, style }: { text: string; style?: CSSProperties }) {
 
 // ── Page ──────────────────────────────────────────────────────────────
 export default function ClartePage() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
     <div style={{ background: BG, color: INK }}>
 
-      {/* Fixed minimal navbar */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: "20px 40px",
-        background: scrolled ? "rgba(245, 240, 235, 0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        transition: "background 0.3s ease, backdrop-filter 0.3s ease",
-      }}>
-        <span style={{ fontFamily: "Cormorant Garamond, serif", fontWeight: 300, fontSize: "1.4rem", letterSpacing: "0.08em", color: scrolled ? "#1C1814" : "#F7F3EE" }}>Clarté</span>
-        <a href="#booking" onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: scrolled ? "#1C1814" : "#F7F3EE", textDecoration: "none" }}>Book a Visit</a>
-      </nav>
+      <ClarteNav />
 
       {/* 1. Hero — sticky, sits behind cream card */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', zIndex: 1 }}>
@@ -129,7 +111,7 @@ export default function ClartePage() {
       </div>
 
       {/* 3. Services — 2-col treatment grid */}
-      <TreatmentGrid />
+      <div id="treatments"><TreatmentGrid /></div>
 
       {/* 4. Our Work — sticky scroll gallery */}
       <div id="our-work"><OurWorkScroll /></div>

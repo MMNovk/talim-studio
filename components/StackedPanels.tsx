@@ -145,6 +145,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const containerRef = useRef<HTMLDivElement>(null);
   const isHovering = useRef(false);
   const mouseEnabled = useRef(false);
+  const [imagesReady, setImagesReady] = useState(false);
 
   const waveYSprings = Array.from({ length: PANEL_COUNT }, () =>
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -159,7 +160,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
   const rotY = useSpring(-42, SCENE_SPRING);
   const rotX = useSpring(18, SCENE_SPRING);
 
-  // Preload all panel images + What I Build tab images so they're in cache before interaction
+  // Preload front panels eagerly, gate render until they're ready — eliminates black-card flash
   useEffect(() => {
     const TAB_IMAGES = [
       'https://images.unsplash.com/photo-1631885777506-69a414ca3735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -167,6 +168,19 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       'https://images.unsplash.com/photo-1650735311937-1876825e971b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       'https://images.unsplash.com/photo-1772475385509-93fd87a2d4ba?q=80&w=1028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ];
+
+    // Track the 8 most-visible panels (front stack, indices 14–21, highest opacity)
+    const FRONT_INDICES = [14, 15, 16, 17, 18, 19, 20, 21];
+    let frontLoaded = 0;
+    FRONT_INDICES.forEach(i => {
+      const img = new Image();
+      const done = () => { frontLoaded++; if (frontLoaded === FRONT_INDICES.length) setImagesReady(true); };
+      img.onload = done;
+      img.onerror = done;
+      img.src = PANEL_IMAGES[i % PANEL_IMAGES.length];
+    });
+
+    // Warm the rest of the set in parallel
     [...PANEL_IMAGES, ...TAB_IMAGES].forEach(src => { const img = new Image(); img.src = src; });
   }, []);
 
@@ -269,7 +283,7 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       onMouseLeave={isMobile ? undefined : handleMouseLeave}
       onClick={isMobile ? handleTap : undefined}
       className={`relative w-full h-full flex items-center select-none ${isMobile ? 'justify-start' : 'justify-center'}`}
-      style={{ perspective: "900px", cursor: isMobile ? "pointer" : "default" }}
+      style={{ perspective: "900px", cursor: isMobile ? "pointer" : "default", opacity: imagesReady ? 1 : 0, transition: 'opacity 0.4s ease' }}
     >
       <motion.div
         style={{

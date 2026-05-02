@@ -61,8 +61,10 @@ export default function PageLoader() {
 
   useEffect(() => {
     const dismiss = () => {
-      setVisible(false)
-      setTimeout(() => setMounted(false), 800)
+      requestAnimationFrame(() => {
+        setVisible(false)
+        setTimeout(() => setMounted(false), 800)
+      })
     }
 
     window.addEventListener('clarte-hero-ready', dismiss, { once: true })
