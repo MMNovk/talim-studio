@@ -324,31 +324,73 @@ export function InteractiveCalendar() {
           onDayClick={handleDayClick}
         />
 
-        {/* Confirm button — under the calendar */}
+        {/* Contact fields + confirm — revealed after esthetician is chosen */}
         <AnimatePresence>
-          {selectedTime && selectedEsthetician && guestName.trim() && guestEmail.trim() && !confirmed && (
+          {selectedEsthetician && !confirmed && (
             <motion.div
-              key="confirm"
+              key="contact"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setConfirmed(true)}
-              style={{
-                marginTop: '24px',
-                padding: '14px',
-                backgroundColor: '#1C1814',
-                color: '#F7F3EE',
-                fontFamily: '"DM Sans", sans-serif',
-                fontSize: '11px',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                textAlign: 'center',
-                cursor: 'pointer',
-                borderRadius: '2px',
-              }}
+              transition={{ duration: 0.35 }}
+              style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '16px' }}
             >
-              Confirm Booking
+              <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
+                Your Details
+              </p>
+              {[
+                { label: 'Full name',        value: guestName,  setter: setGuestName,  type: 'text'  },
+                { label: 'Email address',    value: guestEmail, setter: setGuestEmail, type: 'email' },
+                { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel'   },
+              ].map(({ label, value, setter, type }) => (
+                <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
+                    {label}
+                  </label>
+                  <input
+                    type={type}
+                    value={value}
+                    onChange={e => setter(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '8px 0',
+                      border: 'none',
+                      borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
+                      backgroundColor: 'transparent',
+                      fontFamily: 'Cormorant Garamond, serif',
+                      fontWeight: 300,
+                      fontSize: '18px',
+                      color: '#1C1814',
+                      outline: 'none',
+                      transition: 'border-color 200ms ease',
+                    }}
+                  />
+                </div>
+              ))}
+
+              {guestName.trim() && guestEmail.trim() && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.25 }}
+                  onClick={() => setConfirmed(true)}
+                  style={{
+                    marginTop: '8px',
+                    padding: '14px',
+                    backgroundColor: '#1C1814',
+                    color: '#F7F3EE',
+                    fontFamily: '"DM Sans", sans-serif',
+                    fontSize: '11px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    borderRadius: '2px',
+                  }}
+                >
+                  Confirm Booking
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -453,50 +495,6 @@ export function InteractiveCalendar() {
                           <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
                             {est.specialty}
                           </p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Contact details */}
-                {selectedEsthetician && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '16px' }}>
-                      Your Details
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                      {[
-                        { label: 'Full name',     value: guestName,  setter: setGuestName,  type: 'text',  required: true  },
-                        { label: 'Email address', value: guestEmail, setter: setGuestEmail, type: 'email', required: true  },
-                        { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel', required: false },
-                      ].map(({ label, value, setter, type }) => (
-                        <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
-                            {label}
-                          </label>
-                          <input
-                            type={type}
-                            value={value}
-                            onChange={e => setter(e.target.value)}
-                            style={{
-                              width: '100%',
-                              padding: '8px 0',
-                              border: 'none',
-                              borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
-                              backgroundColor: 'transparent',
-                              fontFamily: 'Cormorant Garamond, serif',
-                              fontWeight: 300,
-                              fontSize: '18px',
-                              color: '#1C1814',
-                              outline: 'none',
-                              transition: 'border-color 200ms ease',
-                            }}
-                          />
                         </div>
                       ))}
                     </div>
