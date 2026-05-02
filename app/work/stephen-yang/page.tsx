@@ -62,7 +62,7 @@ export default function StephenYangPage() {
             His practice now spans landscape, portraiture, and architectural work. He has
             exhibited at galleries in New York, Berlin, and Seoul, and his images have appeared
             in <em>The New York Times Magazine</em>, <em>Aperture</em>, and <em>Foam</em>.
-            His first monograph, <em>Aperture</em>, was published in 2022 by Steidl.
+            His first monograph, <em>Threshold</em>, was published in 2022 by Steidl.
             <br /><br />
             He teaches at ICP New York and leads annual workshops in Iceland and Japan.
             His archive, dating to 2008, is an ongoing document of cities and people

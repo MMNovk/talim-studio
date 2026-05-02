@@ -26,9 +26,9 @@ export default function VelaFooter() {
         <a href="#booking" onClick={scrollTo('booking')} style={{ color: "inherit", textDecoration: "none" }}>Book</a>
         <a href="#find-us" onClick={scrollTo('find-us')} style={{ color: "inherit", textDecoration: "none" }}>Find Us</a>
       </div>
-      <span style={{ fontSize: "12px", color: "#666" }}>
+      <a href="https://talimstudio.com" style={{ fontSize: "12px", color: "#666", textDecoration: "none" }}>
         Built by Talim Studio →
-      </span>
+      </a>
     </footer>
   )
 }

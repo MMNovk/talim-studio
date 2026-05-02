@@ -51,7 +51,7 @@ export default function CinderCoAboutPage() {
             className="text-white font-black leading-none"
             style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}
           >
-            Four years<br />in Ridgewood.
+            Five years<br />in Ridgewood.
           </h1>
           <p className="font-sans text-sm font-light text-white/50 tracking-wide mt-3">Our story</p>
         </div>
