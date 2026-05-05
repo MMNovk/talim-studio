@@ -54,7 +54,7 @@ export default function Hero() {
             className="md:hidden"
             style={{ width: '100%', height: '140px', maxHeight: '140px', overflow: 'hidden', borderRadius: '12px', position: 'relative' }}
           >
-            <div style={{ transform: 'scale(0.7)', transformOrigin: 'center top', width: '100%', height: '100%' }}>
+            <div style={{ transform: 'scale(0.55)', transformOrigin: 'center top', width: '100%', height: '100%', marginLeft: 'auto', marginRight: '-16px' }}>
               <StackedPanels isMobile={true} />
             </div>
           </div>
