@@ -70,11 +70,11 @@ export default function StephenYangPage() {
             His archive, dating to 2008, is an ongoing document of cities and people
             caught at the threshold of motion.
           </p>
-          <div className="relative w-full aspect-[3/4] overflow-hidden max-md:w-full max-md:h-[280px] max-md:flex-shrink-0 max-md:aspect-auto">
+          <div className="relative w-full aspect-[3/4] overflow-hidden max-md:w-full max-md:aspect-auto max-md:overflow-visible">
             <img
               src="https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Stephen Yang"
-              className="w-full h-full object-cover max-md:h-full max-md:object-top"
+              className="w-full h-full object-cover max-md:h-auto max-md:[object-fit:unset]"
               loading="lazy"
             />
           </div>

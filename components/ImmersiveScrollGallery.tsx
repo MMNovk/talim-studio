@@ -29,7 +29,7 @@ const DEFAULT_IMAGES: Omit<iIPicture, 'scale'>[] = [
 ]
 
 const IMAGE_STYLES = [
-  'w-[25vw] h-[25vh] max-md:w-full max-md:h-full max-md:top-0 max-md:left-0',
+  'w-[25vw] h-[25vh]',
   'w-[35vw] h-[30vh] -top-[30vh] left-[5vw]',
   'w-[20vw] h-[55vh] -top-[15vh] -left-[25vw]',
   'w-[25vw] h-[25vh] left-[27.5vw]',
@@ -68,7 +68,7 @@ const ImmersiveScrollGallery: React.FC<iImmersiveScrollGalleryProps> = ({
 
   return (
     <div ref={container} className={`relative h-[200vh] ${className}`}>
-      <div className="sticky top-0 h-[100vh] overflow-hidden">
+      <div className="sticky top-0 h-[100vh] overflow-hidden max-md:bg-black">
         {pictures.map(({ src, scale, imgClass }, index) => (
           <motion.div
             key={index}
