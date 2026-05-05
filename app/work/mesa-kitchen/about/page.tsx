@@ -47,7 +47,7 @@ export default function CinderCoAboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
           <div
             className="md:hidden absolute bottom-0 left-0 right-0 z-[1]"
-            style={{ height: '60%', background: 'linear-gradient(to bottom, transparent 40%, #000 100%)' }}
+            style={{ height: '60%', background: 'linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.6) 60%, #000 85%)' }}
           />
         </div>
         <div className="relative z-10 max-w-screen-xl w-full">
