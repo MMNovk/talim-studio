@@ -44,7 +44,6 @@ export const Component = ({
   const mainGroupRef = useRef<SVGGElement>(null);
   const masterTl = useRef<gsap.core.Timeline | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileActiveIndex, setMobileActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -116,7 +115,9 @@ export const Component = ({
   };
 
   const handleMobileTap = (index: number) => {
-    setMobileActiveIndex(prev => prev === index ? null : index);
+    if (index === activeIndex) return;
+    setActiveIndex(index);
+    createLoop(index);
   };
 
   return (
@@ -147,7 +148,7 @@ export const Component = ({
                   {/* Numbers */}
                   <span className={cn(
                     "text-3xl font-bold transition-all duration-500 mt-2",
-                    (isMobile ? mobileActiveIndex === index : activeIndex === index)
+                    activeIndex === index
                       ? "text-orange-500 scale-110"
                       : "text-zinc-400 dark:text-zinc-600"
                   )}>
@@ -158,12 +159,12 @@ export const Component = ({
                   <h2
                     className={cn(
                       "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
-                      (isMobile ? mobileActiveIndex === index : activeIndex === index)
+                      activeIndex === index
                         ? "translate-x-4"
                         : "translate-x-0"
                     )}
                     style={
-                      (isMobile ? mobileActiveIndex === index : activeIndex === index)
+                      activeIndex === index
                         ? { color: 'hsl(0 0% 100%)' }
                         : { color: '#52525b' }
                     }
@@ -171,19 +172,6 @@ export const Component = ({
                     {item.name.split(' ')[0]}<br />
                     {item.name.split(' ')[1]}
                   </h2>
-                </div>
-
-                {/* Mobile tap-to-reveal image */}
-                <div
-                  className="md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                  style={{ maxHeight: mobileActiveIndex === index ? '236px' : '0px' }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    style={{ width: '100%', height: '220px', objectFit: 'cover', borderRadius: '12px', marginTop: '16px' }}
-                  />
                 </div>
               </li>
             ))}
