@@ -29,7 +29,7 @@ const DEFAULT_IMAGES: Omit<iIPicture, 'scale'>[] = [
 ]
 
 const IMAGE_STYLES = [
-  'w-[25vw] h-[25vh]',
+  'w-[25vw] h-[25vh] max-md:w-full max-md:h-full max-md:top-0 max-md:left-0',
   'w-[35vw] h-[30vh] -top-[30vh] left-[5vw]',
   'w-[20vw] h-[55vh] -top-[15vh] -left-[25vw]',
   'w-[25vw] h-[25vh] left-[27.5vw]',

@@ -49,9 +49,9 @@ export default function StephenYangPage() {
 
       {/* Bio + Portrait */}
       <section id="about" className="bg-[#0a0a0a] px-8 md:px-16 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-md:flex max-md:flex-row max-md:items-start max-md:gap-4">
           <p
-            className="text-white font-thin text-xl md:text-2xl leading-relaxed"
+            className="text-white font-thin text-xl md:text-2xl leading-relaxed max-md:w-[60%] max-md:text-sm"
             style={{ ...serif, lineHeight: 1.7 }}
           >
             Stephen Yang is a fine art photographer based in New York. He began shooting
@@ -68,11 +68,11 @@ export default function StephenYangPage() {
             His archive, dating to 2008, is an ongoing document of cities and people
             caught at the threshold of motion.
           </p>
-          <div className="relative w-full aspect-[3/4] overflow-hidden">
+          <div className="relative w-full aspect-[3/4] overflow-hidden max-md:w-[40%] max-md:flex-shrink-0 max-md:aspect-auto">
             <img
               src="https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Stephen Yang"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover max-md:h-auto"
               loading="lazy"
             />
           </div>
@@ -85,7 +85,7 @@ export default function StephenYangPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-6 border-t border-white/10 flex items-center justify-between">
+      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-6 max-md:px-5 max-md:py-6 border-t border-white/10 flex items-center justify-between">
         <a
           href="mailto:hello@stephenyang.com"
           className="text-white/40 text-[11px] tracking-[0.18em] uppercase no-underline hover:text-white/70 transition-colors duration-300"
