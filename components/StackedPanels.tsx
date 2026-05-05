@@ -162,15 +162,8 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
 
   // Preload front panels eagerly, gate render until they're ready — eliminates black-card flash
   useEffect(() => {
-    const TAB_IMAGES = [
-      'https://images.unsplash.com/photo-1631885777506-69a414ca3735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1737328519608-ee80fc77f72e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1650735311937-1876825e971b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1772475385509-93fd87a2d4ba?q=80&w=1028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ];
-
-    // Track the 8 most-visible panels (front stack, indices 14–21, highest opacity)
-    const FRONT_INDICES = [14, 15, 16, 17, 18, 19, 20, 21];
+    // Track the 5 most-visible panels (front stack, indices 17–21, highest opacity)
+    const FRONT_INDICES = [17, 18, 19, 20, 21];
     let frontLoaded = 0;
     FRONT_INDICES.forEach(i => {
       const img = new Image();
@@ -180,8 +173,8 @@ export default function StackedPanels({ isMobile = false }: StackedPanelsProps) 
       img.src = PANEL_IMAGES[i % PANEL_IMAGES.length];
     });
 
-    // Warm the rest of the set in parallel
-    [...PANEL_IMAGES, ...TAB_IMAGES].forEach(src => { const img = new Image(); img.src = src; });
+    // Warm the rest of the panel images in parallel
+    PANEL_IMAGES.forEach(src => { const img = new Image(); img.src = src; });
   }, []);
 
   // Wave plays every time the carousel enters the viewport (initial load + scroll-back)

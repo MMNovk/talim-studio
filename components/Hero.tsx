@@ -77,13 +77,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Tap hint — mobile only, above carousel */}
-      {isMobile && (
-        <p className="text-center text-ink/40 text-xs tracking-wide mb-3">
-          Tap to animate
-        </p>
-      )}
-
       {/* StackedPanels — desktop: overlapping right column; mobile: full-width below text */}
       <div style={isMobile
         ? { width: '100%', height: '260px', flexShrink: 0 }
