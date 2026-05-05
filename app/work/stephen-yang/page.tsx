@@ -87,7 +87,7 @@ export default function StephenYangPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-6 max-md:px-5 max-md:py-6 border-t border-white/10 flex items-center justify-between">
+      <footer className="bg-[#0a0a0a] px-8 md:px-16 py-6 max-md:p-5 max-md:gap-4 border-t border-white/10 flex items-center justify-between">
         <a
           href="mailto:hello@stephenyang.com"
           className="text-white/40 text-[11px] tracking-[0.18em] uppercase no-underline hover:text-white/70 transition-colors duration-300"
