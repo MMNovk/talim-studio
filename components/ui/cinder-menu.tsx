@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface MenuItem {
   name: string
@@ -55,8 +55,27 @@ const menuData: MenuCategory[] = [
 export function CinderMenu() {
   const [activeCategory, setActiveCategory] = useState(0)
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [mobileActiveItem, setMobileActiveItem] = useState<number | null>(null)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const currentCategory = menuData[activeCategory]
+
+  const handleTabSwitch = (i: number) => {
+    setActiveCategory(i)
+    setHoveredItem(null)
+    setMobileActiveItem(null)
+  }
+
+  const handleMobileTap = (i: number) => {
+    setMobileActiveItem(prev => prev === i ? null : i)
+  }
 
   return (
     <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
@@ -74,7 +93,7 @@ export function CinderMenu() {
           {menuData.map((cat, i) => (
             <button
               key={cat.label}
-              onClick={() => { setActiveCategory(i); setHoveredItem(null); }}
+              onClick={() => handleTabSwitch(i)}
               className={`px-5 py-2 text-xs font-sans tracking-widest uppercase border transition-colors duration-200 ${
                 activeCategory === i
                   ? "bg-orange-500 border-orange-500 text-white"
@@ -92,29 +111,46 @@ export function CinderMenu() {
           {/* Left: menu list */}
           <div>
             {currentCategory.items.map((item, i) => (
-              <div
-                key={item.name}
-                onMouseEnter={() => setHoveredItem(i)}
-                onMouseLeave={() => setHoveredItem(null)}
-                className={`group flex items-baseline justify-between py-5 border-b border-white/10 cursor-default transition-colors duration-200 ${
-                  hoveredItem === i ? "border-white/30" : ""
-                }`}
-              >
-                <div className="flex-1 min-w-0 pr-8">
-                  <p className="text-white font-bold text-lg group-hover:text-orange-500 transition-colors duration-200">
-                    {item.name}
-                  </p>
-                  <p className="text-white/40 text-sm mt-1 leading-snug">{item.description}</p>
+              <div key={item.name}>
+                <div
+                  onMouseEnter={() => { if (!isMobile) setHoveredItem(i) }}
+                  onMouseLeave={() => { if (!isMobile) setHoveredItem(null) }}
+                  onClick={() => { if (isMobile) handleMobileTap(i) }}
+                  className={`group flex items-baseline justify-between py-5 border-b border-white/10 transition-colors duration-200 ${
+                    isMobile ? 'cursor-pointer' : 'cursor-default'
+                  } ${hoveredItem === i ? "border-white/30" : ""}`}
+                >
+                  <div className="flex-1 min-w-0 pr-8">
+                    <p className={`font-bold text-lg transition-colors duration-200 ${
+                      (isMobile && mobileActiveItem === i) ? 'text-orange-500' : 'text-white group-hover:text-orange-500'
+                    }`}>
+                      {item.name}
+                    </p>
+                    <p className="text-white/40 text-sm mt-1 leading-snug">{item.description}</p>
+                  </div>
+                  <span className="text-white/60 text-sm font-sans shrink-0">
+                    {item.price}
+                  </span>
                 </div>
-                <span className="text-white/60 text-sm font-sans shrink-0">
-                  {item.price}
-                </span>
+
+                {/* Mobile tap-to-reveal image */}
+                <div
+                  className="md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                  style={{ maxHeight: mobileActiveItem === i ? '236px' : '0px' }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{ width: '100%', height: '220px', objectFit: 'cover', borderRadius: '12px', marginTop: '12px' }}
+                  />
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Right: image panel — square, top aligns with first menu item */}
-          <div className="relative aspect-square self-start bg-[#0a0a0a]">
+          {/* Right: image panel — desktop only */}
+          <div className="max-md:hidden relative aspect-square self-start bg-[#0a0a0a]">
             {currentCategory.items.map((item, i) => (
               <div
                 key={`${activeCategory}-${item.name}`}
