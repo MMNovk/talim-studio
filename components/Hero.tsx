@@ -79,7 +79,7 @@ export default function Hero() {
 
       {/* StackedPanels — desktop: overlapping right column; mobile: full-width below text */}
       <div style={isMobile
-        ? { width: '100%', height: '260px', flexShrink: 0 }
+        ? { width: '100%', height: '260px', flexShrink: 0, overflow: 'hidden' }
         : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
       }>
         <StackedPanels isMobile={isMobile} />

@@ -41,35 +41,49 @@ const Feature108 = ({
         </div>
 
         <Tabs defaultValue={tabs[0]?.value} className="mt-6 md:mt-8">
-          {/* Mobile: sidebar tabs left + content right, no image */}
-          <div className="md:hidden flex flex-row items-start gap-3">
-            <TabsList className="flex flex-col gap-0.5 flex-shrink-0 w-[90px]">
-              {tabs.map(tab => (
-                <TabsTrigger
-                  key={tab.value}
-                  value={tab.value}
-                  className="w-full text-left px-2.5 py-2 text-sm font-semibold text-ink/35 data-[state=active]:text-ink data-[state=active]:bg-ink/[0.07] rounded-lg transition-all leading-snug"
-                >
-                  {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            <div className="flex-1 min-w-0 border-l border-ink/10 pl-4">
-              {tabs.map(tab => (
-                <TabsContent key={tab.value} value={tab.value} className="mt-0">
-                  <div className="flex flex-col gap-3">
-                    <span className="inline-block border border-ink/20 text-xs font-medium px-2.5 py-1 rounded-md w-fit">
-                      {tab.content.badge}
-                    </span>
-                    <h3 className="text-xl font-black leading-tight">{tab.content.title}</h3>
-                    <p className="text-ink/50 text-sm leading-relaxed">{tab.content.description}</p>
-                    <a href="#contact" className="no-underline inline-block bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg w-fit mt-1 tracking-wide uppercase">
-                      {tab.content.buttonText}
-                    </a>
-                  </div>
-                </TabsContent>
-              ))}
+          {/* Mobile: grey card + sidebar tabs left + content right + compact image */}
+          <div className="md:hidden rounded-2xl bg-muted/70 p-5">
+            <div className="flex flex-row items-start gap-3">
+              <TabsList className="flex flex-col gap-0.5 flex-shrink-0 w-[90px]">
+                {tabs.map(tab => (
+                  <TabsTrigger
+                    key={tab.value}
+                    value={tab.value}
+                    className="w-full text-left px-2.5 py-2 text-sm font-semibold text-ink/35 data-[state=active]:text-ink data-[state=active]:bg-ink/[0.07] rounded-lg transition-all leading-snug"
+                  >
+                    {tab.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              <div className="flex-1 min-w-0 border-l border-ink/10 pl-4">
+                {tabs.map(tab => (
+                  <TabsContent key={tab.value} value={tab.value} className="mt-0">
+                    <div className="flex flex-col gap-3">
+                      <span className="inline-block border border-ink/20 text-xs font-medium px-2.5 py-1 rounded-md w-fit">
+                        {tab.content.badge}
+                      </span>
+                      <h3 className="text-xl font-black leading-tight">{tab.content.title}</h3>
+                      <p className="text-ink/50 text-sm leading-relaxed">{tab.content.description}</p>
+                      <a href="#contact" className="no-underline inline-block bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg w-fit mt-1 tracking-wide uppercase">
+                        {tab.content.buttonText}
+                      </a>
+                    </div>
+                  </TabsContent>
+                ))}
+              </div>
             </div>
+            {tabs.map(tab => (
+              <TabsContent key={tab.value} value={tab.value} className="mt-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={tab.content.imageSrc}
+                  alt={tab.content.imageAlt}
+                  className="rounded-xl object-cover w-full"
+                  style={{ height: '160px' }}
+                  loading="lazy"
+                />
+              </TabsContent>
+            ))}
           </div>
 
           {/* Desktop: horizontal tabs + 2-col grid with image — unchanged */}
