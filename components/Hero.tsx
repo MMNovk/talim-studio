@@ -30,30 +30,30 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col overflow-hidden"
-      style={{ minHeight: '100svh' }}
+      className="relative w-full bg-white flex overflow-hidden"
+      style={{ minHeight: isMobile ? 'auto' : '100svh' }}
     >
       {/* Text + CTA */}
       <div
         ref={revealRef}
-        className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-start md:justify-center md:p-14 lg:p-20 max-md:px-8 max-md:pt-16 max-md:pb-0"
+        className="w-[55%] flex-shrink-0 flex flex-col justify-center md:p-14 lg:p-20 max-md:pl-6 max-md:pr-2 max-md:py-10"
       >
         <div className="max-w-4xl pr-12 max-md:pr-0">
-          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
+          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] max-md:text-[2.2rem] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
             <span className="text-outline">STUDIO</span>
           </h1>
 
-          <p className="mt-8 text-base text-ink/40 max-w-sm leading-relaxed">
+          <p className="mt-8 max-md:mt-3 text-base max-md:text-sm text-ink/40 max-w-sm leading-relaxed">
             Fast, beautiful websites for small businesses and creatives.
           </p>
 
           <a
             href="#contact"
-            className="mt-8 w-fit flex items-center gap-3 group no-underline"
+            className="mt-8 max-md:mt-4 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
           >
-            <div className="w-14 h-14 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
+            <div className="w-14 h-14 max-md:w-10 max-md:h-10 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg
                 width="18"
                 height="18"
@@ -70,16 +70,16 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <span className="text-sm font-bold text-ink">
+            <span className="text-sm max-md:text-xs font-bold text-ink">
               Start a Project
             </span>
           </a>
         </div>
       </div>
 
-      {/* StackedPanels — desktop: overlapping right column; mobile: full-width second row */}
+      {/* StackedPanels — desktop: overlapping right column; mobile: compact right accent */}
       <div style={isMobile
-        ? { width: '100%', height: '300px', flexShrink: 0, overflow: 'hidden', marginTop: '48px' }
+        ? { width: '45%', flexShrink: 0, overflow: 'hidden', alignSelf: 'stretch' }
         : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
       }>
         <StackedPanels isMobile={isMobile} />
