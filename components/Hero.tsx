@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col max-md:justify-center max-md:px-5 max-md:py-10 overflow-hidden"
+      className="relative w-full bg-white flex max-md:flex-col max-md:items-start max-md:justify-center max-md:px-5 max-md:py-10 overflow-hidden"
       style={{ minHeight: '100svh' }}
     >
       {/* Text + CTA */}
@@ -61,7 +61,7 @@ export default function Hero() {
 
           <a
             href="#contact"
-            className="mt-0 max-md:mt-[120px] w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
+            className="mt-0 max-md:mt-[80px] w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
           >
             <div className="w-14 h-14 max-md:w-8 max-md:h-8 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg
