@@ -75,7 +75,7 @@ function Panel({
   const t = index / (total - 1);
   const baseZ = (index - (total - 1)) * Z_SPREAD;
 
-  const scale = isMobile ? 0.42 : 1;
+  const scale = isMobile ? 0.35 : 1;
   const w = (200 + t * 80) * scale;
   const h = (280 + t * 120) * scale;
 

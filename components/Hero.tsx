@@ -30,16 +30,16 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col overflow-hidden"
-      style={{ minHeight: isMobile ? '90vh' : '100svh' }}
+      className="relative w-full bg-white flex overflow-hidden"
+      style={{ minHeight: isMobile ? 'auto' : '100svh' }}
     >
       {/* Text + CTA */}
       <div
         ref={revealRef}
-        className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center md:p-14 lg:p-20 max-md:px-8 max-md:pt-14 max-md:pb-10"
+        className="w-[55%] flex-shrink-0 flex flex-col justify-center md:p-14 lg:p-20 max-md:pl-6 max-md:pr-2 max-md:py-8"
       >
         <div className="max-w-4xl pr-12 max-md:pr-0">
-          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
+          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black max-md:font-extrabold leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
             <span className="text-outline">STUDIO</span>
@@ -49,17 +49,9 @@ export default function Hero() {
             Fast, beautiful websites for small businesses and creatives.
           </p>
 
-          {/* Mobile-only card fan — sits between tagline and CTA */}
-          <div
-            className="md:hidden"
-            style={{ width: '100%', height: '200px', maxHeight: '200px', overflow: 'hidden', marginTop: '24px' }}
-          >
-            <StackedPanels isMobile={true} />
-          </div>
-
           <a
             href="#contact"
-            className="mt-8 max-md:mt-5 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
+            className="mt-8 max-md:mt-4 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
           >
             <div className="w-14 h-14 max-md:w-10 max-md:h-10 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg
@@ -85,12 +77,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* StackedPanels — desktop only: overlapping right column */}
-      <div
-        className="max-md:hidden"
-        style={{ width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }}
-      >
-        <StackedPanels isMobile={false} />
+      {/* StackedPanels — desktop: overlapping right column; mobile: compact contained right column */}
+      <div style={isMobile
+        ? { width: '43%', flexShrink: 0, overflow: 'hidden', alignSelf: 'stretch' }
+        : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
+      }>
+        <StackedPanels isMobile={isMobile} />
       </div>
     </section>
   )
