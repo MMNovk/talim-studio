@@ -27,15 +27,15 @@ export default function StephenYangPage() {
       <StephenYangNav />
 
       {/* Immersive scroll gallery */}
-      <div id="gallery-section" className="bg-[#0a0a0a]">
+      <div id="gallery-section" className="bg-[#0a0a0a] max-md:relative">
         <ImmersiveScrollGallery images={galleryImages} />
       </div>
 
       {/* STEPHEN YANG — static heading revealed after gallery */}
       <section className="bg-[#0a0a0a] px-8 md:px-16 pt-20 pb-8">
         <h1
-          className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block"
-          style={{ fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.02em', ...serif }}
+          className="text-white font-black uppercase leading-none tracking-tight whitespace-nowrap w-full block text-[clamp(3rem,11vw,10rem)] max-md:text-[clamp(2rem,10vw,6rem)]"
+          style={{ letterSpacing: '-0.02em', ...serif }}
         >
           STEPHEN YANG
         </h1>
@@ -45,13 +45,15 @@ export default function StephenYangPage() {
       </section>
 
       {/* Selected works */}
-      <StephenYangGallery />
+      <div className="max-md:relative max-md:z-0">
+        <StephenYangGallery />
+      </div>
 
       {/* Bio + Portrait */}
       <section id="about" className="bg-[#0a0a0a] px-8 md:px-16 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-md:flex max-md:flex-row max-md:items-start max-md:gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-md:flex max-md:flex-col-reverse max-md:gap-6">
           <p
-            className="text-white font-thin text-xl md:text-2xl leading-relaxed max-md:w-[60%] max-md:text-sm"
+            className="text-white font-thin text-xl md:text-2xl leading-relaxed max-md:w-full max-md:text-sm"
             style={{ ...serif, lineHeight: 1.7 }}
           >
             Stephen Yang is a fine art photographer based in New York. He began shooting
@@ -68,11 +70,11 @@ export default function StephenYangPage() {
             His archive, dating to 2008, is an ongoing document of cities and people
             caught at the threshold of motion.
           </p>
-          <div className="relative w-full aspect-[3/4] overflow-hidden max-md:w-[40%] max-md:flex-shrink-0 max-md:aspect-auto">
+          <div className="relative w-full aspect-[3/4] overflow-hidden max-md:w-full max-md:h-[280px] max-md:flex-shrink-0 max-md:aspect-auto">
             <img
               src="https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Stephen Yang"
-              className="w-full h-full object-cover max-md:h-auto"
+              className="w-full h-full object-cover max-md:h-full max-md:object-top"
               loading="lazy"
             />
           </div>
