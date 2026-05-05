@@ -43,6 +43,15 @@ export const Component = ({
   const imageRef = useRef<SVGImageElement>(null);
   const mainGroupRef = useRef<SVGGElement>(null);
   const masterTl = useRef<gsap.core.Timeline | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const createLoop = (index: number) => {
     const item = items[index];
@@ -100,9 +109,14 @@ export const Component = ({
   }, []);
 
   const handleItemHover = (index: number) => {
+    if (isMobile) return;
     if (index === activeIndex) return;
     setActiveIndex(index);
     createLoop(index);
+  };
+
+  const handleMobileTap = (index: number) => {
+    setMobileActiveIndex(prev => prev === index ? null : index);
   };
 
   return (
@@ -126,13 +140,14 @@ export const Component = ({
               <li
                 key={item.num}
                 onMouseEnter={() => handleItemHover(index)}
+                onClick={() => { if (isMobile) handleMobileTap(index); }}
                 className="group cursor-pointer"
               >
                 <div className="flex items-start gap-6">
                   {/* Numbers */}
                   <span className={cn(
                     "text-3xl font-bold transition-all duration-500 mt-2",
-                    activeIndex === index
+                    (isMobile ? mobileActiveIndex === index : activeIndex === index)
                       ? "text-orange-500 scale-110"
                       : "text-zinc-400 dark:text-zinc-600"
                   )}>
@@ -143,12 +158,12 @@ export const Component = ({
                   <h2
                     className={cn(
                       "text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.85] transition-all duration-700",
-                      activeIndex === index
+                      (isMobile ? mobileActiveIndex === index : activeIndex === index)
                         ? "translate-x-4"
                         : "translate-x-0"
                     )}
                     style={
-                      activeIndex === index
+                      (isMobile ? mobileActiveIndex === index : activeIndex === index)
                         ? { color: 'hsl(0 0% 100%)' }
                         : { color: '#52525b' }
                     }
@@ -156,6 +171,19 @@ export const Component = ({
                     {item.name.split(' ')[0]}<br />
                     {item.name.split(' ')[1]}
                   </h2>
+                </div>
+
+                {/* Mobile tap-to-reveal image */}
+                <div
+                  className="md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                  style={{ maxHeight: mobileActiveIndex === index ? '236px' : '0px' }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{ width: '100%', height: '220px', objectFit: 'cover', borderRadius: '12px', marginTop: '16px' }}
+                  />
                 </div>
               </li>
             ))}
