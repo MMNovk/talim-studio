@@ -61,6 +61,8 @@ function BlurText({
 // MARC + portrait-as-O in a single inline row
 function MarcoLine() {
   const [inView, setInView] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [tapped, setTapped] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -71,6 +73,19 @@ function MarcoLine() {
     if (ref.current) observer.observe(ref.current)
     return () => { if (ref.current) observer.unobserve(ref.current) }
   }, [])
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const handleTap = () => {
+    if (!isMobile) return
+    setTapped(true)
+    setTimeout(() => setTapped(false), 400)
+  }
 
   return (
     <div
@@ -103,11 +118,12 @@ function MarcoLine() {
           opacity: inView ? 1 : 0,
           transition: 'all 0.5s ease-out 400ms',
         }}
+        onClick={handleTap}
       >
         <img
           src="https://images.unsplash.com/photo-1686577677352-c9249ed5972a?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Marco Miller"
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          className={`w-full h-full object-cover transition-transform duration-300 ${isMobile ? (tapped ? 'scale-110' : 'scale-100') : 'group-hover:scale-110'}`}
         />
       </span>
     </div>

@@ -156,7 +156,7 @@ const GalleryModal = ({
               <motion.div
                 key={selectedItem.id}
                 className="relative w-full aspect-[16/9] max-w-[95%] sm:max-w-[85%] md:max-w-3xl
-                           h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md"
+                           h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md max-md:aspect-auto max-md:mx-auto"
                 initial={{ y: 20, scale: 0.97 }}
                 animate={{
                   y: 0,
@@ -168,7 +168,7 @@ const GalleryModal = ({
               >
                 <MediaItem
                   item={selectedItem}
-                  className="w-full h-full object-contain bg-gray-900/20"
+                  className="w-full h-full object-contain bg-gray-900/20 max-md:!object-contain"
                   onClick={onClose}
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4
@@ -209,14 +209,14 @@ const GalleryModal = ({
             y: prev.y + info.offset.y,
           }))
         }}
-        className="fixed z-[310] left-1/2 bottom-4 -translate-x-1/2 touch-none"
+        className="fixed z-[310] left-1/2 bottom-4 -translate-x-1/2 touch-none max-md:left-0 max-md:right-0 max-md:bottom-0 max-md:translate-x-0 max-md:w-full max-md:touch-auto"
       >
         <motion.div
           className="relative rounded-xl bg-sky-400/20 backdrop-blur-xl
                      border border-blue-400/30 shadow-lg
-                     cursor-grab active:cursor-grabbing"
+                     cursor-grab active:cursor-grabbing max-md:rounded-none max-md:rounded-t-xl max-md:w-full"
         >
-          <div className="flex items-center -space-x-2 px-3 py-2">
+          <div className="flex items-center -space-x-2 px-3 py-2 max-md:overflow-x-auto max-md:flex-nowrap max-md:w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             {mediaItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -319,7 +319,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
           />
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px]"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3 auto-rows-auto sm:auto-rows-[60px]"
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -332,7 +332,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({
               <motion.div
                 key={item.id}
                 layoutId={`media-${item.id}`}
-                className={`relative overflow-hidden rounded-xl cursor-pointer ${item.span}`}
+                className={`relative overflow-hidden rounded-xl cursor-pointer max-sm:aspect-[3/4] ${item.span}`}
                 onClick={() => setSelectedItem(item)}
                 variants={{
                   hidden: { y: 50, scale: 0.9, opacity: 0 },

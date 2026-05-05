@@ -28,8 +28,8 @@ export const Contact2 = ({
   }
 
   return (
-    <section className="py-24 px-8 md:px-14 lg:px-20">
-      <div className="mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-16">
+    <section className="py-24 px-8 md:px-14 lg:px-20 max-md:py-[4.5rem]">
+      <div className="mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-16 max-md:gap-12">
 
         {/* Left: text + contact details */}
         <div className="flex flex-col justify-between gap-12 max-w-sm">

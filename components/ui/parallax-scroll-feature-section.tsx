@@ -77,7 +77,7 @@ function SectionItem({ section }: { section: SectionData }) {
       >
         <img
           src={section.imageUrl}
-          className="size-80 object-cover"
+          className="size-80 object-cover object-center max-md:w-40 max-md:h-auto max-md:aspect-square"
           alt={section.title}
         />
       </motion.div>
