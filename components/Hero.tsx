@@ -30,16 +30,16 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col overflow-hidden"
+      className="relative w-full bg-white flex overflow-hidden"
       style={{ minHeight: '100svh' }}
     >
       {/* Text + CTA */}
       <div
         ref={revealRef}
-        className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center p-8 md:p-14 lg:p-20 max-md:pt-12"
+        className="w-[55%] flex-shrink-0 flex flex-col justify-center p-5 md:p-14 lg:p-20"
       >
         <div className="max-w-4xl pr-12 max-md:pr-0">
-          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
+          <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] max-md:text-[2.6rem] font-black leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
             <span className="text-outline">STUDIO</span>
@@ -77,9 +77,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* StackedPanels — desktop: overlapping right column; mobile: full-width below text */}
+      {/* StackedPanels — desktop: overlapping right column; mobile: accent right column */}
       <div style={isMobile
-        ? { width: '100%', height: '260px', flexShrink: 0, overflow: 'hidden' }
+        ? { width: '42%', height: '100svh', flexShrink: 0, overflow: 'hidden' }
         : { width: '45%', height: '100svh', flexShrink: 0, marginLeft: '-14%' }
       }>
         <StackedPanels isMobile={isMobile} />
