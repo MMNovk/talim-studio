@@ -142,7 +142,7 @@ export function CinderMenu() {
                   <img
                     src={item.image}
                     alt={item.name}
-                    style={{ width: '100%', height: '220px', objectFit: 'cover', borderRadius: '12px', marginTop: '12px' }}
+                    style={{ width: '100%', height: '220px', objectFit: 'cover', objectPosition: 'center center', borderRadius: '12px', marginTop: '12px' }}
                   />
                 </div>
               </div>
