@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col max-md:items-start max-md:justify-center max-md:px-5 max-md:py-10 overflow-hidden"
+      className="relative w-full bg-white flex max-md:flex-col max-md:items-start max-md:justify-center max-md:px-5 max-md:pt-[15vh] max-md:pb-[15vh] overflow-hidden"
       style={{ minHeight: '100svh' }}
     >
       {/* Text + CTA */}
