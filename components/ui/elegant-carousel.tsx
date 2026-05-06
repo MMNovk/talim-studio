@@ -110,7 +110,7 @@ export default function VelaCarousel() {
         <h2 className="text-3xl font-semibold text-ink px-5 pt-6 pb-3">The Services</h2>
 
         {/* Full-width image */}
-        <div className="relative w-full h-[160px] overflow-hidden">
+        <div className="relative w-full h-[220px] overflow-hidden">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
