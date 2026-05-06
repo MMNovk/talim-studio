@@ -38,7 +38,7 @@ export default function Hero() {
         ref={revealRef}
         className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center md:p-14 lg:p-20 max-md:p-0"
       >
-        <div className="max-w-4xl pr-12 max-md:pr-0 max-md:text-center max-md:flex max-md:flex-col max-md:items-center">
+        <div className="max-w-4xl pr-12 max-md:pr-0">
           <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black max-md:font-extrabold leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
