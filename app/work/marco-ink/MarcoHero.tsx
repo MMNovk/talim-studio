@@ -90,7 +90,7 @@ function MarcoLine() {
   return (
     <div
       ref={ref}
-      className="inline-flex items-center justify-center font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase whitespace-nowrap"
+      className="inline-flex items-center justify-center font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase whitespace-nowrap max-md:[font-size:clamp(3rem,18vw,6rem)] max-md:[word-break:keep-all]"
       style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
     >
       {['M', 'A', 'R', 'C'].map((letter, i) => (
@@ -193,7 +193,7 @@ export function MarcoHero() {
               delay={100}
               animateBy="letters"
               direction="top"
-              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase justify-center whitespace-nowrap"
+              className="font-bold text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.9] tracking-[0.06em] uppercase justify-center whitespace-nowrap max-md:[font-size:clamp(3rem,18vw,6rem)] max-md:[word-break:keep-all]"
               style={{ color: 'hsl(0 0% 100%)', fontFamily: "'Fira Code', monospace" }}
             />
           </div>

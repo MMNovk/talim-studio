@@ -49,16 +49,6 @@ export default function Hero() {
             Fast, beautiful websites for small businesses and creatives.
           </p>
 
-          {/* Mobile card fan — between tagline and CTA */}
-          <div
-            className="md:hidden"
-            style={{ width: '100%', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
-          >
-            <div style={{ transform: 'scale(0.55) translateX(-30%) translateY(30px)', transformOrigin: 'center top', width: '100%', height: '100%', marginLeft: '0', marginRight: '-16px', overflow: 'visible' }}>
-              <StackedPanels isMobile={true} />
-            </div>
-          </div>
-
           <a
             href="#contact"
             className="mt-0 max-md:mt-[80px] w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
@@ -84,6 +74,16 @@ export default function Hero() {
               Start a Project
             </span>
           </a>
+
+          {/* Mobile card fan — below CTA */}
+          <div
+            className="md:hidden"
+            style={{ width: '100%', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
+          >
+            <div style={{ transform: 'scale(0.55) translateX(-30%) translateY(30px)', transformOrigin: 'center top', width: '100%', height: '100%', marginLeft: '0', marginRight: '-16px', overflow: 'visible' }}>
+              <StackedPanels isMobile={true} />
+            </div>
+          </div>
         </div>
       </div>
 

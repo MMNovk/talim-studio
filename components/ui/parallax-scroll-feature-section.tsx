@@ -54,7 +54,7 @@ function SectionItem({ section }: { section: SectionData }) {
   return (
     <div
       ref={ref}
-      className={`h-screen flex items-center justify-center md:gap-40 gap-20 ${section.reverse ? 'flex-row-reverse' : ''}`}
+      className={`h-screen flex items-center justify-center md:gap-40 gap-20 max-md:flex-col max-md:h-auto max-md:py-10 ${section.reverse ? 'flex-row-reverse' : ''}`}
     >
       <motion.div style={{ y: translateContent }}>
         <div className="text-4xl md:text-6xl max-w-sm text-white leading-tight">
@@ -77,7 +77,7 @@ function SectionItem({ section }: { section: SectionData }) {
       >
         <img
           src={section.imageUrl}
-          className="size-80 object-cover object-center max-md:w-40 max-md:h-auto max-md:aspect-square"
+          className="size-80 object-cover object-center max-md:w-full max-md:h-auto max-md:aspect-[4/3] max-md:rounded-xl max-md:mt-4"
           alt={section.title}
         />
       </motion.div>
