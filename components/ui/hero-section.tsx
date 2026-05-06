@@ -93,13 +93,13 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
             <div className="flex flex-wrap gap-4 max-md:flex-col max-md:gap-2">
               <a
                 href={callToAction.href}
-                className="px-8 py-3 bg-black text-white font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/80 transition-colors"
+                className="px-8 py-3 max-md:px-5 max-md:py-2 bg-black text-white font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/80 transition-colors"
               >
                 {callToAction.text}
               </a>
               <a
                 href="#book"
-                className="px-8 py-3 border border-ink/25 text-ink font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/5 transition-colors"
+                className="px-8 py-3 max-md:px-5 max-md:py-2 border border-ink/25 text-ink font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/5 transition-colors"
               >
                 BOOK NOW
               </a>
@@ -108,15 +108,15 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
 
           {/* Contact info at bottom */}
           <div className="flex flex-wrap gap-6 py-6 md:pb-10 border-t border-ink/10 shrink-0 max-md:flex-col max-md:gap-1">
-            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono max-md:text-[10px]">
               <InfoIcon type="website" />
               {contactInfo.website}
             </div>
-            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono max-md:text-[10px]">
               <InfoIcon type="phone" />
               {contactInfo.phone}
             </div>
-            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono">
+            <div className="flex items-center gap-2 text-ink/45 text-xs font-mono max-md:text-[10px]">
               <InfoIcon type="address" />
               {contactInfo.address}
             </div>
@@ -129,7 +129,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
-          className="w-[45%] min-h-screen bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
+          className="w-[45%] min-h-screen bg-cover bg-center max-md:bg-[center_top] md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
         />
       </div>
     )
