@@ -183,9 +183,9 @@ export function MarcoHero() {
       </header>
 
       {/* Hero */}
-      <main className="relative min-h-screen flex flex-col">
+      <main className="relative min-h-screen flex flex-col max-md:justify-center max-md:items-center max-md:min-h-[100svh]">
         {/* MARCO (portrait as O) / MILLER */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4 max-md:relative max-md:top-auto max-md:left-auto max-md:translate-x-0 max-md:translate-y-0 max-md:text-center">
           <div className="flex flex-col items-center w-full gap-1 sm:gap-2 md:gap-3">
             <MarcoLine />
             <BlurText
