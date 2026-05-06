@@ -125,11 +125,11 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
 
         {/* RIGHT — image panel */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
-          className="w-[45%] min-h-screen bg-cover bg-center max-md:[background-position:center_20%] md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
+          className="w-[45%] min-h-screen bg-cover bg-center max-md:[background-position:center_5%] md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
         />
       </div>
     )
