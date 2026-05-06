@@ -105,7 +105,7 @@ export default function VelaCarousel() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Main layout */}
-      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12 max-md:gap-3 max-md:pt-6 max-md:pb-4">
+      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12 max-md:gap-3 max-md:pt-3 max-md:pb-2">
 
         {/* Mobile-only heading — order-0 so it appears above the image on mobile */}
         <div className="lg:hidden order-[0]">
@@ -113,7 +113,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Left: text */}
-        <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-3">
+        <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-2">
           <h2 className="text-3xl font-semibold text-ink mb-3 max-lg:hidden">The Services</h2>
           <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
             {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
@@ -167,7 +167,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Right: image */}
-        <div className="relative h-[260px] max-md:h-[180px] overflow-hidden order-1 lg:order-2">
+        <div className="relative h-[260px] max-md:h-[160px] overflow-hidden order-1 lg:order-2">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
@@ -188,7 +188,7 @@ export default function VelaCarousel() {
             className="text-left flex-shrink-0 max-md:flex-shrink max-md:w-[calc(50%-6px)]"
             aria-label={`Go to ${s.title}`}
           >
-            <div className="h-px bg-ink/10 mb-2 overflow-hidden w-28">
+            <div className="h-px bg-ink/10 mb-2 overflow-hidden w-full">
               <div
                 className="h-full bg-ink transition-all duration-100"
                 style={{

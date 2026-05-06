@@ -42,7 +42,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
     { className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props },
     ref,
   ) => {
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(true)
     useEffect(() => {
       const check = () => setIsMobile(window.innerWidth < 768)
       check()

@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function VelaNailsPage() {
   return (
-    <div className={`${dmSans.className} bg-white min-h-screen`}>
+    <div className={`${dmSans.className} bg-white min-h-screen overflow-x-hidden`}>
 
       {/* SECTION 1 — Hero */}
       <HeroSection
