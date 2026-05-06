@@ -78,9 +78,9 @@ export default function Hero() {
           {/* Mobile card fan — below CTA */}
           <div
             className="md:hidden mx-auto"
-            style={{ width: '100%', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
+            style={{ width: '100%', height: '260px', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
           >
-            <div style={{ transform: 'scale(0.55) translateY(30px)', transformOrigin: 'center top', width: '100%', overflow: 'visible' }}>
+            <div style={{ transform: 'scale(0.55) translateX(-50%) translateY(30px)', transformOrigin: 'center top', width: '100%', height: '100%', overflow: 'visible' }}>
               <StackedPanels isMobile={true} />
             </div>
           </div>

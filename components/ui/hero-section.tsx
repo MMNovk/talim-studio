@@ -134,9 +134,9 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
 
         {/* RIGHT — CSS background image with diagonal clip-path reveal (desktop only) */}
         <motion.div
-          initial={isMobile ? {} : { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', opacity: 0 }}
-          animate={isMobile ? {} : { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)', opacity: 1 }}
-          transition={{ duration: 0.8, ease: 'circOut' }}
+          initial={isMobile ? {} : { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', opacity: 0, x: 40 }}
+          animate={isMobile ? {} : { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)', opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
           className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
         />

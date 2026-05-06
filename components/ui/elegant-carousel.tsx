@@ -105,17 +105,22 @@ export default function VelaCarousel() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Main layout */}
-      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12">
+      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12 max-md:gap-3 max-md:pt-6 max-md:pb-4">
+
+        {/* Mobile-only heading — order-0 so it appears above the image on mobile */}
+        <div className="lg:hidden order-[0]">
+          <h2 className="text-3xl font-semibold text-ink">The Services</h2>
+        </div>
 
         {/* Left: text */}
-        <div className="flex flex-col gap-5 order-2 lg:order-1">
-          <h2 className="text-3xl font-semibold text-ink mb-3">The Services</h2>
+        <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-3">
+          <h2 className="text-3xl font-semibold text-ink mb-3 max-lg:hidden">The Services</h2>
           <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
             {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
           </span>
 
           <h2
-            className="font-dm-sans font-black leading-tight transition-opacity duration-300"
+            className="font-dm-sans font-black leading-tight transition-opacity duration-300 max-md:text-2xl"
             style={{
               fontSize: 'clamp(2.5rem, 6vw, 5rem)',
               opacity: isTransitioning ? 0 : 1,
@@ -162,7 +167,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Right: image */}
-        <div className="relative h-[260px] overflow-hidden order-1 lg:order-2">
+        <div className="relative h-[260px] max-md:h-[180px] overflow-hidden order-1 lg:order-2">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
@@ -175,12 +180,12 @@ export default function VelaCarousel() {
       </div>
 
       {/* Thumbnail nav */}
-      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-16 flex gap-6 overflow-x-auto">
+      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-8 flex gap-6 overflow-x-auto max-md:flex-wrap max-md:gap-3 max-md:overflow-x-visible">
         {VELA_SLIDES.map((s, i) => (
           <button
             key={i}
             onClick={() => goToSlide(i)}
-            className="text-left flex-shrink-0"
+            className="text-left flex-shrink-0 max-md:flex-shrink max-md:w-[calc(50%-6px)]"
             aria-label={`Go to ${s.title}`}
           >
             <div className="h-px bg-ink/10 mb-2 overflow-hidden w-28">
