@@ -49,7 +49,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         {...props}
       >
         {/* LEFT — white content panel */}
-        <div className="flex flex-col bg-white w-[55%] min-h-screen md:w-1/2 lg:w-3/5 px-5 md:px-14 lg:px-20">
+        <div className="flex flex-col bg-white w-[55%] min-h-screen md:w-1/2 lg:w-3/5 px-5 md:px-14 lg:px-20 max-md:justify-between">
 
           {/* Slogan / logo at top */}
           <div className="pt-10 md:pt-14 shrink-0">
@@ -80,7 +80,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           </div>
 
           {/* Title + divider + subtitle + CTAs — vertically centred */}
-          <div className="flex flex-col gap-6 flex-1 justify-center py-12 max-md:justify-start max-md:pt-10">
+          <div className="flex flex-col gap-6 flex-1 justify-center py-12 max-md:justify-start max-md:pt-10 max-md:flex-none">
             <h1
               className="font-dm-sans font-black leading-[0.88] tracking-tight text-ink [font-size:clamp(3.5rem,9vw,8rem)] max-md:[font-size:clamp(1.8rem,8vw,3rem)]"
             >
@@ -129,7 +129,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
-          className="w-[45%] min-h-screen bg-cover bg-center max-md:bg-[center_top] md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
+          className="w-[45%] min-h-screen bg-cover bg-center max-md:[background-position:center_20%] md:w-1/2 md:min-h-full lg:w-2/5 [clip-path:polygon(12%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]"
         />
       </div>
     )
