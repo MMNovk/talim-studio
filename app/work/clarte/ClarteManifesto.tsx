@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 
 const values = [
@@ -29,6 +29,7 @@ const values = [
 export function ManifestoSection() {
   const textRef = useRef(null)
   const isInView = useInView(textRef, { once: true, margin: '-100px' })
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <section style={{
@@ -40,6 +41,7 @@ export function ManifestoSection() {
       {/* Decorative CLARTÉ heading */}
       <div style={{
         width: '100%',
+        overflow: 'hidden',
         paddingTop: '48px',
         paddingBottom: '0',
         textAlign: 'center',
@@ -48,7 +50,7 @@ export function ManifestoSection() {
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 400,
-          fontSize: 'clamp(8rem, 18vw, 18rem)',
+          fontSize: 'clamp(3.5rem, 18vw, 18rem)',
           lineHeight: 1,
           paddingTop: '0',
           color: 'transparent',
@@ -101,7 +103,84 @@ export function ManifestoSection() {
 
       {/* Values section */}
       <section className="w-full" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
-        <div style={{ display: 'flex', alignItems: 'stretch', height: '460px' }}>
+
+        {/* MOBILE — 2×2 tap-to-expand grid */}
+        <div className="md:hidden px-4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+          {values.map((item, idx) => {
+            const isOpen = openIndex === idx
+            return (
+              <div
+                key={idx}
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                style={{
+                  position: 'relative',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  height: isOpen ? '280px' : '160px',
+                  transition: 'height 0.4s ease',
+                  cursor: 'pointer',
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                />
+                {/* Bottom gradient always on */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
+                }} />
+                {/* Bottom label always visible */}
+                <p style={{
+                  position: 'absolute',
+                  bottom: '12px',
+                  left: '12px',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: '10px',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: '#F7F3EE',
+                  margin: 0,
+                }}>
+                  {item.label}
+                </p>
+                {/* Description overlay — visible when open */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '12px',
+                  opacity: isOpen ? 1 : 0,
+                  transition: 'opacity 0.3s ease',
+                  pointerEvents: 'none',
+                }}>
+                  <span style={{
+                    display: 'inline-block',
+                    background: 'rgba(20,16,12,0.6)',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    backdropFilter: 'blur(4px)',
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    color: '#F7F3EE',
+                    lineHeight: 1.6,
+                    textAlign: 'center',
+                  }}>
+                    {item.description}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* DESKTOP — original horizontal expand-on-hover layout */}
+        <div className="hidden md:flex items-stretch" style={{ height: '460px' }}>
 
           {/* Left OUR MOTTO */}
           <div style={{
