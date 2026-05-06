@@ -80,26 +80,26 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           </div>
 
           {/* Title + divider + subtitle + CTAs — vertically centred */}
-          <div className="flex flex-col gap-6 flex-1 justify-center py-12">
+          <div className="flex flex-col gap-6 flex-1 justify-center py-12 max-md:justify-start max-md:pt-10">
             <h1
               className="font-dm-sans font-black leading-[0.88] tracking-tight text-ink [font-size:clamp(3.5rem,9vw,8rem)] max-md:[font-size:clamp(1.8rem,8vw,3rem)]"
             >
               {title}
             </h1>
             <hr className="border-ink/10" />
-            <p className="font-dm-sans text-ink/55 text-lg leading-relaxed max-w-sm max-md:max-w-[140px]">
+            <p className="font-dm-sans text-ink/55 text-lg leading-relaxed max-w-sm max-md:max-w-[160px]">
               {subtitle}
             </p>
-            <div className="flex flex-wrap gap-4 max-md:flex-col max-md:gap-2">
+            <div className="flex flex-wrap gap-4 max-md:flex-col max-md:gap-2 max-md:items-start">
               <a
                 href={callToAction.href}
-                className="px-8 py-3 max-md:px-5 max-md:py-2 bg-black text-white font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/80 transition-colors"
+                className="px-8 py-3 max-md:px-5 max-md:py-2 bg-black text-white font-dm-sans font-bold text-xs tracking-widest max-md:tracking-wider no-underline hover:bg-ink/80 transition-colors"
               >
                 {callToAction.text}
               </a>
               <a
                 href="#book"
-                className="px-8 py-3 max-md:px-5 max-md:py-2 border border-ink/25 text-ink font-dm-sans font-bold text-xs tracking-widest no-underline hover:bg-ink/5 transition-colors"
+                className="px-8 py-3 max-md:px-5 max-md:py-2 border border-ink/25 text-ink font-dm-sans font-bold text-xs tracking-widest max-md:tracking-wider no-underline hover:bg-ink/5 transition-colors"
               >
                 BOOK NOW
               </a>
