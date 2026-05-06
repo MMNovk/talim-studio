@@ -54,7 +54,7 @@ export function ManifestoSection() {
           lineHeight: 1,
           paddingTop: '0',
           color: 'transparent',
-          WebkitTextStroke: '2.5px rgba(28, 24, 20, 0.38)',
+          WebkitTextStroke: '1.8px rgba(28, 24, 20, 0.38)',
           letterSpacing: '0.15em',
           margin: 0,
           userSelect: 'none',
@@ -105,7 +105,18 @@ export function ManifestoSection() {
       <section className="w-full" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
 
         {/* MOBILE — 2×2 tap-to-expand grid */}
-        <div className="md:hidden px-4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+        <div className="md:hidden px-4">
+          <p style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(1.2rem, 5vw, 1.8rem)',
+            letterSpacing: '0.12em',
+            color: '#C8BEB4',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            margin: '0 0 16px 0',
+          }}>Our Motto</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
           {values.map((item, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -177,6 +188,19 @@ export function ManifestoSection() {
               </div>
             )
           })}
+          </div>
+          <p style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: 'clamp(1.2rem, 5vw, 1.8rem)',
+            letterSpacing: '0.12em',
+            color: '#C8BEB4',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            margin: '16px 0 0 0',
+            transform: 'rotate(180deg)',
+            display: 'block',
+          }}>Our Motto</p>
         </div>
 
         {/* DESKTOP — original horizontal expand-on-hover layout */}

@@ -156,23 +156,22 @@
 
 @media (max-width: 768px) {
   .clarte-top-nav { padding: 20px 24px; }
+  .clarte-logo    { font-size: 14px; }
   .slide-number   { left: 24px; }
   .slide-total    { right: 24px; }
   .slide-content  { width: 90%; }
   .slide-nav-item { padding: 8px 10px 0; }
   .slide-nav-title { font-size: 9px; letter-spacing: 0.08em; }
   .slide-title    { font-size: clamp(2.2rem, 10vw, 4rem); }
-  .slides-navigation {
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    max-width: 100vw;
-    gap: 4px;
-    padding: 0 12px;
-  }
-  .slide-progress-line { width: 100%; }
+  .slides-navigation { display: none; }
   .slide-description {
     line-height: 1.8;
     max-width: 85vw;
     word-break: break-word;
   }
+}
+
+.mobile-slide-nav { display: none; }
+@media (max-width: 768px) {
+  .mobile-slide-nav { display: flex; }
 }

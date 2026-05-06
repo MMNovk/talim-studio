@@ -244,6 +244,7 @@ export function Component() {
             currentSlideIndex = targetIndex;
             updateCounter(currentSlideIndex);
             updateNavigationState(currentSlideIndex);
+            updateMobileTitle(currentSlideIndex);
 
             gsap.fromTo(shaderMaterial.uniforms.uProgress,
                 { value: 0 },
@@ -363,6 +364,38 @@ export function Component() {
 
         createSlidesNavigation(); updateCounter(0);
 
+        // Mobile arrow nav
+        const mobilePrev = document.getElementById('mobilePrev');
+        const mobileNext = document.getElementById('mobileNext');
+        const mobileTitleEl = document.getElementById('mobileSlideTitle');
+
+        const updateMobileTitle = (idx: number) => {
+            if (!mobileTitleEl) return;
+            mobileTitleEl.style.opacity = '0';
+            setTimeout(() => {
+                mobileTitleEl.textContent = slides[idx].title;
+                mobileTitleEl.style.opacity = '1';
+            }, 150);
+        };
+
+        mobilePrev?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!isTransitioning) {
+                const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                navigateToSlide(prevIndex);
+                updateMobileTitle(prevIndex);
+            }
+        });
+
+        mobileNext?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!isTransitioning) {
+                const nextIndex = (currentSlideIndex + 1) % slides.length;
+                navigateToSlide(nextIndex);
+                updateMobileTitle(nextIndex);
+            }
+        });
+
         // Init text content
         const tEl = document.getElementById('mainTitle');
         const dEl = document.getElementById('mainDesc');
@@ -398,6 +431,51 @@ export function Component() {
         </div>
 
         <nav className="slides-navigation" id="slidesNav"></nav>
+
+        <div className="mobile-slide-nav" id="mobileSlideNav" style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '20px',
+          zIndex: 10,
+        }}>
+          <button id="mobilePrev" style={{
+            background: 'none',
+            border: '1px solid rgba(255,255,255,0.25)',
+            color: 'rgba(255,255,255,0.6)',
+            width: '32px',
+            height: '32px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            fontSize: '14px',
+          }}>‹</button>
+          <span id="mobileSlideTitle" style={{
+            color: 'rgba(255,255,255,0.9)',
+            fontSize: '9px',
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            minWidth: '100px',
+            textAlign: 'center',
+            transition: 'opacity 0.3s ease',
+          }}>HydraFacial</span>
+          <button id="mobileNext" style={{
+            background: 'none',
+            border: '1px solid rgba(255,255,255,0.25)',
+            color: 'rgba(255,255,255,0.6)',
+            width: '32px',
+            height: '32px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            fontSize: '14px',
+          }}>›</button>
+        </div>
       </main>
     </>
   );
