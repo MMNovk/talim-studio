@@ -104,8 +104,77 @@ export default function VelaCarousel() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      {/* ===== MOBILE LAYOUT — lg:hidden ===== */}
+      <div className="lg:hidden">
+        {/* Heading */}
+        <h2 className="text-3xl font-semibold text-ink px-5 pt-6 pb-3">The Services</h2>
+
+        {/* Full-width image */}
+        <div className="relative w-full h-[160px] overflow-hidden">
+          <Image
+            src={slide.imageUrl}
+            alt={slide.title}
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        {/* Two-column row */}
+        <div className="flex pb-5">
+          {/* Left 40% — tab buttons */}
+          <div className="w-[40%] flex flex-col border-r border-ink/10">
+            {VELA_SLIDES.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => { setCurrentIndex(i); setProgress(0) }}
+                className={`text-xs text-left py-3 border-b border-ink/10 w-full pl-3 ${
+                  i === currentIndex
+                    ? 'font-bold text-ink border-l-2'
+                    : 'text-[#6B6B6B]'
+                }`}
+                style={i === currentIndex ? { borderLeftColor: '#0e0e0e' } : undefined}
+                aria-label={`Go to ${s.title}`}
+              >
+                {(['Classic', 'Gel Ext.', 'Nail Art', 'Pedicure'] as const)[i]}
+              </button>
+            ))}
+          </div>
+
+          {/* Right 60% — active service details */}
+          <div className="w-[60%] pl-4 pr-5 pt-3 flex flex-col">
+            <span className="text-xs mb-1" style={{ color: '#6B6B6B' }}>
+              {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
+            </span>
+            <p className="font-bold text-base text-ink mb-1">{slide.title}</p>
+            <p className="text-sm mb-2" style={{ color: slide.accent }}>{slide.subtitle}</p>
+            <p className="text-xs leading-relaxed line-clamp-3" style={{ color: '#6B6B6B' }}>{slide.description}</p>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={goPrev}
+                className="w-8 h-8 border border-ink/20 flex items-center justify-center"
+                aria-label="Previous"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={goNext}
+                className="w-8 h-8 border border-ink/20 flex items-center justify-center"
+                aria-label="Next"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main layout */}
-      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12 max-md:gap-3 max-md:pt-3 max-md:pb-2">
+      <div className="max-lg:hidden max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12">
 
         {/* Mobile-only heading — order-0 so it appears above the image on mobile */}
         <div className="lg:hidden order-[0]">
@@ -180,7 +249,7 @@ export default function VelaCarousel() {
       </div>
 
       {/* Thumbnail nav */}
-      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-8 flex gap-6 overflow-x-auto max-md:flex-wrap max-md:gap-3 max-md:overflow-x-visible">
+      <div className="max-lg:hidden max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-8 flex gap-6 overflow-x-auto">
         {VELA_SLIDES.map((s, i) => (
           <button
             key={i}
