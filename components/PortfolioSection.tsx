@@ -10,7 +10,7 @@ const portfolioItems = [
     src: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80',
     label: 'Cinder & Co.',
     tier: 'Starter · $499',
-    slug: '/work/mesa-kitchen',
+    slug: '/work/cinder-co',
   },
   {
     key: '6',
