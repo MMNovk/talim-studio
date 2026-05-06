@@ -105,7 +105,7 @@ export default function VelaCarousel() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Main layout */}
-      <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12">
+      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-16 pb-12">
 
         {/* Left: text */}
         <div className="flex flex-col gap-5 order-2 lg:order-1">
@@ -162,7 +162,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Right: image */}
-        <div className="relative h-[480px] lg:h-[560px] overflow-hidden order-1 lg:order-2">
+        <div className="relative h-[260px] overflow-hidden order-1 lg:order-2">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
@@ -175,7 +175,7 @@ export default function VelaCarousel() {
       </div>
 
       {/* Thumbnail nav */}
-      <div className="max-w-screen-xl mx-auto px-8 md:px-14 lg:px-20 pb-16 flex gap-6 overflow-x-auto">
+      <div className="max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-16 flex gap-6 overflow-x-auto">
         {VELA_SLIDES.map((s, i) => (
           <button
             key={i}

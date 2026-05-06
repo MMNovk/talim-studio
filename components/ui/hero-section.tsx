@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
 
@@ -42,6 +42,14 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
     { className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props },
     ref,
   ) => {
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+      const check = () => setIsMobile(window.innerWidth < 768)
+      check()
+      window.addEventListener('resize', check)
+      return () => window.removeEventListener('resize', check)
+    }, [])
+
     return (
       <div
         ref={ref}
@@ -124,11 +132,11 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           </div>
         </div>
 
-        {/* RIGHT — CSS background image with diagonal clip-path reveal */}
+        {/* RIGHT — CSS background image with diagonal clip-path reveal (desktop only) */}
         <motion.div
-          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{ clipPath: 'polygon(25% 0, 100% 0, 100% 100%, 0% 100%)' }}
-          transition={{ duration: 1.2, ease: 'circOut' }}
+          initial={isMobile ? {} : { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', opacity: 0 }}
+          animate={isMobile ? {} : { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)', opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'circOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
           className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
         />

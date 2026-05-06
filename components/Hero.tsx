@@ -51,7 +51,7 @@ export default function Hero() {
 
           <a
             href="#contact"
-            className="mt-0 max-md:mt-[80px] w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
+            className="mt-0 max-md:mt-4 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
           >
             <div className="w-14 h-14 max-md:w-8 max-md:h-8 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg
@@ -77,10 +77,10 @@ export default function Hero() {
 
           {/* Mobile card fan — below CTA */}
           <div
-            className="md:hidden"
+            className="md:hidden mx-auto"
             style={{ width: '100%', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
           >
-            <div style={{ transform: 'scale(0.55) translateX(-30%) translateY(30px)', transformOrigin: 'center top', width: '100%', height: '100%', marginLeft: '0', marginRight: '-16px', overflow: 'visible' }}>
+            <div style={{ transform: 'scale(0.55) translateY(30px)', transformOrigin: 'center top', width: '100%', overflow: 'visible' }}>
               <StackedPanels isMobile={true} />
             </div>
           </div>
