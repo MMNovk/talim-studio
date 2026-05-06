@@ -42,12 +42,9 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
     { className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props },
     ref,
   ) => {
-    const [isMobile, setIsMobile] = useState(true)
+    const [isDesktop, setIsDesktop] = useState(false)
     useEffect(() => {
-      const check = () => setIsMobile(window.innerWidth < 768)
-      check()
-      window.addEventListener('resize', check)
-      return () => window.removeEventListener('resize', check)
+      setIsDesktop(window.innerWidth >= 768)
     }, [])
 
     return (
@@ -57,7 +54,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         {...props}
       >
         {/* LEFT — white content panel */}
-        <div className="flex flex-col bg-white w-full md:w-1/2 lg:w-3/5 px-8 md:px-14 lg:px-20">
+        <div className="order-last md:order-first flex flex-col bg-white w-full md:w-1/2 lg:w-3/5 px-6 md:px-14 lg:px-20">
 
           {/* Slogan / logo at top */}
           <div className="pt-10 md:pt-14 shrink-0">
@@ -90,8 +87,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           {/* Title + divider + subtitle + CTAs — vertically centred */}
           <div className="flex flex-col gap-6 flex-1 justify-center py-12">
             <h1
-              className="font-dm-sans font-black leading-[0.88] tracking-tight text-ink"
-              style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)' }}
+              className="font-dm-sans font-black leading-[0.88] tracking-tight text-ink [font-size:clamp(3.5rem,9vw,8rem)] max-md:[font-size:clamp(2.8rem,12vw,5rem)]"
             >
               {title}
             </h1>
@@ -132,13 +128,17 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           </div>
         </div>
 
-        {/* RIGHT — CSS background image with diagonal clip-path reveal (desktop only) */}
+        {/* RIGHT — image: top on mobile (order-first), right on desktop (md:order-last) */}
         <motion.div
-          initial={isMobile ? {} : { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', opacity: 0, x: 40 }}
-          animate={isMobile ? {} : { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)', opacity: 1, x: 0 }}
+          initial={isDesktop
+            ? { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', opacity: 0, x: 40 }
+            : { opacity: 0, y: -30 }}
+          animate={isDesktop
+            ? { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)', opacity: 1, x: 0 }
+            : { opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{ backgroundImage: `url(${backgroundImage})` }}
-          className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
+          className="order-first md:order-last w-full h-[45vh] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5 max-md:[clip-path:polygon(0_0,100%_0,100%_88%,0%_100%)]"
         />
       </div>
     )
