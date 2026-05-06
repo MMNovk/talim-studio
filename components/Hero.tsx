@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white flex max-md:flex-col max-md:items-start max-md:justify-center max-md:px-5 max-md:pt-[15vh] max-md:pb-[15vh] overflow-hidden"
+      className="relative w-full bg-white flex max-md:flex-col max-md:items-center max-md:justify-center max-md:px-5 max-md:pt-[15vh] max-md:pb-[15vh] overflow-hidden"
       style={{ minHeight: '100svh' }}
     >
       {/* Text + CTA */}
@@ -38,7 +38,7 @@ export default function Hero() {
         ref={revealRef}
         className="w-[55%] max-md:w-full flex-shrink-0 flex flex-col justify-center md:p-14 lg:p-20 max-md:p-0"
       >
-        <div className="max-w-4xl pr-12 max-md:pr-0">
+        <div className="max-w-4xl pr-12 max-md:pr-0 max-md:text-center max-md:flex max-md:flex-col max-md:items-center">
           <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black max-md:font-extrabold leading-[0.87] text-ink uppercase" style={{ letterSpacing: '0.02em' }}>
             TALIM
             <br />
@@ -80,7 +80,7 @@ export default function Hero() {
             className="md:hidden mx-auto"
             style={{ width: '100%', height: '260px', overflow: 'visible', borderRadius: '12px', position: 'relative' }}
           >
-            <div style={{ transform: 'scale(0.55) translateX(-50%) translateY(30px)', transformOrigin: 'center top', width: '100%', height: '100%', overflow: 'visible' }}>
+            <div style={{ transform: 'scale(0.55) translateX(-50%) translateY(15px)', transformOrigin: 'center top', width: '100%', height: '100%', overflow: 'visible' }}>
               <StackedPanels isMobile={true} />
             </div>
           </div>
