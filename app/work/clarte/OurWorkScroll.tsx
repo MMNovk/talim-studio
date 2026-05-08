@@ -33,8 +33,8 @@ const rightColumn = allImages.filter((_, i) => i % 2 === 1)
 export default function OurWorkScroll() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
-  const leftY  = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
-  const rightY = useTransform(scrollYProgress, [0, 1], ['-8%', '12%'])
+  const leftY  = useTransform(scrollYProgress, [0, 1], ['-8%', '-28%'])
+  const rightY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%'])
 
   return (
     <>
