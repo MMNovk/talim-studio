@@ -165,9 +165,10 @@
   .slide-title    { font-size: clamp(2.2rem, 10vw, 4rem); }
   .slides-navigation { display: none; }
   .slide-description {
-    line-height: 1.8;
+    line-height: 1.5;
     max-width: 85vw;
     word-break: break-word;
+    margin-top: 4px;
   }
 }
 
