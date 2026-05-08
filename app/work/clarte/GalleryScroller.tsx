@@ -41,7 +41,7 @@ export function GalleryScroller() {
           {images.map((image) => (
             <GridItem
               key={image.id}
-              className="relative h-54 w-36 md:h-96 md:w-64"
+              className="relative h-48 w-[44vw] md:h-96 md:w-64"
             >
               <img
                 src={image.src}

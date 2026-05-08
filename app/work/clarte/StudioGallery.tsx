@@ -100,6 +100,10 @@ export default function StudioGallery() {
 
           {/* Left column — carousel + thumbnails */}
           <div>
+            {/* Mobile-only counter above photo */}
+            <p className="md:hidden" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: '0 0 12px', paddingLeft: 4 }}>
+              {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
+            </p>
             <div
               className="relative overflow-hidden"
               style={{ backgroundColor: '#EDE8E2', borderRadius: '2px', aspectRatio: '880 / 600' }}
@@ -203,7 +207,7 @@ export default function StudioGallery() {
           </div>
 
           {/* Right column — animated description panel */}
-          <div className="max-md:pt-4" style={{ paddingTop: '48px' }}>
+          <div className="md:pt-12 pt-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -214,6 +218,7 @@ export default function StudioGallery() {
               style={{ display: 'flex', flexDirection: 'column', gap: '24px', padding: '0 16px' }}
             >
               <p
+                className="hidden md:block"
                 style={{
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '11px',

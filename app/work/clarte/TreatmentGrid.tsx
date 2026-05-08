@@ -161,7 +161,16 @@ export default function TreatmentGrid() {
           <a
             key={index}
             href="#"
-            onClick={(e) => { e.preventDefault(); setTappedIndex(tappedIndex === index ? null : index); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
+            onClick={(e) => {
+              if (window.innerWidth < 768) {
+                if (tappedIndex !== index) {
+                  e.preventDefault()
+                  setTappedIndex(index)
+                } else {
+                  setTappedIndex(null)
+                }
+              }
+            }}
             className="max-md:!p-5"
             style={{
               display: "block",
@@ -237,6 +246,18 @@ export default function TreatmentGrid() {
             >
               {project.description}
             </p>
+
+            {/* Mobile book CTA — shown when card is tapped */}
+            {tappedIndex === index && (
+              <a
+                href="#booking"
+                className="md:hidden"
+                onClick={(e) => { e.stopPropagation(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
+                style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', textDecoration: 'none', display: 'inline-block', marginTop: 12 }}
+              >
+                Book this treatment →
+              </a>
+            )}
 
             {/* Year / price */}
             <span

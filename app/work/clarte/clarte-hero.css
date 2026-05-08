@@ -166,9 +166,11 @@
   .slides-navigation { display: none; }
   .slide-description {
     line-height: 1.5;
-    max-width: 85vw;
+    max-width: 60vw;
     word-break: break-word;
     margin-top: 4px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
