@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -29,6 +29,9 @@ export const TestimonialSlider = ({
 }: TestimonialSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
+  const [flippedMain, setFlippedMain] = useState(false);
+
+  useEffect(() => { setFlippedMain(false) }, [currentIndex]);
 
   const activeReview = reviews[currentIndex];
 
@@ -115,20 +118,33 @@ export const TestimonialSlider = ({
 
         {/* Center Column: Main Image */}
         <div className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-1 md:order-2">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.img
-              key={currentIndex}
-              src={activeReview.imageSrc}
-              alt={activeReview.name}
-              custom={direction}
-              variants={imageVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute inset-0 w-full h-full object-cover rounded-lg"
-            />
-          </AnimatePresence>
+          <div style={{ perspective: '1000px', width: '100%', height: '100%', cursor: 'pointer' }} onClick={() => setFlippedMain(f => !f)}>
+            <div style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d', transition: 'transform 0.6s ease', transform: flippedMain ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden' }}>
+                <AnimatePresence initial={false} custom={direction}>
+                  <motion.img
+                    key={currentIndex}
+                    src={activeReview.imageSrc}
+                    alt={activeReview.name}
+                    custom={direction}
+                    variants={imageVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                  />
+                </AnimatePresence>
+              </div>
+              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', backgroundColor: '#1C1814', borderRadius: 8, padding: '32px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 }}>
+                <p style={{ fontFamily: 'DM Sans', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#B5623E', margin: 0 }}>{activeReview.affiliation}</p>
+                <p style={{ fontFamily: 'Cormorant Garamond', fontWeight: 300, fontSize: 32, color: '#F7F3EE', margin: 0, lineHeight: 1.1 }}>{activeReview.name}</p>
+                <div style={{ width: 32, height: 1, backgroundColor: '#8C7B6E' }} />
+                <p style={{ fontFamily: 'DM Sans', fontWeight: 300, fontStyle: 'italic', fontSize: 14, color: '#8C7B6E', margin: 0, lineHeight: 1.7 }}>{activeReview.quote}</p>
+                <p style={{ fontFamily: 'DM Sans', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', margin: 0 }}>{activeReview.specialization}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Column: Text and Navigation */}
