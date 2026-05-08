@@ -236,7 +236,7 @@ export default function TreatmentGrid() {
                 fontSize: 14,
                 color: "#8C7B6E",
                 margin: 0,
-                marginBottom: 20,
+                marginBottom: 8,
                 lineHeight: 1.6,
               }}
             >
@@ -254,7 +254,8 @@ export default function TreatmentGrid() {
                 }}
                 style={{
                   display: 'inline-block',
-                  marginTop: 16,
+                  marginTop: 8,
+                  marginRight: 16,
                   padding: '10px 24px',
                   backgroundColor: '#1C1814',
                   color: '#F7F3EE',
