@@ -29,6 +29,7 @@ export const TestimonialSlider = ({
 }: TestimonialSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   const activeReview = reviews[currentIndex];
 
@@ -83,7 +84,40 @@ export const TestimonialSlider = ({
       )}
       style={{ backgroundColor: "#F7F3EE", paddingBottom: "120px" }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
+      {/* MOBILE — flip card grid */}
+      <div className="md:hidden flex gap-3 px-6 pb-6">
+        {reviews.map((review, index) => {
+          const isFlipped = flippedIndex === index
+          return (
+            <div
+              key={review.id}
+              style={{ flex: 1, perspective: '1000px', cursor: 'pointer' }}
+              onClick={() => setFlippedIndex(isFlipped ? null : index)}
+            >
+              <div style={{ position: 'relative', width: '100%', height: '280px', transformStyle: 'preserve-3d', transition: 'transform 0.5s ease', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+                {/* Front */}
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden' }}>
+                  <img src={review.imageSrc} alt={review.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', display: 'block' }} />
+                </div>
+                {/* Back */}
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', backgroundColor: '#1C1814', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
+                  <p style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic', fontWeight: 300, fontSize: '13px', color: '#F7F3EE', lineHeight: 1.6, textAlign: 'center', margin: 0, flex: 1, display: 'flex', alignItems: 'center' }}>
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                  <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', margin: '12px 0 0', textAlign: 'center' }}>
+                    {review.specialization}
+                  </p>
+                </div>
+              </div>
+              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '18px', color: '#1C1814', marginTop: '8px', marginBottom: 0 }}>{review.name}</p>
+              <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', marginTop: '4px' }}>{review.affiliation}</p>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* DESKTOP — existing slider */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
         {/* Left Column */}
         <div className="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
           <div className="flex flex-row md:flex-col justify-between md:justify-start space-x-4 md:space-x-0 md:space-y-4">
