@@ -58,6 +58,7 @@ const projects: Project[] = [
 
 export default function TreatmentGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null)
   const [visible, setVisible] = useState(false)
   const [smoothPosition, setSmoothPosition] = useState<{ x: number; y: number } | null>(null)
   const mousePosition = useRef<{ x: number; y: number } | null>(null)
@@ -119,8 +120,9 @@ export default function TreatmentGrid() {
         </p>
       </div>
 
-      {/* Floating image */}
+      {/* Floating image — desktop only */}
       <div
+        className="hidden md:block"
         style={{
           position: "fixed",
           top: 0,
@@ -149,9 +151,8 @@ export default function TreatmentGrid() {
 
       {/* 2-column grid */}
       <div
+        className="grid max-md:grid-cols-1 md:[grid-template-columns:1fr_1fr]"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           borderTop: "1px solid #D4C9BC",
           borderLeft: "1px solid #D4C9BC",
         }}
@@ -160,7 +161,8 @@ export default function TreatmentGrid() {
           <a
             key={index}
             href="#"
-            onClick={(e) => { e.preventDefault(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
+            onClick={(e) => { e.preventDefault(); setTappedIndex(tappedIndex === index ? null : index); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
+            className="max-md:!p-5"
             style={{
               display: "block",
               textDecoration: "none",
@@ -202,6 +204,24 @@ export default function TreatmentGrid() {
                 }}
               />
             </h3>
+
+            {/* Mobile tap-to-reveal image */}
+            <div
+              className="md:hidden"
+              style={{
+                overflow: 'hidden',
+                maxHeight: tappedIndex === index ? '200px' : '0px',
+                opacity: tappedIndex === index ? 1 : 0,
+                marginBottom: tappedIndex === index ? '12px' : '0px',
+                transition: 'max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease',
+              }}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '4px', display: 'block' }}
+              />
+            </div>
 
             {/* Description */}
             <p

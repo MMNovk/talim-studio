@@ -48,13 +48,13 @@ export default function OurWorkScroll() {
       <ReactLenis root>
         <main style={{ backgroundColor: '#F7F3EE' }}>
           <section
-            className="grid grid-cols-3 gap-3 p-3"
+            className="grid grid-cols-3 gap-3 p-3 max-md:grid-cols-1 max-md:gap-4"
             style={{ backgroundColor: '#F7F3EE' }}
           >
             {/* Left column */}
             <div className="grid gap-3">
               {leftImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden" style={{ borderRadius: '2px' }}>
+                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
                   <img
                     src={src}
                     alt=""
@@ -66,9 +66,9 @@ export default function OurWorkScroll() {
             </div>
 
             {/* Center column — sticky */}
-            <div className="sticky top-0 h-screen grid gap-3 overflow-hidden">
+            <div className="md:sticky md:top-0 md:h-screen grid gap-3 overflow-hidden max-md:static max-md:h-auto">
               {centerImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden" style={{ borderRadius: '2px' }}>
+                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
                   <img
                     src={src}
                     alt=""
@@ -82,7 +82,7 @@ export default function OurWorkScroll() {
             {/* Right column */}
             <div className="grid gap-3">
               {rightImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden" style={{ borderRadius: '2px' }}>
+                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
                   <img
                     src={src}
                     alt=""

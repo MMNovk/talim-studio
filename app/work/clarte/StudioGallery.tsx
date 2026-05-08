@@ -79,7 +79,7 @@ export default function StudioGallery() {
 
   return (
     <section id="about" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
-      <div className="px-16">
+      <div className="px-16 max-md:px-4">
 
         <p
           style={{
@@ -96,7 +96,7 @@ export default function StudioGallery() {
         </p>
 
         {/* Split layout: 3fr photo + 2fr description */}
-        <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '64px', alignItems: 'start' }}>
+        <div className="grid max-md:grid-cols-1 md:[grid-template-columns:3fr_2fr] max-md:gap-8 md:gap-16 items-start">
 
           {/* Left column — carousel + thumbnails */}
           <div>
@@ -179,7 +179,7 @@ export default function StudioGallery() {
                   key={item.id}
                   onClick={() => goTo(i)}
                   aria-label={item.title}
-                  className="flex-shrink-0 overflow-hidden"
+                  className="flex-shrink-0 overflow-hidden max-md:w-14 max-md:h-10"
                   style={{
                     width: 72,
                     height: 50,
@@ -203,7 +203,7 @@ export default function StudioGallery() {
           </div>
 
           {/* Right column — animated description panel */}
-          <div style={{ paddingTop: '48px' }}>
+          <div className="max-md:pt-4" style={{ paddingTop: '48px' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
