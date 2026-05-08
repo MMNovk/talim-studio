@@ -51,7 +51,7 @@ export default function Hero() {
 
           <a
             href="#contact"
-            className="mt-8 max-md:mt-4 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
+            className="mt-4 max-md:mt-4 w-fit flex items-center gap-3 max-md:gap-2 group no-underline"
           >
             <div className="w-14 h-14 max-md:w-8 max-md:h-8 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-ink transition-all duration-500 overflow-hidden">
               <svg
@@ -70,7 +70,7 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <span className="text-sm max-md:text-xs font-bold text-ink">
+            <span className="text-base max-md:text-xs font-bold text-ink">
               Start a Project
             </span>
           </a>
