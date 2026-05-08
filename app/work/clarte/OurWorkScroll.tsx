@@ -33,8 +33,8 @@ const rightColumn = allImages.filter((_, i) => i % 2 === 1)
 export default function OurWorkScroll() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
-  const leftY  = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
-  const rightY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+  const leftY  = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
+  const rightY = useTransform(scrollYProgress, [0, 1], ['-8%', '12%'])
 
   return (
     <>
@@ -58,7 +58,7 @@ export default function OurWorkScroll() {
 
       {/* MOBILE — parallax two-column split */}
       <div ref={sectionRef} className="md:hidden relative overflow-hidden" style={{ backgroundColor: '#F7F3EE', padding: '0 12px 80px' }}>
-        <div style={{ display: 'flex', gap: 8, overflow: 'hidden' }}>
+        <div style={{ display: 'flex', gap: 8 }}>
           <motion.div style={{ y: leftY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden' }}>
             {leftColumn.map((src, i) => (
               <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
@@ -66,7 +66,7 @@ export default function OurWorkScroll() {
               </div>
             ))}
           </motion.div>
-          <motion.div style={{ y: rightY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden', marginTop: 48 }}>
+          <motion.div style={{ y: rightY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden' }}>
             {rightColumn.map((src, i) => (
               <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
                 <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />

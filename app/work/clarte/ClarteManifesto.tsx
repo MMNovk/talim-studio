@@ -54,7 +54,7 @@ export function ManifestoSection() {
           lineHeight: 1,
           paddingTop: '0',
           color: 'transparent',
-          WebkitTextStroke: '1.8px rgba(28, 24, 20, 0.38)',
+          WebkitTextStroke: '2.5px rgba(28, 24, 20, 0.38)',
           letterSpacing: '0.15em',
           margin: 0,
           userSelect: 'none',
