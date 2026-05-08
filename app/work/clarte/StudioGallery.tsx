@@ -78,11 +78,11 @@ export default function StudioGallery() {
   }, [current])
 
   return (
-    <section id="about" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
+    <section id="about" className="max-md:pt-6" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
       <div className="px-16 max-md:px-4">
 
         <p
-          className="max-md:pt-4 max-md:mb-3"
+          className="max-md:pt-0 max-md:mb-2"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
