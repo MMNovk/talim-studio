@@ -163,12 +163,8 @@ export default function TreatmentGrid() {
             href="#"
             onClick={(e) => {
               if (window.innerWidth < 768) {
-                if (tappedIndex !== index) {
-                  e.preventDefault()
-                  setTappedIndex(index)
-                } else {
-                  setTappedIndex(null)
-                }
+                e.preventDefault()
+                setTappedIndex(tappedIndex === index ? null : index)
               }
             }}
             className="max-md:!p-5"
@@ -247,15 +243,30 @@ export default function TreatmentGrid() {
               {project.description}
             </p>
 
-            {/* Mobile book CTA — shown when card is tapped */}
+            {/* Mobile Book Now button — shown when card is tapped */}
             {tappedIndex === index && (
               <a
                 href="#booking"
                 className="md:hidden"
-                onClick={(e) => { e.stopPropagation(); document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' }) }}
-                style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B5623E', textDecoration: 'none', display: 'inline-block', marginTop: 12 }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                style={{
+                  display: 'inline-block',
+                  marginTop: 16,
+                  padding: '10px 24px',
+                  backgroundColor: '#1C1814',
+                  color: '#F7F3EE',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: 10,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  borderRadius: 0,
+                }}
               >
-                Book this treatment →
+                Book Now
               </a>
             )}
 

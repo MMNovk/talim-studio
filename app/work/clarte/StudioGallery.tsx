@@ -82,6 +82,7 @@ export default function StudioGallery() {
       <div className="px-16 max-md:px-4">
 
         <p
+          className="max-md:pt-10"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,

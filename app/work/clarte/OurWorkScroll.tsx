@@ -1,5 +1,7 @@
 'use client'
 
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { ReactLenis } from 'lenis/react'
 
 const leftImages = [
@@ -24,7 +26,16 @@ const rightImages = [
   'https://images.unsplash.com/photo-1737215398544-94db22a53a01?q=80&w=987&auto=format&fit=crop',
 ]
 
+const allImages = [...leftImages, ...centerImages, ...rightImages].slice(0, 12)
+const leftColumn  = allImages.filter((_, i) => i % 2 === 0)
+const rightColumn = allImages.filter((_, i) => i % 2 === 1)
+
 export default function OurWorkScroll() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
+  const leftY  = useTransform(scrollYProgress, [0, 1], ['0%', '-25%'])
+  const rightY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+
   return (
     <>
       <p
@@ -45,56 +56,79 @@ export default function OurWorkScroll() {
         Our Work
       </p>
 
-      <ReactLenis root>
-        <main style={{ backgroundColor: '#F7F3EE' }}>
-          <section
-            className="grid grid-cols-3 gap-3 p-3 max-md:grid-cols-1 max-md:gap-4"
-            style={{ backgroundColor: '#F7F3EE' }}
-          >
-            {/* Left column */}
-            <div className="grid gap-3">
-              {leftImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    style={{ borderRadius: '2px', display: 'block' }}
-                  />
-                </figure>
-              ))}
-            </div>
+      {/* MOBILE — parallax two-column split */}
+      <div ref={sectionRef} className="md:hidden relative overflow-hidden" style={{ backgroundColor: '#F7F3EE', padding: '0 12px 80px' }}>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <motion.div style={{ y: leftY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {leftColumn.map((src, i) => (
+              <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
+                <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            ))}
+          </motion.div>
+          <motion.div style={{ y: rightY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, marginTop: 48 }}>
+            {rightColumn.map((src, i) => (
+              <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
+                <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
 
-            {/* Center column — sticky */}
-            <div className="md:sticky md:top-0 md:h-screen grid gap-3 overflow-hidden max-md:static max-md:h-auto">
-              {centerImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    style={{ borderRadius: '2px', display: 'block' }}
-                  />
-                </figure>
-              ))}
-            </div>
+      {/* DESKTOP — sticky 3-column scroll */}
+      <div className="hidden md:block">
+        <ReactLenis root>
+          <main style={{ backgroundColor: '#F7F3EE' }}>
+            <section
+              className="grid grid-cols-3 gap-3 p-3"
+              style={{ backgroundColor: '#F7F3EE' }}
+            >
+              {/* Left column */}
+              <div className="grid gap-3">
+                {leftImages.map((src, i) => (
+                  <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
+                    <img
+                      src={src}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      style={{ borderRadius: '2px', display: 'block' }}
+                    />
+                  </figure>
+                ))}
+              </div>
 
-            {/* Right column */}
-            <div className="grid gap-3">
-              {rightImages.map((src, i) => (
-                <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    style={{ borderRadius: '2px', display: 'block' }}
-                  />
-                </figure>
-              ))}
-            </div>
-          </section>
-        </main>
-      </ReactLenis>
+              {/* Center column — sticky */}
+              <div className="sticky top-0 h-screen grid gap-3 overflow-hidden">
+                {centerImages.map((src, i) => (
+                  <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
+                    <img
+                      src={src}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      style={{ borderRadius: '2px', display: 'block' }}
+                    />
+                  </figure>
+                ))}
+              </div>
+
+              {/* Right column */}
+              <div className="grid gap-3">
+                {rightImages.map((src, i) => (
+                  <figure key={i} className="m-0 overflow-hidden aspect-[4/3]" style={{ borderRadius: '2px' }}>
+                    <img
+                      src={src}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      style={{ borderRadius: '2px', display: 'block' }}
+                    />
+                  </figure>
+                ))}
+              </div>
+            </section>
+          </main>
+        </ReactLenis>
+      </div>
     </>
   )
 }
