@@ -78,11 +78,11 @@ export default function StudioGallery() {
   }, [current])
 
   return (
-    <section id="about" className="max-md:pt-2" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
-      <div className="px-16 max-md:px-4">
+    <section id="about" className="max-md:pt-0" style={{ backgroundColor: '#F7F3EE', padding: '80px 0' }}>
+      <div className="px-16 max-md:px-4 max-md:flex max-md:flex-col">
 
         <p
-          className="max-md:pt-0 max-md:mb-1"
+          className="max-md:pt-0 max-md:mb-1 max-md:order-2"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
@@ -97,14 +97,10 @@ export default function StudioGallery() {
         </p>
 
         {/* Split layout: 3fr photo + 2fr description */}
-        <div className="grid max-md:grid-cols-1 md:[grid-template-columns:3fr_2fr] max-md:gap-8 md:gap-16 items-start">
+        <div className="grid max-md:grid-cols-1 md:[grid-template-columns:3fr_2fr] max-md:gap-8 md:gap-16 items-start max-md:order-1">
 
           {/* Left column — carousel + thumbnails */}
           <div>
-            {/* Mobile-only counter above photo */}
-            <p className="md:hidden" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: '0 0 12px', paddingLeft: 4 }}>
-              {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
-            </p>
             <div
               className="relative overflow-hidden"
               style={{ backgroundColor: '#EDE8E2', borderRadius: '2px', aspectRatio: '880 / 600' }}
@@ -261,6 +257,11 @@ export default function StudioGallery() {
           </div>
 
         </div>
+
+        {/* Mobile-only counter — below photo and heading */}
+        <p className="md:hidden max-md:order-3 max-md:mt-2" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
+          {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
+        </p>
       </div>
     </section>
   )
