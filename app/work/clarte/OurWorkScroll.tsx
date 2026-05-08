@@ -57,7 +57,7 @@ export default function OurWorkScroll() {
       </p>
 
       {/* MOBILE — parallax two-column split */}
-      <div ref={sectionRef} className="md:hidden relative overflow-hidden" style={{ backgroundColor: '#F7F3EE', padding: '0 12px 80px' }}>
+      <div ref={sectionRef} className="md:hidden relative overflow-hidden max-md:h-[800px]" style={{ backgroundColor: '#F7F3EE', padding: '0 12px 80px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', gap: 8 }}>
           <motion.div style={{ y: leftY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden' }}>
             {leftColumn.map((src, i) => (
