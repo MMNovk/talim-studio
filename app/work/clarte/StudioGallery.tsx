@@ -82,7 +82,7 @@ export default function StudioGallery() {
       <div className="px-16 max-md:px-4 max-md:flex max-md:flex-col">
 
         <p
-          className="max-md:pt-0 max-md:mb-1 max-md:mt-4 max-md:order-3"
+          className="max-md:order-1 max-md:mb-2 max-md:pt-4"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
@@ -100,9 +100,9 @@ export default function StudioGallery() {
         <div className="grid md:[grid-template-columns:3fr_2fr] md:gap-16 items-start max-md:[display:contents]">
 
           {/* Left column — carousel + thumbnails */}
-          <div className="max-md:[display:contents]">
+          <div className="max-md:order-2">
             <div
-              className="relative overflow-hidden max-md:order-1"
+              className="relative overflow-hidden"
               style={{ backgroundColor: '#EDE8E2', borderRadius: '2px', aspectRatio: '880 / 600' }}
             >
               {/* Drag capture layer */}
@@ -172,7 +172,7 @@ export default function StudioGallery() {
             {/* Thumbnail strip — under photo only */}
             <div
               ref={thumbsRef}
-              className="flex gap-2 mt-3 overflow-x-auto max-md:order-2"
+              className="flex gap-2 mt-3 overflow-x-auto"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
             >
               {studioItems.map((item, i) => (
@@ -204,7 +204,7 @@ export default function StudioGallery() {
           </div>
 
           {/* Right column — animated description panel */}
-          <div className="md:pt-12 pt-4 max-md:order-5">
+          <div className="md:pt-12 max-md:pt-4 max-md:order-3">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -254,14 +254,12 @@ export default function StudioGallery() {
               </p>
             </motion.div>
           </AnimatePresence>
+          <p className="md:hidden max-md:mt-2" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
+            {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
+          </p>
           </div>
 
         </div>
-
-        {/* Mobile-only counter — below photo and heading */}
-        <p className="md:hidden max-md:order-4 max-md:mb-2" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
-          {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
-        </p>
       </div>
     </section>
   )
