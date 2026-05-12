@@ -81,14 +81,14 @@ export const TestimonialSlider = ({
   return (
     <div
       className={cn(
-        "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden p-8 md:p-12",
+        "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden p-8 md:p-12 max-md:pt-2",
         className
       )}
       style={{ backgroundColor: "#F7F3EE", paddingBottom: "120px" }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
+      <div className="grid grid-cols-[auto_1fr] md:grid-cols-12 gap-8 h-full">
         {/* Left Column */}
-        <div className="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
+        <div className="md:col-span-3 flex flex-col justify-between order-3 md:order-1 max-md:col-span-2">
           <div className="flex flex-row md:flex-col justify-between md:justify-start space-x-4 md:space-x-0 md:space-y-4">
             <span className="text-sm font-mono" style={{ color: "#8C7B6E" }}>
               {String(currentIndex + 1).padStart(2, "0")} /{" "}
@@ -116,8 +116,15 @@ export const TestimonialSlider = ({
           </div>
         </div>
 
+        {/* Mobile-only prev arrow column */}
+        <div className="md:hidden flex flex-col justify-center order-1">
+          <button onClick={handlePrev} style={{ background: 'none', border: 'none', padding: '0 8px', cursor: 'pointer' }}>
+            <ArrowLeft size={18} color="#8C7B6E" />
+          </button>
+        </div>
+
         {/* Center Column: Main Image */}
-        <div className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-1 md:order-2">
+        <div className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-2 md:order-2">
           <div style={{ perspective: '1000px', width: '100%', height: '100%', cursor: 'pointer' }} onClick={() => setFlippedMain(f => !f)}>
             <div style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d', transition: 'transform 0.6s ease', transform: flippedMain ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden' }}>
@@ -179,7 +186,7 @@ export const TestimonialSlider = ({
             </AnimatePresence>
           </div>
 
-          <div className="flex items-center space-x-2 mt-8 md:mt-0">
+          <div className="hidden md:flex items-center space-x-2 mt-8 md:mt-0">
             <Button
               variant="outline"
               size="icon"
