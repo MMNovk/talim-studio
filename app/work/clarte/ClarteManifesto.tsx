@@ -105,7 +105,7 @@ export function ManifestoSection() {
       <section className="w-full" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
 
         {/* MOBILE — 2×2 tap-to-expand grid */}
-        <div className="md:hidden px-4">
+        <div className="md:hidden px-4" style={{ paddingBottom: 48 }}>
           <p style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
@@ -197,7 +197,7 @@ export function ManifestoSection() {
             color: '#C8BEB4',
             textTransform: 'uppercase',
             textAlign: 'center',
-            margin: '16px 0 0 0',
+            margin: '16px 0 16px 0',
             transform: 'rotate(180deg)',
             display: 'block',
           }}>Our Motto</p>
