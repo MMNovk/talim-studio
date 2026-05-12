@@ -121,7 +121,7 @@ export default function ClartePage() {
 
       {/* 7. Meet the Team */}
       <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
-        <p className="max-md:pt-16 max-md:pb-2" style={{
+        <p className="max-md:pt-16 max-md:pb-2 max-md:mb-0" style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 300,
           fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',

@@ -148,7 +148,7 @@ export const TestimonialSlider = ({
         </div>
 
         {/* Right Column: Text and Navigation */}
-        <div className="md:col-span-5 flex flex-col justify-between md:pl-8 order-3 md:order-3">
+        <div className="hidden md:flex flex-col justify-between md:pl-8 order-3 md:order-3">
           <div className="relative overflow-hidden pt-4 md:pt-24 min-h-[200px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
