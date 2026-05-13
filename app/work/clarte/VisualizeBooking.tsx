@@ -23,6 +23,8 @@ const SERVICES = [
   'Bespoke Facial — $220 · 90 min',
 ]
 
+const TIME_SLOTS = ['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM']
+
 // ── Calendar logic ────────────────────────────────────────────────────────
 type CalendarCell = {
   day: number | null
@@ -191,6 +193,7 @@ export function InteractiveCalendar() {
   const [guestName,           setGuestName]            = useState('')
   const [guestEmail,          setGuestEmail]           = useState('')
   const [guestPhone,          setGuestPhone]           = useState('')
+  const [mobileModalOpen,     setMobileModalOpen]      = useState(false)
 
   // Displayed month
   const displayDate  = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1)
@@ -205,6 +208,7 @@ export function InteractiveCalendar() {
     setGuestName('')
     setGuestEmail('')
     setGuestPhone('')
+    setMobileModalOpen(true)
   }
 
   const formattedDate = selectedDate
@@ -212,301 +216,509 @@ export function InteractiveCalendar() {
     : null
 
   return (
-    <div style={{
-      border: '1px solid rgba(200, 190, 180, 0.3)',
-      borderRadius: '16px',
-      padding: '48px',
-      display: 'flex',
-      flexDirection: 'row',
-      gap: '48px',
-      width: '100%',
-      transition: 'all 0.3s ease',
-    }}>
-
-      {/* ── Calendar column ── */}
-      <div style={{ flex: '1 1 0', minWidth: 0 }}>
-
-        {/* Month navigation */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-          <button
-            onClick={() => setMonthOffset(o => o - 1)}
-            disabled={monthOffset === 0}
-            aria-label="Previous month"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '36px',
-              height: '36px',
-              border: '1px solid #D4C9BC',
-              borderRadius: '50%',
-              backgroundColor: 'transparent',
-              cursor: monthOffset === 0 ? 'default' : 'pointer',
-              opacity: monthOffset === 0 ? 0.3 : 1,
-              transition: 'opacity 200ms ease',
-              flexShrink: 0,
-            }}
-          >
-            <ChevronLeft size={16} color="#1C1814" />
-          </button>
-
-          <h2 style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontSize: '32px',
-            color: '#1C1814',
-            letterSpacing: '0.05em',
-            margin: 0,
-            textAlign: 'center',
-          }}>
-            {MONTH_NAMES[displayMonth]}{' '}
-            <span style={{ color: '#B5623E' }}>{displayYear}</span>
-          </h2>
-
-          <button
-            onClick={() => setMonthOffset(o => o + 1)}
-            aria-label="Next month"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '36px',
-              height: '36px',
-              border: '1px solid #D4C9BC',
-              borderRadius: '50%',
-              backgroundColor: 'transparent',
-              cursor: 'pointer',
-              flexShrink: 0,
-            }}
-          >
-            <ChevronRight size={16} color="#1C1814" />
-          </button>
-        </div>
-
-        {/* Treatment selector */}
-        <div style={{ marginBottom: '24px' }}>
-          <p style={{
-            fontFamily: '"DM Sans", sans-serif',
-            fontSize: '11px',
-            letterSpacing: '0.25em',
-            textTransform: 'uppercase',
-            color: '#8C7B6E',
-            marginBottom: '8px',
-          }}>
-            Select a Treatment
-          </p>
-          <select
-            value={selectedTreatment}
-            onChange={e => setSelectedTreatment(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px 16px',
-              border: '1px solid #D4C9BC',
-              backgroundColor: '#F7F3EE',
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 300,
-              fontSize: '18px',
-              color: '#1C1814',
-              appearance: 'none',
-              cursor: 'pointer',
-              outline: 'none',
-              borderRadius: '2px',
-            }}
-          >
-            {SERVICES.map(s => <option key={s}>{s}</option>)}
-          </select>
-        </div>
-
-        <CalendarGrid
-          year={displayYear}
-          month={displayMonth}
-          selectedDate={selectedDate}
-          onDayClick={handleDayClick}
-        />
-
-        {/* Contact fields + confirm — revealed after esthetician is chosen */}
-        <AnimatePresence>
-          {selectedEsthetician && !confirmed && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.35 }}
-              style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '16px' }}
-            >
-              <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
-                Your Details
-              </p>
-              {[
-                { label: 'Full name',        value: guestName,  setter: setGuestName,  type: 'text'  },
-                { label: 'Email address',    value: guestEmail, setter: setGuestEmail, type: 'email' },
-                { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel'   },
-              ].map(({ label, value, setter, type }) => (
-                <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                  <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
-                    {label}
-                  </label>
-                  <input
-                    type={type}
-                    value={value}
-                    onChange={e => setter(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '8px 0',
-                      border: 'none',
-                      borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
-                      backgroundColor: 'transparent',
-                      fontFamily: 'Cormorant Garamond, serif',
-                      fontWeight: 300,
-                      fontSize: '18px',
-                      color: '#1C1814',
-                      outline: 'none',
-                      transition: 'border-color 200ms ease',
-                    }}
-                  />
-                </div>
-              ))}
-
-              {guestName.trim() && guestEmail.trim() && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.25 }}
-                  onClick={() => setConfirmed(true)}
-                  style={{
-                    marginTop: '8px',
-                    padding: '14px',
-                    backgroundColor: '#1C1814',
-                    color: '#F7F3EE',
-                    fontFamily: '"DM Sans", sans-serif',
-                    fontSize: '11px',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    borderRadius: '2px',
-                  }}
-                >
-                  Confirm Booking
-                </motion.div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* ── Right panel — fades in when a date is selected ── */}
+    <>
+      {/* Mobile fullscreen modal */}
       <AnimatePresence>
-        {selectedDate && (
+        {selectedDate && mobileModalOpen && (
           <motion.div
-            key="panel"
+            className="md:hidden"
+            key="mobile-modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.25 }}
             style={{
-              minWidth: '280px',
-              borderLeft: '1px solid #D4C9BC',
-              paddingLeft: '48px',
-              display: 'flex',
-              flexDirection: 'column',
+              position: 'fixed',
+              inset: 0,
+              zIndex: 50,
+              backgroundColor: '#F7F3EE',
+              padding: '24px',
+              overflowY: 'auto',
             }}
           >
-            {confirmed ? (
-              /* ── Confirmation state ── */
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', gap: '12px' }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 300, color: '#1C1814', margin: 0 }}>
-                  You&apos;re booked.
-                </p>
-                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#8C7B6E', lineHeight: 1.6, margin: 0 }}>
-                  We&apos;ll see you soon. A confirmation has been sent to your email.
-                </p>
-              </div>
-            ) : (
-              /* ── Booking flow ── */
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Close button */}
+            <button
+              onClick={() => setMobileModalOpen(false)}
+              aria-label="Close"
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: '"DM Sans", sans-serif',
+                fontSize: '24px',
+                color: '#1C1814',
+                lineHeight: 1,
+                padding: '4px 8px',
+              }}
+            >
+              ×
+            </button>
 
-                {/* Selected date */}
-                <div>
-                  <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '8px' }}>
-                    Selected Date
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', marginTop: '16px' }}>
+
+              {confirmed ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '32px' }}>
+                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 300, color: '#1C1814', margin: 0 }}>
+                    You&apos;re booked.
                   </p>
-                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '28px', color: '#1C1814', margin: 0 }}>
-                    {formattedDate}
+                  <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#8C7B6E', lineHeight: 1.6, margin: 0 }}>
+                    We&apos;ll see you soon. A confirmation has been sent to your email.
                   </p>
                 </div>
-
-                {/* Time slots */}
-                <div>
-                  <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
-                    Available Times
-                  </p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {['10:00 AM', '11:30 AM', '2:00 PM', '3:30 PM'].map(time => (
-                      <div
-                        key={time}
-                        onClick={() => setSelectedTime(time)}
-                        style={{
-                          padding: '12px 16px',
-                          border: `1px solid ${selectedTime === time ? '#B5623E' : '#D4C9BC'}`,
-                          backgroundColor: selectedTime === time ? '#B5623E' : 'transparent',
-                          color: selectedTime === time ? '#F7F3EE' : '#1C1814',
-                          fontFamily: '"DM Sans", sans-serif',
-                          fontSize: '14px',
-                          cursor: 'pointer',
-                          transition: 'all 200ms ease',
-                          borderRadius: '2px',
-                        }}
-                      >
-                        {time}
-                      </div>
-                    ))}
+              ) : (
+                <>
+                  {/* Selected date */}
+                  <div>
+                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '8px' }}>
+                      Selected Date
+                    </p>
+                    <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '28px', color: '#1C1814', margin: 0 }}>
+                      {formattedDate}
+                    </p>
                   </div>
-                </div>
 
-                {/* Esthetician */}
-                {selectedTime && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
+                  {/* Time slots */}
+                  <div>
                     <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
-                      Your Esthetician
+                      Available Times
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {ESTHETICIANS.map(est => (
+                      {TIME_SLOTS.map(time => (
                         <div
-                          key={est.name}
-                          onClick={() => setSelectedEsthetician(est.name)}
+                          key={time}
+                          onClick={() => setSelectedTime(time)}
                           style={{
                             padding: '12px 16px',
-                            border: `1px solid ${selectedEsthetician === est.name ? '#B5623E' : '#D4C9BC'}`,
-                            backgroundColor: selectedEsthetician === est.name ? '#FDF6F2' : 'transparent',
+                            border: `1px solid ${selectedTime === time ? '#B5623E' : '#D4C9BC'}`,
+                            backgroundColor: selectedTime === time ? '#B5623E' : 'transparent',
+                            color: selectedTime === time ? '#F7F3EE' : '#1C1814',
+                            fontFamily: '"DM Sans", sans-serif',
+                            fontSize: '14px',
                             cursor: 'pointer',
                             transition: 'all 200ms ease',
                             borderRadius: '2px',
+                            width: '100%',
                           }}
                         >
-                          <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '18px', color: '#1C1814', margin: '0 0 2px 0' }}>
-                            {est.name}
-                          </p>
-                          <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
-                            {est.specialty}
-                          </p>
+                          {time}
                         </div>
                       ))}
                     </div>
-                  </motion.div>
-                )}
+                  </div>
 
-              </div>
-            )}
+                  {/* Esthetician — shown after time selected */}
+                  {selectedTime && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
+                        Your Esthetician
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {ESTHETICIANS.map(est => (
+                          <div
+                            key={est.name}
+                            onClick={() => setSelectedEsthetician(est.name)}
+                            style={{
+                              padding: '12px 16px',
+                              border: `1px solid ${selectedEsthetician === est.name ? '#B5623E' : '#D4C9BC'}`,
+                              backgroundColor: selectedEsthetician === est.name ? '#FDF6F2' : 'transparent',
+                              cursor: 'pointer',
+                              transition: 'all 200ms ease',
+                              borderRadius: '2px',
+                            }}
+                          >
+                            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '18px', color: '#1C1814', margin: '0 0 2px 0' }}>
+                              {est.name}
+                            </p>
+                            <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
+                              {est.specialty}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Contact fields + confirm — after esthetician chosen */}
+                  {selectedEsthetician && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35 }}
+                      style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+                    >
+                      <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
+                        Your Details
+                      </p>
+                      {[
+                        { label: 'Full name',        value: guestName,  setter: setGuestName,  type: 'text'  },
+                        { label: 'Email address',    value: guestEmail, setter: setGuestEmail, type: 'email' },
+                        { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel'   },
+                      ].map(({ label, value, setter, type }) => (
+                        <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
+                            {label}
+                          </label>
+                          <input
+                            type={type}
+                            value={value}
+                            onChange={e => setter(e.target.value)}
+                            style={{
+                              width: '100%',
+                              padding: '8px 0',
+                              border: 'none',
+                              borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
+                              backgroundColor: 'transparent',
+                              fontFamily: 'Cormorant Garamond, serif',
+                              fontWeight: 300,
+                              fontSize: '18px',
+                              color: '#1C1814',
+                              outline: 'none',
+                              transition: 'border-color 200ms ease',
+                            }}
+                          />
+                        </div>
+                      ))}
+                      {guestName.trim() && guestEmail.trim() && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.25 }}
+                          onClick={() => setConfirmed(true)}
+                          style={{
+                            marginTop: '8px',
+                            padding: '14px',
+                            backgroundColor: '#1C1814',
+                            color: '#F7F3EE',
+                            fontFamily: '"DM Sans", sans-serif',
+                            fontSize: '11px',
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                            borderRadius: '2px',
+                          }}
+                        >
+                          Confirm Booking
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  )}
+                </>
+              )}
+
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-    </div>
+      {/* Main booking container */}
+      <div
+        className="flex flex-col md:flex-row"
+        style={{
+          border: '1px solid rgba(200, 190, 180, 0.3)',
+          borderRadius: '16px',
+          padding: 'clamp(24px, 4vw, 48px)',
+          gap: '48px',
+          width: '100%',
+          transition: 'all 0.3s ease',
+        }}
+      >
+
+        {/* ── Calendar column ── */}
+        <div style={{ flex: '1 1 0', minWidth: 0 }}>
+
+          {/* Month navigation */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+            <button
+              onClick={() => setMonthOffset(o => o - 1)}
+              disabled={monthOffset === 0}
+              aria-label="Previous month"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '36px',
+                height: '36px',
+                border: '1px solid #D4C9BC',
+                borderRadius: '50%',
+                backgroundColor: 'transparent',
+                cursor: monthOffset === 0 ? 'default' : 'pointer',
+                opacity: monthOffset === 0 ? 0.3 : 1,
+                transition: 'opacity 200ms ease',
+                flexShrink: 0,
+              }}
+            >
+              <ChevronLeft size={16} color="#1C1814" />
+            </button>
+
+            <h2 style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontWeight: 300,
+              fontSize: '32px',
+              color: '#1C1814',
+              letterSpacing: '0.05em',
+              margin: 0,
+              textAlign: 'center',
+            }}>
+              {MONTH_NAMES[displayMonth]}{' '}
+              <span style={{ color: '#B5623E' }}>{displayYear}</span>
+            </h2>
+
+            <button
+              onClick={() => setMonthOffset(o => o + 1)}
+              aria-label="Next month"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '36px',
+                height: '36px',
+                border: '1px solid #D4C9BC',
+                borderRadius: '50%',
+                backgroundColor: 'transparent',
+                cursor: 'pointer',
+                flexShrink: 0,
+              }}
+            >
+              <ChevronRight size={16} color="#1C1814" />
+            </button>
+          </div>
+
+          {/* Treatment selector */}
+          <div style={{ marginBottom: '24px' }}>
+            <p style={{
+              fontFamily: '"DM Sans", sans-serif',
+              fontSize: '11px',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: '#8C7B6E',
+              marginBottom: '8px',
+            }}>
+              Select a Treatment
+            </p>
+            <select
+              value={selectedTreatment}
+              onChange={e => setSelectedTreatment(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid #D4C9BC',
+                backgroundColor: '#F7F3EE',
+                fontFamily: 'Cormorant Garamond, serif',
+                fontWeight: 300,
+                fontSize: '18px',
+                color: '#1C1814',
+                appearance: 'none',
+                cursor: 'pointer',
+                outline: 'none',
+                borderRadius: '2px',
+              }}
+            >
+              {SERVICES.map(s => <option key={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <CalendarGrid
+            year={displayYear}
+            month={displayMonth}
+            selectedDate={selectedDate}
+            onDayClick={handleDayClick}
+          />
+
+          {/* Contact fields + confirm — revealed after esthetician is chosen (desktop only) */}
+          <AnimatePresence>
+            {selectedEsthetician && !confirmed && (
+              <motion.div
+                key="contact"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.35 }}
+                className="hidden md:flex"
+                style={{ marginTop: '32px', flexDirection: 'column', gap: '16px' }}
+              >
+                <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
+                  Your Details
+                </p>
+                {[
+                  { label: 'Full name',        value: guestName,  setter: setGuestName,  type: 'text'  },
+                  { label: 'Email address',    value: guestEmail, setter: setGuestEmail, type: 'email' },
+                  { label: 'Phone (optional)', value: guestPhone, setter: setGuestPhone, type: 'tel'   },
+                ].map(({ label, value, setter, type }) => (
+                  <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C7B6E' }}>
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      value={value}
+                      onChange={e => setter(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '8px 0',
+                        border: 'none',
+                        borderBottom: `1px solid ${value ? '#B5623E' : '#D4C9BC'}`,
+                        backgroundColor: 'transparent',
+                        fontFamily: 'Cormorant Garamond, serif',
+                        fontWeight: 300,
+                        fontSize: '18px',
+                        color: '#1C1814',
+                        outline: 'none',
+                        transition: 'border-color 200ms ease',
+                      }}
+                    />
+                  </div>
+                ))}
+
+                {guestName.trim() && guestEmail.trim() && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.25 }}
+                    onClick={() => setConfirmed(true)}
+                    style={{
+                      marginTop: '8px',
+                      padding: '14px',
+                      backgroundColor: '#1C1814',
+                      color: '#F7F3EE',
+                      fontFamily: '"DM Sans", sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      borderRadius: '2px',
+                    }}
+                  >
+                    Confirm Booking
+                  </motion.div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* ── Right panel — desktop only, fades in when a date is selected ── */}
+        <div className="hidden md:block" style={{ flexShrink: 0 }}>
+          <AnimatePresence>
+            {selectedDate && (
+              <motion.div
+                key="panel"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                style={{
+                  minWidth: '280px',
+                  borderLeft: '1px solid #D4C9BC',
+                  paddingLeft: '48px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {confirmed ? (
+                  /* ── Confirmation state ── */
+                  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', gap: '12px' }}>
+                    <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 300, color: '#1C1814', margin: 0 }}>
+                      You&apos;re booked.
+                    </p>
+                    <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#8C7B6E', lineHeight: 1.6, margin: 0 }}>
+                      We&apos;ll see you soon. A confirmation has been sent to your email.
+                    </p>
+                  </div>
+                ) : (
+                  /* ── Booking flow ── */
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+
+                    {/* Selected date */}
+                    <div>
+                      <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '8px' }}>
+                        Selected Date
+                      </p>
+                      <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '28px', color: '#1C1814', margin: 0 }}>
+                        {formattedDate}
+                      </p>
+                    </div>
+
+                    {/* Time slots */}
+                    <div>
+                      <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
+                        Available Times
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {TIME_SLOTS.map(time => (
+                          <div
+                            key={time}
+                            onClick={() => setSelectedTime(time)}
+                            style={{
+                              padding: '12px 16px',
+                              border: `1px solid ${selectedTime === time ? '#B5623E' : '#D4C9BC'}`,
+                              backgroundColor: selectedTime === time ? '#B5623E' : 'transparent',
+                              color: selectedTime === time ? '#F7F3EE' : '#1C1814',
+                              fontFamily: '"DM Sans", sans-serif',
+                              fontSize: '14px',
+                              cursor: 'pointer',
+                              transition: 'all 200ms ease',
+                              borderRadius: '2px',
+                            }}
+                          >
+                            {time}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Esthetician */}
+                    {selectedTime && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8C7B6E', marginBottom: '12px' }}>
+                          Your Esthetician
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          {ESTHETICIANS.map(est => (
+                            <div
+                              key={est.name}
+                              onClick={() => setSelectedEsthetician(est.name)}
+                              style={{
+                                padding: '12px 16px',
+                                border: `1px solid ${selectedEsthetician === est.name ? '#B5623E' : '#D4C9BC'}`,
+                                backgroundColor: selectedEsthetician === est.name ? '#FDF6F2' : 'transparent',
+                                cursor: 'pointer',
+                                transition: 'all 200ms ease',
+                                borderRadius: '2px',
+                              }}
+                            >
+                              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '18px', color: '#1C1814', margin: '0 0 2px 0' }}>
+                                {est.name}
+                              </p>
+                              <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8C7B6E', margin: 0 }}>
+                                {est.specialty}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+      </div>
+    </>
   )
 }
