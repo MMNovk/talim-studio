@@ -23,7 +23,7 @@ const SERVICES = [
 ]
 
 export default function ClarteServices() {
-  const [hovered, setHovered] = useState(0)
+  const [hovered, setHovered] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -60,10 +60,12 @@ export default function ClarteServices() {
               <div
                 key={s.name}
                 onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                onClick={() => setHovered(hovered === i ? null : i)}
                 style={{
                   borderTop: `1px solid ${RULE}`,
                   padding: '32px 0',
-                  cursor: 'default',
+                  cursor: 'pointer',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
