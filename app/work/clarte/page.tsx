@@ -170,18 +170,7 @@ export default function ClartePage() {
             viewport={{ once: true, margin: '-100px' }}
           >
             <h2 style={{ ...C300I, fontSize: 'clamp(3rem, 5vw, 4rem)', color: INK, marginBottom: 56 }}>
-              {'Clarté'.split('').map((char, i) => (
-                <motion.span
-                  key={i}
-                  style={{ display: 'inline-block' }}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: i * 0.07, ease: SLOT }}
-                  viewport={{ once: true, margin: '-80px' }}
-                >
-                  {char}
-                </motion.span>
-              ))}
+              CLARTÉ
             </h2>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
@@ -265,8 +254,7 @@ export default function ClartePage() {
         style={{ background: INK }}
         className="px-8 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        <span style={{ ...C300I, fontSize: 18, color: 'rgba(247,243,238,0.75)' }}>Clarté</span>
-        <nav style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+        <nav style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'nowrap' }}>
           {[
             { label: 'Treatments',    href: '#treatments'  },
             { label: 'Our Work',      href: '#our-work'    },
@@ -278,7 +266,7 @@ export default function ClartePage() {
               key={label}
               href={href}
               onClick={(e) => { e.preventDefault(); document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' }) }}
-              style={{ ...DM300, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none' }}
+              style={{ ...DM300, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: MUTED, textDecoration: 'none' }}
               className="hover:text-[#F7F3EE] transition-colors duration-200"
             >
               {label}
