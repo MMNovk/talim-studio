@@ -86,16 +86,24 @@ export const TestimonialSlider = ({
       )}
       style={{ backgroundColor: "#F7F3EE", paddingBottom: "120px" }}
     >
-      <div className="grid grid-cols-[auto_1fr] md:grid-cols-12 gap-8 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
         {/* Left Column */}
-        <div className="md:col-span-3 flex flex-col justify-between order-3 md:order-1 max-md:col-span-2">
+        <div className="md:col-span-3 flex flex-col justify-between order-4 md:order-1">
           <div className="flex flex-row md:flex-col justify-between md:justify-start space-x-4 md:space-x-0 md:space-y-4">
             <span className="text-sm font-mono" style={{ color: "#8C7B6E" }}>
               {String(currentIndex + 1).padStart(2, "0")} /{" "}
               {String(reviews.length).padStart(2, "0")}
             </span>
           </div>
-          <div className="flex space-x-2 mt-8 md:mt-0">
+          <div className="md:hidden flex items-center justify-end gap-2 mb-2">
+            <button onClick={handlePrev} style={{ background: 'none', border: 'none', padding: '4px', cursor: 'pointer' }}>
+              <ArrowLeft size={16} color="#8C7B6E" />
+            </button>
+            <button onClick={handleNext} style={{ background: 'none', border: 'none', padding: '4px', cursor: 'pointer' }}>
+              <ArrowRight size={16} color="#8C7B6E" />
+            </button>
+          </div>
+          <div className="flex space-x-2 mt-0 md:mt-0">
             {thumbnailReviews.map((review) => {
               const originalIndex = reviews.findIndex((r) => r.id === review.id);
               return (
@@ -114,13 +122,6 @@ export const TestimonialSlider = ({
               );
             })}
           </div>
-        </div>
-
-        {/* Mobile-only prev arrow column */}
-        <div className="md:hidden flex flex-col justify-center order-1">
-          <button onClick={handlePrev} style={{ background: 'none', border: 'none', padding: '0 8px', cursor: 'pointer' }}>
-            <ArrowLeft size={18} color="#8C7B6E" />
-          </button>
         </div>
 
         {/* Center Column: Main Image */}
@@ -153,6 +154,14 @@ export const TestimonialSlider = ({
             </div>
           </div>
         </div>
+
+        {/* Mobile tap prompt */}
+        <p
+          className="md:hidden"
+          style={{ order: 3, fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8C7B6E', opacity: 0.6, margin: 0, paddingLeft: 4 }}
+        >
+          Tap a portrait to learn more
+        </p>
 
         {/* Right Column: Text and Navigation */}
         <div className="hidden md:flex flex-col justify-between md:pl-8 order-3 md:order-3">
