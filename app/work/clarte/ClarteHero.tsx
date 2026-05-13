@@ -420,8 +420,8 @@ export function Component() {
 
   return (
     <>
-      <main className="slider-wrapper" ref={containerRef} style={{ background: '#F7F3EE' }}>
-        <canvas className="webgl-canvas" style={{ pointerEvents: 'none' }}></canvas>
+      <main className="slider-wrapper" ref={containerRef} style={{ background: '#F7F3EE', height: '100svh', maxHeight: '100svh', overflow: 'hidden' }}>
+        <canvas className="webgl-canvas" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, width: '100%', height: '100%' }}></canvas>
         <span className="slide-number" id="slideNumber">01</span>
         <span className="slide-total" id="slideTotal">06</span>
 
