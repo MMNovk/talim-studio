@@ -47,7 +47,7 @@ export function ManifestoSection() {
         textAlign: 'center',
         marginTop: '0',
       }}>
-        <p style={{
+        <p className="max-md:!text-[18vw]" style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 400,
           fontSize: 'clamp(3.5rem, 18vw, 18rem)',
