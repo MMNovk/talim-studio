@@ -82,7 +82,7 @@ export default function StudioGallery() {
       <div className="px-16 max-md:px-4 max-md:flex max-md:flex-col">
 
         <p
-          className="max-md:order-1 max-md:mb-2 max-md:pt-4"
+          className="max-md:order-1 max-md:mb-6 max-md:pt-4"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
             fontWeight: 300,
@@ -254,7 +254,7 @@ export default function StudioGallery() {
               </p>
             </motion.div>
           </AnimatePresence>
-          <p className="md:hidden max-md:mt-2" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
+          <p className="md:hidden max-md:mt-6" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
             {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
           </p>
           </div>
