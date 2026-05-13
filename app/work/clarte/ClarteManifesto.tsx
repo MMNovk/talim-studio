@@ -166,8 +166,10 @@ export function ManifestoSection() {
                   justifyContent: 'center',
                   padding: '12px',
                   opacity: isOpen ? 1 : 0,
-                  transition: 'opacity 0.3s ease',
+                  transform: idx < 2 ? (isOpen ? 'translateY(0)' : 'translateY(100%)') : undefined,
+                  transition: idx < 2 ? 'opacity 0.3s ease, transform 0.4s ease' : 'opacity 0.3s ease',
                   pointerEvents: 'none',
+                  overflow: 'hidden',
                 }}>
                   <span style={{
                     display: 'inline-block',
