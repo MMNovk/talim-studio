@@ -162,10 +162,8 @@ export default function TreatmentGrid() {
             key={index}
             href="#"
             onClick={(e) => {
-              if (window.innerWidth < 768) {
-                e.preventDefault()
-                setTappedIndex(tappedIndex === index ? null : index)
-              }
+              e.preventDefault()
+              setTappedIndex(tappedIndex === index ? null : index)
             }}
             className="max-md:!p-5"
             style={{
@@ -174,7 +172,7 @@ export default function TreatmentGrid() {
               padding: 40,
               borderRight: "1px solid #D4C9BC",
               borderBottom: "1px solid #D4C9BC",
-              backgroundColor: (hoveredIndex === index || tappedIndex === index) ? "#F0EBE4" : "#F7F3EE",
+              backgroundColor: tappedIndex === index ? "#F0EBE4" : "#F7F3EE",
               transition: "background-color 300ms ease",
               position: "relative",
               cursor: "pointer",
@@ -203,7 +201,7 @@ export default function TreatmentGrid() {
                   bottom: -2,
                   left: 0,
                   height: 1,
-                  width: (hoveredIndex === index || tappedIndex === index) ? "100%" : "0%",
+                  width: tappedIndex === index ? "100%" : "0%",
                   backgroundColor: "#B5623E",
                   transition: "width 0.4s cubic-bezier(0.76, 0, 0.24, 1)",
                 }}
