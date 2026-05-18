@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-end px-12 pt-[120px] pb-20 relative">
+    <section className="min-h-screen flex flex-col justify-end px-6 md:px-12 pt-[120px] pb-16 md:pb-20 relative">
       <p className="text-[11px] font-medium tracking-[0.12em] uppercase text-ink-3 mb-6 flex items-center gap-2.5 opacity-0 animate-fade-up-1 before:content-[''] before:inline-block before:w-7 before:h-px before:bg-ink-3">
         Web design studio — New York City
       </p>
