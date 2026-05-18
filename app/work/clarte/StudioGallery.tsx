@@ -254,7 +254,7 @@ export default function StudioGallery() {
               </p>
             </motion.div>
           </AnimatePresence>
-          <p className="md:hidden max-md:mt-6" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', margin: 0, paddingLeft: 4 }}>
+          <p className="md:hidden max-md:mt-6" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#B5623E', paddingLeft: 4, paddingBottom: '24px' }}>
             {String(current + 1).padStart(2, '0')} / {String(studioItems.length).padStart(2, '0')}
           </p>
           </div>
