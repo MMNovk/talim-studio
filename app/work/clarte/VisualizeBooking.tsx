@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -194,6 +194,18 @@ export function InteractiveCalendar() {
   const [guestEmail,          setGuestEmail]           = useState('')
   const [guestPhone,          setGuestPhone]           = useState('')
   const [mobileModalOpen,     setMobileModalOpen]      = useState(false)
+
+  // Hide the global nav while the mobile modal is open
+  useEffect(() => {
+    const nav = document.querySelector('nav') as HTMLElement | null
+    if (!nav) return
+    if (mobileModalOpen) {
+      nav.style.setProperty('display', 'none')
+    } else {
+      nav.style.removeProperty('display')
+    }
+    return () => { nav.style.removeProperty('display') }
+  }, [mobileModalOpen])
 
   // Displayed month
   const displayDate  = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1)
