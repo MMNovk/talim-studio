@@ -61,14 +61,14 @@ export default function OurWorkScroll() {
         <div style={{ display: 'flex', gap: 8 }}>
           <motion.div style={{ y: leftY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden' }}>
             {leftColumn.map((src, i) => (
-              <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
+              <div key={i} style={{ width: '100%', aspectRatio: '4/5', overflow: 'hidden', borderRadius: 2 }}>
                 <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             ))}
           </motion.div>
           <motion.div style={{ y: rightY, flex: 1, display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden' }}>
             {rightColumn.map((src, i) => (
-              <div key={i} style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 2 }}>
+              <div key={i} style={{ width: '100%', aspectRatio: '4/5', overflow: 'hidden', borderRadius: 2 }}>
                 <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             ))}
