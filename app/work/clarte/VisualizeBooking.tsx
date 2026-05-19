@@ -77,7 +77,7 @@ function Day({ cell, isSelected, onClick }: DayProps) {
   if (cell.day === null) {
     return (
       <div style={{
-        height: '2.5rem',
+        minHeight: '44px',
         borderRadius: '6px',
         backgroundColor: '#F0EBE4',
         opacity: 0.4,
@@ -89,10 +89,10 @@ function Day({ cell, isSelected, onClick }: DayProps) {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '2.5rem',
+    minHeight: '44px',
     width: '100%',
     fontFamily: '"DM Sans", sans-serif',
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: 400,
     borderRadius: '6px',
     userSelect: 'none',
@@ -132,7 +132,7 @@ function CalendarGrid({ year, month, selectedDate, onDayClick }: CalendarGridPro
   const cells = useMemo(() => generateCalendarDays(year, month), [year, month])
 
   return (
-    <div>
+    <div className="max-md:py-2">
       {/* Weekday headers */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', marginBottom: '8px' }}>
         {DAYS_OF_WEEK.map(d => (

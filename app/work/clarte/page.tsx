@@ -139,7 +139,7 @@ export default function ClartePage() {
       </div>
 
       {/* 8. Booking */}
-      <section id="booking" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
+      <section id="booking" className="max-md:!px-4" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 300,
