@@ -53,12 +53,6 @@ export default function About3({
             <div className="pt-8 flex flex-col gap-4 flex-1">
               <h3 className="text-white font-black text-xl">{breakout.title}</h3>
               <p className="text-white/45 text-sm leading-relaxed">{breakout.description}</p>
-              <a
-                href={breakout.buttonUrl}
-                className="text-orange-500 text-sm font-mono tracking-widest uppercase no-underline hover:opacity-70 transition-opacity w-fit"
-              >
-                {breakout.buttonText} →
-              </a>
             </div>
           </div>
         </div>
