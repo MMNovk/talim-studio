@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react'
 export function ModifiedClassicLoader() {
   return (
     <svg
-      width="220"
-      height="220"
+      width="132"
+      height="132"
       viewBox="0 0 220 220"
       style={{ animation: "orbit 3s linear infinite" }}
     >
