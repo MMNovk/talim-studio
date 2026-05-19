@@ -117,7 +117,9 @@ export function ManifestoSection() {
             margin: '0 0 16px 0',
           }}>Our Motto</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-          {values.map((item, idx) => {
+          {/* Top row — SLOW, INTENTIONAL */}
+          {values.slice(0, 2).map((item, i) => {
+            const idx = i
             const isOpen = openIndex === idx
             return (
               <div
@@ -137,13 +139,11 @@ export function ManifestoSection() {
                   alt={item.label}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
                 />
-                {/* Bottom gradient always on */}
                 <div style={{
                   position: 'absolute',
                   inset: 0,
                   background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
                 }} />
-                {/* Bottom label always visible */}
                 <p style={{
                   position: 'absolute',
                   bottom: '12px',
@@ -157,7 +157,6 @@ export function ManifestoSection() {
                 }}>
                   {item.label}
                 </p>
-                {/* Description overlay — visible when open */}
                 <div style={{
                   position: 'absolute',
                   inset: 0,
@@ -166,8 +165,8 @@ export function ManifestoSection() {
                   justifyContent: 'center',
                   padding: '12px',
                   opacity: isOpen ? 1 : 0,
-                  transform: idx < 2 ? (isOpen ? 'translateY(0)' : 'translateY(100%)') : undefined,
-                  transition: idx < 2 ? 'opacity 0.3s ease, transform 0.4s ease' : 'opacity 0.3s ease',
+                  transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+                  transition: 'opacity 0.3s ease, transform 0.4s ease',
                   pointerEvents: 'none',
                   overflow: 'hidden',
                 }}>
@@ -190,6 +189,88 @@ export function ManifestoSection() {
               </div>
             )
           })}
+          {/* Bottom row — PRECISE, PERSONAL — slides up when a top card is open */}
+          <div
+            style={{
+              gridColumn: '1 / -1',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '8px',
+              transform: (openIndex === 0 || openIndex === 1) ? 'translateY(-80px)' : 'translateY(0)',
+              transition: 'transform 0.4s ease',
+            }}
+          >
+          {values.slice(2).map((item, i) => {
+            const idx = i + 2
+            const isOpen = openIndex === idx
+            return (
+              <div
+                key={idx}
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                style={{
+                  position: 'relative',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  height: isOpen ? '280px' : '160px',
+                  transition: 'height 0.4s ease',
+                  cursor: 'pointer',
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(28,24,20,0.75) 0%, transparent 60%)',
+                }} />
+                <p style={{
+                  position: 'absolute',
+                  bottom: '12px',
+                  left: '12px',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: '10px',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: '#F7F3EE',
+                  margin: 0,
+                }}>
+                  {item.label}
+                </p>
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '12px',
+                  opacity: isOpen ? 1 : 0,
+                  transition: 'opacity 0.3s ease',
+                  pointerEvents: 'none',
+                  overflow: 'hidden',
+                }}>
+                  <span style={{
+                    display: 'inline-block',
+                    background: 'rgba(20,16,12,0.6)',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    backdropFilter: 'blur(4px)',
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    color: '#F7F3EE',
+                    lineHeight: 1.6,
+                    textAlign: 'center',
+                  }}>
+                    {item.description}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+          </div>
           </div>
           <p style={{
             fontFamily: 'Cormorant Garamond, serif',
