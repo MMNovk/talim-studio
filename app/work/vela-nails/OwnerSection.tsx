@@ -11,6 +11,7 @@ export default function OwnerSection() {
             src="/images/vela/mia-portrait.jpg"
             alt="Mia Reyes, founder of Vela Nails"
             fill
+            loading="lazy"
             className="object-cover"
           />
         </div>
