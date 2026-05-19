@@ -252,9 +252,9 @@ export default function ClartePage() {
       {/* Footer */}
       <footer
         style={{ background: INK }}
-        className="px-8 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+        className="px-8 md:px-16 max-md:py-5 md:py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        <nav style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'nowrap' }}>
+        <nav style={{ display: 'flex', alignItems: 'center' }} className="flex-wrap gap-3 md:gap-6 max-md:justify-center">
           {[
             { label: 'Treatments',    href: '#treatments'  },
             { label: 'Our Work',      href: '#our-work'    },
