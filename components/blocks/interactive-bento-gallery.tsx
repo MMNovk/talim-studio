@@ -151,7 +151,7 @@ const GalleryModal = ({
       >
         {/* Main Content */}
         <div className="h-full flex flex-col">
-          <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-50/50">
+          <div className="flex-1 p-2 sm:p-3 md:p-4 max-md:pb-[88px] flex items-center justify-center bg-gray-50/50">
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedItem.id}
@@ -168,7 +168,7 @@ const GalleryModal = ({
               >
                 <MediaItem
                   item={selectedItem}
-                  className="w-full h-full object-contain bg-gray-900/20 max-md:!object-contain"
+                  className="w-full h-full !object-contain bg-gray-900/20"
                   onClick={onClose}
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4
