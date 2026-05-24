@@ -432,14 +432,11 @@ export function Component() {
 
         <nav className="slides-navigation" id="slidesNav"></nav>
 
-        <div className="mobile-slide-nav md:hidden" id="mobileSlideNav" style={{
+        <div className="mobile-slide-nav flex items-center gap-5 md:!hidden" id="mobileSlideNav" style={{
           position: 'absolute',
           bottom: '40px',
           left: '50%',
           transform: 'translateX(-50%)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '20px',
           zIndex: 10,
         }}>
           <button id="mobilePrev" style={{
