@@ -432,7 +432,7 @@ export function Component() {
 
         <nav className="slides-navigation" id="slidesNav"></nav>
 
-        <div className="mobile-slide-nav" id="mobileSlideNav" style={{
+        <div className="mobile-slide-nav md:hidden" id="mobileSlideNav" style={{
           position: 'absolute',
           bottom: '40px',
           left: '50%',
