@@ -8,7 +8,7 @@ export function ModifiedClassicLoader() {
       width="132"
       height="132"
       viewBox="0 0 220 220"
-      style={{ animation: "orbit 3s linear infinite" }}
+      style={{ animation: "orbit 3s linear infinite", transformOrigin: "center center" }}
     >
       <defs>
         <path
@@ -46,8 +46,8 @@ export function ModifiedClassicLoader() {
       </text>
       <style>{`
         @keyframes orbit {
-          from { transform: rotate(0deg); transform-origin: 110px 110px; }
-          to { transform: rotate(360deg); transform-origin: 110px 110px; }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </svg>
