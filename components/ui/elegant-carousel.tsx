@@ -174,7 +174,7 @@ export default function VelaCarousel() {
       </div>
 
       {/* Main layout */}
-      <div className="max-lg:hidden max-w-3xl mx-auto px-8 md:px-14 lg:px-20 flex items-start gap-12 pt-16 pb-12">
+      <div className="max-lg:hidden px-8 md:px-14 lg:px-20 flex items-start gap-12 pt-16 pb-12">
 
         {/* Mobile-only heading — order-0 so it appears above the image on mobile */}
         <div className="lg:hidden order-[0]">
@@ -236,7 +236,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Right: image */}
-        <div className="relative h-[260px] max-md:h-[160px] overflow-hidden order-1 lg:order-2 w-[45%] flex-shrink-0">
+        <div className="relative h-[520px] max-md:h-[160px] overflow-hidden order-1 lg:order-2 w-[45%] flex-shrink-0">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
@@ -249,7 +249,7 @@ export default function VelaCarousel() {
       </div>
 
       {/* Thumbnail nav */}
-      <div className="max-lg:hidden max-w-3xl mx-auto px-8 md:px-14 lg:px-20 pb-8 flex gap-6 overflow-x-auto">
+      <div className="max-lg:hidden px-8 md:px-14 lg:px-20 pb-8 flex gap-6 overflow-x-auto">
         {VELA_SLIDES.map((s, i) => (
           <button
             key={i}
