@@ -30,6 +30,14 @@ export const TestimonialSlider = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [flippedMain, setFlippedMain] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => { setFlippedMain(false) }, [currentIndex]);
 
@@ -126,7 +134,7 @@ export const TestimonialSlider = ({
 
         {/* Center Column: Main Image */}
         <div className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-2 md:order-2">
-          <div style={{ perspective: '1000px', width: '100%', height: '100%', cursor: 'pointer' }} onClick={() => setFlippedMain(f => !f)}>
+          <div style={{ perspective: '1000px', width: '100%', height: '100%', cursor: isMobile ? 'pointer' : 'default' }} onClick={isMobile ? () => setFlippedMain(f => !f) : undefined}>
             <div style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d', transition: 'transform 0.6s ease', transform: flippedMain ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden' }}>
                 <AnimatePresence initial={false} custom={direction}>
