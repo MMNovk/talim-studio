@@ -174,7 +174,7 @@ export default function VelaCarousel() {
       </div>
 
       {/* Main layout */}
-      <div className="max-lg:hidden px-8 md:px-14 lg:px-20 flex items-start gap-12 pt-16 pb-12">
+      <div className="max-lg:hidden px-8 md:px-14 lg:px-20 flex flex-row items-start gap-12 pt-16 pb-12 w-full">
 
         {/* Mobile-only heading — order-0 so it appears above the image on mobile */}
         <div className="lg:hidden order-[0]">
@@ -182,7 +182,7 @@ export default function VelaCarousel() {
         </div>
 
         {/* Left: text */}
-        <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-2 w-1/2 min-w-0 overflow-hidden">
+        <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-2 w-[55%]">
           <h2 className="text-3xl font-semibold text-ink mb-3 max-lg:hidden">The Services</h2>
           <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
             {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
@@ -206,7 +206,7 @@ export default function VelaCarousel() {
           </p>
 
           <p
-            className="leading-relaxed max-w-sm transition-opacity duration-300"
+            className="leading-relaxed transition-opacity duration-300"
             style={{ opacity: isTransitioning ? 0 : 1, color: '#6B6B6B' }}
           >
             {slide.description}
@@ -236,14 +236,14 @@ export default function VelaCarousel() {
         </div>
 
         {/* Right: image */}
-        <div className="relative h-[520px] max-md:h-[160px] overflow-hidden order-1 lg:order-2 w-[45%] flex-shrink-0">
+        <div className="relative h-[500px] max-md:h-[160px] overflow-hidden order-1 lg:order-2 w-[40%] flex-shrink-0">
           <Image
             src={slide.imageUrl}
             alt={slide.title}
             fill
-            sizes="(max-width: 1024px) 100vw, 55vw"
+            sizes="(max-width: 1024px) 100vw, 40vw"
             className="object-cover transition-opacity duration-300"
-            style={{ opacity: isTransitioning ? 0 : 1 }}
+            style={{ opacity: isTransitioning ? 0 : 1, objectPosition: 'center' }}
           />
         </div>
       </div>
