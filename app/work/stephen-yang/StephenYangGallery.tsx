@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { useInView } from 'motion/react'
+import Image from 'next/image'
 
 const serif = { fontFamily: 'Georgia, "Times New Roman", serif' }
 
@@ -15,16 +16,10 @@ type Photo = {
   alt?: string
 }
 
+const BLUR_DATA_URL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
+
 // Array order is deliberate: with CSS dense auto-placement these 16 items fill
 // a 3-col × 7-row grid with zero gaps.
-// Layout:
-//   Row 1: [wide 1-2] [normal 3]
-//   Row 2: [tall 1 rows2-3] [normal 2] [normal 3]
-//   Row 3: [tall cont.] [wide 2-3]
-//   Row 4: [normal] [normal] [normal]
-//   Row 5: [normal] [normal] [tall 3 rows5-6]
-//   Row 6: [wide 1-2] [tall cont.]
-//   Row 7: [normal] [normal] [normal]
 const photos: Photo[] = [
   // Row 1 top
   { src: 'https://images.unsplash.com/photo-1697810694395-09755be017e1?w=1200&q=80', title: 'Coastal Aerial', year: '2024', size: 'wide' },
@@ -49,11 +44,12 @@ const photos: Photo[] = [
   { src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80', title: 'Night Passage', year: '2019' },
 ]
 
-function GalleryItem({ src, title, year, size = 'normal', delay = 0, alt: altProp }: Photo & { delay?: number }) {
+function GalleryItem({ src, title, year, size = 'normal', delay = 0, alt: altProp, priority = false }: Photo & { delay?: number; priority?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px 0px' })
 
   const spanClass = size === 'tall' ? 'row-span-2' : size === 'wide' ? 'col-span-2' : ''
+  const altText = altProp ?? title
 
   return (
     <div
@@ -65,12 +61,25 @@ function GalleryItem({ src, title, year, size = 'normal', delay = 0, alt: altPro
         transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
       }}
     >
-      <img
-        src={src}
-        alt={altProp ?? title}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
+      {priority && src.includes('unsplash.com') ? (
+        <Image
+          src={src}
+          alt={altText}
+          fill
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+          sizes="(max-width: 768px) 50vw, 33vw"
+          className="object-cover"
+        />
+      ) : (
+        <img
+          src={src}
+          alt={altText}
+          className="w-full h-full object-cover"
+          {...(priority ? { fetchPriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement> : { loading: 'lazy' })}
+        />
+      )}
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
       <div className="absolute bottom-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <p className="text-white font-thin text-sm leading-snug" style={serif}>{title}</p>
@@ -89,9 +98,10 @@ export default function StephenYangGallery() {
         style={{ gridAutoRows: '260px', gridAutoFlow: 'dense' }}
       >
         {photos.map((photo, i) => (
-          <GalleryItem key={photo.title} {...photo} delay={i * 60} />
+          <GalleryItem key={photo.title} {...photo} delay={i * 60} priority={i < 4} />
         ))}
       </div>
     </section>
   )
 }
+
