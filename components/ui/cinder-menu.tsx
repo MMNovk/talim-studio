@@ -82,11 +82,14 @@ export function CinderMenu() {
       <div className="max-w-screen-xl mx-auto">
 
         <h2
-          className="text-white font-black mb-12"
+          className="text-white font-black mb-3"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
         >
           The Menu
         </h2>
+        <p style={{ fontSize: 13, color: '#6b7280', fontWeight: 400, marginBottom: '2.5rem' }}>
+          Take a look, hover over something.
+        </p>
 
         {/* Category tabs */}
         <div className="flex flex-wrap gap-2 mb-0">
