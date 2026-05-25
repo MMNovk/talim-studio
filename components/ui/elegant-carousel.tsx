@@ -184,9 +184,32 @@ export default function VelaCarousel() {
         {/* Left: text */}
         <div className="flex flex-col gap-5 order-2 lg:order-1 max-md:gap-2 w-[55%]">
           <h2 className="text-3xl font-semibold text-ink mb-3 max-lg:hidden">The Services</h2>
-          <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
-            {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
-          </span>
+          {/* FIX 1 — Counter + arrows in one row */}
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono tracking-widest" style={{ color: '#6B6B6B' }}>
+              {String(currentIndex + 1).padStart(2, '0')} / {String(VELA_SLIDES.length).padStart(2, '0')}
+            </span>
+            <div className="flex gap-2">
+              <button
+                onClick={goPrev}
+                className="w-11 h-11 border border-ink/20 flex items-center justify-center hover:bg-ink/5 transition-colors"
+                aria-label="Previous"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={goNext}
+                className="w-11 h-11 border border-ink/20 flex items-center justify-center hover:bg-ink/5 transition-colors"
+                aria-label="Next"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
           <h2
             className="font-dm-sans font-black leading-tight transition-opacity duration-300 max-md:text-2xl"
@@ -212,26 +235,24 @@ export default function VelaCarousel() {
             {slide.description}
           </p>
 
-          {/* Prev / Next */}
-          <div className="flex gap-3 mt-2">
-            <button
-              onClick={goPrev}
-              className="w-11 h-11 border border-ink/20 flex items-center justify-center hover:bg-ink/5 transition-colors"
-              aria-label="Previous"
+          {/* FIX 2 — Book Now */}
+          <div>
+            <a
+              href="#booking"
+              style={{
+                display: 'inline-block',
+                backgroundColor: '#0e0e0e',
+                color: '#fff',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                fontSize: '13px',
+                padding: '12px 28px',
+                borderRadius: '2px',
+                textDecoration: 'none',
+              }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <button
-              onClick={goNext}
-              className="w-11 h-11 border border-ink/20 flex items-center justify-center hover:bg-ink/5 transition-colors"
-              aria-label="Next"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+              Book Now
+            </a>
           </div>
         </div>
 
@@ -254,7 +275,7 @@ export default function VelaCarousel() {
           <button
             key={i}
             onClick={() => goToSlide(i)}
-            className="text-left flex-shrink-0 max-md:flex-shrink max-md:w-[calc(50%-6px)]"
+            className="text-left flex-shrink-0 w-[140px] max-md:flex-shrink max-md:w-[calc(50%-6px)]"
             aria-label={`Go to ${s.title}`}
           >
             <div className="h-px bg-ink/10 mb-2 overflow-hidden w-full">
