@@ -1,6 +1,7 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
+import Image from 'next/image'
 import ScrollReveal from './ScrollReveal'
 
 /* ── Tab data — only content changed from original ── */
@@ -118,11 +119,12 @@ export function Feature108() {
 
           {/* Dark rounded container — bg-muted/70 → bg-zinc-900 to match screenshot */}
           <div className="mx-auto mt-8 max-w-screen-xl rounded-2xl bg-zinc-900 p-6 lg:p-16">
-            {tabs.map((tab) => (
+            {tabs.map((tab, i) => (
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10 outline-none"
+                forceMount
+                className="data-[state=inactive]:hidden grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10 outline-none"
               >
                 <div className="flex flex-col gap-5">
                   {/* Price badge — text-lg, subtle, no colored bg */}
@@ -140,10 +142,14 @@ export function Feature108() {
                   <Button className="mt-2.5 w-fit gap-2">{tab.content.buttonText}</Button>
                 </div>
 
-                <img
+                <Image
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
+                  width={900}
+                  height={600}
                   className="rounded-xl"
+                  priority={i === 0}
+                  unoptimized
                 />
               </TabsContent>
             ))}
