@@ -118,10 +118,8 @@ export function CinderMenu() {
                 <div
                   onMouseEnter={() => { if (!isMobile) setHoveredItem(i) }}
                   onMouseLeave={() => { if (!isMobile) setHoveredItem(null) }}
-                  onClick={() => { if (isMobile) handleMobileTap(i) }}
-                  className={`group flex items-baseline justify-between py-5 border-b border-white/10 transition-colors duration-200 ${
-                    isMobile ? 'cursor-pointer' : 'cursor-default'
-                  } ${hoveredItem === i ? "border-white/30" : ""}`}
+                  onClick={() => { if (isMobile) handleMobileTap(i); else setHoveredItem(prev => prev === i ? null : i) }}
+                  className={`group flex items-baseline justify-between py-5 border-b border-white/10 transition-colors duration-200 cursor-pointer ${hoveredItem === i ? "border-white/30" : ""}`}
                 >
                   <div className="flex-1 min-w-0 pr-8">
                     <p className={`font-bold text-lg transition-colors duration-200 ${
