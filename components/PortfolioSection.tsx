@@ -6,18 +6,18 @@ import { RadialScrollGallery } from './RadialScrollGallery'
 
 const portfolioItems = [
   {
+    key: '5',
+    src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
+    label: 'Clarté',
+    tier: 'Business · $1,099',
+    slug: '/work/clarte',
+  },
+  {
     key: '2',
     src: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80',
     label: 'Cinder & Co.',
     tier: 'Starter · $499',
     slug: '/work/cinder-co',
-  },
-  {
-    key: '6',
-    src: 'https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    label: 'Stephen Yang',
-    tier: 'Portfolio · $799',
-    slug: '/work/stephen-yang',
   },
   {
     key: '4',
@@ -34,11 +34,11 @@ const portfolioItems = [
     slug: '/work/vela-nails',
   },
   {
-    key: '5',
-    src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
-    label: 'Clarté',
-    tier: 'Business · $1,099',
-    slug: '/work/clarte',
+    key: '6',
+    src: 'https://images.unsplash.com/photo-1633177188754-980c2a6b6266?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    label: 'Stephen Yang',
+    tier: 'Portfolio · $799',
+    slug: '/work/stephen-yang',
   },
 ]
 

@@ -88,7 +88,7 @@ export function CinderMenu() {
           The Menu
         </h2>
         <p style={{ fontSize: 13, color: '#6b7280', fontWeight: 400, marginBottom: '2.5rem' }}>
-          Take a look, click on something.
+          Take a look, explore the menu.
         </p>
 
         {/* Category tabs */}
