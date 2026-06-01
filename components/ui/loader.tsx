@@ -4,24 +4,27 @@ import { useState, useEffect } from 'react'
 
 export function ModifiedClassicLoader() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <p style={{
         fontFamily: 'Cormorant Garamond, serif',
         fontStyle: 'italic',
         fontWeight: 300,
         fontSize: 'clamp(2.8rem, 8vw, 5rem)',
         letterSpacing: '0.3em',
-        color: '#F7F3EE',
         margin: 0,
-        animation: 'clarte-breathe 2.4s ease-in-out infinite',
+        background: 'linear-gradient(90deg, rgba(247,243,238,0.08) 0%, rgba(247,243,238,1) 50%, rgba(247,243,238,0.08) 100%)',
+        backgroundSize: '200% 100%',
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text',
+        color: 'transparent',
+        animation: 'clarte-sweep 2.2s ease-in-out infinite',
       }}>
         Clarté
       </p>
       <style>{`
-        @keyframes clarte-breathe {
-          0%   { opacity: 0.05; }
-          50%  { opacity: 1;    }
-          100% { opacity: 0.05; }
+        @keyframes clarte-sweep {
+          0%   { background-position: 150% center; }
+          100% { background-position: -50% center; }
         }
       `}</style>
     </div>
