@@ -76,12 +76,12 @@ export function Component() {
         const TRANSITION_DURATION = () => SLIDER_CONFIG.settings.transitionDuration;
 
         const slides = [
-            { title: "HydraFacial", description: "Deep cleanse, extract, and hydrate in one transformative session.", media: "https://assets.codepen.io/7558/orange-portrait-001.jpg" },
-            { title: "LED Therapy", description: "Wavelengths of light working beneath the surface to restore and renew.", media: "https://assets.codepen.io/7558/orange-portrait-002.jpg" },
-            { title: "Microneedling", description: "Precision micro-channels that awaken your skin's natural repair.", media: "https://assets.codepen.io/7558/orange-portrait-003.jpg" },
-            { title: "Gua Sha", description: "An ancient practice, refined for the modern complexion.", media: "https://assets.codepen.io/7558/orange-portrait-004.jpg" },
-            { title: "Chemical Peel", description: "Controlled renewal that reveals the skin you were meant to have.", media: "https://assets.codepen.io/7558/orange-portrait-005.jpg" },
-            { title: "Bespoke Facial", description: "Formulated entirely around you. No two are ever the same.", media: "https://assets.codepen.io/7558/orange-portrait-006.jpg" }
+            { title: "HydraFacial", description: "Deep cleanse, extract, and hydrate in one transformative session.", media: "https://images.unsplash.com/photo-1584425123784-f840d6c80c8c?w=987&q=80" },
+            { title: "LED Therapy", description: "Wavelengths of light working beneath the surface to restore and renew.", media: "https://images.unsplash.com/photo-1675379859582-c6c997c866b2?w=980&q=80" },
+            { title: "Microneedling", description: "Precision micro-channels that awaken your skin's natural repair.", media: "https://images.unsplash.com/photo-1643932919088-53349a7c3385?w=1056&q=80" },
+            { title: "Gua Sha", description: "An ancient practice, refined for the modern complexion.", media: "https://images.unsplash.com/photo-1678754292654-5e2c7fcc8727?w=1008&q=80" },
+            { title: "Chemical Peel", description: "Controlled renewal that reveals the skin you were meant to have.", media: "https://images.unsplash.com/photo-1699206790550-e0da8f6e2cec?w=986&q=80" },
+            { title: "Bespoke Facial", description: "Formulated entirely around you. No two are ever the same.", media: "https://images.unsplash.com/photo-1752245818739-890854ca3b81?w=987&q=80" }
         ];
 
         // --- SHADERS ---

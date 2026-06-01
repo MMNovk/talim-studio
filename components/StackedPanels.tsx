@@ -31,7 +31,7 @@ const PANEL_IMAGES = [
   "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1633177188754-980c2a6b6266?w=600&q=80",
-  "https://assets.codepen.io/7558/orange-portrait-001.jpg",
+  "https://images.unsplash.com/photo-1584425123784-f840d6c80c8c?w=400&q=80",
 ];
 
 const GRADIENT_OVERLAYS = [

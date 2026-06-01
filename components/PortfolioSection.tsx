@@ -35,7 +35,7 @@ const portfolioItems = [
   },
   {
     key: '5',
-    src: 'https://assets.codepen.io/7558/orange-portrait-001.jpg',
+    src: 'https://images.unsplash.com/photo-1584425123784-f840d6c80c8c?w=987&q=80',
     label: 'Clarté',
     tier: 'Business · $1,099',
     slug: '/work/clarte',
