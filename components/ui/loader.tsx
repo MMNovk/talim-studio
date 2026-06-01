@@ -13,16 +13,15 @@ export function ModifiedClassicLoader() {
         letterSpacing: '0.3em',
         color: '#F7F3EE',
         margin: 0,
-        animation: 'clarte-breathe 2.8s ease-in-out infinite',
+        animation: 'clarte-breathe 2.4s ease-in-out infinite',
       }}>
         Clarté
       </p>
       <style>{`
         @keyframes clarte-breathe {
-          0%   { opacity: 0;    transform: translateY(6px); }
-          25%  { opacity: 1;    transform: translateY(0);   }
-          70%  { opacity: 1;    transform: translateY(0);   }
-          100% { opacity: 0;    transform: translateY(-4px);}
+          0%   { opacity: 0.05; }
+          50%  { opacity: 1;    }
+          100% { opacity: 0.05; }
         }
       `}</style>
     </div>
