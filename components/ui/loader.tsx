@@ -4,53 +4,28 @@ import { useState, useEffect } from 'react'
 
 export function ModifiedClassicLoader() {
   return (
-    <svg
-      width="132"
-      height="132"
-      viewBox="0 0 220 220"
-      style={{ animation: "orbit 3s linear infinite", transformOrigin: "center center" }}
-    >
-      <defs>
-        <path
-          id="topCircle"
-          d="M 110,110 m -80,0 a 80,80 0 1,1 160,0"
-        />
-        <path
-          id="bottomCircle"
-          d="M 110,110 m 80,0 a 80,80 0 1,1 -160,0"
-        />
-      </defs>
-      <text
-        fontFamily="Cormorant Garamond"
-        fontStyle="italic"
-        fontWeight="400"
-        fontSize="13"
-        fill="#F7F3EE"
-        letterSpacing="12"
-      >
-        <textPath href="#topCircle" startOffset="0%">
-          Clarté
-        </textPath>
-      </text>
-      <text
-        fontFamily="Cormorant Garamond"
-        fontStyle="italic"
-        fontWeight="400"
-        fontSize="13"
-        fill="#F7F3EE"
-        letterSpacing="12"
-      >
-        <textPath href="#bottomCircle" startOffset="0%">
-          Clarté
-        </textPath>
-      </text>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+      <p style={{
+        fontFamily: 'Cormorant Garamond, serif',
+        fontStyle: 'italic',
+        fontWeight: 300,
+        fontSize: 'clamp(2.8rem, 8vw, 5rem)',
+        letterSpacing: '0.3em',
+        color: '#F7F3EE',
+        margin: 0,
+        animation: 'clarte-breathe 2.8s ease-in-out infinite',
+      }}>
+        Clarté
+      </p>
       <style>{`
-        @keyframes orbit {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        @keyframes clarte-breathe {
+          0%   { opacity: 0;    transform: translateY(6px); }
+          25%  { opacity: 1;    transform: translateY(0);   }
+          70%  { opacity: 1;    transform: translateY(0);   }
+          100% { opacity: 0;    transform: translateY(-4px);}
         }
       `}</style>
-    </svg>
+    </div>
   )
 }
 

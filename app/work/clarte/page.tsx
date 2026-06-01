@@ -6,7 +6,6 @@ import ClarteHero            from './ClarteHero'
 import ClarteNav             from './ClarteNav'
 import { ManifestoSection }  from './ClarteManifesto'
 import TreatmentGrid         from './TreatmentGrid'
-import OurWorkScroll         from './OurWorkScroll'
 import StudioGallery         from './StudioGallery'
 import { TestimonialSlider } from './ClarteTeam'
 import { InteractiveCalendar } from './VisualizeBooking'
@@ -113,20 +112,18 @@ export default function ClartePage() {
       {/* 3. Services — 2-col treatment grid */}
       <div id="treatments"><TreatmentGrid /></div>
 
-      {/* 4. Our Work — sticky scroll gallery */}
-      <div id="our-work"><OurWorkScroll /></div>
-
-      {/* 6. The Studio carousel */}
+      {/* 5. The Studio carousel */}
       <div id="about"><StudioGallery /></div>
 
       {/* 7. Meet the Team */}
       <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
         <p className="max-md:pt-16 max-md:pb-2 max-md:mb-0" style={{
           fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
-          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-          letterSpacing: '0.12em',
-          color: '#C8BEB4',
+          fontWeight: 400,
+          fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+          letterSpacing: '0.15em',
+          color: 'transparent',
+          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
           textTransform: 'uppercase',
           textAlign: 'center',
           width: '100%',
@@ -142,10 +139,11 @@ export default function ClartePage() {
       <section id="booking" className="max-md:!px-4" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
-          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-          letterSpacing: '0.12em',
-          color: '#C8BEB4',
+          fontWeight: 400,
+          fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+          letterSpacing: '0.15em',
+          color: 'transparent',
+          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
           textTransform: 'uppercase',
           textAlign: 'center',
           width: '100%',
@@ -257,7 +255,6 @@ export default function ClartePage() {
         <nav style={{ display: 'flex', alignItems: 'center' }} className="flex-wrap gap-3 md:gap-6 max-md:justify-center">
           {[
             { label: 'Treatments',    href: '#treatments'  },
-            { label: 'Our Work',      href: '#our-work'    },
             { label: 'The Studio',    href: '#about'       },
             { label: 'Meet the Team', href: '#meet-the-team' },
             { label: 'Book a Visit',  href: '#booking'     },

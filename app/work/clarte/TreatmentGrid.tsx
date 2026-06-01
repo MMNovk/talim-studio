@@ -108,11 +108,12 @@ export default function TreatmentGrid() {
       <div style={{ marginBottom: 48 }}>
         <p style={{
           fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 300,
-          fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-          letterSpacing: '0.12em',
+          fontWeight: 400,
+          fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+          letterSpacing: '0.15em',
           textTransform: 'uppercase',
-          color: '#C8BEB4',
+          color: 'transparent',
+          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
           margin: 0,
           lineHeight: 1,
         }}>

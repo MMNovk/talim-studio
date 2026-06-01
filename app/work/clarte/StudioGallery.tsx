@@ -85,10 +85,11 @@ export default function StudioGallery() {
           className="max-md:order-1 max-md:mb-6 max-md:pt-4"
           style={{
             fontFamily: 'Cormorant Garamond, serif',
-            fontWeight: 300,
-            fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)',
-            letterSpacing: '0.12em',
-            color: '#C8BEB4',
+            fontWeight: 400,
+            fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+            letterSpacing: '0.15em',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
             textTransform: 'uppercase',
             margin: '0 0 48px',
           }}

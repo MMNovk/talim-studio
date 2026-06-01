@@ -12,18 +12,15 @@ export const metadata = {
 const reviews = [
   {
     quote: '\u201CThe smash burger here is the reason I started telling people to stop going to Manhattan for food.\u201D',
-    logo: '/images/eatny.jpg.webp',
-    publication: 'Eater NY',
+    publication: 'The Borough Feed',
   },
   {
     quote: '\u201CExactly what a neighborhood burger spot should be. Nothing extra, nothing missing.\u201D',
-    logo: '/images/infatuation.jpeg',
-    publication: 'The Infatuation',
+    publication: 'Table & Fork',
   },
   {
     quote: '\u201COrder the double. You\u2019ll thank yourself.\u201D',
-    logo: '/images/timeoutny.jpg',
-    publication: 'Time Out New York',
+    publication: 'Queens Eats',
   },
 ]
 
@@ -93,16 +90,12 @@ export default function CinderCoPage() {
       {/* SECTION 3 — Review quotes */}
       <section className="bg-[#0a0a0a] py-24 px-8 md:px-14 lg:px-20">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
-          {reviews.map(({ quote, logo, publication }) => (
+          {reviews.map(({ quote, publication }) => (
             <div key={publication} className="flex flex-col gap-4">
               <p className="text-white text-lg font-light leading-relaxed">{quote}</p>
               <div className="flex items-center gap-3">
-                <img
-                  src={logo}
-                  alt={publication}
-                  className="h-5 w-auto grayscale opacity-50"
-                />
-                <span className="font-sans text-sm text-zinc-400 font-medium">{publication}</span>
+                <span className="block w-5 h-px bg-zinc-600" />
+                <span className="font-sans text-xs text-zinc-500 tracking-widest uppercase">{publication}</span>
               </div>
             </div>
           ))}
