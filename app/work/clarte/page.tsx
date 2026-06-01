@@ -102,58 +102,67 @@ export default function ClartePage() {
 
       {/* Cream card — slides over the sticky hero */}
       <div style={{ position: 'relative', zIndex: 2, backgroundColor: '#F7F3EE' }}>
-        {/* Spacer: full viewport so hero is visible before card slides up */}
 
-      {/* 2. Manifesto */}
+      {/* 2. Manifesto — flows normally so values gallery is fully scrollable */}
       <div style={{ paddingTop: "80px" }}>
         <ManifestoSection />
       </div>
 
-      {/* 3. Services — 2-col treatment grid */}
-      <div id="treatments"><TreatmentGrid /></div>
+      {/* Card stack — each section slides over the previous */}
 
-      {/* 5. The Studio carousel */}
-      <div id="about"><StudioGallery /></div>
-
-      {/* 7. Meet the Team */}
-      <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px' }}>
-        <p className="max-md:pt-16 max-md:pb-2 max-md:mb-0" style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 400,
-          fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
-          letterSpacing: '0.15em',
-          color: 'transparent',
-          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
-          textTransform: 'uppercase',
-          textAlign: 'center',
-          width: '100%',
-          display: 'block',
-          margin: '0 0 24px',
-        }}>
-          MEET THE TEAM
-        </p>
-        <TestimonialSlider reviews={team} />
+      {/* CARD 1 — Treatments */}
+      <div style={{ position: 'sticky', top: 0, zIndex: 3, background: '#F7F3EE', borderRadius: '24px 24px 0 0', boxShadow: '0 -10px 40px rgba(28,24,20,0.06)' }}>
+        <div id="treatments"><TreatmentGrid /></div>
       </div>
 
-      {/* 8. Booking */}
-      <section id="booking" className="max-md:!px-4" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px' }}>
-        <p style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontWeight: 400,
-          fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
-          letterSpacing: '0.15em',
-          color: 'transparent',
-          WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
-          textTransform: 'uppercase',
-          textAlign: 'center',
-          width: '100%',
-          display: 'block',
-          marginBottom: '48px',
-        }}>
-          BOOK A VISIT
-        </p>
-        <InteractiveCalendar />
-      </section>
+      {/* CARD 2 — The Studio */}
+      <div style={{ position: 'sticky', top: 0, zIndex: 4, background: '#F7F3EE', borderRadius: '24px 24px 0 0', boxShadow: '0 -10px 40px rgba(28,24,20,0.06)' }}>
+        <div id="about"><StudioGallery /></div>
+      </div>
+
+      {/* CARD 3 — Meet the Team */}
+      <div style={{ position: 'sticky', top: 0, zIndex: 5, background: '#F7F3EE', borderRadius: '24px 24px 0 0', boxShadow: '0 -10px 40px rgba(28,24,20,0.06)' }}>
+        <div id="meet-the-team" style={{ backgroundColor: '#F7F3EE', paddingTop: '80px', borderRadius: '24px 24px 0 0' }}>
+          <p className="max-md:pt-16 max-md:pb-2 max-md:mb-0" style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 400,
+            fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+            letterSpacing: '0.15em',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            width: '100%',
+            display: 'block',
+            margin: '0 0 24px',
+          }}>
+            MEET THE TEAM
+          </p>
+          <TestimonialSlider reviews={team} />
+        </div>
+      </div>
+
+      {/* CARD 4 — Book a Visit */}
+      <div style={{ position: 'sticky', top: 0, zIndex: 6, background: '#F7F3EE', borderRadius: '24px 24px 0 0', boxShadow: '0 -10px 40px rgba(28,24,20,0.06)' }}>
+        <section id="booking" className="max-md:!px-4" style={{ backgroundColor: '#F7F3EE', padding: '80px 64px', borderRadius: '24px 24px 0 0' }}>
+          <p style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 400,
+            fontSize: 'clamp(2.2rem, 5vw, 5.5rem)',
+            letterSpacing: '0.15em',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px rgba(28, 24, 20, 0.38)',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            width: '100%',
+            display: 'block',
+            marginBottom: '48px',
+          }}>
+            BOOK A VISIT
+          </p>
+          <InteractiveCalendar />
+        </section>
+      </div>
 
       {/* 9. Find Us */}
       <section id="find-us" style={{ background: BG }}>
